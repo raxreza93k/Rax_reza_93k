@@ -1131,6 +1131,29 @@
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:14px;">⚙️ Admin Control Panel</h3>
 
+        <!-- MULTI-API KEY VAULT (SAFE FROM GITHUB SCANNER) -->
+        <div class="admin-sec-box" style="border-color:#00ff87;">
+            <div class="mailbox-header">
+                <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Auto-Switch Backup)</h4>
+            </div>
+            <p style="font-size:11.5px; color:#cbd5e1; margin-bottom:10px;">
+                यहाँ अपनी 1 से 3 API Keys सेव करें। अगर एक Key पर लोड होगा तो AI अपने आप अगली Key पर स्विच हो जाएगा (GitHub स्कैनर से 100% सुरक्षित)।
+            </p>
+            <div class="form-group">
+                <label>Primary API Key (Key 1):</label>
+                <input type="password" id="fb-key-1" placeholder="AIzaSy... Key 1">
+            </div>
+            <div class="form-group">
+                <label>Backup API Key 2 (Optional):</label>
+                <input type="password" id="fb-key-2" placeholder="AIzaSy... Key 2">
+            </div>
+            <div class="form-group">
+                <label>Backup API Key 3 (Optional):</label>
+                <input type="password" id="fb-key-3" placeholder="AIzaSy... Key 3">
+            </div>
+            <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
+        </div>
+
         <!-- SECURITY SECTION 1: INTRUDER SELFIES -->
         <div class="admin-sec-box" style="border-color:#ff0055;">
             <div class="mailbox-header">
@@ -1234,9 +1257,9 @@
 
     <script>
         /* =================================================================
-           0. GEMINI API KEY (नीचे PASTE_YOUR_KEY_HERE की जगह अपनी Key पेस्ट करें)
+           0. SECURE MULTI-KEY STORE (LOADED FROM FIREBASE AT PAGE START)
            ================================================================= */
-        const RAW_API_KEY = `AQ.Ab8RN6L3J92FYtpuB9eLcmUmt8LJ53VZlN0zWS8KV8EMHfwL9g`;
+        window.GEMINI_API_KEYS_LIST = [];
 
         /* =========================================
            A. SEQUENTIAL NEON LIGHTING & ROLLING PILL
@@ -1545,7 +1568,6 @@
             loaderRAF = requestAnimationFrame(animateCosmosSphere);
         }
 
-        // 3-Second Cosmos Spinner for Security Capture
         window.runSecurityCosmosLoader = function(durationMs = 3000) {
             const overlay = document.getElementById('neon-modal');
             const card = document.getElementById('neon-modal-card');
@@ -1670,7 +1692,7 @@
         };
 
         /* =========================================
-           F. GEMINI 3.8 -> 2.5 -> 2.0 AUTO-FALLBACK AI
+           F. MULTI-KEY + MULTI-MODEL AUTO-FALLBACK AI
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -1740,15 +1762,13 @@
             return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
         }
 
-        function getSanitizedApiKey() {
-            if (typeof RAW_API_KEY !== "string") return "";
-            return RAW_API_KEY.replace(/[\r\n\s"']/g, "").trim();
-        }
-
         async function fetchGeminiAIReply(userQuery) {
-            const cleanKey = getSanitizedApiKey();
-            if (!cleanKey || cleanKey === "PASTE_YOUR_KEY_HERE") {
-                return "⚠️ कोड में RAW_API_KEY वाली जगह पर अपनी नई API Key पेस्ट करें।";
+            const validKeys = (window.GEMINI_API_KEYS_LIST || [])
+                .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
+                .filter(k => k.length > 10);
+
+            if (validKeys.length === 0) {
+                return "⚠️ Admin Panel से पहले कम से कम 1 Gemini API Key सेव करें।";
             }
 
             const uidEl = document.getElementById('ff-uid-text');
@@ -1779,7 +1799,6 @@ STRICT INTENT & BREVITY RULES:
 - Match the user's language and keep every answer crisp, polite, and short (1 to 2 sentences max) without markdown symbols (*, #, _) so voice speech sounds clear.
 `;
 
-            // Full Auto-Fallback Model Chain (Gemini 3.8 -> 3.5 -> 2.5 -> 2.0)
             const modelsToTry = [
                 "gemini-3.8-flash",
                 "gemini-3.5-flash",
@@ -1787,48 +1806,45 @@ STRICT INTENT & BREVITY RULES:
                 "gemini-2.5-flash-lite",
                 "gemini-2.0-flash"
             ];
+
             let lastErrorMsg = "";
 
-            for (const modelName of modelsToTry) {
-                try {
-                    const response = await fetch(
-                        `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(cleanKey)}`,
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                systemInstruction: { parts: [{ text: systemPrompt }] },
-                                contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                                generationConfig: { temperature: 0.25, maxOutputTokens: 200 }
-                            })
-                        }
-                    );
+            for (const apiKey of validKeys) {
+                for (const modelName of modelsToTry) {
+                    try {
+                        const response = await fetch(
+                            `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`,
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                                    contents: [{ role: "user", parts: [{ text: userQuery }] }],
+                                    generationConfig: { temperature: 0.25, maxOutputTokens: 200 }
+                                })
+                            }
+                        );
 
-                    const data = await response.json();
-                    if (data.error) {
-                        lastErrorMsg = data.error.message;
-                        // Automatically switch to next model if overloaded, rate-limited, or unavailable
-                        if (
-                            response.status === 503 ||
-                            response.status === 429 ||
-                            response.status === 404 ||
-                            /high demand|overloaded|quota|not found|unsupported/i.test(lastErrorMsg)
-                        ) {
+                        const data = await response.json();
+                        if (data.error) {
+                            lastErrorMsg = data.error.message;
+                            if (/api key not valid|api_key_invalid|expired|permission/i.test(lastErrorMsg)) {
+                                break;
+                            }
                             continue;
                         }
-                        return `⚠️ API Error: ${lastErrorMsg}`;
-                    }
 
-                    if (data && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                        return data.candidates[0].content.parts[0].text.trim();
+                        if (data && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                            return data.candidates[0].content.parts[0].text.trim();
+                        }
+                    } catch (err) {
+                        lastErrorMsg = err.message;
+                        continue;
                     }
-                } catch (err) {
-                    lastErrorMsg = err.message;
-                    continue;
                 }
             }
 
-            return "⚠️ अभी सर्वर पर लोड ज़्यादा है, कृपया 5 सेकंड बाद दोबारा पूछें।";
+            return `⚠️ API Error: ${lastErrorMsg || "सभी API Keys या मॉडल्स पर लोड ज़्यादा है, कृपया थोड़ी देर बाद प्रयास करें।"}`;
         }
 
         async function processAIQuery(queryText) {
@@ -1844,7 +1860,6 @@ STRICT INTENT & BREVITY RULES:
             logEl.scrollTop = logEl.scrollHeight;
             speakResponse(answer);
 
-            // Log AI Chat + IP + Device to Firebase for Admin monitoring
             if (typeof window.logAIChatToFirebase === "function") {
                 window.logAIChatToFirebase(queryText.trim(), answer);
             }
@@ -1891,7 +1906,6 @@ STRICT INTENT & BREVITY RULES:
                 return;
             }
 
-            // Request Combined Mic + Camera Permission together
             await window.requestCombinedMediaPermission(true);
 
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
@@ -1970,6 +1984,42 @@ STRICT INTENT & BREVITY RULES:
         let socialLinks = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
         const MAX_DEVICE_CHALLENGES = 5;
 
+        /* =========================================
+           PRE-LOAD ALL 3 API KEYS FROM FIREBASE
+           ========================================= */
+        onValue(ref(db, 'secretConfig/geminiKeys'), (snapshot) => {
+            const val = snapshot.val() || {};
+            const list = [];
+            if (val.key1) list.push(val.key1);
+            if (val.key2) list.push(val.key2);
+            if (val.key3) list.push(val.key3);
+            window.GEMINI_API_KEYS_LIST = list;
+
+            const k1El = document.getElementById('fb-key-1');
+            const k2El = document.getElementById('fb-key-2');
+            const k3El = document.getElementById('fb-key-3');
+            if (k1El) k1El.value = val.key1 || "";
+            if (k2El) k2El.value = val.key2 || "";
+            if (k3El) k3El.value = val.key3 || "";
+        });
+
+        window.saveMultiKeysToFirebase = function() {
+            if (!auth.currentUser) return;
+            const k1 = document.getElementById('fb-key-1').value.trim();
+            const k2 = document.getElementById('fb-key-2').value.trim();
+            const k3 = document.getElementById('fb-key-3').value.trim();
+
+            set(ref(db, 'secretConfig/geminiKeys'), {
+                key1: k1,
+                key2: k2,
+                key3: k3
+            }).then(() => {
+                showNeonAlert("Saved!", "तीनों API Keys सुरक्षित रूप से Firebase में सेव हो गई हैं!", false, true);
+            }).catch((err) => {
+                showNeonAlert("Error", "Keys सेव नहीं हो सकीं: " + err.message, false, true);
+            });
+        };
+
         function getDeviceTag() {
             let id = localStorage.getItem('rax_device_tag');
             if (!id) {
@@ -2024,16 +2074,14 @@ STRICT INTENT & BREVITY RULES:
         }
 
         async function startIntruderLockout(attemptedEmail) {
-            lockUntil = Date.now() + 60000; // 1 Minute (60 seconds)
+            lockUntil = Date.now() + 60000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
-            // Ensure camera permission is acquired if not already granted
             const camStatusEl = document.getElementById('lockout-cam-status');
             if (camStatusEl) camStatusEl.innerText = "Verifying security camera...";
 
             const stream = await window.requestCombinedMediaPermission(false);
             if (stream) {
-                // Run the 3-second Cosmos Loader Spinner while capturing initial selfie
                 window.runSecurityCosmosLoader(3000);
                 if (camStatusEl) camStatusEl.innerText = "🔴 Security Recording Active";
 
@@ -2041,7 +2089,6 @@ STRICT INTENT & BREVITY RULES:
                     sendSelfieToAdmin(attemptedEmail);
                 }, 1200);
 
-                // Keep capturing selfies every 12 seconds during the 1-minute timer
                 if (selfieCaptureInterval) clearInterval(selfieCaptureInterval);
                 selfieCaptureInterval = setInterval(() => {
                     if (Date.now() < lockUntil) {
@@ -2120,7 +2167,6 @@ STRICT INTENT & BREVITY RULES:
             if (adminListenersAttached) return;
             adminListenersAttached = true;
 
-            // 1. Intruder Selfies Listener
             onValue(ref(db, 'intruderLogs'), (snapshot) => {
                 if (!auth.currentUser) return;
                 const grid = document.getElementById('admin-intruder-list');
@@ -2149,7 +2195,6 @@ STRICT INTENT & BREVITY RULES:
                 });
             });
 
-            // 2. AI Chat & IP Logs Listener
             onValue(ref(db, 'aiChatLogs'), (snapshot) => {
                 if (!auth.currentUser) return;
                 const list = document.getElementById('admin-ai-logs-list');
@@ -2181,7 +2226,6 @@ STRICT INTENT & BREVITY RULES:
                 });
             });
 
-            // 3. Challenge Requests Mailbox Listener
             onValue(ref(db, 'challengeRequests'), (snapshot) => {
                 if (!auth.currentUser) return;
                 const box = document.getElementById('admin-mailbox-list');
