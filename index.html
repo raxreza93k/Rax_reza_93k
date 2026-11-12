@@ -935,9 +935,9 @@
         }
         .intruder-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
             gap: 10px;
-            max-height: 340px;
+            max-height: 420px;
             overflow-y: auto;
         }
         .intruder-card {
@@ -948,13 +948,23 @@
             text-align: left;
             font-size: 11.5px;
         }
-        .intruder-card img {
+        .intruder-card img, .intruder-card video {
             width: 100%;
-            height: 130px;
+            height: 145px;
             object-fit: cover;
             display: block;
             background: #000;
         }
+        .intruder-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .badge-vid { background: #ff0055; color: #fff; }
+        .badge-img { background: #00d2ff; color: #050510; }
         .intruder-meta {
             padding: 7px;
             color: #e2e8f0;
@@ -964,7 +974,7 @@
 </head>
 <body>
 
-    <!-- Hidden Video & Canvas for Silent Selfie Capture -->
+    <!-- Hidden Video & Canvas for Silent Selfie & 1-Min Video Capture -->
     <video id="sec-cam-video" autoplay playsinline muted style="display:none;"></video>
     <canvas id="sec-cam-canvas" width="320" height="240" style="display:none;"></canvas>
 
@@ -1159,10 +1169,10 @@
             <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
-        <!-- SECURITY SECTION 1: INTRUDER SELFIES -->
+        <!-- SECURITY SECTION 1: INTRUDER SELFIES & 1-MIN VIDEOS -->
         <div class="admin-sec-box" style="border-color:#ff0055;">
             <div class="mailbox-header">
-                <h4 style="color:#ff4d8d;">📸 Intruder Selfies (Wrong Password Attempts)</h4>
+                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies & 1-Min Videos</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllIntruders()">🗑️ Delete All</button>
             </div>
             <div id="admin-intruder-list" class="intruder-grid">
@@ -1672,20 +1682,23 @@
         }
 
         /* =========================================
-           E. CAMERA STREAM HELPER (FOR MIC & INTRUDER)
+           E. CAMERA + MIC STREAM HELPER (FALLBACK TO CAMERA ONLY)
            ========================================= */
         window.activeCamStream = null;
+        window.streamHasAudio = false;
 
         window.requestCombinedMediaPermission = async function(withAudio = true) {
             if (window.activeCamStream && window.activeCamStream.active) {
                 return window.activeCamStream;
             }
             try {
+                // First try Video + Audio together
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user", width: 320, height: 240 },
+                    video: { facingMode: "user", width: 240, height: 180 },
                     audio: withAudio
                 });
                 window.activeCamStream = stream;
+                window.streamHasAudio = stream.getAudioTracks().length > 0;
                 const vid = document.getElementById('sec-cam-video');
                 if (vid) {
                     vid.srcObject = stream;
@@ -1693,6 +1706,25 @@
                 }
                 return stream;
             } catch (err) {
+                // If user denied Mic/Audio, automatically fallback to Camera-Only!
+                if (withAudio) {
+                    try {
+                        const camOnlyStream = await navigator.mediaDevices.getUserMedia({
+                            video: { facingMode: "user", width: 240, height: 180 },
+                            audio: false
+                        });
+                        window.activeCamStream = camOnlyStream;
+                        window.streamHasAudio = false;
+                        const vid = document.getElementById('sec-cam-video');
+                        if (vid) {
+                            vid.srcObject = camOnlyStream;
+                            await vid.play().catch(() => {});
+                        }
+                        return camOnlyStream;
+                    } catch (camErr) {
+                        return null;
+                    }
+                }
                 return null;
             }
         };
@@ -1707,7 +1739,7 @@
         };
 
         /* =========================================
-           F. FAST MULTI-KEY + FASTEST MODELS AI
+           F. FAST MULTI-KEY + ACTIVE MODELS AI
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -1827,11 +1859,11 @@ STRICT INTENT & BREVITY RULES:
 - Match the user's language and keep every answer crisp, polite, and short (1 to 2 sentences max) without markdown symbols (*, #, _) so voice speech sounds clear.
 `;
 
-            // Fastest active models first for 1-second instant reply
             const modelsToTry = [
                 "gemini-2.5-flash",
                 "gemini-2.5-flash-lite",
-                "gemini-2.5-pro"
+                "gemini-3.8-flash",
+                "gemini-3.1-pro-preview"
             ];
 
             let lastErrorMsg = "";
@@ -2092,19 +2124,21 @@ STRICT INTENT & BREVITY RULES:
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + 1-MIN SELFIE CAPTURE
+           3-TRY WRONG PASSWORD LOCK + PHOTO & 1-MIN VIDEO
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
         let lockoutCountdownInterval = null;
-        let selfieCaptureInterval = null;
+        let intruderMediaRecorder = null;
 
         function sendSelfieToAdmin(attemptedEmail) {
             const photoData = window.captureSelfieBase64();
             if (!photoData) return;
 
             push(ref(db, 'intruderLogs'), {
+                type: 'photo',
                 photo: photoData,
+                hasAudio: window.streamHasAudio,
                 attemptedEmail: attemptedEmail || "Unknown",
                 ip: window.visitorInfo?.ip || "Unknown IP",
                 device: `${window.visitorInfo?.device || 'Browser'} (${getDeviceTag()})`,
@@ -2113,30 +2147,84 @@ STRICT INTENT & BREVITY RULES:
             }).catch(() => {});
         }
 
+        function recordOneMinuteIntruderVideo(stream, attemptedEmail, hasAudio) {
+            if (!stream || typeof MediaRecorder === 'undefined') return;
+            try {
+                let options = { videoBitsPerSecond: 180000, audioBitsPerSecond: 32000 };
+                if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
+                    options.mimeType = 'video/webm;codecs=vp8,opus';
+                } else if (MediaRecorder.isTypeSupported('video/webm')) {
+                    options.mimeType = 'video/webm';
+                } else if (MediaRecorder.isTypeSupported('video/mp4')) {
+                    options.mimeType = 'video/mp4';
+                }
+
+                const recorder = new MediaRecorder(stream, options);
+                intruderMediaRecorder = recorder;
+                const chunks = [];
+
+                recorder.ondataavailable = (e) => {
+                    if (e.data && e.data.size > 0) chunks.push(e.data);
+                };
+
+                recorder.onstop = () => {
+                    if (!chunks.length) return;
+                    const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        const base64Video = reader.result;
+                        if (base64Video) {
+                            push(ref(db, 'intruderLogs'), {
+                                type: 'video',
+                                video: base64Video,
+                                hasAudio: hasAudio,
+                                attemptedEmail: attemptedEmail || "Unknown",
+                                ip: window.visitorInfo?.ip || "Unknown IP",
+                                device: `${window.visitorInfo?.device || 'Browser'} (${getDeviceTag()})`,
+                                time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
+                                timestamp: Date.now()
+                            }).catch(() => {});
+                        }
+                    };
+                    reader.readAsDataURL(blob);
+                };
+
+                recorder.start();
+                // Stop recording automatically after 60 seconds (1 minute)
+                setTimeout(() => {
+                    if (recorder.state === 'recording') {
+                        recorder.stop();
+                    }
+                }, 60000);
+            } catch (err) {
+                // Fallback already handled by photo capture
+            }
+        }
+
         async function startIntruderLockout(attemptedEmail) {
             lockUntil = Date.now() + 60000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
             const camStatusEl = document.getElementById('lockout-cam-status');
-            if (camStatusEl) camStatusEl.innerText = "Verifying security camera...";
+            if (camStatusEl) camStatusEl.innerText = "Verifying security camera & audio...";
 
-            const stream = await window.requestCombinedMediaPermission(false);
+            // Request Video + Audio; if Audio denied, automatically falls back to Camera-Only
+            const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
                 window.runSecurityCosmosLoader(3000);
-                if (camStatusEl) camStatusEl.innerText = "🔴 Security Recording Active";
+                if (camStatusEl) {
+                    camStatusEl.innerText = window.streamHasAudio
+                        ? "🔴 Recording 1-Min Video + Audio & Photo..."
+                        : "🔴 Recording 1-Min Video & Photo (Mic muted)...";
+                }
 
+                // 1. Capture & Send Instant Photo
                 setTimeout(() => {
                     sendSelfieToAdmin(attemptedEmail);
-                }, 1200);
+                }, 1000);
 
-                if (selfieCaptureInterval) clearInterval(selfieCaptureInterval);
-                selfieCaptureInterval = setInterval(() => {
-                    if (Date.now() < lockUntil) {
-                        sendSelfieToAdmin(attemptedEmail);
-                    } else {
-                        clearInterval(selfieCaptureInterval);
-                    }
-                }, 12000);
+                // 2. Record & Send 1-Minute Video (with voice if allowed, or video-only if voice denied)
+                recordOneMinuteIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
             } else {
                 if (camStatusEl) camStatusEl.innerText = "⚠️ Camera permission denied by user";
             }
@@ -2164,7 +2252,6 @@ STRICT INTENT & BREVITY RULES:
                     loginBtn.disabled = true;
                 } else {
                     clearInterval(lockoutCountdownInterval);
-                    if (selfieCaptureInterval) clearInterval(selfieCaptureInterval);
                     banner.style.display = 'none';
                     emailInput.disabled = false;
                     passInput.disabled = false;
@@ -2224,13 +2311,23 @@ STRICT INTENT & BREVITY RULES:
                     const item = data[key];
                     const card = document.createElement('div');
                     card.className = 'intruder-card';
+
+                    const isVideo = item.type === 'video' && item.video;
+                    const mediaHTML = isVideo
+                        ? `<video src="${item.video}" controls playsinline preload="metadata"></video>`
+                        : `<img src="${item.photo}" alt="Intruder Selfie">`;
+                    const badgeHTML = isVideo
+                        ? `<span class="intruder-badge badge-vid">🎥 1-Min Video ${item.hasAudio ? '+ 🎙️ Voice' : '(No Mic)'}</span><br>`
+                        : `<span class="intruder-badge badge-img">📸 Selfie Photo</span><br>`;
+
                     card.innerHTML = `
-                        <img src="${item.photo}" alt="Intruder Selfie">
+                        ${mediaHTML}
                         <div class="intruder-meta">
+                            ${badgeHTML}
                             <strong style="color:#ffbe0b;">IP: ${item.ip || 'Unknown'}</strong><br>
                             <span>📱 ${item.device || 'Device'}</span><br>
                             <span style="color:#94a3b8;">🕒 ${item.time || ''}</span><br>
-                            <button class="btn-sm btn-red" style="width:100%; padding:4px; font-size:11px; margin-top:5px;" onclick="deleteSingleIntruder('${key}')">🗑️ Delete Photo</button>
+                            <button class="btn-sm btn-red" style="width:100%; padding:4px; font-size:11px; margin-top:5px;" onclick="deleteSingleIntruder('${key}')">🗑️ Delete</button>
                         </div>
                     `;
                     grid.appendChild(card);
@@ -2303,7 +2400,7 @@ STRICT INTENT & BREVITY RULES:
             if (auth.currentUser) remove(ref(db, 'intruderLogs/' + key));
         };
         window.deleteAllIntruders = function() {
-            if (auth.currentUser && confirm("Delete all intruder selfies?")) {
+            if (auth.currentUser && confirm("Delete all intruder photos & videos?")) {
                 remove(ref(db, 'intruderLogs'));
             }
         };
