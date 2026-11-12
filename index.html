@@ -7,40 +7,146 @@
     <title>RAX REZA 93K | Reza Ahmad</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0b0b0e; color: #ffffff; text-align: center; padding-bottom: 80px; }
+        
+        body {
+            background-color: #07070c;
+            color: #ffffff;
+            text-align: center;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
 
-        /* Channel Banner */
+        /* =========================================
+           1. FLUID GRADIENT MESH BACKGROUND
+           ========================================= */
+        .fluid-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            background: #07070d;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(75px);
+            opacity: 0.55;
+            animation: fluidMove 14s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 340px; height: 340px;
+            background: radial-gradient(circle, #ff004c, #7900ff);
+            top: -60px; left: -80px;
+            animation-duration: 12s;
+        }
+        .orb-2 {
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, #00d2ff, #3a7bd5);
+            top: 25%; right: -100px;
+            animation-duration: 16s;
+            animation-delay: -3s;
+        }
+        .orb-3 {
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, #ff8c00, #ff0055);
+            bottom: 10%; left: 10%;
+            animation-duration: 15s;
+            animation-delay: -6s;
+        }
+        .orb-4 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #00ff87, #60efff);
+            bottom: -80px; right: 15%;
+            animation-duration: 18s;
+            animation-delay: -2s;
+        }
+
+        @keyframes fluidMove {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(45px, -35px) scale(1.18) rotate(120deg); }
+            100% { transform: translate(-35px, 45px) scale(0.92) rotate(240deg); }
+        }
+
+        /* =========================================
+           2. BANNER WITH 3D FLOATING SKILLS
+           ========================================= */
         .banner {
-            width: 100%; height: 210px;
-            background: radial-gradient(circle at center, #7a0000 0%, #1c0000 55%, #0b0b0e 100%);
+            width: 100%; height: 225px;
+            background: linear-gradient(135deg, rgba(255, 0, 60, 0.25), rgba(112, 0, 255, 0.25), rgba(0, 212, 255, 0.25));
             background-size: cover; background-position: center;
-            border-bottom: 3px solid #ff0000;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #ff0055, #00f2fe, #a855f7, #ff0055) 1;
             display: flex; align-items: center; justify-content: center;
             position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(6px);
         }
         .banner::after {
             content: "RAX REZA 93K";
             font-size: 32px; font-weight: 900; letter-spacing: 5px;
-            color: rgba(255, 255, 255, 0.14);
+            background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(0,242,254,0.3), rgba(255,0,85,0.22));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 1;
         }
         .banner.custom-img::after { content: ""; }
         .banner.hidden { display: none; }
 
-        /* Profile & YouTube Logo */
-        .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 2; }
+        /* 3D Floating Skill Pills inside Banner */
+        .floating-3d-stage {
+            position: absolute;
+            inset: 0;
+            perspective: 800px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .float-item {
+            position: absolute;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #fff;
+            background: rgba(15, 15, 28, 0.65);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            animation: float3D 6s infinite ease-in-out alternate;
+        }
+        .fi-1 { top: 18%; left: 8%; border-color: #ff0055; box-shadow: 0 0 14px #ff0055; animation-delay: 0s; }
+        .fi-2 { top: 22%; right: 10%; border-color: #00f2fe; box-shadow: 0 0 14px #00f2fe; animation-delay: -1.5s; }
+        .fi-3 { bottom: 28%; left: 12%; border-color: #a855f7; box-shadow: 0 0 14px #a855f7; animation-delay: -3s; }
+        .fi-4 { bottom: 24%; right: 8%; border-color: #00ff87; box-shadow: 0 0 14px #00ff87; animation-delay: -4.2s; }
+        .fi-5 { top: 12%; left: 42%; border-color: #ffbe0b; box-shadow: 0 0 14px #ffbe0b; animation-delay: -2.1s; }
+
+        @keyframes float3D {
+            0% { transform: translate3d(0, 0, 0) rotateX(12deg) rotateY(-15deg); }
+            50% { transform: translate3d(12px, -14px, 30px) rotateX(-12deg) rotateY(15deg); }
+            100% { transform: translate3d(-10px, 10px, 15px) rotateX(8deg) rotateY(-10deg); }
+        }
+
+        /* =========================================
+           3. PROFILE, BLINKING NAME & 5 TAGS
+           ========================================= */
+        .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 3; }
         .profile-section.no-banner { margin-top: 25px; }
         
         .logo-wrapper {
             width: 112px; height: 112px; margin: 0 auto; border-radius: 50%;
-            border: 4px solid #ff0000; background: #141414;
+            border: 3px solid #ff004c; background: #12121a;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); overflow: hidden;
+            box-shadow: 0 0 28px rgba(255, 0, 76, 0.65), 0 0 45px rgba(0, 210, 255, 0.3);
+            overflow: hidden;
         }
         .logo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         
         .yt-default-icon {
-            width: 62px; height: 44px; background: #ff0000; border-radius: 11px;
-            display: flex; align-items: center; justify-content: center;
+            width: 62px; height: 44px; background: linear-gradient(135deg, #ff0000, #ff0055);
+            border-radius: 11px; display: flex; align-items: center; justify-content: center;
         }
         .yt-default-icon::before {
             content: ""; border-style: solid;
@@ -49,57 +155,69 @@
             margin-left: 4px;
         }
 
-        /* Username with Blinking Background Effect */
+        /* Blinking Colorful Glow Behind Name */
         .title-wrapper {
             position: relative;
             display: inline-block;
             margin-top: 12px;
-            padding: 4px 18px;
+            padding: 5px 22px;
         }
         .title-wrapper::before {
             content: "";
             position: absolute;
             inset: 0;
             border-radius: 30px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.55) 0%, rgba(255, 0, 0, 0) 75%);
+            background: linear-gradient(90deg, #ff0055, #7900ff, #00f2fe, #ff0055);
+            background-size: 300% 300%;
             z-index: -1;
-            animation: titleBlinkGlow 1.6s infinite alternate ease-in-out;
+            animation: titleBlinkGlow 1.5s infinite alternate ease-in-out, gradientShift 4s linear infinite;
         }
         @keyframes titleBlinkGlow {
-            0% { opacity: 0.15; transform: scale(0.92); filter: blur(4px); }
-            100% { opacity: 1; transform: scale(1.12); filter: blur(8px); }
+            0% { opacity: 0.2; transform: scale(0.92); filter: blur(6px); }
+            100% { opacity: 0.95; transform: scale(1.12); filter: blur(11px); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
-        h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(255, 0, 0, 0.4); }
+        h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); }
         
-        /* 5 Profile Tags */
+        /* 5 Static Profile Tags */
         .subtitle {
-            color: #bbb; font-size: 13px; margin-top: 6px;
+            color: #bbb; font-size: 13px; margin-top: 8px;
             display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
         }
         .tag-pill {
-            background: #16161f; border: 1px solid #2d2d3d;
-            padding: 3px 10px; border-radius: 12px; color: #e0e0e0; font-weight: 500;
+            background: rgba(22, 22, 35, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 4px 11px; border-radius: 12px; color: #f1f5f9; font-weight: 600;
+            backdrop-filter: blur(4px);
         }
 
-        /* Social Media Icons Bar */
+        /* =========================================
+           4. SOCIAL MEDIA ICONS & ACTION BUTTONS
+           ========================================= */
         .social-bar {
             display: flex; justify-content: center; gap: 14px; margin-top: 16px;
         }
         .social-icon {
-            width: 42px; height: 42px; border-radius: 50%;
-            background: #181822; border: 1px solid #323244;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(24, 24, 38, 0.85);
+            border: 1.5px solid rgba(0, 242, 254, 0.45);
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; cursor: pointer;
             transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
         }
         .social-icon:hover {
-            border-color: #ff0000; background: #261216; transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.35);
+            border-color: #ff0055;
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(121, 0, 255, 0.3));
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 0 18px rgba(255, 0, 85, 0.6);
         }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* Main Buttons: Subscribe, Copy UID, More, Contact Details */
         .action-buttons {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
             margin-top: 16px;
@@ -108,68 +226,202 @@
             padding: 11px 18px; border-radius: 25px; font-weight: bold;
             font-size: 13.5px; text-decoration: none; cursor: pointer;
             border: none; display: inline-flex; align-items: center; gap: 7px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .btn-main:active { transform: scale(0.96); }
+        .btn-main:active { transform: scale(0.95); }
         .btn-sub {
-            background: #ff0000; color: #fff;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff;
+            box-shadow: 0 4px 18px rgba(255, 0, 60, 0.5);
         }
-        .btn-uid { background: #1a1a22; color: #fff; border: 1px solid #3a3a48; }
-        .btn-more { background: #221215; color: #ff5555; border: 1px solid #ff0000; }
-        .btn-contact { background: #141c24; color: #4da6ff; border: 1px solid #2b6cb0; }
+        .btn-uid {
+            background: rgba(24, 24, 36, 0.9); color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .btn-more {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.2), rgba(121, 0, 255, 0.2));
+            color: #ff7597; border: 1px solid #ff0055;
+        }
+        .btn-contact {
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(58, 123, 213, 0.25));
+            color: #38bdf8; border: 1px solid #00f2fe;
+            box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
+        }
 
-        /* Expandable Boxes (More & Contact) */
+        /* =========================================
+           5. COLORFUL NEON WIREFRAME BOXES (MORE & CONTACT)
+           ========================================= */
         .info-box {
-            display: none; max-width: 680px; margin: 20px auto 10px; padding: 20px;
-            background: #14141c; border: 1px solid #ff0000; border-radius: 14px;
-            text-align: left; line-height: 1.7; animation: fadeIn 0.25s ease;
+            display: none; max-width: 680px; margin: 20px auto 10px; padding: 22px;
+            background: linear-gradient(135deg, rgba(18, 18, 32, 0.92), rgba(32, 12, 42, 0.92));
+            border: 2px solid transparent;
+            border-radius: 16px;
+            background-clip: padding-box;
+            position: relative;
+            text-align: left; line-height: 1.7;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 10px 35px rgba(255, 0, 85, 0.25), 0 0 20px rgba(0, 242, 254, 0.2);
         }
-        .info-box.contact-theme { border-color: #2b6cb0; }
+        .info-box::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 17px;
+            background: linear-gradient(45deg, #ff0055, #7900ff, #00f2fe, #00ff87, #ff0055);
+            background-size: 300% 300%;
+            z-index: -1;
+            animation: gradientShift 5s linear infinite;
+        }
         .info-box.show { display: block; }
         
         .detail-heading {
-            color: #ff4d4d; font-size: 16.5px; font-weight: bold;
-            margin-top: 14px; margin-bottom: 8px; border-bottom: 1px solid #2a2a36; padding-bottom: 5px;
+            background: linear-gradient(90deg, #ff4d8d, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 17px; font-weight: 800;
+            margin-top: 14px; margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 5px;
         }
         .detail-heading:first-child { margin-top: 0; }
-        .contact-theme .detail-heading { color: #4da6ff; }
         
-        .detail-text { color: #dcdcdc; font-size: 14px; margin-bottom: 10px; }
+        .detail-text { color: #e2e8f0; font-size: 14px; margin-bottom: 10px; }
         .detail-list { list-style: none; margin-bottom: 12px; }
         .detail-list:last-child { margin-bottom: 0; }
-        .detail-list li { color: #dcdcdc; font-size: 14px; margin-bottom: 6px; }
+        .detail-list li { color: #e2e8f0; font-size: 14px; margin-bottom: 6px; }
         .detail-list strong { color: #ffffff; }
-        .detail-list a { color: #ff5555; text-decoration: none; word-break: break-all; }
+        .detail-list a { color: #38bdf8; text-decoration: none; word-break: break-all; }
         
         .contact-content-area {
-            color: #e2e8f0; font-size: 14.5px; white-space: pre-line; word-break: break-word;
+            color: #f8fafc; font-size: 14.5px; white-space: pre-line; word-break: break-word;
         }
         .contact-content-area a {
-            color: #4da6ff; font-weight: 600; text-decoration: underline;
+            color: #00f2fe; font-weight: 700; text-decoration: underline;
         }
         .coming-soon-badge {
-            display: inline-block; padding: 8px 16px; background: #1e293b;
-            color: #38bdf8; border: 1px dashed #38bdf8; border-radius: 8px;
-            font-weight: bold; font-size: 14px;
+            display: inline-block; padding: 10px 20px;
+            background: linear-gradient(90deg, rgba(255, 0, 85, 0.25), rgba(0, 242, 254, 0.25));
+            color: #ffffff;
+            border: 1.5px solid #00f2fe;
+            border-radius: 12px;
+            font-weight: 800; font-size: 14.5px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.4);
+            animation: pulseBadge 1.8s infinite alternate;
         }
+        @keyframes pulseBadge {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.5); border-color: #ff0055; }
+            100% { box-shadow: 0 0 22px rgba(0, 242, 254, 0.8); border-color: #00f2fe; }
+        }
+
+        /* =========================================
+           6. CUSTOM NEON WIREFRAME POPUP MODAL (REPLACES WHITE ALERT)
+           ========================================= */
+        .neon-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 12, 0.78);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .neon-modal-overlay.active { display: flex; }
+
+        .neon-modal-card {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            padding: 26px 22px;
+            border-radius: 18px;
+            background: radial-gradient(circle at top left, #1c1033, #0d0d1a 70%);
+            text-align: center;
+            box-shadow: 0 0 35px rgba(121, 0, 255, 0.5), 0 0 20px rgba(0, 242, 254, 0.35);
+            animation: popScale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        .neon-modal-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 2px;
+            background: linear-gradient(135deg, #ff0055, #00f2fe, #a855f7, #00ff87);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: gradientShift 4s linear infinite;
+            pointer-events: none;
+        }
+        /* Animated Wireframe Grid inside Popup */
+        .neon-wire-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 242, 254, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 85, 0.12) 1px, transparent 1px);
+            background-size: 22px 22px;
+            z-index: 0;
+            animation: wirePan 8s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes wirePan {
+            0% { background-position: 0 0; }
+            100% { background-position: 44px 44px; }
+        }
+        @keyframes popScale {
+            from { opacity: 0; transform: scale(0.82); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .neon-modal-content { position: relative; z-index: 2; }
+        .neon-modal-title {
+            font-size: 19px; font-weight: 800; margin-bottom: 8px;
+            background: linear-gradient(90deg, #00f2fe, #ff4d8d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .neon-modal-msg {
+            color: #e2e8f0; font-size: 14.5px; margin-bottom: 20px; line-height: 1.5;
+        }
+        .neon-modal-btn {
+            padding: 10px 28px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(90deg, #ff0055, #7900ff, #00d2ff);
+            background-size: 200% 200%;
+            box-shadow: 0 4px 18px rgba(255, 0, 85, 0.5);
+            transition: transform 0.2s;
+        }
+        .neon-modal-btn:active { transform: scale(0.95); }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Video List */
+        /* =========================================
+           7. VIDEO LIST & ADMIN PANEL
+           ========================================= */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
         .videos-container h2 {
             text-align: left; font-size: 19px; margin-bottom: 16px;
-            border-left: 4px solid #ff0000; padding-left: 10px;
+            border-left: 4px solid #ff0055; padding-left: 10px;
         }
         .video-list { display: flex; flex-direction: column; gap: 18px; }
         
         .video-card {
-            background: #15151d; border-radius: 12px; overflow: hidden;
-            border: 1px solid #282834; text-align: left;
-            transition: border-color 0.2s;
+            background: rgba(20, 20, 32, 0.85);
+            backdrop-filter: blur(6px);
+            border-radius: 14px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            text-align: left;
+            transition: border-color 0.25s, transform 0.2s;
         }
-        .video-card:hover { border-color: #ff0000; }
+        .video-card:hover { border-color: #00f2fe; transform: translateY(-2px); }
         .video-link-area { text-decoration: none; color: inherit; display: block; }
         
         .thumb-wrapper {
@@ -179,7 +431,7 @@
         .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .play-badge {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 58px; height: 40px; background: rgba(255, 0, 0, 0.9);
+            width: 58px; height: 40px; background: rgba(255, 0, 50, 0.92);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
@@ -190,13 +442,14 @@
 
         .video-info { padding: 12px 14px; }
         .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
-        .video-url-text { font-size: 12.5px; color: #ff5555; word-break: break-all; }
+        .video-url-text { font-size: 12.5px; color: #38bdf8; word-break: break-all; }
 
-        /* Admin Panel & Lock Button */
         .admin-lock-btn {
             position: fixed; bottom: 15px; right: 15px;
-            background: #1c1c24; color: #aaa; border: 1px solid #333;
+            background: rgba(24, 24, 36, 0.9); color: #fff;
+            border: 1px solid #00f2fe;
             padding: 10px 14px; border-radius: 50px; cursor: pointer; font-size: 14px; z-index: 999;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.35);
         }
         .delete-btn {
             display: none; width: 100%; padding: 10px; background: #b00020;
@@ -205,30 +458,61 @@
         body.is-admin .delete-btn { display: block; }
 
         .modal-box {
-            display: none; max-width: 480px; margin: 20px auto; background: #181820;
-            border: 2px solid #ff0000; border-radius: 12px; padding: 20px; text-align: left;
+            display: none; max-width: 480px; margin: 20px auto;
+            background: rgba(20, 20, 34, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #00f2fe; border-radius: 14px; padding: 20px; text-align: left;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
         }
         body.is-admin #admin-panel { display: block; }
         .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 13px; color: #bbb; margin-bottom: 5px; }
+        .form-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 5px; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444;
-            background: #0b0b0e; color: #fff; font-family: inherit;
+            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #475569;
+            background: #0b0b14; color: #fff; font-family: inherit;
         }
         .form-group textarea { min-height: 85px; resize: vertical; }
         .btn-sm {
-            padding: 9px 14px; border: none; border-radius: 6px;
+            padding: 9px 14px; border: none; border-radius: 8px;
             cursor: pointer; font-weight: bold; margin-right: 6px; margin-top: 5px;
         }
-        .btn-red { background: #ff0000; color: #fff; }
-        .btn-blue { background: #2563eb; color: #fff; }
-        .btn-gray { background: #333; color: #fff; }
+        .btn-red { background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff; }
+        .btn-blue { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: #fff; }
+        .btn-gray { background: #334155; color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- 1. Channel Banner -->
-    <div id="site-banner" class="banner"></div>
+    <!-- Fluid Gradient Mesh Animated Background -->
+    <div class="fluid-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- Custom Neon Wireframe Notification Modal (Replaces White Alert) -->
+    <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
+        <div class="neon-modal-card" onclick="event.stopPropagation()">
+            <div class="neon-wire-grid"></div>
+            <div class="neon-modal-content">
+                <div id="neon-modal-title" class="neon-modal-title">RAX REZA 93K</div>
+                <div id="neon-modal-msg" class="neon-modal-msg">Coming Soon!</div>
+                <button class="neon-modal-btn" onclick="closeNeonModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Channel Banner with 3D Floating Skills -->
+    <div id="site-banner" class="banner">
+        <div class="floating-3d-stage">
+            <span class="float-item fi-1">🎮 Gaming</span>
+            <span class="float-item fi-2">💻 Coding</span>
+            <span class="float-item fi-3">🎬 Editor</span>
+            <span class="float-item fi-4">🌐 Web Dev</span>
+            <span class="float-item fi-5">📄 Documentation</span>
+        </div>
+    </div>
 
     <!-- 2. Profile, Blinking Name, 5 Tags, Social Icons & Main Buttons -->
     <div id="profile-box" class="profile-section">
@@ -250,19 +534,15 @@
 
         <!-- Social Media Icons (YouTube, Instagram, Facebook, Twitter) -->
         <div class="social-bar">
-            <!-- YouTube -->
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="social-icon" title="YouTube">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
-            <!-- Instagram -->
             <button type="button" class="social-icon" onclick="openSocial('instagram')" title="Instagram">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </button>
-            <!-- Facebook -->
             <button type="button" class="social-icon" onclick="openSocial('facebook')" title="Facebook">
                 <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
             </button>
-            <!-- Twitter / X -->
             <button type="button" class="social-icon" onclick="openSocial('twitter')" title="Twitter / X">
                 <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </button>
@@ -323,8 +603,8 @@
         </ul>
     </div>
 
-    <!-- 3B. Contact Details Section (Controlled via Admin Panel) -->
-    <div id="contact-details-box" class="info-box contact-theme">
+    <!-- 3B. Contact Details Section (Colorful Neon Wireframe Box) -->
+    <div id="contact-details-box" class="info-box">
         <div class="detail-heading">📞 Contact Details</div>
         <div id="contact-display-area" class="contact-content-area">
             <span class="coming-soon-badge">⏳ Coming Soon!</span>
@@ -333,7 +613,7 @@
 
     <!-- 4. Admin Login Box -->
     <div id="login-box" class="modal-box">
-        <h3 style="color:#ff4d4d; margin-bottom:12px;">🔐 Admin Login</h3>
+        <h3 style="color:#00f2fe; margin-bottom:12px;">🔐 Admin Login</h3>
         <div class="form-group">
             <label>Admin Email:</label>
             <input type="email" id="admin-email" placeholder="Enter admin email">
@@ -348,7 +628,7 @@
 
     <!-- 5. Admin Control Panel -->
     <div id="admin-panel" class="modal-box">
-        <h3 style="color:#ff4d4d; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
+        <h3 style="color:#00f2fe; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
         
         <div class="form-group">
             <label>Channel Banner Direct Image Link:</label>
@@ -357,9 +637,8 @@
             <button class="btn-sm btn-gray" onclick="removeBanner()">Hide Banner</button>
         </div>
 
-        <hr style="border-color: #333; margin: 15px 0;">
+        <hr style="border-color: #334155; margin: 15px 0;">
 
-        <!-- Social Links Update -->
         <div class="form-group">
             <label>Instagram Profile Link (Leave empty for Coming Soon):</label>
             <input type="text" id="insta-input" placeholder="https://instagram.com/yourusername">
@@ -374,9 +653,8 @@
         </div>
         <button class="btn-sm btn-blue" onclick="saveSocialLinks()">Save Social Links</button>
 
-        <hr style="border-color: #333; margin: 15px 0;">
+        <hr style="border-color: #334155; margin: 15px 0;">
 
-        <!-- Contact Details Update -->
         <div class="form-group">
             <label>Contact Details (WhatsApp Channel, Number, Email - Leave empty for Coming Soon):</label>
             <textarea id="contact-input" placeholder="Example:&#10;WhatsApp Channel: https://whatsapp.com/channel/...&#10;WhatsApp Number: +91 XXXXXXXXXX"></textarea>
@@ -384,9 +662,8 @@
             <button class="btn-sm btn-gray" onclick="resetContactDetails()">Reset to Coming Soon</button>
         </div>
 
-        <hr style="border-color: #333; margin: 15px 0;">
+        <hr style="border-color: #334155; margin: 15px 0;">
 
-        <!-- Video Upload -->
         <div class="form-group">
             <label>YouTube Video Link:</label>
             <input type="text" id="video-url" placeholder="https://youtu.be/xxxxxxx">
@@ -403,7 +680,7 @@
     <div class="videos-container">
         <h2>🔥 Uploaded Videos</h2>
         <div id="video-list" class="video-list">
-            <p style="color:#777;">Loading videos...</p>
+            <p style="color:#94a3b8;">Loading videos...</p>
         </div>
     </div>
 
@@ -411,10 +688,21 @@
     <button class="admin-lock-btn" onclick="openLogin()">🔒</button>
 
     <script>
+        /* Custom Neon Popup Trigger */
+        function showNeonAlert(title, message) {
+            document.getElementById('neon-modal-title').innerText = title;
+            document.getElementById('neon-modal-msg').innerText = message;
+            document.getElementById('neon-modal').classList.add('active');
+        }
+
+        function closeNeonModal() {
+            document.getElementById('neon-modal').classList.remove('active');
+        }
+
         function copyUID() {
             const uid = document.getElementById('ff-uid-text').innerText;
             navigator.clipboard.writeText(uid).then(() => {
-                alert("UID Copy Complete: " + uid);
+                showNeonAlert("UID Copy Complete!", "Free Fire UID: " + uid);
             });
         }
 
@@ -497,23 +785,23 @@
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
             signInWithEmailAndPassword(auth, email, pass)
-                .then(() => alert("Admin Login Successful!"))
-                .catch(() => alert("Invalid Email or Password!"));
+                .then(() => showNeonAlert("Success", "Admin Login Successful!"))
+                .catch(() => showNeonAlert("Login Failed", "Invalid Email or Password!"));
         };
 
         window.logoutAdmin = function() {
-            signOut(auth).then(() => alert("Logged Out Successfully!"));
+            signOut(auth).then(() => showNeonAlert("Logged Out", "You have logged out safely."));
         };
 
         window.updateBanner = function() {
             const url = document.getElementById('banner-input').value.trim();
             set(ref(db, 'siteSettings/banner'), url);
-            alert("Banner Updated Successfully!");
+            showNeonAlert("Updated", "Banner Updated Successfully!");
         };
 
         window.removeBanner = function() {
             set(ref(db, 'siteSettings/banner'), "HIDE");
-            alert("Banner Hidden!");
+            showNeonAlert("Hidden", "Banner has been hidden!");
         };
 
         window.saveSocialLinks = function() {
@@ -525,7 +813,7 @@
                 instagram: insta,
                 facebook: fb,
                 twitter: tw
-            }).then(() => alert("Social Media Links Updated!"));
+            }).then(() => showNeonAlert("Saved", "Social Media Links Updated!"));
         };
 
         window.openSocial = function(platform) {
@@ -534,25 +822,24 @@
                 window.open(url, "_blank");
             } else {
                 const name = platform.charAt(0).toUpperCase() + platform.slice(1);
-                alert(name + " Profile: Coming Soon!");
+                showNeonAlert(name + " Profile", "⏳ Coming Soon! Link will be updated shortly.");
             }
         };
 
         window.saveContactDetails = function() {
             const details = document.getElementById('contact-input').value.trim();
             set(ref(db, 'siteSettings/contactDetails'), details)
-                .then(() => alert("Contact Details Updated!"));
+                .then(() => showNeonAlert("Saved", "Contact Details Updated!"));
         };
 
         window.resetContactDetails = function() {
             set(ref(db, 'siteSettings/contactDetails'), "")
                 .then(() => {
                     document.getElementById('contact-input').value = "";
-                    alert("Contact Details Reset to Coming Soon!");
+                    showNeonAlert("Reset Complete", "Contact Details reset to Coming Soon!");
                 });
         };
 
-        // Auto-convert URLs and phone numbers in Contact Details into clickable links
         function formatContactText(text) {
             const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
             const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -570,14 +857,14 @@
             const title = document.getElementById('video-title').value.trim() || "RAX REZA 93K Video";
             const videoId = extractVideoID(url);
 
-            if (!videoId) return alert("Please enter a valid YouTube video link!");
+            if (!videoId) return showNeonAlert("Invalid Link", "Please enter a valid YouTube video link!");
 
             push(ref(db, 'videos'), {
                 videoId: videoId,
                 fullUrl: `https://www.youtube.com/watch?v=${videoId}`,
                 title: title,
                 timestamp: Date.now()
-            }).then(() => alert("Video Link Uploaded!"));
+            }).then(() => showNeonAlert("Uploaded", "Video Link Uploaded Successfully!"));
 
             document.getElementById('video-url').value = "";
             document.getElementById('video-title').value = "";
@@ -589,13 +876,11 @@
             }
         };
 
-        // Load Site Settings (Banner, Socials, Contact Details)
         onValue(ref(db, 'siteSettings'), (snapshot) => {
             const data = snapshot.val() || {};
             const bannerEl = document.getElementById('site-banner');
             const profileEl = document.getElementById('profile-box');
 
-            // 1. Banner
             if (data.banner === "HIDE") {
                 bannerEl.classList.add('hidden');
                 profileEl.classList.add('no-banner');
@@ -610,7 +895,6 @@
                 profileEl.classList.remove('no-banner');
             }
 
-            // 2. Socials
             if (data.socials) {
                 socialLinks.instagram = data.socials.instagram || "";
                 socialLinks.facebook = data.socials.facebook || "";
@@ -621,7 +905,6 @@
                 document.getElementById('tw-input').value = socialLinks.twitter;
             }
 
-            // 3. Contact Details
             const contactDisplay = document.getElementById('contact-display-area');
             if (data.contactDetails && data.contactDetails.trim() !== "") {
                 contactDisplay.innerHTML = formatContactText(data.contactDetails);
@@ -631,14 +914,13 @@
             }
         });
 
-        // Load Videos
         onValue(ref(db, 'videos'), (snapshot) => {
             const list = document.getElementById('video-list');
             list.innerHTML = "";
             const data = snapshot.val();
 
             if (!data) {
-                list.innerHTML = "<p style='color:#777;'>No videos uploaded yet.</p>";
+                list.innerHTML = "<p style='color:#94a3b8;'>No videos uploaded yet.</p>";
                 return;
             }
 
