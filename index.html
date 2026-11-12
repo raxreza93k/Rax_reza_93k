@@ -12,7 +12,7 @@
             background-color: #07070c;
             color: #ffffff;
             text-align: center;
-            padding-bottom: 80px;
+            padding-bottom: 95px;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
@@ -95,7 +95,6 @@
         .banner.custom-img::after { content: ""; }
         .banner.hidden { display: none; }
 
-        /* 3D Floating Skill Pills inside Banner */
         .floating-3d-stage {
             position: absolute;
             inset: 0;
@@ -130,7 +129,7 @@
         }
 
         /* =========================================
-           3. PROFILE, BLINKING NAME & 5 TAGS
+           3. PROFILE, BLINKING NAME & SEQUENTIAL NEON TAGS
            ========================================= */
         .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 3; }
         .profile-section.no-banner { margin-top: 25px; }
@@ -155,7 +154,6 @@
             margin-left: 4px;
         }
 
-        /* Blinking Colorful Glow Behind Name */
         .title-wrapper {
             position: relative;
             display: inline-block;
@@ -183,23 +181,29 @@
 
         h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); }
         
-        /* 5 Static Profile Tags */
+        /* Sequential Neon Lighting Tags */
         .subtitle {
             color: #bbb; font-size: 13px; margin-top: 8px;
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 7px;
         }
         .tag-pill {
-            background: rgba(22, 22, 35, 0.8);
+            background: rgba(22, 22, 35, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 4px 11px; border-radius: 12px; color: #f1f5f9; font-weight: 600;
+            padding: 5px 12px; border-radius: 14px; color: #cbd5e1; font-weight: 600;
             backdrop-filter: blur(4px);
+            transition: all 0.35s ease;
         }
+        .tag-pill.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 14px #00f2fe, inset 0 0 6px #00f2fe; transform: scale(1.06); }
+        .tag-pill.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 14px #ff0055, inset 0 0 6px #ff0055; transform: scale(1.06); }
+        .tag-pill.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 14px #00ff87, inset 0 0 6px #00ff87; transform: scale(1.06); }
+        .tag-pill.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 14px #ffbe0b, inset 0 0 6px #ffbe0b; transform: scale(1.06); }
+        .tag-pill.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 14px #a855f7, inset 0 0 6px #a855f7; transform: scale(1.06); }
 
         /* =========================================
-           4. SOCIAL MEDIA ICONS & ACTION BUTTONS
+           4. SOCIAL MEDIA ICONS (INCLUDING WHATSAPP) & ACTION BUTTONS
            ========================================= */
         .social-bar {
-            display: flex; justify-content: center; gap: 14px; margin-top: 16px;
+            display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap;
         }
         .social-icon {
             width: 44px; height: 44px; border-radius: 50%;
@@ -216,11 +220,16 @@
             transform: translateY(-3px) scale(1.06);
             box-shadow: 0 0 18px rgba(255, 0, 85, 0.6);
         }
+        .social-icon.wa-icon:hover {
+            border-color: #00ff87;
+            box-shadow: 0 0 18px rgba(0, 255, 135, 0.65);
+            color: #00ff87;
+        }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
         .action-buttons {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-            margin-top: 16px;
+            margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto;
         }
         .btn-main {
             padding: 11px 18px; border-radius: 25px; font-weight: bold;
@@ -233,18 +242,34 @@
             background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff;
             box-shadow: 0 4px 18px rgba(255, 0, 60, 0.5);
         }
+        /* Gaming Neon Gradient for FF UID Button */
         .btn-uid {
-            background: rgba(24, 24, 36, 0.9); color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: linear-gradient(135deg, #6a00ff, #ff007f, #00d2ff);
+            background-size: 200% 200%;
+            animation: gradientShift 4s linear infinite;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            box-shadow: 0 4px 18px rgba(255, 0, 127, 0.45);
         }
         .btn-more {
-            background: linear-gradient(135deg, rgba(255, 0, 85, 0.2), rgba(121, 0, 255, 0.2));
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.25), rgba(121, 0, 255, 0.25));
             color: #ff7597; border: 1px solid #ff0055;
         }
         .btn-contact {
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(58, 123, 213, 0.25));
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(58, 123, 213, 0.3));
             color: #38bdf8; border: 1px solid #00f2fe;
             box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
+        }
+        /* Custom Challenge Button */
+        .btn-challenge {
+            background: linear-gradient(90deg, #ff8c00, #ff0055, #7900ff);
+            color: #fff;
+            border: 1.5px solid #ffbe0b;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.55);
+            width: 100%;
+            max-width: 340px;
+            justify-content: center;
+            font-size: 14.5px;
         }
 
         /* =========================================
@@ -314,32 +339,40 @@
         }
 
         /* =========================================
-           6. CUSTOM NEON WIREFRAME POPUP MODAL (REPLACES WHITE ALERT)
+           6. 3D COSMOS SPHERE LOADER & NEON WIREFRAME POPUP MODAL
            ========================================= */
         .neon-modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(5, 5, 12, 0.78);
-            backdrop-filter: blur(8px);
+            background: rgba(5, 5, 14, 0.88);
+            backdrop-filter: blur(9px);
             z-index: 9999;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
         .neon-modal-overlay.active { display: flex; }
 
+        #cosmos-loader-canvas {
+            width: 250px;
+            height: 250px;
+            display: none;
+        }
+
         .neon-modal-card {
             position: relative;
             width: 100%;
-            max-width: 360px;
-            padding: 26px 22px;
+            max-width: 390px;
+            padding: 24px 20px;
             border-radius: 18px;
             background: radial-gradient(circle at top left, #1c1033, #0d0d1a 70%);
             text-align: center;
             box-shadow: 0 0 35px rgba(121, 0, 255, 0.5), 0 0 20px rgba(0, 242, 254, 0.35);
-            animation: popScale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: popScale 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
+            display: none;
         }
         .neon-modal-card::before {
             content: "";
@@ -355,7 +388,6 @@
             animation: gradientShift 4s linear infinite;
             pointer-events: none;
         }
-        /* Animated Wireframe Grid inside Popup */
         .neon-wire-grid {
             position: absolute;
             inset: 0;
@@ -378,13 +410,13 @@
 
         .neon-modal-content { position: relative; z-index: 2; }
         .neon-modal-title {
-            font-size: 19px; font-weight: 800; margin-bottom: 8px;
-            background: linear-gradient(90deg, #00f2fe, #ff4d8d);
+            font-size: 19px; font-weight: 800; margin-bottom: 10px;
+            background: linear-gradient(90deg, #00f2fe, #00ff87, #ffbe0b, #ff4d8d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .neon-modal-msg {
-            color: #e2e8f0; font-size: 14.5px; margin-bottom: 20px; line-height: 1.5;
+            color: #e2e8f0; font-size: 14px; margin-bottom: 16px; line-height: 1.5;
         }
         .neon-modal-btn {
             padding: 10px 28px;
@@ -398,13 +430,126 @@
             background-size: 200% 200%;
             box-shadow: 0 4px 18px rgba(255, 0, 85, 0.5);
             transition: transform 0.2s;
+            margin-top: 8px;
         }
         .neon-modal-btn:active { transform: scale(0.95); }
+
+        /* Challenge Modal Inputs & Notice */
+        .notice-box {
+            background: rgba(255, 190, 11, 0.14);
+            border: 1px solid #ffbe0b;
+            border-radius: 10px;
+            padding: 9px 11px;
+            font-size: 12.5px;
+            color: #fef08a;
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
+        .limit-pill {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .popup-input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #00f2fe;
+            background: rgba(10, 10, 22, 0.85);
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 9px;
+            text-align: center;
+            outline: none;
+        }
+
+        /* 10 Languages Grid */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .lang-btn {
+            padding: 8px 6px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 242, 254, 0.45);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .lang-btn:hover, .lang-btn.active-lang {
+            background: linear-gradient(90deg, #00f2fe, #7900ff);
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* Gemini Water-Wave Rotating Ring for AI Assistant */
+        .ai-orb-wrap {
+            position: relative;
+            width: 115px;
+            height: 115px;
+            margin: 6px auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ai-water-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #00f2fe, #ff0055, #00ff87, #a855f7, #00f2fe);
+            animation: spinRing 2.5s linear infinite;
+            filter: blur(4px);
+        }
+        .ai-water-core {
+            position: relative;
+            width: 98px;
+            height: 98px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #1a2a6c, #090d16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            z-index: 2;
+            box-shadow: inset 0 0 18px rgba(0, 242, 254, 0.65);
+        }
+        .ai-speaking .ai-water-ring {
+            animation: spinRing 0.8s linear infinite, pulseWave 0.55s ease-in-out infinite alternate;
+        }
+        @keyframes spinRing { 100% { transform: rotate(360deg); } }
+        @keyframes pulseWave {
+            from { transform: scale(0.94) rotate(0deg); }
+            to { transform: scale(1.12) rotate(180deg); }
+        }
+        .ai-transcript-box {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(0, 242, 254, 0.35);
+            border-radius: 10px;
+            padding: 10px;
+            min-height: 60px;
+            max-height: 115px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #e0f2fe;
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================
-           7. VIDEO LIST & ADMIN PANEL
+           7. VIDEO LIST, ADMIN PANEL & MAILBOX
            ========================================= */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
         .videos-container h2 {
@@ -444,13 +589,38 @@
         .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
         .video-url-text { font-size: 12.5px; color: #38bdf8; word-break: break-all; }
 
-        .admin-lock-btn {
-            position: fixed; bottom: 15px; right: 15px;
-            background: rgba(24, 24, 36, 0.9); color: #fff;
-            border: 1px solid #00f2fe;
-            padding: 10px 14px; border-radius: 50px; cursor: pointer; font-size: 14px; z-index: 999;
-            box-shadow: 0 0 12px rgba(0, 242, 254, 0.35);
+        /* Floating Dock Buttons (AI, Language, Admin Lock) */
+        .floating-dock {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
         }
+        .dock-circle-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(20, 20, 34, 0.92);
+            color: #fff;
+            border: 1.5px solid #00f2fe;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            transition: transform 0.2s;
+        }
+        .dock-circle-btn:active { transform: scale(0.92); }
+        .dock-ai-btn {
+            border-color: #ff0055;
+            background: radial-gradient(circle, #2c0b4e, #0c0c18);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.65);
+        }
+
         .delete-btn {
             display: none; width: 100%; padding: 10px; background: #b00020;
             color: white; border: none; cursor: pointer; font-weight: bold;
@@ -479,6 +649,32 @@
         .btn-red { background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff; }
         .btn-blue { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: #fff; }
         .btn-gray { background: #334155; color: #fff; }
+
+        /* Mailbox Styles inside Admin Panel */
+        .mailbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .mail-card {
+            background: rgba(12, 14, 28, 0.9);
+            border: 1px solid rgba(0, 242, 254, 0.35);
+            border-left: 4px solid #00ff87;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 9px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .mail-actions {
+            display: flex;
+            gap: 6px;
+        }
     </style>
 </head>
 <body>
@@ -491,14 +687,16 @@
         <div class="orb orb-4"></div>
     </div>
 
-    <!-- Custom Neon Wireframe Notification Modal (Replaces White Alert) -->
+    <!-- 3D Cosmos Particle Loader & Custom Neon Wireframe Modal -->
     <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
-        <div class="neon-modal-card" onclick="event.stopPropagation()">
+        <canvas id="cosmos-loader-canvas" width="250" height="250"></canvas>
+
+        <div id="neon-modal-card" class="neon-modal-card" onclick="event.stopPropagation()">
             <div class="neon-wire-grid"></div>
             <div class="neon-modal-content">
                 <div id="neon-modal-title" class="neon-modal-title">RAX REZA 93K</div>
-                <div id="neon-modal-msg" class="neon-modal-msg">Coming Soon!</div>
-                <button class="neon-modal-btn" onclick="closeNeonModal()">OK</button>
+                <div id="neon-modal-body" class="neon-modal-msg"></div>
+                <button class="neon-modal-btn" id="neon-modal-close-btn" onclick="closeNeonModal()">OK</button>
             </div>
         </div>
     </div>
@@ -514,7 +712,7 @@
         </div>
     </div>
 
-    <!-- 2. Profile, Blinking Name, 5 Tags, Social Icons & Main Buttons -->
+    <!-- 2. Profile, Blinking Name, 5 Sequential Neon Tags, Social Icons & Main Buttons -->
     <div id="profile-box" class="profile-section">
         <div class="logo-wrapper" id="logo-container">
             <div class="yt-default-icon"></div>
@@ -524,7 +722,7 @@
             <h1>RAX REZA 93K</h1>
         </div>
 
-        <div class="subtitle">
+        <div class="subtitle" id="neon-tags-bar">
             <span class="tag-pill">Gaming</span>
             <span class="tag-pill">Coding</span>
             <span class="tag-pill">Editor</span>
@@ -532,7 +730,7 @@
             <span class="tag-pill">Documentation</span>
         </div>
 
-        <!-- Social Media Icons (YouTube, Instagram, Facebook, Twitter) -->
+        <!-- Social Media Icons (YouTube, Instagram, Facebook, Twitter, WhatsApp) -->
         <div class="social-bar">
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="social-icon" title="YouTube">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -546,20 +744,26 @@
             <button type="button" class="social-icon" onclick="openSocial('twitter')" title="Twitter / X">
                 <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </button>
+            <button type="button" class="social-icon wa-icon" onclick="openSocial('whatsapp')" title="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/></svg>
+            </button>
         </div>
 
         <div class="action-buttons">
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="btn-main btn-sub">
-                ▶ Subscribe
+                ▶ <span data-t="subscribe">Subscribe</span>
             </a>
             <button class="btn-main btn-uid" onclick="copyUID()">
                 🎮 FF UID: <span id="ff-uid-text">1928908489</span>
             </button>
             <button class="btn-main btn-more" id="more-btn" onclick="toggleMore()">
-                ℹ️ More
+                ℹ️ <span data-t="more">More</span>
             </button>
             <button class="btn-main btn-contact" id="contact-btn" onclick="toggleContact()">
-                📞 Contact Details
+                📞 <span data-t="contact">Contact Details</span>
+            </button>
+            <button class="btn-main btn-challenge" onclick="openChallengeModal()">
+                🔥 <span data-t="challenge">Custom Challenge</span>
             </button>
         </div>
     </div>
@@ -603,7 +807,7 @@
         </ul>
     </div>
 
-    <!-- 3B. Contact Details Section (Colorful Neon Wireframe Box) -->
+    <!-- 3B. Contact Details Section -->
     <div id="contact-details-box" class="info-box">
         <div class="detail-heading">📞 Contact Details</div>
         <div id="contact-display-area" class="contact-content-area">
@@ -611,7 +815,7 @@
         </div>
     </div>
 
-    <!-- 4. Admin Login Box -->
+    <!-- 4. Admin Login Box (Your Existing Firebase Auth) -->
     <div id="login-box" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:12px;">🔐 Admin Login</h3>
         <div class="form-group">
@@ -626,9 +830,20 @@
         <button class="btn-sm btn-gray" onclick="closeLogin()">Cancel</button>
     </div>
 
-    <!-- 5. Admin Control Panel -->
+    <!-- 5. Admin Control Panel & Custom Challenge Mailbox (Visible ONLY after Firebase Admin Login) -->
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
+
+        <!-- Custom Challenge Mailbox Section -->
+        <div style="background: rgba(0, 242, 254, 0.06); border: 1px solid #00f2fe; border-radius: 12px; padding: 12px; margin-bottom: 16px;">
+            <div class="mailbox-header">
+                <h4 style="color:#00ff87;">📩 Custom Challenge Mailbox</h4>
+                <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 12px; margin:0;" onclick="deleteAllChallenges()">🗑️ Delete All Mails</button>
+            </div>
+            <div id="admin-mailbox-list">
+                <p style="color:#94a3b8; font-size:13px;">Loading requests...</p>
+            </div>
+        </div>
         
         <div class="form-group">
             <label>Channel Banner Direct Image Link:</label>
@@ -650,6 +865,10 @@
         <div class="form-group">
             <label>Twitter / X Profile Link (Leave empty for Coming Soon):</label>
             <input type="text" id="tw-input" placeholder="https://x.com/yourusername">
+        </div>
+        <div class="form-group">
+            <label>WhatsApp Link / Channel (Leave empty for Coming Soon):</label>
+            <input type="text" id="wa-input" placeholder="https://wa.me/91XXXXXXXXXX">
         </div>
         <button class="btn-sm btn-blue" onclick="saveSocialLinks()">Save Social Links</button>
 
@@ -684,25 +903,262 @@
         </div>
     </div>
 
-    <!-- Corner Admin Lock Button -->
-    <button class="admin-lock-btn" onclick="openLogin()">🔒</button>
+    <!-- Floating Bottom Dock (AI Assistant, 10 Languages, Admin Lock) -->
+    <div class="floating-dock">
+        <button class="dock-circle-btn dock-ai-btn" onclick="openVoiceAI()" title="Voice AI Assistant">🎙️</button>
+        <button class="dock-circle-btn" onclick="openLanguageModal()" title="Select Language (10 Languages)">🌐</button>
+        <button class="dock-circle-btn" onclick="openLogin()" title="Admin Panel">🔒</button>
+    </div>
 
     <script>
-        /* Custom Neon Popup Trigger */
-        function showNeonAlert(title, message) {
-            document.getElementById('neon-modal-title').innerText = title;
-            document.getElementById('neon-modal-msg').innerText = message;
-            document.getElementById('neon-modal').classList.add('active');
+        /* =========================================
+           A. SEQUENTIAL NEON TAG LIGHTING
+           ========================================= */
+        const pillTags = document.querySelectorAll('#neon-tags-bar .tag-pill');
+        let activeTagIdx = 0;
+        setInterval(() => {
+            pillTags.forEach((el, idx) => {
+                el.className = 'tag-pill';
+                if (idx === activeTagIdx) {
+                    el.classList.add(`neon-glow-${(idx % 5) + 1}`);
+                }
+            });
+            activeTagIdx = (activeTagIdx + 1) % pillTags.length;
+        }, 700);
+
+        /* =========================================
+           B. 10 LANGUAGES SUPPORT
+           ========================================= */
+        const LANG_LIST = [
+            { code: 'hi-IN', label: 'हिन्दी (Hindi)' },
+            { code: 'en-US', label: 'English' },
+            { code: 'ur-PK', label: 'اردو (Urdu)' },
+            { code: 'gu-IN', label: 'ગુજરાતી (Gujarati)' },
+            { code: 'mr-IN', label: 'मराठी (Marathi)' },
+            { code: 'bn-IN', label: 'বাংলা (Bengali)' },
+            { code: 'ta-IN', label: 'தமிழ் (Tamil)' },
+            { code: 'te-IN', label: 'తెలుగు (Telugu)' },
+            { code: 'pa-IN', label: 'ਪੰਜਾਬੀ (Punjabi)' },
+            { code: 'bho-IN', label: 'भोजपुरी (Bhojpuri)' }
+        ];
+
+        let currentLang = 'hi-IN';
+
+        const TEXT_DICT = {
+            'hi-IN': {
+                subscribe: 'सब्सक्राइब',
+                more: 'और जानें',
+                contact: 'संपर्क विवरण',
+                challenge: 'कस्टम चैलेंज',
+                uid_done: 'UID कॉपी कंप्लीट!',
+                coming_soon: '⏳ जल्द आ रहा है! लिंक जल्द ही अपडेट किया जाएगा।',
+                ch_title: '🔥 कस्टम मैच चैलेंज',
+                ch_notice: 'नोटिस: मैं रोज़ रात 9:00 से 10:00 बजे के बाद ही कस्टम गेम खेलने के लिए उपलब्ध रहता हूँ।',
+                ch_uid_ph: 'अपना Free Fire UID डालें...',
+                ch_msg_ph: 'छोटा मैसेज लिखें (वैकल्पिक)...',
+                ch_send: 'रिक्वेस्ट भेजें',
+                ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
+                ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप मुझसे कुछ भी पूछ सकते हैं।',
+                ai_uid: 'Reza भाई की Free Fire UID 1928908489 है। मैंने इसे आपके लिए कॉपी कर दिया है!',
+                ai_bio: 'यह वेबसाइट रज़ा अहमद उर्फ RAX REZA 93K की है, जो बिहार से हैं और एक गेमर, वेब डेवलपर और एडिटर हैं।',
+                ai_time: 'आप रोज़ रात 9 से 10 बजे के बाद कस्टम मैच खेल सकते हैं। कस्टम चैलेंज बटन दबाकर अपनी UID भेजें।'
+            },
+            'en-US': {
+                subscribe: 'Subscribe',
+                more: 'More',
+                contact: 'Contact Details',
+                challenge: 'Custom Challenge',
+                uid_done: 'UID Copy Complete!',
+                coming_soon: '⏳ Coming Soon! Link will be updated shortly.',
+                ch_title: '🔥 Custom Match Challenge',
+                ch_notice: 'Notice: I am available to play custom games daily after 9:00 PM - 10:00 PM.',
+                ch_uid_ph: 'Enter your Free Fire UID...',
+                ch_msg_ph: 'Write a short message (optional)...',
+                ch_send: 'Send Request',
+                ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
+                ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
+                ai_hello: 'Hello! I am RAX REZA 93K AI Assistant. Ask me anything about this website!',
+                ai_uid: 'Reza Free Fire UID is 1928908489. I have copied it to your clipboard!',
+                ai_bio: 'This website belongs to Reza Ahmad (RAX REZA 93K) from Bihar, India. He is a gamer, web developer, and editor.',
+                ai_time: 'Custom matches are played daily after 9 PM to 10 PM. Click Custom Challenge to submit your UID.'
+            },
+            'ur-PK': {
+                subscribe: 'سبسکرائب کریں',
+                more: 'مزید معلومات',
+                contact: 'رابطہ کی تفصیلات',
+                challenge: 'کسٹم چیلنج',
+                uid_done: 'UID کاپی مکمل ہو گئی!',
+                coming_soon: '⏳ جلد آ رہا ہے! لنک جلد ہی اپ ڈیٹ کیا جائے گا۔',
+                ch_title: '🔥 کسٹم میچ چیلنج',
+                ch_notice: 'نوٹس: میں روزانہ رات 9:00 سے 10:00 بجے کے بعد کسٹم گیم کھیلنے کے لیے دستیاب ہوں۔',
+                ch_uid_ph: 'اپنا Free Fire UID درج کریں...',
+                ch_msg_ph: 'مختصر پیغام لکھیں (اختیاری)...',
+                ch_send: 'درخواست بھیجیں',
+                ch_sent_ok: 'آپ کی کسٹم چیلنج کی درخواست ایڈمن میل باکس میں بھیج دی گئی ہے!',
+                ch_limit: 'اس ڈیوائس سے 5 پیغامات کی حد پوری ہو گئی ہے! (5/5)',
+                ai_hello: 'السلام علیکم! میں RAX REZA 93K کا AI اسسٹنٹ ہوں۔ آپ مجھ سے ویب سائٹ کے بارے میں کچھ بھی پوچھ سکتے ہیں۔',
+                ai_uid: 'رضا بھائی کی فری فائر یو آئی ڈی 1928908489 ہے۔ میں نے اسے کاپی کر دیا ہے!',
+                ai_bio: 'یہ ویب سائٹ رضا احمد (RAX REZA 93K) کی ہے جو بہار سے ہیں اور گیمر اور ویب ڈویلپر ہیں۔',
+                ai_time: 'آپ روزانہ رات 9 سے 10 بجے کے بعد کسٹم میچ کھیل سکتے ہیں۔'
+            },
+            'gu-IN': {
+                subscribe: 'સબ્સ્ક્રાઇબ કરો',
+                more: 'વધુ માહિતી',
+                contact: 'સંપર્ક વિગતો',
+                challenge: 'કસ્ટમ ચેલેન્જ',
+                uid_done: 'UID કોપી પૂર્ણ!',
+                coming_soon: '⏳ ટૂંક સમયમાં આવી રહ્યું છે! લિંક ટૂંક સમયમાં અપડેટ થશે.',
+                ch_title: '🔥 કસ્ટમ મેચ ચેલેન્જ',
+                ch_notice: 'નોટિસ: હું દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી જ કસ્ટમ ગેમ રમવા માટે ઉપલબ્ધ રહું છું.',
+                ch_uid_ph: 'તમારું Free Fire UID દાખલ કરો...',
+                ch_msg_ph: 'ટૂંકો સંદેશ લખો (વૈકલ્પિક)...',
+                ch_send: 'વિનંતી મોકલો',
+                ch_sent_ok: 'તમારી કસ્ટમ ચેલેન્જ વિનંતી એડમિન મેઈલબોક્સમાં મોકલવામાં આવી છે!',
+                ch_limit: 'આ ડિવાઇસમાંથી 5 મેસેજની મર્યાદા પૂરી થઈ ગઈ છે! (5/5)',
+                ai_hello: 'નમસ્તે! હું RAX REZA 93K નો AI આસિસ્ટન્ટ છું. તમે મને કંઈપણ પૂછી શકો છો.',
+                ai_uid: 'રેઝા ભાઈની ફ્રી ફાયર UID 1928908489 છે. મેં તે કોપી કરી દીધી છે!',
+                ai_bio: 'આ વેબસાઈટ રઝા અહમદ (RAX REZA 93K) ની છે, જેઓ ગેમર અને વેબ ડેવલપર છે.',
+                ai_time: 'તમે દરરોજ રાત્રે 9 થી 10 વાગ્યા પછી કસ્ટમ મેચ રમી શકો છો.'
+            },
+            'mr-IN': {
+                subscribe: 'सबस्क्राईब करा',
+                more: 'अधिक माहिती',
+                contact: 'संपर्क तपशील',
+                challenge: 'कस्टम चॅलेंज',
+                uid_done: 'UID कॉपी पूर्ण झाले!',
+                coming_soon: '⏳ लवकरच येत आहे! लिंक लवकरच अपडेट केली जाईल.',
+                ch_title: '🔥 कस्टम मॅच चॅलेंज',
+                ch_notice: 'सूचना: मी दररोज रात्री 9:00 ते 10:00 नंतर कस्टम गेम खेळण्यासाठी उपलब्ध असतो.',
+                ch_uid_ph: 'तुमचा Free Fire UID टाका...',
+                ch_msg_ph: 'लहान संदेश लिहा (ऐच्छिक)...',
+                ch_send: 'विनंती पाठवा',
+                ch_sent_ok: 'तुमची कस्टम चॅलेंज विनंती ॲडमिन इनबॉक्समध्ये पाठवली आहे!',
+                ch_limit: 'या डिव्हाइसवरून 5 मेसेजची मर्यादा पूर्ण झाली आहे! (5/5)',
+                ai_hello: 'नमस्कार! मी RAX REZA 93K चा AI असिस्टंट आहे. तुम्ही मला काहीही विचारू शकता.',
+                ai_uid: 'रझा यांचा Free Fire UID 1928908489 आहे. मी तो कॉपी केला आहे!',
+                ai_bio: 'ही वेबसाइट रझा अहमद (RAX REZA 93K) यांची आहे, जे गेमर आणि वेब डेव्हलपर आहेत.',
+                ai_time: 'तुम्ही दररोज रात्री 9 ते 10 नंतर कस्टम मॅच खेळू शकता.'
+            },
+            'bn-IN': {
+                subscribe: 'সাবস্ক্রাইব করুন',
+                more: 'আরও জানুন',
+                contact: 'যোগাযোগের বিবরণ',
+                challenge: 'কাস্টম চ্যালেঞ্জ',
+                uid_done: 'UID কপি সম্পন্ন হয়েছে!',
+                coming_soon: '⏳ শীঘ্রই আসছে! লিংক শীঘ্রই আপডেট করা হবে।',
+                ch_title: '🔥 কাস্টম ম্যাচ চ্যালেঞ্জ',
+                ch_notice: 'নোটিশ: আমি প্রতিদিন রাত ৯:০০ থেকে ১০:০০ টার পর কাস্টম গেম খেলার জন্য উপলব্ধ থাকি।',
+                ch_uid_ph: 'আপনার Free Fire UID লিখুন...',
+                ch_msg_ph: 'একটি ছোট বার্তা লিখুন (ঐচ্ছিক)...',
+                ch_send: 'অনুরোধ পাঠান',
+                ch_sent_ok: 'আপনার কাস্টম চ্যালেঞ্জ অনুরোধ অ্যাডমিন মেইলবক্সে পাঠানো হয়েছে!',
+                ch_limit: 'এই ডিভাইস থেকে ৫টি মেসেজের সীমা পূর্ণ হয়ে গেছে! (5/5)',
+                ai_hello: 'নমস্কার! আমি RAX REZA 93K-এর AI অ্যাসিস্ট্যান্ট। আপনি আমাকে যেকোনো প্রশ্ন করতে পারেন।',
+                ai_uid: 'রেজা ভাইয়ের ফ্রি ফায়ার UID হলো 1928908489। আমি এটি কপি করে দিয়েছি!',
+                ai_bio: 'এই ওয়েবসাইটটি রেজা আহমেদ (RAX REZA 93K)-এর, যিনি একজন গেমার এবং ওয়েব ডেভেলপার।',
+                ai_time: 'আপনি প্রতিদিন রাত ৯টা থেকে ১০টার পর কাস্টম ম্যাচ খেলতে পারবেন।'
+            }
+        };
+
+        function tr(key) {
+            const set = TEXT_DICT[currentLang] || TEXT_DICT['hi-IN'];
+            return set[key] || TEXT_DICT['hi-IN'][key];
+        }
+
+        function setWebsiteLang(code) {
+            currentLang = code;
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const k = el.getAttribute('data-t');
+                if (tr(k)) el.innerText = tr(k);
+            });
+            closeNeonModal();
+        }
+
+        /* =========================================
+           C. 3D COSMOS SPHERE LOADER + NEON POPUP
+           ========================================= */
+        const cosmosCanvas = document.getElementById('cosmos-loader-canvas');
+        const cCtx = cosmosCanvas.getContext('2d');
+        let sphereDots = [];
+        let loaderRAF = null;
+
+        function buildCosmosSphere() {
+            sphereDots = [];
+            const total = 220;
+            for (let i = 0; i < total; i++) {
+                const phi = Math.acos(-1 + (2 * i) / total);
+                const theta = Math.sqrt(total * Math.PI) * phi;
+                sphereDots.push({ phi, theta, hue: (i * 360) / total });
+            }
+        }
+
+        let rotAngle = 0;
+        function animateCosmosSphere() {
+            cCtx.clearRect(0, 0, cosmosCanvas.width, cosmosCanvas.height);
+            const cx = cosmosCanvas.width / 2;
+            const cy = cosmosCanvas.height / 2;
+            const r = 92;
+            rotAngle += 0.048;
+
+            sphereDots.forEach(pt => {
+                const x3 = r * Math.sin(pt.phi) * Math.cos(pt.theta + rotAngle);
+                const y3 = r * Math.cos(pt.phi);
+                const z3 = r * Math.sin(pt.phi) * Math.sin(pt.theta + rotAngle);
+                const scale = 240 / (240 + z3);
+                const x2 = cx + x3 * scale;
+                const y2 = cy + y3 * scale;
+
+                cCtx.beginPath();
+                cCtx.arc(x2, y2, 2.3 * scale, 0, Math.PI * 2);
+                cCtx.fillStyle = `hsl(${(pt.hue + rotAngle * 45) % 360}, 100%, 60%)`;
+                cCtx.fill();
+            });
+            loaderRAF = requestAnimationFrame(animateCosmosSphere);
+        }
+
+        /* Runs 3D Cosmos Globe first, then reveals Neon Card */
+        function showNeonAlert(title, htmlOrText, isHTML = false, skipLoader = false) {
+            const overlay = document.getElementById('neon-modal');
+            const card = document.getElementById('neon-modal-card');
+            const titleEl = document.getElementById('neon-modal-title');
+            const bodyEl = document.getElementById('neon-modal-body');
+
+            overlay.classList.add('active');
+
+            const revealCard = () => {
+                cancelAnimationFrame(loaderRAF);
+                cosmosCanvas.style.display = 'none';
+                card.style.display = 'block';
+                titleEl.innerText = title;
+                if (isHTML) {
+                    bodyEl.innerHTML = htmlOrText;
+                } else {
+                    bodyEl.innerText = htmlOrText;
+                }
+            };
+
+            if (skipLoader) {
+                revealCard();
+            } else {
+                card.style.display = 'none';
+                cosmosCanvas.style.display = 'block';
+                buildCosmosSphere();
+                animateCosmosSphere();
+                setTimeout(revealCard, 1150);
+            }
         }
 
         function closeNeonModal() {
+            cancelAnimationFrame(loaderRAF);
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             document.getElementById('neon-modal').classList.remove('active');
         }
 
         function copyUID() {
             const uid = document.getElementById('ff-uid-text').innerText;
             navigator.clipboard.writeText(uid).then(() => {
-                showNeonAlert("UID Copy Complete!", "Free Fire UID: " + uid);
+                showNeonAlert(tr('uid_done'), "Free Fire UID: " + uid);
             });
         }
 
@@ -713,10 +1169,10 @@
             const contactBtn = document.getElementById('contact-btn');
 
             contactBox.classList.remove('show');
-            contactBtn.innerHTML = "📞 Contact Details";
+            contactBtn.innerHTML = `📞 <span data-t="contact">${tr('contact')}</span>`;
 
             moreBox.classList.toggle('show');
-            moreBtn.innerHTML = moreBox.classList.contains('show') ? "✖ Close Details" : "ℹ️ More";
+            moreBtn.innerHTML = moreBox.classList.contains('show') ? "✖ Close Details" : `ℹ️ <span data-t="more">${tr('more')}</span>`;
         }
 
         function toggleContact() {
@@ -726,14 +1182,93 @@
             const moreBtn = document.getElementById('more-btn');
 
             moreBox.classList.remove('show');
-            moreBtn.innerHTML = "ℹ️ More";
+            moreBtn.innerHTML = `ℹ️ <span data-t="more">${tr('more')}</span>`;
 
             contactBox.classList.toggle('show');
-            contactBtn.innerHTML = contactBox.classList.contains('show') ? "✖ Close Contact" : "📞 Contact Details";
+            contactBtn.innerHTML = contactBox.classList.contains('show') ? "✖ Close Contact" : `📞 <span data-t="contact">${tr('contact')}</span>`;
+        }
+
+        /* =========================================
+           D. LANGUAGE SELECTOR & VOICE AI ASSISTANT
+           ========================================= */
+        function openLanguageModal() {
+            let html = `<div class="lang-grid">`;
+            LANG_LIST.forEach(l => {
+                const activeCls = l.code === currentLang ? 'active-lang' : '';
+                html += `<button class="lang-btn ${activeCls}" onclick="setWebsiteLang('${l.code}')">${l.label}</button>`;
+            });
+            html += `</div>`;
+            showNeonAlert("🌐 Select Language (10)", html, true);
+        }
+
+        function speakResponse(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = currentLang;
+            const orb = document.getElementById('ai-orb-box');
+            if (orb) orb.classList.add('ai-speaking');
+            utter.onend = () => {
+                if (orb) orb.classList.remove('ai-speaking');
+            };
+            window.speechSynthesis.speak(utter);
+        }
+
+        function openVoiceAI() {
+            const greet = tr('ai_hello');
+            const html = `
+                <div class="ai-orb-wrap" id="ai-orb-box">
+                    <div class="ai-water-ring"></div>
+                    <div class="ai-water-core">🤖</div>
+                </div>
+                <div class="ai-transcript-box" id="ai-log">${greet}</div>
+                <button class="btn-main btn-challenge" style="margin: 0 auto;" onclick="listenUserVoice()">
+                    🎙️ बोलकर पूछें / Speak Now
+                </button>
+            `;
+            showNeonAlert("RAX AI Assistant", html, true, true);
+            speakResponse(greet);
+        }
+
+        function listenUserVoice() {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const logEl = document.getElementById('ai-log');
+
+            if (!SpeechRec) {
+                const reply = tr('ai_uid');
+                logEl.innerText = reply;
+                speakResponse(reply);
+                return;
+            }
+
+            const rec = new SpeechRec();
+            rec.lang = currentLang;
+            logEl.innerText = "🎙️ सुन रहा हूँ... / Listening...";
+
+            rec.onresult = (e) => {
+                const speech = e.results[0][0].transcript.toLowerCase();
+                let reply = tr('ai_bio');
+
+                if (speech.includes('uid') || speech.includes('copy') || speech.includes('id') || speech.includes('कॉपी')) {
+                    navigator.clipboard.writeText('1928908489');
+                    reply = tr('ai_uid');
+                } else if (speech.includes('custom') || speech.includes('time') || speech.includes('कस्टम') || speech.includes('समय') || speech.includes('खेल')) {
+                    reply = tr('ai_time');
+                }
+
+                logEl.innerHTML = `<strong>You:</strong> ${speech}<br><br><strong>AI:</strong> ${reply}`;
+                speakResponse(reply);
+            };
+
+            rec.onerror = () => {
+                logEl.innerText = "माइक की अनुमति दें या दोबारा प्रयास करें।";
+            };
+
+            rec.start();
         }
     </script>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK (Preserving Your Exact Firebase Config & Admin Auth) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getDatabase, ref, set, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -756,25 +1291,152 @@
         let socialLinks = {
             instagram: "",
             facebook: "",
-            twitter: ""
+            twitter: "",
+            whatsapp: ""
         };
+
+        /* Device Limit Helpers (Max 5 Challenge Requests per Device) */
+        const MAX_DEVICE_CHALLENGES = 5;
+
+        function getDeviceTag() {
+            let id = localStorage.getItem('rax_device_tag');
+            if (!id) {
+                id = 'DEV-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+                localStorage.setItem('rax_device_tag', id);
+            }
+            return id;
+        }
+
+        function getDeviceMsgCount() {
+            return parseInt(localStorage.getItem('rax_ch_sent_count') || '0', 10);
+        }
+
+        function incrementDeviceMsgCount() {
+            localStorage.setItem('rax_ch_sent_count', (getDeviceMsgCount() + 1).toString());
+        }
+
+        /* Auth State Listener (Strictly loads Mailbox ONLY when Admin is logged in) */
+        let mailboxListenerAttached = false;
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.body.classList.add('is-admin');
                 document.getElementById('login-box').style.display = 'none';
+                attachAdminMailboxListener();
             } else {
                 document.body.classList.remove('is-admin');
+                document.getElementById('admin-mailbox-list').innerHTML = "";
             }
         });
 
+        function attachAdminMailboxListener() {
+            if (mailboxListenerAttached) return;
+            mailboxListenerAttached = true;
+
+            onValue(ref(db, 'challengeRequests'), (snapshot) => {
+                // Only render if Admin is currently signed in
+                if (!auth.currentUser) return;
+
+                const box = document.getElementById('admin-mailbox-list');
+                box.innerHTML = "";
+                const data = snapshot.val();
+
+                if (!data) {
+                    box.innerHTML = "<p style='color:#94a3b8; font-size:13px;'>No custom challenge requests yet.</p>";
+                    return;
+                }
+
+                Object.keys(data).reverse().forEach((key) => {
+                    const item = data[key];
+                    const div = document.createElement('div');
+                    div.className = 'mail-card';
+                    div.innerHTML = `
+                        <div style="text-align:left;">
+                            <strong style="color:#ffbe0b; font-size:14px;">UID: ${item.uid}</strong><br>
+                            <span style="color:#e2e8f0; font-size:12.5px;">${item.msg || 'Custom 1v1 Challenge'}</span><br>
+                            <small style="color:#94a3b8; font-size:11px;">${item.device || 'Device'} • ${item.time || ''}</small>
+                        </div>
+                        <div class="mail-actions">
+                            <button class="btn-sm btn-blue" style="padding:5px 9px; font-size:11.5px; margin:0;" onclick="navigator.clipboard.writeText('${item.uid}'); showNeonAlert('Copied!', 'Player UID: ${item.uid}', false, true);">Copy</button>
+                            <button class="btn-sm btn-red" style="padding:5px 9px; font-size:11.5px; margin:0;" onclick="deleteSingleChallenge('${key}')">🗑️</button>
+                        </div>
+                    `;
+                    box.appendChild(div);
+                });
+            });
+        }
+
+        /* Open Custom Challenge Popup with 3D Cosmos Loader */
+        window.openChallengeModal = function() {
+            const sent = getDeviceMsgCount();
+            const remaining = MAX_DEVICE_CHALLENGES - sent;
+
+            if (remaining <= 0) {
+                showNeonAlert("⚠️ Limit Reached (5/5)", tr('ch_limit'));
+                return;
+            }
+
+            const html = `
+                <div class="limit-pill">Remaining Messages on this Device: ${remaining} / 5</div>
+                <div class="notice-box">⏰ ${tr('ch_notice')}</div>
+                <input type="number" id="ch-uid-input" class="popup-input" placeholder="${tr('ch_uid_ph')}">
+                <input type="text" id="ch-msg-input" class="popup-input" placeholder="${tr('ch_msg_ph')}">
+                <button class="btn-main btn-challenge" style="margin: 4px auto 0;" onclick="submitCustomChallenge()">
+                    🚀 ${tr('ch_send')}
+                </button>
+            `;
+            showNeonAlert(tr('ch_title'), html, true);
+        };
+
+        window.submitCustomChallenge = function() {
+            if (getDeviceMsgCount() >= MAX_DEVICE_CHALLENGES) {
+                showNeonAlert("⚠️ Limit Reached", tr('ch_limit'), false, true);
+                return;
+            }
+
+            const uidVal = document.getElementById('ch-uid-input').value.trim();
+            const msgVal = document.getElementById('ch-msg-input').value.trim();
+
+            if (!uidVal) {
+                alert("Please enter your Free Fire UID!");
+                return;
+            }
+
+            push(ref(db, 'challengeRequests'), {
+                uid: uidVal,
+                msg: msgVal || "Custom 1v1 Challenge",
+                device: getDeviceTag(),
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                timestamp: Date.now()
+            }).then(() => {
+                incrementDeviceMsgCount();
+                const left = MAX_DEVICE_CHALLENGES - getDeviceMsgCount();
+                showNeonAlert("✅ Request Sent!", `${tr('ch_sent_ok')}\n\nUID: ${uidVal}\nRemaining from this device: ${left} / 5`, false, true);
+            }).catch((err) => {
+                showNeonAlert("Error", "Could not send request. Check database rules.", false, true);
+            });
+        };
+
+        window.deleteSingleChallenge = function(key) {
+            if (!auth.currentUser) return;
+            remove(ref(db, 'challengeRequests/' + key));
+        };
+
+        window.deleteAllChallenges = function() {
+            if (!auth.currentUser) return;
+            if (confirm("Are you sure you want to delete ALL custom challenge mails?")) {
+                remove(ref(db, 'challengeRequests'));
+            }
+        };
+
+        /* Existing Admin Functions */
         window.openLogin = function() {
             if (auth.currentUser) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
                 return;
             }
             document.getElementById('login-box').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('login-box').scrollIntoView({ behavior: 'smooth' });
         };
 
         window.closeLogin = function() {
@@ -785,35 +1447,37 @@
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
             signInWithEmailAndPassword(auth, email, pass)
-                .then(() => showNeonAlert("Success", "Admin Login Successful!"))
-                .catch(() => showNeonAlert("Login Failed", "Invalid Email or Password!"));
+                .then(() => showNeonAlert("Success", "Admin Login Successful!", false, true))
+                .catch(() => showNeonAlert("Login Failed", "Invalid Email or Password!", false, true));
         };
 
         window.logoutAdmin = function() {
-            signOut(auth).then(() => showNeonAlert("Logged Out", "You have logged out safely."));
+            signOut(auth).then(() => showNeonAlert("Logged Out", "You have logged out safely.", false, true));
         };
 
         window.updateBanner = function() {
             const url = document.getElementById('banner-input').value.trim();
             set(ref(db, 'siteSettings/banner'), url);
-            showNeonAlert("Updated", "Banner Updated Successfully!");
+            showNeonAlert("Updated", "Banner Updated Successfully!", false, true);
         };
 
         window.removeBanner = function() {
             set(ref(db, 'siteSettings/banner'), "HIDE");
-            showNeonAlert("Hidden", "Banner has been hidden!");
+            showNeonAlert("Hidden", "Banner has been hidden!", false, true);
         };
 
         window.saveSocialLinks = function() {
             const insta = document.getElementById('insta-input').value.trim();
             const fb = document.getElementById('fb-input').value.trim();
             const tw = document.getElementById('tw-input').value.trim();
+            const wa = document.getElementById('wa-input').value.trim();
 
             set(ref(db, 'siteSettings/socials'), {
                 instagram: insta,
                 facebook: fb,
-                twitter: tw
-            }).then(() => showNeonAlert("Saved", "Social Media Links Updated!"));
+                twitter: tw,
+                whatsapp: wa
+            }).then(() => showNeonAlert("Saved", "Social Media Links Updated!", false, true));
         };
 
         window.openSocial = function(platform) {
@@ -822,21 +1486,21 @@
                 window.open(url, "_blank");
             } else {
                 const name = platform.charAt(0).toUpperCase() + platform.slice(1);
-                showNeonAlert(name + " Profile", "⏳ Coming Soon! Link will be updated shortly.");
+                showNeonAlert(name + " Profile", tr('coming_soon'));
             }
         };
 
         window.saveContactDetails = function() {
             const details = document.getElementById('contact-input').value.trim();
             set(ref(db, 'siteSettings/contactDetails'), details)
-                .then(() => showNeonAlert("Saved", "Contact Details Updated!"));
+                .then(() => showNeonAlert("Saved", "Contact Details Updated!", false, true));
         };
 
         window.resetContactDetails = function() {
             set(ref(db, 'siteSettings/contactDetails'), "")
                 .then(() => {
                     document.getElementById('contact-input').value = "";
-                    showNeonAlert("Reset Complete", "Contact Details reset to Coming Soon!");
+                    showNeonAlert("Reset Complete", "Contact Details reset to Coming Soon!", false, true);
                 });
         };
 
@@ -857,14 +1521,14 @@
             const title = document.getElementById('video-title').value.trim() || "RAX REZA 93K Video";
             const videoId = extractVideoID(url);
 
-            if (!videoId) return showNeonAlert("Invalid Link", "Please enter a valid YouTube video link!");
+            if (!videoId) return showNeonAlert("Invalid Link", "Please enter a valid YouTube video link!", false, true);
 
             push(ref(db, 'videos'), {
                 videoId: videoId,
                 fullUrl: `https://www.youtube.com/watch?v=${videoId}`,
                 title: title,
                 timestamp: Date.now()
-            }).then(() => showNeonAlert("Uploaded", "Video Link Uploaded Successfully!"));
+            }).then(() => showNeonAlert("Uploaded", "Video Link Uploaded Successfully!", false, true));
 
             document.getElementById('video-url').value = "";
             document.getElementById('video-title').value = "";
@@ -899,10 +1563,12 @@
                 socialLinks.instagram = data.socials.instagram || "";
                 socialLinks.facebook = data.socials.facebook || "";
                 socialLinks.twitter = data.socials.twitter || "";
+                socialLinks.whatsapp = data.socials.whatsapp || "";
 
                 document.getElementById('insta-input').value = socialLinks.instagram;
                 document.getElementById('fb-input').value = socialLinks.facebook;
                 document.getElementById('tw-input').value = socialLinks.twitter;
+                document.getElementById('wa-input').value = socialLinks.whatsapp;
             }
 
             const contactDisplay = document.getElementById('contact-display-area');
