@@ -604,7 +604,6 @@
            7. VIDEO LIST (HIDDEN IN ADMIN UNTIL TAPPED)
            ========================================= */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
-        /* Admin login hone par public video list hide rahegi */
         body.is-admin .videos-container { display: none; }
 
         .videos-container h2 {
@@ -918,7 +917,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+        .admin-vid-thumb {
+            width: 82px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            flex-shrink: 0;
+            background: #000;
         }
         .mail-actions {
             display: flex;
@@ -1222,7 +1230,7 @@
 
         <hr style="border-color: #334155; margin: 15px 0;">
 
-        <!-- VIDEO UPLOAD & ON-DEMAND DELETE MANAGER -->
+        <!-- VIDEO UPLOAD & ON-DEMAND DELETE MANAGER WITH THUMBNAILS -->
         <div class="admin-sec-box" style="border-color:#ffbe0b;">
             <h4 style="color:#ffbe0b; margin-bottom:10px;">🎬 Manage Videos</h4>
             <div class="form-group">
@@ -1236,8 +1244,7 @@
             <button class="btn-sm btn-red" onclick="addVideo()">+ Upload Video Link</button>
             <button class="btn-sm btn-blue" id="toggle-admin-videos-btn" onclick="toggleAdminVideoManager()">🗑️ Delete Video List (Show All)</button>
 
-            <!-- Hidden by default in Admin Panel; opens only when tapped -->
-            <div id="admin-video-manager-box" style="display:none; margin-top:14px; max-height:320px; overflow-y:auto; border-top:1px solid #334155; padding-top:10px;">
+            <div id="admin-video-manager-box" style="display:none; margin-top:14px; max-height:360px; overflow-y:auto; border-top:1px solid #334155; padding-top:10px;">
                 <p style="color:#94a3b8; font-size:12.5px;">Loading video list...</p>
             </div>
         </div>
@@ -1700,7 +1707,7 @@
         };
 
         /* =========================================
-           F. MULTI-KEY + LATEST MODELS AUTO-FALLBACK AI
+           F. FAST MULTI-KEY + FASTEST MODELS AI
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -1770,6 +1777,19 @@
             return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
         }
 
+        async function fetchWithTimeout(url, options, timeoutMs = 6500) {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+            try {
+                const res = await fetch(url, { ...options, signal: controller.signal });
+                clearTimeout(timer);
+                return res;
+            } catch (e) {
+                clearTimeout(timer);
+                throw e;
+            }
+        }
+
         async function fetchGeminiAIReply(userQuery) {
             const validKeys = (window.GEMINI_API_KEYS_LIST || [])
                 .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
@@ -1807,11 +1827,11 @@ STRICT INTENT & BREVITY RULES:
 - Match the user's language and keep every answer crisp, polite, and short (1 to 2 sentences max) without markdown symbols (*, #, _) so voice speech sounds clear.
 `;
 
+            // Fastest active models first for 1-second instant reply
             const modelsToTry = [
-                "gemini-3.8-flash",
-                "gemini-3.8-flash-lite",
-                "gemini-3.5-flash",
-                "gemini-2.5-flash"
+                "gemini-2.5-flash",
+                "gemini-2.5-flash-lite",
+                "gemini-2.5-pro"
             ];
 
             let lastErrorMsg = "";
@@ -1819,7 +1839,7 @@ STRICT INTENT & BREVITY RULES:
             for (const apiKey of validKeys) {
                 for (const modelName of modelsToTry) {
                     try {
-                        const response = await fetch(
+                        const response = await fetchWithTimeout(
                             `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`,
                             {
                                 method: "POST",
@@ -1827,9 +1847,10 @@ STRICT INTENT & BREVITY RULES:
                                 body: JSON.stringify({
                                     systemInstruction: { parts: [{ text: systemPrompt }] },
                                     contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                                    generationConfig: { temperature: 0.25, maxOutputTokens: 200 }
+                                    generationConfig: { temperature: 0.25, maxOutputTokens: 160 }
                                 })
-                            }
+                            },
+                            6500
                         );
 
                         const data = await response.json();
@@ -1845,20 +1866,20 @@ STRICT INTENT & BREVITY RULES:
                             return data.candidates[0].content.parts[0].text.trim();
                         }
                     } catch (err) {
-                        lastErrorMsg = err.message;
+                        lastErrorMsg = err.name === 'AbortError' ? 'Request Timeout' : err.message;
                         continue;
                     }
                 }
             }
 
-            return `⚠️ API Error: ${lastErrorMsg || "सभी API Keys या मॉडल्स पर लोड ज़्यादा है, कृपया थोड़ी देर बाद प्रयास करें।"}`;
+            return `⚠️ API Error: ${lastErrorMsg || "सर्वर पर लोड ज़्यादा है, कृपया 2 सेकंड बाद दोबारा पूछें।"}`;
         }
 
         async function processAIQuery(queryText) {
             if (!queryText || !queryText.trim()) return;
             const logEl = document.getElementById('ai-log');
             const safeQuery = escapeHTML(queryText.trim());
-            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#94a3b8;">⏳ सोच रहा हूँ...</div>`;
+            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#94a3b8;">⚡ जवाब तैयार हो रहा है...</div>`;
             
             const answer = await fetchGeminiAIReply(queryText.trim());
             const safeAnswer = escapeHTML(answer);
@@ -2548,7 +2569,7 @@ STRICT INTENT & BREVITY RULES:
                 const ytLink = vid.fullUrl || `https://www.youtube.com/watch?v=${vid.videoId}`;
                 const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
 
-                // 1. Public Visitor Card (Clean view, hidden during Admin login)
+                // 1. Public Visitor Card
                 const card = document.createElement('div');
                 card.className = 'video-card';
                 card.innerHTML = `
@@ -2565,15 +2586,16 @@ STRICT INTENT & BREVITY RULES:
                 `;
                 list.appendChild(card);
 
-                // 2. Admin Video Delete List Item (Shown only when Admin taps Delete Video List)
+                // 2. Admin Video Delete List Item WITH Thumbnail Photo
                 if (adminVideoBox) {
                     const adminRow = document.createElement('div');
                     adminRow.className = 'mail-card';
                     adminRow.style.borderLeftColor = '#ff0055';
                     adminRow.innerHTML = `
-                        <div style="text-align:left; font-size:12.5px; overflow:hidden;">
-                            <strong style="color:#ffffff;">${vid.title}</strong><br>
-                            <a href="${ytLink}" target="_blank" style="color:#38bdf8; font-size:11px; word-break:break-all;">${ytLink}</a>
+                        <img src="${thumbUrl}" alt="Thumbnail" class="admin-vid-thumb">
+                        <div style="text-align:left; font-size:12px; overflow:hidden; flex:1;">
+                            <strong style="color:#ffffff; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${vid.title}</strong>
+                            <a href="${ytLink}" target="_blank" style="color:#38bdf8; font-size:10.5px; word-break:break-all;">${ytLink}</a>
                         </div>
                         <div class="mail-actions">
                             <button class="btn-sm btn-red" style="padding:5px 9px; font-size:11.5px; margin:0;" onclick="deleteVideo('${key}')">🗑️ Delete</button>
