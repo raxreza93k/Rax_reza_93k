@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0b0e; color: #ffffff; text-align: center; padding-bottom: 80px; }
 
-        /* चैनल बैनर */
+        /* Channel Banner */
         .banner {
             width: 100%; height: 210px;
             background: radial-gradient(circle at center, #7a0000 0%, #1c0000 55%, #0b0b0e 100%);
@@ -26,7 +26,7 @@
         .banner.custom-img::after { content: ""; }
         .banner.hidden { display: none; }
 
-        /* प्रोफाइल और YouTube लोगो */
+        /* Profile & YouTube Logo */
         .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 2; }
         .profile-section.no-banner { margin-top: 25px; }
         
@@ -49,17 +49,64 @@
             margin-left: 4px;
         }
 
-        h1 { font-size: 26px; margin-top: 10px; font-weight: 800; letter-spacing: 1px; }
-        .subtitle { color: #aaa; font-size: 13.5px; margin-top: 3px; }
+        /* Username with Blinking Background Effect */
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 18px;
+        }
+        .title-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.55) 0%, rgba(255, 0, 0, 0) 75%);
+            z-index: -1;
+            animation: titleBlinkGlow 1.6s infinite alternate ease-in-out;
+        }
+        @keyframes titleBlinkGlow {
+            0% { opacity: 0.15; transform: scale(0.92); filter: blur(4px); }
+            100% { opacity: 1; transform: scale(1.12); filter: blur(8px); }
+        }
 
-        /* मुख्य बटन्स: Subscribe, Copy UID, और More */
+        h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(255, 0, 0, 0.4); }
+        
+        /* 5 Profile Tags */
+        .subtitle {
+            color: #bbb; font-size: 13px; margin-top: 6px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+        }
+        .tag-pill {
+            background: #16161f; border: 1px solid #2d2d3d;
+            padding: 3px 10px; border-radius: 12px; color: #e0e0e0; font-weight: 500;
+        }
+
+        /* Social Media Icons Bar */
+        .social-bar {
+            display: flex; justify-content: center; gap: 14px; margin-top: 16px;
+        }
+        .social-icon {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: #181822; border: 1px solid #323244;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none; cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .social-icon:hover {
+            border-color: #ff0000; background: #261216; transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.35);
+        }
+        .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* Main Buttons: Subscribe, Copy UID, More, Contact Details */
         .action-buttons {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-            margin-top: 18px;
+            margin-top: 16px;
         }
         .btn-main {
-            padding: 11px 20px; border-radius: 25px; font-weight: bold;
-            font-size: 14px; text-decoration: none; cursor: pointer;
+            padding: 11px 18px; border-radius: 25px; font-weight: bold;
+            font-size: 13.5px; text-decoration: none; cursor: pointer;
             border: none; display: inline-flex; align-items: center; gap: 7px;
             transition: transform 0.2s;
         }
@@ -70,26 +117,46 @@
         }
         .btn-uid { background: #1a1a22; color: #fff; border: 1px solid #3a3a48; }
         .btn-more { background: #221215; color: #ff5555; border: 1px solid #ff0000; }
+        .btn-contact { background: #141c24; color: #4da6ff; border: 1px solid #2b6cb0; }
 
-        /* More पर टैप करने पर खुलने वाला बॉक्स (About + Family) */
-        #more-details-box {
+        /* Expandable Boxes (More & Contact) */
+        .info-box {
             display: none; max-width: 680px; margin: 20px auto 10px; padding: 20px;
             background: #14141c; border: 1px solid #ff0000; border-radius: 14px;
             text-align: left; line-height: 1.7; animation: fadeIn 0.25s ease;
         }
-        #more-details-box.show { display: block; }
+        .info-box.contact-theme { border-color: #2b6cb0; }
+        .info-box.show { display: block; }
+        
         .detail-heading {
-            color: #ff4d4d; font-size: 17px; font-weight: bold;
-            margin-bottom: 8px; border-bottom: 1px solid #2a2a36; padding-bottom: 5px;
+            color: #ff4d4d; font-size: 16.5px; font-weight: bold;
+            margin-top: 14px; margin-bottom: 8px; border-bottom: 1px solid #2a2a36; padding-bottom: 5px;
         }
-        .detail-list { list-style: none; margin-bottom: 18px; }
+        .detail-heading:first-child { margin-top: 0; }
+        .contact-theme .detail-heading { color: #4da6ff; }
+        
+        .detail-text { color: #dcdcdc; font-size: 14px; margin-bottom: 10px; }
+        .detail-list { list-style: none; margin-bottom: 12px; }
         .detail-list:last-child { margin-bottom: 0; }
         .detail-list li { color: #dcdcdc; font-size: 14px; margin-bottom: 6px; }
         .detail-list strong { color: #ffffff; }
+        .detail-list a { color: #ff5555; text-decoration: none; word-break: break-all; }
+        
+        .contact-content-area {
+            color: #e2e8f0; font-size: 14.5px; white-space: pre-line; word-break: break-word;
+        }
+        .contact-content-area a {
+            color: #4da6ff; font-weight: 600; text-decoration: underline;
+        }
+        .coming-soon-badge {
+            display: inline-block; padding: 8px 16px; background: #1e293b;
+            color: #38bdf8; border: 1px dashed #38bdf8; border-radius: 8px;
+            font-weight: bold; font-size: 14px;
+        }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* वीडियो लिस्ट (लाइन से एक के नीचे एक + असली YouTube थंबनेल बैनर) */
+        /* Video List */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
         .videos-container h2 {
             text-align: left; font-size: 19px; margin-bottom: 16px;
@@ -103,16 +170,13 @@
             transition: border-color 0.2s;
         }
         .video-card:hover { border-color: #ff0000; }
-        
         .video-link-area { text-decoration: none; color: inherit; display: block; }
         
         .thumb-wrapper {
             position: relative; width: 100%; aspect-ratio: 16 / 9;
             background: #000; overflow: hidden;
         }
-        .thumb-wrapper img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-        }
+        .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .play-badge {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 58px; height: 40px; background: rgba(255, 0, 0, 0.9);
@@ -128,7 +192,7 @@
         .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
         .video-url-text { font-size: 12.5px; color: #ff5555; word-break: break-all; }
 
-        /* एडमिन पैनल और लॉक बटन */
+        /* Admin Panel & Lock Button */
         .admin-lock-btn {
             position: fixed; bottom: 15px; right: 15px;
             background: #1c1c24; color: #aaa; border: 1px solid #333;
@@ -147,30 +211,62 @@
         body.is-admin #admin-panel { display: block; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 13px; color: #bbb; margin-bottom: 5px; }
-        .form-group input {
+        .form-group input, .form-group textarea {
             width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444;
-            background: #0b0b0e; color: #fff;
+            background: #0b0b0e; color: #fff; font-family: inherit;
         }
+        .form-group textarea { min-height: 85px; resize: vertical; }
         .btn-sm {
             padding: 9px 14px; border: none; border-radius: 6px;
             cursor: pointer; font-weight: bold; margin-right: 6px; margin-top: 5px;
         }
         .btn-red { background: #ff0000; color: #fff; }
+        .btn-blue { background: #2563eb; color: #fff; }
         .btn-gray { background: #333; color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- 1. चैनल बैनर -->
+    <!-- 1. Channel Banner -->
     <div id="site-banner" class="banner"></div>
 
-    <!-- 2. YouTube लोगो और बटन्स -->
+    <!-- 2. Profile, Blinking Name, 5 Tags, Social Icons & Main Buttons -->
     <div id="profile-box" class="profile-section">
         <div class="logo-wrapper" id="logo-container">
             <div class="yt-default-icon"></div>
         </div>
-        <h1>RAX REZA 93K</h1>
-        <p class="subtitle">Gaming • Coding • Web Development</p>
+        
+        <div class="title-wrapper">
+            <h1>RAX REZA 93K</h1>
+        </div>
+
+        <div class="subtitle">
+            <span class="tag-pill">Gaming</span>
+            <span class="tag-pill">Coding</span>
+            <span class="tag-pill">Editor</span>
+            <span class="tag-pill">Web Development</span>
+            <span class="tag-pill">Documentation</span>
+        </div>
+
+        <!-- Social Media Icons (YouTube, Instagram, Facebook, Twitter) -->
+        <div class="social-bar">
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="social-icon" title="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <button type="button" class="social-icon" onclick="openSocial('instagram')" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </button>
+            <!-- Facebook -->
+            <button type="button" class="social-icon" onclick="openSocial('facebook')" title="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+            </button>
+            <!-- Twitter / X -->
+            <button type="button" class="social-icon" onclick="openSocial('twitter')" title="Twitter / X">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+        </div>
 
         <div class="action-buttons">
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="btn-main btn-sub">
@@ -182,70 +278,128 @@
             <button class="btn-main btn-more" id="more-btn" onclick="toggleMore()">
                 ℹ️ More
             </button>
+            <button class="btn-main btn-contact" id="contact-btn" onclick="toggleContact()">
+                📞 Contact Details
+            </button>
         </div>
     </div>
 
-    <!-- 3. More बटन दबाने पर खुलने वाली पूरी जानकारी (About + Family) -->
-    <div id="more-details-box">
-        <div class="detail-heading">👨‍💻 Mere Bare Me (Developer Details)</div>
+    <!-- 3A. More Section (Full Bio & Family) -->
+    <div id="more-details-box" class="info-box">
+        <div class="detail-heading">👨‍💻 About Reza Ahmad (RAX REZA 93K)</div>
         <ul class="detail-list">
-            <li><strong>Developer Name:</strong> Reza Ahmad</li>
+            <li><strong>Name:</strong> Reza Ahmad</li>
             <li><strong>State:</strong> Bihar, India 🇮🇳</li>
-            <li><strong>Qualification:</strong> 12th Pass (अभी <strong>BCA</strong> की पढ़ाई चल रही है)</li>
-            <li><strong>Dream & Skills:</strong> Class 8th से ही खुद की वेबसाइट बनाने, Coding करने और Gaming का सपना रहा है।</li>
+            <li><strong>Qualification:</strong> 12th Pass (Currently pursuing BCA – Bachelor of Computer Applications)</li>
         </ul>
 
-        <div class="detail-heading">👨‍👩‍👦‍👦 Family Members (कुल 5 सदस्य)</div>
+        <div class="detail-heading">🚀 Vision & Dreams</div>
+        <p class="detail-text">
+            Since Class 8th, Reza Ahmad has dreamed of making his mark in the digital world through coding, web development, gaming, and content creation. His ultimate goal is to build innovative websites, grow his digital community globally, and master modern creative technologies.
+        </p>
+
+        <div class="detail-heading">⚡ Skills & Expertise</div>
+        <p class="detail-text">Reza is known for his fast execution, creativity, and technical versatility:</p>
         <ul class="detail-list">
-            <li><strong>1. Dad (Father)</strong></li>
-            <li><strong>2. Mom (Mother)</strong></li>
-            <li><strong>3. Big Brother (सबसे बड़े भाई):</strong> Israr Ahmad</li>
-            <li><strong>4. Middle Brother (मझले भाई):</strong> Abrar Ahmad</li>
-            <li><strong>5. Youngest Brother (सबसे छोटा भाई):</strong> Reza Ahmad (मैं खुद)</li>
+            <li><strong>Web Development & Coding:</strong> Designing and building custom websites and interactive web projects from scratch.</li>
+            <li><strong>High-Speed Video Editing & Graphic Design:</strong> Crafting eye-catching video edits, thumbnails, and modern graphic designs with speed and precision.</li>
+            <li><strong>Gaming & Entertainment:</strong> Passionate gamer and creator sharing entertaining gaming clips, montages, and short-form videos.</li>
+            <li><strong>Fast Online Documentation:</strong> Highly skilled in creating, formatting, and managing all types of online documents, forms, and digital files in record time.</li>
+        </ul>
+
+        <div class="detail-heading">🌐 YouTube & Channel Website</div>
+        <ul class="detail-list">
+            <li><strong>YouTube Channel:</strong> RAX REZA 93K (Gaming videos, Shorts, and creative updates)</li>
+            <li><strong>YouTube Channel Website:</strong> <a href="https://raxreza93k.github.io/Rax_reza_93k/" target="_blank">https://raxreza93k.github.io/Rax_reza_93k/</a></li>
+        </ul>
+
+        <div class="detail-heading">👨‍👩‍👦‍👦 Family Background (5 Members)</div>
+        <ul class="detail-list">
+            <li><strong>Father</strong></li>
+            <li><strong>Mother</strong></li>
+            <li><strong>Eldest Brother:</strong> Israr Ahmad</li>
+            <li><strong>Middle Brother:</strong> Abrar Ahmad</li>
+            <li><strong>Youngest Brother:</strong> Reza Ahmad</li>
         </ul>
     </div>
 
-    <!-- 4. एडमिन लॉगिन बॉक्स -->
+    <!-- 3B. Contact Details Section (Controlled via Admin Panel) -->
+    <div id="contact-details-box" class="info-box contact-theme">
+        <div class="detail-heading">📞 Contact Details</div>
+        <div id="contact-display-area" class="contact-content-area">
+            <span class="coming-soon-badge">⏳ Coming Soon!</span>
+        </div>
+    </div>
+
+    <!-- 4. Admin Login Box -->
     <div id="login-box" class="modal-box">
         <h3 style="color:#ff4d4d; margin-bottom:12px;">🔐 Admin Login</h3>
         <div class="form-group">
             <label>Admin Email:</label>
-            <input type="email" id="admin-email" placeholder="एडमिन ईमेल डालें">
+            <input type="email" id="admin-email" placeholder="Enter admin email">
         </div>
         <div class="form-group">
             <label>Password:</label>
-            <input type="password" id="admin-pass" placeholder="पासवर्ड डालें">
+            <input type="password" id="admin-pass" placeholder="Enter password">
         </div>
         <button class="btn-sm btn-red" onclick="loginAdmin()">Login</button>
         <button class="btn-sm btn-gray" onclick="closeLogin()">Cancel</button>
     </div>
 
-    <!-- 5. एडमिन कंट्रोल पैनल (सिर्फ Admin के लिए) -->
+    <!-- 5. Admin Control Panel -->
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#ff4d4d; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
         
         <div class="form-group">
-            <label>Channel Banner Image Link:</label>
-            <input type="text" id="banner-input" placeholder="https://example.com/banner.jpg">
+            <label>Channel Banner Direct Image Link:</label>
+            <input type="text" id="banner-input" placeholder="https://i.imgur.com/your-banner.jpg">
             <button class="btn-sm btn-red" onclick="updateBanner()">Save Banner</button>
             <button class="btn-sm btn-gray" onclick="removeBanner()">Hide Banner</button>
         </div>
 
         <hr style="border-color: #333; margin: 15px 0;">
 
+        <!-- Social Links Update -->
+        <div class="form-group">
+            <label>Instagram Profile Link (Leave empty for Coming Soon):</label>
+            <input type="text" id="insta-input" placeholder="https://instagram.com/yourusername">
+        </div>
+        <div class="form-group">
+            <label>Facebook Profile Link (Leave empty for Coming Soon):</label>
+            <input type="text" id="fb-input" placeholder="https://facebook.com/yourusername">
+        </div>
+        <div class="form-group">
+            <label>Twitter / X Profile Link (Leave empty for Coming Soon):</label>
+            <input type="text" id="tw-input" placeholder="https://x.com/yourusername">
+        </div>
+        <button class="btn-sm btn-blue" onclick="saveSocialLinks()">Save Social Links</button>
+
+        <hr style="border-color: #333; margin: 15px 0;">
+
+        <!-- Contact Details Update -->
+        <div class="form-group">
+            <label>Contact Details (WhatsApp Channel, Number, Email - Leave empty for Coming Soon):</label>
+            <textarea id="contact-input" placeholder="Example:&#10;WhatsApp Channel: https://whatsapp.com/channel/...&#10;WhatsApp Number: +91 XXXXXXXXXX"></textarea>
+            <button class="btn-sm btn-blue" onclick="saveContactDetails()">Save Contact Details</button>
+            <button class="btn-sm btn-gray" onclick="resetContactDetails()">Reset to Coming Soon</button>
+        </div>
+
+        <hr style="border-color: #333; margin: 15px 0;">
+
+        <!-- Video Upload -->
         <div class="form-group">
             <label>YouTube Video Link:</label>
             <input type="text" id="video-url" placeholder="https://youtu.be/xxxxxxx">
         </div>
         <div class="form-group">
             <label>Video Title:</label>
-            <input type="text" id="video-title" placeholder="वीडियो का नाम लिखें">
+            <input type="text" id="video-title" placeholder="Enter video title">
         </div>
         <button class="btn-sm btn-red" onclick="addVideo()">+ Upload Video Link</button>
         <button class="btn-sm btn-gray" onclick="logoutAdmin()">Logout</button>
     </div>
 
-    <!-- 6. वीडियो लिस्ट (लाइन से एक के नीचे एक + YouTube Thumbnail Banner) -->
+    <!-- 6. Uploaded Videos List -->
     <div class="videos-container">
         <h2>🔥 Uploaded Videos</h2>
         <div id="video-list" class="video-list">
@@ -253,22 +407,41 @@
         </div>
     </div>
 
-    <!-- कोने में लॉक बटन -->
+    <!-- Corner Admin Lock Button -->
     <button class="admin-lock-btn" onclick="openLogin()">🔒</button>
 
     <script>
         function copyUID() {
             const uid = document.getElementById('ff-uid-text').innerText;
             navigator.clipboard.writeText(uid).then(() => {
-                alert("FF UID कॉपी हो गई: " + uid);
+                alert("UID Copy Complete: " + uid);
             });
         }
 
         function toggleMore() {
-            const box = document.getElementById('more-details-box');
-            const btn = document.getElementById('more-btn');
-            box.classList.toggle('show');
-            btn.innerHTML = box.classList.contains('show') ? "✖ Close Details" : "ℹ️ More";
+            const moreBox = document.getElementById('more-details-box');
+            const contactBox = document.getElementById('contact-details-box');
+            const moreBtn = document.getElementById('more-btn');
+            const contactBtn = document.getElementById('contact-btn');
+
+            contactBox.classList.remove('show');
+            contactBtn.innerHTML = "📞 Contact Details";
+
+            moreBox.classList.toggle('show');
+            moreBtn.innerHTML = moreBox.classList.contains('show') ? "✖ Close Details" : "ℹ️ More";
+        }
+
+        function toggleContact() {
+            const contactBox = document.getElementById('contact-details-box');
+            const moreBox = document.getElementById('more-details-box');
+            const contactBtn = document.getElementById('contact-btn');
+            const moreBtn = document.getElementById('more-btn');
+
+            moreBox.classList.remove('show');
+            moreBtn.innerHTML = "ℹ️ More";
+
+            contactBox.classList.toggle('show');
+            contactBtn.innerHTML = contactBox.classList.contains('show') ? "✖ Close Contact" : "📞 Contact Details";
         }
     </script>
 
@@ -291,6 +464,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const auth = getAuth(app);
+
+        let socialLinks = {
+            instagram: "",
+            facebook: "",
+            twitter: ""
+        };
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -318,24 +497,67 @@
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
             signInWithEmailAndPassword(auth, email, pass)
-                .then(() => alert("Admin Login सफल!"))
-                .catch(() => alert("गलत ईमेल या पासवर्ड!"));
+                .then(() => alert("Admin Login Successful!"))
+                .catch(() => alert("Invalid Email or Password!"));
         };
 
         window.logoutAdmin = function() {
-            signOut(auth).then(() => alert("Logout हो गया।"));
+            signOut(auth).then(() => alert("Logged Out Successfully!"));
         };
 
         window.updateBanner = function() {
             const url = document.getElementById('banner-input').value.trim();
             set(ref(db, 'siteSettings/banner'), url);
-            alert("Banner अपडेट हो गया!");
+            alert("Banner Updated Successfully!");
         };
 
         window.removeBanner = function() {
             set(ref(db, 'siteSettings/banner'), "HIDE");
-            alert("Banner हटा दिया गया!");
+            alert("Banner Hidden!");
         };
+
+        window.saveSocialLinks = function() {
+            const insta = document.getElementById('insta-input').value.trim();
+            const fb = document.getElementById('fb-input').value.trim();
+            const tw = document.getElementById('tw-input').value.trim();
+
+            set(ref(db, 'siteSettings/socials'), {
+                instagram: insta,
+                facebook: fb,
+                twitter: tw
+            }).then(() => alert("Social Media Links Updated!"));
+        };
+
+        window.openSocial = function(platform) {
+            const url = socialLinks[platform];
+            if (url && url !== "") {
+                window.open(url, "_blank");
+            } else {
+                const name = platform.charAt(0).toUpperCase() + platform.slice(1);
+                alert(name + " Profile: Coming Soon!");
+            }
+        };
+
+        window.saveContactDetails = function() {
+            const details = document.getElementById('contact-input').value.trim();
+            set(ref(db, 'siteSettings/contactDetails'), details)
+                .then(() => alert("Contact Details Updated!"));
+        };
+
+        window.resetContactDetails = function() {
+            set(ref(db, 'siteSettings/contactDetails'), "")
+                .then(() => {
+                    document.getElementById('contact-input').value = "";
+                    alert("Contact Details Reset to Coming Soon!");
+                });
+        };
+
+        // Auto-convert URLs and phone numbers in Contact Details into clickable links
+        function formatContactText(text) {
+            const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return escaped.replace(urlRegex, '<a href="$1" target="_blank">$1</a>');
+        }
 
         function extractVideoID(url) {
             const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
@@ -348,31 +570,32 @@
             const title = document.getElementById('video-title').value.trim() || "RAX REZA 93K Video";
             const videoId = extractVideoID(url);
 
-            if (!videoId) return alert("सही YouTube वीडियो लिंक डालें!");
+            if (!videoId) return alert("Please enter a valid YouTube video link!");
 
             push(ref(db, 'videos'), {
                 videoId: videoId,
                 fullUrl: `https://www.youtube.com/watch?v=${videoId}`,
                 title: title,
                 timestamp: Date.now()
-            });
+            }).then(() => alert("Video Link Uploaded!"));
 
             document.getElementById('video-url').value = "";
             document.getElementById('video-title').value = "";
         };
 
         window.deleteVideo = function(key) {
-            if (confirm("क्या आप इस वीडियो को हटाना चाहते हैं?")) {
+            if (confirm("Are you sure you want to delete this video?")) {
                 remove(ref(db, 'videos/' + key));
             }
         };
 
-        // बैनर लोड करना
+        // Load Site Settings (Banner, Socials, Contact Details)
         onValue(ref(db, 'siteSettings'), (snapshot) => {
             const data = snapshot.val() || {};
             const bannerEl = document.getElementById('site-banner');
             const profileEl = document.getElementById('profile-box');
 
+            // 1. Banner
             if (data.banner === "HIDE") {
                 bannerEl.classList.add('hidden');
                 profileEl.classList.add('no-banner');
@@ -386,16 +609,36 @@
                 bannerEl.classList.remove('custom-img', 'hidden');
                 profileEl.classList.remove('no-banner');
             }
+
+            // 2. Socials
+            if (data.socials) {
+                socialLinks.instagram = data.socials.instagram || "";
+                socialLinks.facebook = data.socials.facebook || "";
+                socialLinks.twitter = data.socials.twitter || "";
+
+                document.getElementById('insta-input').value = socialLinks.instagram;
+                document.getElementById('fb-input').value = socialLinks.facebook;
+                document.getElementById('tw-input').value = socialLinks.twitter;
+            }
+
+            // 3. Contact Details
+            const contactDisplay = document.getElementById('contact-display-area');
+            if (data.contactDetails && data.contactDetails.trim() !== "") {
+                contactDisplay.innerHTML = formatContactText(data.contactDetails);
+                document.getElementById('contact-input').value = data.contactDetails;
+            } else {
+                contactDisplay.innerHTML = `<span class="coming-soon-badge">⏳ Coming Soon!</span>`;
+            }
         });
 
-        // सारे वीडियो और उनका असली YouTube Thumbnail Banner लोड करना
+        // Load Videos
         onValue(ref(db, 'videos'), (snapshot) => {
             const list = document.getElementById('video-list');
             list.innerHTML = "";
             const data = snapshot.val();
 
             if (!data) {
-                list.innerHTML = "<p style='color:#777;'>अभी कोई वीडियो नहीं है।</p>";
+                list.innerHTML = "<p style='color:#777;'>No videos uploaded yet.</p>";
                 return;
             }
 
