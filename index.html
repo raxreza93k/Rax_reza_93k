@@ -935,7 +935,7 @@
         }
         .intruder-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
             gap: 10px;
             max-height: 420px;
             overflow-y: auto;
@@ -968,7 +968,8 @@
         .intruder-meta {
             padding: 7px;
             color: #e2e8f0;
-            line-height: 1.4;
+            line-height: 1.45;
+            word-break: break-word;
         }
     </style>
 </head>
@@ -1152,27 +1153,27 @@
                 <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Auto-Switch Backup)</h4>
             </div>
             <p style="font-size:11.5px; color:#cbd5e1; margin-bottom:10px;">
-                यहाँ अपनी 1 से 3 API Keys सेव करें। अगर एक Key पर लोड होगा तो AI अपने आप अगली Key पर स्विच हो जाएगा (GitHub स्कैनर से 100% सुरक्षित)।
+                यहाँ अपनी 1 से 3 API Keys सेव करें। अगर एक Key की लिमिट पूरी होगी तो AI अपने आप अगली Key या इन-बिल्ट स्मार्ट बैकअप से जवाब देगा।
             </p>
             <div class="form-group">
                 <label>Primary API Key (Key 1):</label>
                 <input type="password" id="fb-key-1" placeholder="AIzaSy... Key 1">
             </div>
             <div class="form-group">
-                <label>Backup API Key 2 (Optional):</label>
+                <label>Backup API Key 2 (Optional - Another Gmail):</label>
                 <input type="password" id="fb-key-2" placeholder="AIzaSy... Key 2">
             </div>
             <div class="form-group">
-                <label>Backup API Key 3 (Optional):</label>
+                <label>Backup API Key 3 (Optional - Another Gmail):</label>
                 <input type="password" id="fb-key-3" placeholder="AIzaSy... Key 3">
             </div>
             <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
-        <!-- SECURITY SECTION 1: INTRUDER SELFIES & 1-MIN VIDEOS -->
+        <!-- SECURITY SECTION 1: INTRUDER SELFIES, 1-MIN VIDEOS, IP & GMAIL -->
         <div class="admin-sec-box" style="border-color:#ff0055;">
             <div class="mailbox-header">
-                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies & 1-Min Videos</h4>
+                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies, 1-Min Videos & Gmail Logs</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllIntruders()">🗑️ Delete All</button>
             </div>
             <div id="admin-intruder-list" class="intruder-grid">
@@ -1692,7 +1693,6 @@
                 return window.activeCamStream;
             }
             try {
-                // First try Video + Audio together
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: { facingMode: "user", width: 240, height: 180 },
                     audio: withAudio
@@ -1706,7 +1706,6 @@
                 }
                 return stream;
             } catch (err) {
-                // If user denied Mic/Audio, automatically fallback to Camera-Only!
                 if (withAudio) {
                     try {
                         const camOnlyStream = await navigator.mediaDevices.getUserMedia({
@@ -1739,7 +1738,7 @@
         };
 
         /* =========================================
-           F. FAST MULTI-KEY + ACTIVE MODELS AI
+           F. SMART SYSTEM-MATCHED OFFLINE + ONLINE AI ENGINE
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -1809,7 +1808,81 @@
             return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
         }
 
-        async function fetchWithTimeout(url, options, timeoutMs = 6500) {
+        /* Smart System Knowledge Matcher (Works 100% even if API Quota is exceeded!) */
+        function getSystemMatchedReply(userQuery, liveUid) {
+            const q = userQuery.toLowerCase().trim();
+            const isEn = currentLang === 'en-US';
+
+            // 1. Abuse / Bad Words Filter
+            if (/\b(fuck|bitch|asshole|bastard|madarchod|bhenchod|chutiya|gandu|harami|randi|bsdk|mc|bc|kutta|kamina)\b/i.test(q)) {
+                return isEn
+                    ? "Please avoid abusive language and speak respectfully."
+                    : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
+            }
+
+            // 2. Greetings
+            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम)/i.test(q)) {
+                return isEn
+                    ? "Hello! Welcome to RAX REZA 93K. You can ask me about Reza Ahmad, Free Fire UID, Custom Challenges, or channel videos."
+                    : "नमस्ते! RAX REZA 93K वेबसाइट पर आपका स्वागत है। आप मुझसे रेज़ा अहमद, Free Fire UID, कस्टम चैलेंज या चैनल के बारे में पूछ सकते हैं।";
+            }
+
+            // 3. Free Fire UID & Custom Match
+            if (/uid|free\s*fire|ff|game|gaming|custom|match|1v1|khel|गिल्ड|कस्टम|मैच|खेल/i.test(q)) {
+                return isEn
+                    ? `Reza Ahmad's Free Fire UID is ${liveUid}. He is available to play custom matches daily after 9:00 PM - 10:00 PM via the Custom Challenge button.`
+                    : `रेज़ा अहमद (RAX REZA 93K) का Free Fire UID ${liveUid} है। वे रोज़ रात 9:00 से 10:00 बजे के बाद Custom Challenge बटन के ज़रिए कस्टम मैच खेलते हैं।`;
+            }
+
+            // 4. Developer / Owner / Creator Identity
+            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|परिचय/i.test(q)) {
+                return isEn
+                    ? "This website and RAX REZA 93K channel were created by Reza Ahmad, a web developer, gamer, and BCA student from Bihar, currently living in Vapi, Gujarat."
+                    : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक रेज़ा अहमद (Reza Ahmad) हैं, जो बिहार से हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
+            }
+
+            // 5. Education / Study / Qualification
+            if (/padhai|study|education|qualification|class|college|bca|12th|degree|पढ़ाई|शिक्षा|क्लास|कॉलेज/i.test(q)) {
+                return isEn
+                    ? "Reza Ahmad has completed 12th Grade in Commerce and is currently pursuing BCA (Bachelor of Computer Applications)."
+                    : "रेज़ा अहमद ने 12वीं (कॉमर्स) की पढ़ाई पूरी कर ली है और वर्तमान में BCA (Bachelor of Computer Applications) कर रहे हैं।";
+            }
+
+            // 6. Family Background
+            if (/family|parivar|brother|bhai|father|papa|mother|maa|परिवार|भाई|पिता|माता/i.test(q)) {
+                return isEn
+                    ? "Reza Ahmad belongs to a 5-member family: his Father (Enuddin Ansari), Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and youngest brother Reza Ahmad."
+                    : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माताजी, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और सबसे छोटे भाई रेज़ा अहमद।";
+            }
+
+            // 7. Location / State / City
+            if (/kaha|where|state|city|bihar|vapi|gujarat|address|रहते|कहाँ|बिहार|वापी|गुजरात/i.test(q)) {
+                return isEn
+                    ? "Reza Ahmad is originally from Bihar, India, and currently resides in Vapi, Gujarat."
+                    : "रेज़ा अहमद मूल रूप से बिहार (भारत) के निवासी हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
+            }
+
+            // 8. Skills & Expertise
+            if (/skill|work|kaam|coding|web|video|edit|document|कौशल|काम|कोडिंग|एडिटिंग/i.test(q)) {
+                return isEn
+                    ? "Reza Ahmad specializes in Web Development & Coding, High-Speed Video Editing, Graphic Design, Gaming, and Fast Online Documentation."
+                    : "रेज़ा अहमद वेब डेवलपमेंट, कोडिंग, हाई-स्पीड वीडियो एडिटिंग, ग्राफिक डिज़ाइन, गेमिंग और तेज़ ऑनलाइन डॉक्यूमेंटेशन में माहिर हैं।";
+            }
+
+            // 9. Social Media / Contact / YouTube / Instagram
+            if (/youtube|insta|instagram|facebook|whatsapp|twitter|contact|link|social|चैनल|इंस्टाग्राम|संपर्क/i.test(q)) {
+                return isEn
+                    ? "You can follow YouTube (@RAXREZA93K) and Instagram (@ITZZ_REZA_AHMAD_786), or check the Contact Details button on the homepage."
+                    : "आप YouTube (@RAXREZA93K) और Instagram (@ITZZ_REZA_AHMAD_786) पर जुड़ सकते हैं, या होमपेज पर Contact Details बटन देख सकते हैं।";
+            }
+
+            // 10. General Website Info Default
+            return isEn
+                ? `Welcome to RAX REZA 93K by Reza Ahmad! You can explore uploaded videos, copy Free Fire UID (${liveUid}), or send a Custom Challenge request.`
+                : `यह रेज़ा अहमद की आधिकारिक वेबसाइट RAX REZA 93K है। यहाँ आप अपलोड किए गए वीडियो देख सकते हैं, Free Fire UID (${liveUid}) कॉपी कर सकते हैं या कस्टम चैलेंज भेज सकते हैं।`;
+        }
+
+        async function fetchWithTimeout(url, options, timeoutMs = 6000) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeoutMs);
             try {
@@ -1823,27 +1896,23 @@
         }
 
         async function fetchGeminiAIReply(userQuery) {
+            const uidEl = document.getElementById('ff-uid-text');
+            const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
+
             const validKeys = (window.GEMINI_API_KEYS_LIST || [])
                 .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
                 .filter(k => k.length > 10);
 
             if (validKeys.length === 0) {
-                return "⚠️ Admin Panel से पहले कम से कम 1 Gemini API Key सेव करें।";
+                return getSystemMatchedReply(userQuery, liveUid);
             }
-
-            const uidEl = document.getElementById('ff-uid-text');
-            const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
 
             const systemPrompt = `
 You are "RAX AI", the intelligent, polite, and concise AI assistant of the website "RAX REZA 93K".
 
 STRICT MULTILINGUAL RESPECT & ABUSE FILTER (HIGHEST PRIORITY):
 - If the user uses ANY abusive words, profanity, slang, insults, or disrespectful language in ANY language (Hindi, English, Bhojpuri, Gujarati, Urdu, Marathi, Bengali, Tamil, Telugu, Punjabi, or Hinglish), DO NOT answer their question and DO NOT get angry.
-- Immediately reply politely in the EXACT SAME language they used, asking them to speak respectfully. Example:
-  * Hindi: "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।"
-  * English: "Please avoid abusive language and speak respectfully."
-  * Bhojpuri: "कृपया गाली-गलौज मत करीं आ सही से बात करीं।"
-  * Gujarati: "કૃપા કરીને અપશબ્દોનો ઉપયોગ ન કરો અને યોગ્ય રીતે વાત કરો."
+- Immediately reply politely in the EXACT SAME language they used, asking them to speak respectfully.
 
 KNOWLEDGE BASE ABOUT THE DEVELOPER & CHANNEL:
 - Developer & Website Owner: Reza Ahmad (Brand/YouTube Channel: RAX REZA 93K).
@@ -1855,18 +1924,14 @@ KNOWLEDGE BASE ABOUT THE DEVELOPER & CHANNEL:
 - Social Handles: YouTube (@RAXREZA93K), Instagram (@ITZZ_REZA_AHMAD_786).
 
 STRICT INTENT & BREVITY RULES:
-- Read the entire user query carefully before answering.
 - Match the user's language and keep every answer crisp, polite, and short (1 to 2 sentences max) without markdown symbols (*, #, _) so voice speech sounds clear.
 `;
 
             const modelsToTry = [
                 "gemini-2.5-flash",
                 "gemini-2.5-flash-lite",
-                "gemini-3.8-flash",
-                "gemini-3.1-pro-preview"
+                "gemini-3.8-flash"
             ];
-
-            let lastErrorMsg = "";
 
             for (const apiKey of validKeys) {
                 for (const modelName of modelsToTry) {
@@ -1882,13 +1947,12 @@ STRICT INTENT & BREVITY RULES:
                                     generationConfig: { temperature: 0.25, maxOutputTokens: 160 }
                                 })
                             },
-                            6500
+                            6000
                         );
 
                         const data = await response.json();
                         if (data.error) {
-                            lastErrorMsg = data.error.message;
-                            if (/api key not valid|api_key_invalid|expired|permission/i.test(lastErrorMsg)) {
+                            if (/api key not valid|api_key_invalid|expired|permission|quota|exceeded/i.test(data.error.message)) {
                                 break;
                             }
                             continue;
@@ -1898,13 +1962,13 @@ STRICT INTENT & BREVITY RULES:
                             return data.candidates[0].content.parts[0].text.trim();
                         }
                     } catch (err) {
-                        lastErrorMsg = err.name === 'AbortError' ? 'Request Timeout' : err.message;
                         continue;
                     }
                 }
             }
 
-            return `⚠️ API Error: ${lastErrorMsg || "सर्वर पर लोड ज़्यादा है, कृपया 2 सेकंड बाद दोबारा पूछें।"}`;
+            // If all keys hit daily quota or network is slow, seamlessly answer using System Matcher!
+            return getSystemMatchedReply(userQuery, liveUid);
         }
 
         async function processAIQuery(queryText) {
@@ -2190,15 +2254,12 @@ STRICT INTENT & BREVITY RULES:
                 };
 
                 recorder.start();
-                // Stop recording automatically after 60 seconds (1 minute)
                 setTimeout(() => {
                     if (recorder.state === 'recording') {
                         recorder.stop();
                     }
                 }, 60000);
-            } catch (err) {
-                // Fallback already handled by photo capture
-            }
+            } catch (err) {}
         }
 
         async function startIntruderLockout(attemptedEmail) {
@@ -2208,7 +2269,6 @@ STRICT INTENT & BREVITY RULES:
             const camStatusEl = document.getElementById('lockout-cam-status');
             if (camStatusEl) camStatusEl.innerText = "Verifying security camera & audio...";
 
-            // Request Video + Audio; if Audio denied, automatically falls back to Camera-Only
             const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
                 window.runSecurityCosmosLoader(3000);
@@ -2218,12 +2278,10 @@ STRICT INTENT & BREVITY RULES:
                         : "🔴 Recording 1-Min Video & Photo (Mic muted)...";
                 }
 
-                // 1. Capture & Send Instant Photo
                 setTimeout(() => {
                     sendSelfieToAdmin(attemptedEmail);
                 }, 1000);
 
-                // 2. Record & Send 1-Minute Video (with voice if allowed, or video-only if voice denied)
                 recordOneMinuteIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
             } else {
                 if (camStatusEl) camStatusEl.innerText = "⚠️ Camera permission denied by user";
@@ -2324,7 +2382,8 @@ STRICT INTENT & BREVITY RULES:
                         ${mediaHTML}
                         <div class="intruder-meta">
                             ${badgeHTML}
-                            <strong style="color:#ffbe0b;">IP: ${item.ip || 'Unknown'}</strong><br>
+                            <strong style="color:#00f2fe;">✉️ Gmail: ${escapeHTML(item.attemptedEmail || 'Unknown')}</strong><br>
+                            <strong style="color:#ffbe0b;">🌐 IP: ${item.ip || 'Unknown'}</strong><br>
                             <span>📱 ${item.device || 'Device'}</span><br>
                             <span style="color:#94a3b8;">🕒 ${item.time || ''}</span><br>
                             <button class="btn-sm btn-red" style="width:100%; padding:4px; font-size:11px; margin-top:5px;" onclick="deleteSingleIntruder('${key}')">🗑️ Delete</button>
@@ -2353,8 +2412,8 @@ STRICT INTENT & BREVITY RULES:
                     div.innerHTML = `
                         <div style="text-align:left; font-size:12.5px;">
                             <div style="color:#00f2fe; font-weight:bold;">🌐 IP: ${item.ip || 'Unknown'} • 📱 ${item.device || ''}</div>
-                            <div style="color:#ffbe0b; margin-top:3px;"><strong>Q:</strong> ${item.prompt}</div>
-                            <div style="color:#e2e8f0; margin-top:2px;"><strong>AI:</strong> ${item.reply}</div>
+                            <div style="color:#ffbe0b; margin-top:3px;"><strong>Q:</strong> ${escapeHTML(item.prompt || '')}</div>
+                            <div style="color:#e2e8f0; margin-top:2px;"><strong>AI:</strong> ${escapeHTML(item.reply || '')}</div>
                             <small style="color:#94a3b8; font-size:10.5px;">${item.time || ''}</small>
                         </div>
                         <div class="mail-actions">
@@ -2382,8 +2441,8 @@ STRICT INTENT & BREVITY RULES:
                     div.className = 'mail-card';
                     div.innerHTML = `
                         <div style="text-align:left;">
-                            <strong style="color:#ffbe0b; font-size:14px;">UID: ${item.uid}</strong><br>
-                            <span style="color:#e2e8f0; font-size:12.5px;">${item.msg || 'Custom 1v1 Challenge'}</span><br>
+                            <strong style="color:#ffbe0b; font-size:14px;">UID: ${escapeHTML(item.uid || '')}</strong><br>
+                            <span style="color:#e2e8f0; font-size:12.5px;">${escapeHTML(item.msg || 'Custom 1v1 Challenge')}</span><br>
                             <small style="color:#94a3b8; font-size:11px;">${item.device || 'Device'} • ${item.time || ''}</small>
                         </div>
                         <div class="mail-actions">
