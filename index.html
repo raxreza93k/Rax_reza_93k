@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAX REZA 93K - Gaming Hub</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { background: #0d0f17; color: #fff; display: flex; justify-content: center; padding: 20px; }
+    .container { width: 100%; max-width: 450px; background: #161925; border-radius: 15px; padding: 20px; border: 1px solid #ff4655; box-shadow: 0 0 20px rgba(255, 70, 85, 0.2); }
+    .header { text-align: center; margin-bottom: 20px; }
+    .header h1 { color: #ff4655; font-size: 24px; letter-spacing: 1px; }
+    .header p { color: #9ca3af; font-size: 13px; margin-top: 5px; }
+    .yt-btn { display: block; width: 100%; text-align: center; background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; margin-bottom: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #2d3348; background: #0d0f17; color: #fff; font-size: 14px; }
+    input:focus, select:focus { outline: none; border-color: #ff4655; }
+    button { width: 100%; padding: 12px; background: #ff4655; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    button:hover { background: #e03a48; }
+    #status { text-align: center; margin-top: 15px; font-size: 14px; color: #10b981; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🔥 RAX REZA 93K 🔥</h1>
+    <p>Free Fire MAX Tournament & Top-Up Request</p>
+  </div>
+
+  <!-- अपना YouTube लिंक नीचे href में डालें -->
+  <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="yt-btn">▶ Subscribe on YouTube</a>
+
+  <form id="gamingForm">
+    <div class="form-group">
+      <label>In-Game Name (IGN)</label>
+      <input type="text" id="ign" placeholder="उदा. THE REZA 93K" required>
+    </div>
+    <div class="form-group">
+      <label>Free Fire UID</label>
+      <input type="number" id="uid" placeholder="अपनी 9 या 10 अंकों की UID डालें" required>
+    </div>
+    <div class="form-group">
+      <label>Service / Request Type</label>
+      <select id="service">
+        <option value="Custom Room / Tournament">Custom Room / Tournament Entry</option>
+        <option value="Guild Join Request">Guild Join Request</option>
+        <option value="Diamond Top-Up Inquiry">Diamond Top-Up Inquiry</option>
+      </select>
+    </div>
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <div id="status"></div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBcuAs8PB0nvbyaXVO0Ikr_R-80LfuR17Y",
+    authDomain: "raxreza93k.firebaseapp.com",
+    databaseURL: "https://raxreza93k-default-rtdb.firebaseio.com",
+    projectId: "raxreza93k",
+    storageBucket: "raxreza93k.firebasestorage.app",
+    messagingSenderId: "1090562108450",
+    appId: "1:1090562108450:web:5f0beac7b3be209d752e7b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  document.getElementById('gamingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const ign = document.getElementById('ign').value;
+    const uid = document.getElementById('uid').value;
+    const service = document.getElementById('service').value;
+
+    push(ref(db, 'requests'), {
+      ign: ign,
+      uid: uid,
+      service: service,
+      timestamp: new Date().toLocaleString()
+    }).then(() => {
+      document.getElementById('status').innerText = "✅ आपकी रिक्वेस्ट सबमिट हो गई है!";
+      document.getElementById('gamingForm').reset();
+    }).catch((error) => {
+      document.getElementById('status').style.color = "#ef4444";
+      document.getElementById('status').innerText = "❌ एरर: " + error.message;
+    });
+  });
+</script>
+
+</body>
+</html>
