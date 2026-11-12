@@ -12,7 +12,7 @@
             background-color: #07070c;
             color: #ffffff;
             text-align: center;
-            padding-bottom: 95px;
+            padding-bottom: 105px;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
@@ -200,7 +200,7 @@
         .tag-pill.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 14px #a855f7, inset 0 0 6px #a855f7; transform: scale(1.06); }
 
         /* =========================================
-           4. SOCIAL MEDIA ICONS (INCLUDING WHATSAPP) & ACTION BUTTONS
+           4. SOCIAL MEDIA ICONS & ACTION BUTTONS
            ========================================= */
         .social-bar {
             display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap;
@@ -242,7 +242,6 @@
             background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff;
             box-shadow: 0 4px 18px rgba(255, 0, 60, 0.5);
         }
-        /* Gaming Neon Gradient for FF UID Button */
         .btn-uid {
             background: linear-gradient(135deg, #6a00ff, #ff007f, #00d2ff);
             background-size: 200% 200%;
@@ -260,7 +259,6 @@
             color: #38bdf8; border: 1px solid #00f2fe;
             box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
         }
-        /* Custom Challenge Button */
         .btn-challenge {
             background: linear-gradient(90deg, #ff8c00, #ff0055, #7900ff);
             color: #fff;
@@ -273,7 +271,7 @@
         }
 
         /* =========================================
-           5. COLORFUL NEON WIREFRAME BOXES (MORE & CONTACT)
+           5. COLORFUL NEON BOXES (MORE & CONTACT)
            ========================================= */
         .info-box {
             display: none; max-width: 680px; margin: 20px auto 10px; padding: 22px;
@@ -339,19 +337,19 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER & NEON WIREFRAME POPUP MODAL
+           6. 3D COSMOS SPHERE LOADER & CLEAN NEON MODAL (NO GRID LINES + 3-COLOR GLOWING RINGS)
            ========================================= */
         .neon-modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
             background: rgba(5, 5, 14, 0.88);
-            backdrop-filter: blur(9px);
+            backdrop-filter: blur(10px);
             z-index: 9999;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 18px;
         }
         .neon-modal-overlay.active { display: flex; }
 
@@ -364,12 +362,12 @@
         .neon-modal-card {
             position: relative;
             width: 100%;
-            max-width: 390px;
+            max-width: 400px;
             padding: 24px 20px;
-            border-radius: 18px;
-            background: radial-gradient(circle at top left, #1c1033, #0d0d1a 70%);
+            border-radius: 20px;
+            background: radial-gradient(circle at top left, #1c1033, #0b0b16 72%);
             text-align: center;
-            box-shadow: 0 0 35px rgba(121, 0, 255, 0.5), 0 0 20px rgba(0, 242, 254, 0.35);
+            box-shadow: 0 0 40px rgba(121, 0, 255, 0.5), 0 0 25px rgba(0, 242, 254, 0.35);
             animation: popScale 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
             display: none;
@@ -378,7 +376,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 2px;
             background: linear-gradient(135deg, #ff0055, #00f2fe, #a855f7, #00ff87);
             background-size: 300% 300%;
@@ -388,23 +386,55 @@
             animation: gradientShift 4s linear infinite;
             pointer-events: none;
         }
-        .neon-wire-grid {
+
+        /* 3-Color Glowing Gradient Rings Behind Card Content (Replaces Grid Lines) */
+        .tri-ring-stage {
             position: absolute;
             inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 242, 254, 0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 0, 85, 0.12) 1px, transparent 1px);
-            background-size: 22px 22px;
-            z-index: 0;
-            animation: wirePan 8s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
             pointer-events: none;
+            z-index: 0;
+            opacity: 0.42;
         }
-        @keyframes wirePan {
-            0% { background-position: 0 0; }
-            100% { background-position: 44px 44px; }
+        .glow-ring {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            position: relative;
+            filter: blur(1px);
         }
+        .glow-ring::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 4px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        .ring-c1::before {
+            background: conic-gradient(from 0deg, #ff0055, #ffbe0b, transparent 70%);
+            animation: spinRing 2.2s linear infinite;
+            box-shadow: 0 0 20px #ff0055;
+        }
+        .ring-c2::before {
+            background: conic-gradient(from 120deg, #00f2fe, #3a7bd5, transparent 70%);
+            animation: spinRingRev 2.6s linear infinite;
+            box-shadow: 0 0 20px #00f2fe;
+        }
+        .ring-c3::before {
+            background: conic-gradient(from 240deg, #00ff87, #a855f7, transparent 70%);
+            animation: spinRing 3s linear infinite;
+            box-shadow: 0 0 20px #00ff87;
+        }
+        @keyframes spinRingRev { 100% { transform: rotate(-360deg); } }
+
         @keyframes popScale {
-            from { opacity: 0; transform: scale(0.82); }
+            from { opacity: 0; transform: scale(0.84); }
             to { opacity: 1; transform: scale(1); }
         }
 
@@ -416,14 +446,14 @@
             -webkit-text-fill-color: transparent;
         }
         .neon-modal-msg {
-            color: #e2e8f0; font-size: 14px; margin-bottom: 16px; line-height: 1.5;
+            color: #e2e8f0; font-size: 14px; margin-bottom: 14px; line-height: 1.5;
         }
         .neon-modal-btn {
-            padding: 10px 28px;
+            padding: 9px 26px;
             border-radius: 25px;
             border: none;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13.5px;
             color: #fff;
             cursor: pointer;
             background: linear-gradient(90deg, #ff0055, #7900ff, #00d2ff);
@@ -493,12 +523,12 @@
             color: #fff;
         }
 
-        /* Gemini Water-Wave Rotating Ring for AI Assistant */
+        /* AI Assistant Water-Wave Ring & Typing Bar */
         .ai-orb-wrap {
             position: relative;
-            width: 115px;
-            height: 115px;
-            margin: 6px auto 14px;
+            width: 96px;
+            height: 96px;
+            margin: 4px auto 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -509,18 +539,18 @@
             border-radius: 50%;
             background: conic-gradient(from 0deg, #00f2fe, #ff0055, #00ff87, #a855f7, #00f2fe);
             animation: spinRing 2.5s linear infinite;
-            filter: blur(4px);
+            filter: blur(3px);
         }
         .ai-water-core {
             position: relative;
-            width: 98px;
-            height: 98px;
+            width: 82px;
+            height: 82px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #1a2a6c, #090d16);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 34px;
+            font-size: 28px;
             z-index: 2;
             box-shadow: inset 0 0 18px rgba(0, 242, 254, 0.65);
         }
@@ -533,23 +563,49 @@
             to { transform: scale(1.12) rotate(180deg); }
         }
         .ai-transcript-box {
-            background: rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(0, 242, 254, 0.35);
-            border-radius: 10px;
-            padding: 10px;
-            min-height: 60px;
-            max-height: 115px;
+            background: rgba(5, 8, 18, 0.78);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            border-radius: 12px;
+            padding: 11px;
+            min-height: 68px;
+            max-height: 135px;
             overflow-y: auto;
             font-size: 13px;
             color: #e0f2fe;
             margin-bottom: 10px;
-            line-height: 1.45;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .ai-input-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .ai-text-input {
+            flex: 1;
+            padding: 10px 13px;
+            border-radius: 22px;
+            border: 1.5px solid #00f2fe;
+            background: rgba(8, 10, 22, 0.9);
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+        }
+        .ai-send-btn {
+            padding: 0 15px;
+            border-radius: 22px;
+            border: none;
+            background: linear-gradient(135deg, #00f2fe, #7900ff);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 13px;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================
-           7. VIDEO LIST, ADMIN PANEL & MAILBOX
+           7. VIDEO LIST, RGB ADMIN LOGIN & MAILBOX
            ========================================= */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
         .videos-container h2 {
@@ -589,16 +645,103 @@
         .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
         .video-url-text { font-size: 12.5px; color: #38bdf8; word-break: break-all; }
 
-        /* Floating Dock Buttons (AI, Language, Admin Lock) */
+        /* =========================================
+           8. FLOATING DOCK & WHATSAPP-STYLE ROLLING "ASK RAX AI" RGB PILL
+           ========================================= */
         .floating-dock {
             position: fixed;
             bottom: 16px;
             right: 16px;
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
             gap: 10px;
             z-index: 999;
         }
+
+        /* Ask RAX AI Pill -> Rolls smoothly into RGB Circle Logo */
+        .ask-ai-pill {
+            position: relative;
+            height: 50px;
+            min-width: 50px;
+            max-width: 210px;
+            padding: 0 16px;
+            border-radius: 30px;
+            border: none;
+            background: #0b0b18;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 0 22px rgba(255, 0, 85, 0.55), 0 0 22px rgba(0, 242, 254, 0.55);
+            transition: max-width 0.65s cubic-bezier(0.22, 1, 0.36, 1), padding 0.65s ease, transform 0.2s;
+        }
+        .ask-ai-pill::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, #ff0055, #ffbe0b, #00ff87, #00f2fe, #a855f7, #ff0055);
+            animation: spinRing 3s linear infinite;
+            z-index: 0;
+        }
+        .ask-ai-pill::after {
+            content: "";
+            position: absolute;
+            inset: 2.5px;
+            border-radius: 28px;
+            background: radial-gradient(circle at top left, #1c1038, #0a0a14);
+            z-index: 1;
+        }
+        .ask-ai-pill:active { transform: scale(0.94); }
+
+        .ai-pill-orb {
+            position: relative;
+            z-index: 2;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #00f2fe, #ff0055, #00ff87, #a855f7, #00f2fe);
+            animation: spinRing 2s linear infinite;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px #00f2fe;
+        }
+        .ai-pill-orb::after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #0b0b18;
+        }
+        .ai-pill-label {
+            position: relative;
+            z-index: 2;
+            font-size: 13.5px;
+            font-weight: 800;
+            white-space: nowrap;
+            letter-spacing: 0.4px;
+            background: linear-gradient(90deg, #ffffff, #00f2fe, #ffbe0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 1;
+            transition: opacity 0.35s ease, width 0.45s ease;
+        }
+        /* Rolled-in state (Compact RGB AI Orb Logo) */
+        .ask-ai-pill.rolled {
+            max-width: 50px;
+            padding: 0 12px;
+        }
+        .ask-ai-pill.rolled .ai-pill-label {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+        }
+
         .dock-circle-btn {
             width: 48px;
             height: 48px;
@@ -615,17 +758,49 @@
             transition: transform 0.2s;
         }
         .dock-circle-btn:active { transform: scale(0.92); }
-        .dock-ai-btn {
-            border-color: #ff0055;
-            background: radial-gradient(circle, #2c0b4e, #0c0c18);
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.65);
-        }
 
         .delete-btn {
             display: none; width: 100%; padding: 10px; background: #b00020;
             color: white; border: none; cursor: pointer; font-weight: bold;
         }
         body.is-admin .delete-btn { display: block; }
+
+        /* Animated RGB Border Admin Login Box */
+        .rgb-login-box {
+            display: none;
+            position: relative;
+            max-width: 420px;
+            margin: 24px auto;
+            padding: 3px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 0 32px rgba(255, 0, 85, 0.45), 0 0 32px rgba(0, 242, 254, 0.45);
+        }
+        .rgb-login-box::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, #ff0055, #ffbe0b, #00ff87, #00f2fe, #7900ff, #ff0055);
+            animation: spinRing 3.5s linear infinite;
+            z-index: 0;
+        }
+        .rgb-login-inner {
+            position: relative;
+            z-index: 1;
+            background: radial-gradient(circle at top, #17122b, #0a0a14 80%);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: left;
+        }
+        .rgb-login-title {
+            text-align: center;
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #ff0055, #00f2fe, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         .modal-box {
             display: none; max-width: 480px; margin: 20px auto;
@@ -638,9 +813,10 @@
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 5px; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #475569;
-            background: #0b0b14; color: #fff; font-family: inherit;
+            width: 100%; padding: 11px; border-radius: 10px; border: 1px solid rgba(0, 242, 254, 0.45);
+            background: rgba(11, 11, 20, 0.9); color: #fff; font-family: inherit; outline: none;
         }
+        .form-group input:focus { border-color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.4); }
         .form-group textarea { min-height: 85px; resize: vertical; }
         .btn-sm {
             padding: 9px 14px; border: none; border-radius: 8px;
@@ -687,12 +863,16 @@
         <div class="orb orb-4"></div>
     </div>
 
-    <!-- 3D Cosmos Particle Loader & Custom Neon Wireframe Modal -->
+    <!-- 3D Cosmos Particle Loader & Clean 3-Color Glowing Rings Modal -->
     <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
         <canvas id="cosmos-loader-canvas" width="250" height="250"></canvas>
 
         <div id="neon-modal-card" class="neon-modal-card" onclick="event.stopPropagation()">
-            <div class="neon-wire-grid"></div>
+            <div class="tri-ring-stage">
+                <div class="glow-ring ring-c1"></div>
+                <div class="glow-ring ring-c2"></div>
+                <div class="glow-ring ring-c3"></div>
+            </div>
             <div class="neon-modal-content">
                 <div id="neon-modal-title" class="neon-modal-title">RAX REZA 93K</div>
                 <div id="neon-modal-body" class="neon-modal-msg"></div>
@@ -815,26 +995,29 @@
         </div>
     </div>
 
-    <!-- 4. Admin Login Box (Your Existing Firebase Auth) -->
-    <div id="login-box" class="modal-box">
-        <h3 style="color:#00f2fe; margin-bottom:12px;">🔐 Admin Login</h3>
-        <div class="form-group">
-            <label>Admin Email:</label>
-            <input type="email" id="admin-email" placeholder="Enter admin email">
+    <!-- 4. RGB Animated Border Admin Login Box -->
+    <div id="login-box" class="rgb-login-box">
+        <div class="rgb-login-inner">
+            <div class="rgb-login-title">🔐 Admin Login</div>
+            <div class="form-group">
+                <label>Admin Email:</label>
+                <input type="email" id="admin-email" placeholder="Enter admin email">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="admin-pass" placeholder="Enter password">
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+                <button class="btn-sm btn-red" style="padding:10px 24px;" onclick="loginAdmin()">Login</button>
+                <button class="btn-sm btn-gray" style="padding:10px 20px;" onclick="closeLogin()">Cancel</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Password:</label>
-            <input type="password" id="admin-pass" placeholder="Enter password">
-        </div>
-        <button class="btn-sm btn-red" onclick="loginAdmin()">Login</button>
-        <button class="btn-sm btn-gray" onclick="closeLogin()">Cancel</button>
     </div>
 
-    <!-- 5. Admin Control Panel & Custom Challenge Mailbox (Visible ONLY after Firebase Admin Login) -->
+    <!-- 5. Admin Control Panel & Custom Challenge Mailbox -->
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
 
-        <!-- Custom Challenge Mailbox Section -->
         <div style="background: rgba(0, 242, 254, 0.06); border: 1px solid #00f2fe; border-radius: 12px; padding: 12px; margin-bottom: 16px;">
             <div class="mailbox-header">
                 <h4 style="color:#00ff87;">📩 Custom Challenge Mailbox</h4>
@@ -903,16 +1086,19 @@
         </div>
     </div>
 
-    <!-- Floating Bottom Dock (AI Assistant, 10 Languages, Admin Lock) -->
+    <!-- Floating Bottom Dock (WhatsApp-Style Rolling Ask RAX AI, Language, Admin Lock) -->
     <div class="floating-dock">
-        <button class="dock-circle-btn dock-ai-btn" onclick="openVoiceAI()" title="Voice AI Assistant">🎙️</button>
+        <button id="ask-rax-ai-btn" class="ask-ai-pill" onclick="openVoiceAI()" title="Ask RAX AI">
+            <span class="ai-pill-orb"></span>
+            <span class="ai-pill-label">Ask RAX AI</span>
+        </button>
         <button class="dock-circle-btn" onclick="openLanguageModal()" title="Select Language (10 Languages)">🌐</button>
         <button class="dock-circle-btn" onclick="openLogin()" title="Admin Panel">🔒</button>
     </div>
 
     <script>
         /* =========================================
-           A. SEQUENTIAL NEON TAG LIGHTING
+           A. SEQUENTIAL NEON TAG LIGHTING & AUTO-ROLLING "ASK RAX AI" PILL
            ========================================= */
         const pillTags = document.querySelectorAll('#neon-tags-bar .tag-pill');
         let activeTagIdx = 0;
@@ -925,6 +1111,17 @@
             });
             activeTagIdx = (activeTagIdx + 1) % pillTags.length;
         }, 700);
+
+        // Auto-roll "Ask RAX AI" text into compact RGB AI Orb logo after 3.2 seconds or on scroll
+        const askAiPill = document.getElementById('ask-rax-ai-btn');
+        setTimeout(() => {
+            if (askAiPill) askAiPill.classList.add('rolled');
+        }, 3200);
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 35 && askAiPill) {
+                askAiPill.classList.add('rolled');
+            }
+        }, { passive: true });
 
         /* =========================================
            B. 10 LANGUAGES SUPPORT
@@ -951,7 +1148,7 @@
                 contact: 'संपर्क विवरण',
                 challenge: 'कस्टम चैलेंज',
                 uid_done: 'UID कॉपी कंप्लीट!',
-                coming_soon: '⏳ जल्द आ रहा है! लिंक जल्द ही अपडेट किया जाएगा।',
+                coming_soon: '⏳ जल्द आ रहा है! यह जानकारी जल्द ही अपडेट की जाएगी।',
                 ch_title: '🔥 कस्टम मैच चैलेंज',
                 ch_notice: 'नोटिस: मैं रोज़ रात 9:00 से 10:00 बजे के बाद ही कस्टम गेम खेलने के लिए उपलब्ध रहता हूँ।',
                 ch_uid_ph: 'अपना Free Fire UID डालें...',
@@ -959,10 +1156,9 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप मुझसे कुछ भी पूछ सकते हैं।',
-                ai_uid: 'Reza भाई की Free Fire UID 1928908489 है। मैंने इसे आपके लिए कॉपी कर दिया है!',
-                ai_bio: 'यह वेबसाइट रज़ा अहमद उर्फ RAX REZA 93K की है, जो बिहार से हैं और एक गेमर, वेब डेवलपर और एडिटर हैं।',
-                ai_time: 'आप रोज़ रात 9 से 10 बजे के बाद कस्टम मैच खेल सकते हैं। कस्टम चैलेंज बटन दबाकर अपनी UID भेजें।'
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप बोलकर या नीचे टाइप करके मुझसे वेबसाइट से जुड़ा कोई भी सवाल पूछ सकते हैं।',
+                ai_type_ph: 'यहाँ अपना सवाल लिखें...',
+                ai_send: 'भेजें'
             },
             'en-US': {
                 subscribe: 'Subscribe',
@@ -970,7 +1166,7 @@
                 contact: 'Contact Details',
                 challenge: 'Custom Challenge',
                 uid_done: 'UID Copy Complete!',
-                coming_soon: '⏳ Coming Soon! Link will be updated shortly.',
+                coming_soon: '⏳ Coming Soon! This detail will be updated shortly.',
                 ch_title: '🔥 Custom Match Challenge',
                 ch_notice: 'Notice: I am available to play custom games daily after 9:00 PM - 10:00 PM.',
                 ch_uid_ph: 'Enter your Free Fire UID...',
@@ -978,10 +1174,9 @@
                 ch_send: 'Send Request',
                 ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
                 ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
-                ai_hello: 'Hello! I am RAX REZA 93K AI Assistant. Ask me anything about this website!',
-                ai_uid: 'Reza Free Fire UID is 1928908489. I have copied it to your clipboard!',
-                ai_bio: 'This website belongs to Reza Ahmad (RAX REZA 93K) from Bihar, India. He is a gamer, web developer, and editor.',
-                ai_time: 'Custom matches are played daily after 9 PM to 10 PM. Click Custom Challenge to submit your UID.'
+                ai_hello: 'Hello! I am RAX REZA 93K AI Assistant. Ask me anything by speaking or typing below!',
+                ai_type_ph: 'Type your question here...',
+                ai_send: 'Send'
             },
             'ur-PK': {
                 subscribe: 'سبسکرائب کریں',
@@ -989,7 +1184,7 @@
                 contact: 'رابطہ کی تفصیلات',
                 challenge: 'کسٹم چیلنج',
                 uid_done: 'UID کاپی مکمل ہو گئی!',
-                coming_soon: '⏳ جلد آ رہا ہے! لنک جلد ہی اپ ڈیٹ کیا جائے گا۔',
+                coming_soon: '⏳ جلد آ رہا ہے! یہ معلومات جلد ہی اپ ڈیٹ کی جائیں گی۔',
                 ch_title: '🔥 کسٹم میچ چیلنج',
                 ch_notice: 'نوٹس: میں روزانہ رات 9:00 سے 10:00 بجے کے بعد کسٹم گیم کھیلنے کے لیے دستیاب ہوں۔',
                 ch_uid_ph: 'اپنا Free Fire UID درج کریں...',
@@ -997,10 +1192,9 @@
                 ch_send: 'درخواست بھیجیں',
                 ch_sent_ok: 'آپ کی کسٹم چیلنج کی درخواست ایڈمن میل باکس میں بھیج دی گئی ہے!',
                 ch_limit: 'اس ڈیوائس سے 5 پیغامات کی حد پوری ہو گئی ہے! (5/5)',
-                ai_hello: 'السلام علیکم! میں RAX REZA 93K کا AI اسسٹنٹ ہوں۔ آپ مجھ سے ویب سائٹ کے بارے میں کچھ بھی پوچھ سکتے ہیں۔',
-                ai_uid: 'رضا بھائی کی فری فائر یو آئی ڈی 1928908489 ہے۔ میں نے اسے کاپی کر دیا ہے!',
-                ai_bio: 'یہ ویب سائٹ رضا احمد (RAX REZA 93K) کی ہے جو بہار سے ہیں اور گیمر اور ویب ڈویلپر ہیں۔',
-                ai_time: 'آپ روزانہ رات 9 سے 10 بجے کے بعد کسٹم میچ کھیل سکتے ہیں۔'
+                ai_hello: 'السلام علیکم! میں RAX REZA 93K کا AI اسسٹنٹ ہوں۔ آپ بول کر یا نیچے ٹائپ کر کے کچھ بھی پوچھ سکتے ہیں۔',
+                ai_type_ph: 'اپنا سوال یہاں لکھیں...',
+                ai_send: 'بھیجیں'
             },
             'gu-IN': {
                 subscribe: 'સબ્સ્ક્રાઇબ કરો',
@@ -1008,7 +1202,7 @@
                 contact: 'સંપર્ક વિગતો',
                 challenge: 'કસ્ટમ ચેલેન્જ',
                 uid_done: 'UID કોપી પૂર્ણ!',
-                coming_soon: '⏳ ટૂંક સમયમાં આવી રહ્યું છે! લિંક ટૂંક સમયમાં અપડેટ થશે.',
+                coming_soon: '⏳ ટૂંક સમયમાં આવી રહ્યું છે! આ માહિતી ટૂંક સમયમાં અપડેટ થશે.',
                 ch_title: '🔥 કસ્ટમ મેચ ચેલેન્જ',
                 ch_notice: 'નોટિસ: હું દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી જ કસ્ટમ ગેમ રમવા માટે ઉપલબ્ધ રહું છું.',
                 ch_uid_ph: 'તમારું Free Fire UID દાખલ કરો...',
@@ -1016,10 +1210,9 @@
                 ch_send: 'વિનંતી મોકલો',
                 ch_sent_ok: 'તમારી કસ્ટમ ચેલેન્જ વિનંતી એડમિન મેઈલબોક્સમાં મોકલવામાં આવી છે!',
                 ch_limit: 'આ ડિવાઇસમાંથી 5 મેસેજની મર્યાદા પૂરી થઈ ગઈ છે! (5/5)',
-                ai_hello: 'નમસ્તે! હું RAX REZA 93K નો AI આસિસ્ટન્ટ છું. તમે મને કંઈપણ પૂછી શકો છો.',
-                ai_uid: 'રેઝા ભાઈની ફ્રી ફાયર UID 1928908489 છે. મેં તે કોપી કરી દીધી છે!',
-                ai_bio: 'આ વેબસાઈટ રઝા અહમદ (RAX REZA 93K) ની છે, જેઓ ગેમર અને વેબ ડેવલપર છે.',
-                ai_time: 'તમે દરરોજ રાત્રે 9 થી 10 વાગ્યા પછી કસ્ટમ મેચ રમી શકો છો.'
+                ai_hello: 'નમસ્તે! હું RAX REZA 93K નો AI આસિસ્ટન્ટ છું. તમે બોલીને અથવા નીચે ટાઈપ કરીને કંઈપણ પૂછી શકો છો.',
+                ai_type_ph: 'તમારો પ્રશ્ન અહીં લખો...',
+                ai_send: 'મોકલો'
             },
             'mr-IN': {
                 subscribe: 'सबस्क्राईब करा',
@@ -1027,7 +1220,7 @@
                 contact: 'संपर्क तपशील',
                 challenge: 'कस्टम चॅलेंज',
                 uid_done: 'UID कॉपी पूर्ण झाले!',
-                coming_soon: '⏳ लवकरच येत आहे! लिंक लवकरच अपडेट केली जाईल.',
+                coming_soon: '⏳ लवकरच येत आहे! ही माहिती लवकरच अपडेट केली जाईल.',
                 ch_title: '🔥 कस्टम मॅच चॅलेंज',
                 ch_notice: 'सूचना: मी दररोज रात्री 9:00 ते 10:00 नंतर कस्टम गेम खेळण्यासाठी उपलब्ध असतो.',
                 ch_uid_ph: 'तुमचा Free Fire UID टाका...',
@@ -1035,10 +1228,9 @@
                 ch_send: 'विनंती पाठवा',
                 ch_sent_ok: 'तुमची कस्टम चॅलेंज विनंती ॲडमिन इनबॉक्समध्ये पाठवली आहे!',
                 ch_limit: 'या डिव्हाइसवरून 5 मेसेजची मर्यादा पूर्ण झाली आहे! (5/5)',
-                ai_hello: 'नमस्कार! मी RAX REZA 93K चा AI असिस्टंट आहे. तुम्ही मला काहीही विचारू शकता.',
-                ai_uid: 'रझा यांचा Free Fire UID 1928908489 आहे. मी तो कॉपी केला आहे!',
-                ai_bio: 'ही वेबसाइट रझा अहमद (RAX REZA 93K) यांची आहे, जे गेमर आणि वेब डेव्हलपर आहेत.',
-                ai_time: 'तुम्ही दररोज रात्री 9 ते 10 नंतर कस्टम मॅच खेळू शकता.'
+                ai_hello: 'नमस्कार! मी RAX REZA 93K चा AI असिस्टंट आहे. तुम्ही बोलून किंवा खाली टाईप करून काहीही विचारू शकता.',
+                ai_type_ph: 'तुमचा प्रश्न येथे लिहा...',
+                ai_send: 'पाठवा'
             },
             'bn-IN': {
                 subscribe: 'সাবস্ক্রাইব করুন',
@@ -1046,7 +1238,7 @@
                 contact: 'যোগাযোগের বিবরণ',
                 challenge: 'কাস্টম চ্যালেঞ্জ',
                 uid_done: 'UID কপি সম্পন্ন হয়েছে!',
-                coming_soon: '⏳ শীঘ্রই আসছে! লিংক শীঘ্রই আপডেট করা হবে।',
+                coming_soon: '⏳ শীঘ্রই আসছে! এই তথ্য শীঘ্রই আপডেট করা হবে।',
                 ch_title: '🔥 কাস্টম ম্যাচ চ্যালেঞ্জ',
                 ch_notice: 'নোটিশ: আমি প্রতিদিন রাত ৯:০০ থেকে ১০:০০ টার পর কাস্টম গেম খেলার জন্য উপলব্ধ থাকি।',
                 ch_uid_ph: 'আপনার Free Fire UID লিখুন...',
@@ -1054,10 +1246,9 @@
                 ch_send: 'অনুরোধ পাঠান',
                 ch_sent_ok: 'আপনার কাস্টম চ্যালেঞ্জ অনুরোধ অ্যাডমিন মেইলবক্সে পাঠানো হয়েছে!',
                 ch_limit: 'এই ডিভাইস থেকে ৫টি মেসেজের সীমা পূর্ণ হয়ে গেছে! (5/5)',
-                ai_hello: 'নমস্কার! আমি RAX REZA 93K-এর AI অ্যাসিস্ট্যান্ট। আপনি আমাকে যেকোনো প্রশ্ন করতে পারেন।',
-                ai_uid: 'রেজা ভাইয়ের ফ্রি ফায়ার UID হলো 1928908489। আমি এটি কপি করে দিয়েছি!',
-                ai_bio: 'এই ওয়েবসাইটটি রেজা আহমেদ (RAX REZA 93K)-এর, যিনি একজন গেমার এবং ওয়েব ডেভেলপার।',
-                ai_time: 'আপনি প্রতিদিন রাত ৯টা থেকে ১০টার পর কাস্টম ম্যাচ খেলতে পারবেন।'
+                ai_hello: 'নমস্কার! আমি RAX REZA 93K-এর AI অ্যাসিস্ট্যান্ট। আপনি বলে বা নিচে টাইপ করে যেকোনো প্রশ্ন করতে পারেন।',
+                ai_type_ph: 'আপনার প্রশ্ন এখানে লিখুন...',
+                ai_send: 'পাঠান'
             }
         };
 
@@ -1076,7 +1267,7 @@
         }
 
         /* =========================================
-           C. 3D COSMOS SPHERE LOADER + NEON POPUP
+           C. 3D COSMOS SPHERE LOADER + CLEAN 3-RING NEON POPUP
            ========================================= */
         const cosmosCanvas = document.getElementById('cosmos-loader-canvas');
         const cCtx = cosmosCanvas.getContext('2d');
@@ -1117,7 +1308,6 @@
             loaderRAF = requestAnimationFrame(animateCosmosSphere);
         }
 
-        /* Runs 3D Cosmos Globe first, then reveals Neon Card */
         function showNeonAlert(title, htmlOrText, isHTML = false, skipLoader = false) {
             const overlay = document.getElementById('neon-modal');
             const card = document.getElementById('neon-modal-card');
@@ -1145,7 +1335,7 @@
                 cosmosCanvas.style.display = 'block';
                 buildCosmosSphere();
                 animateCosmosSphere();
-                setTimeout(revealCard, 1150);
+                setTimeout(revealCard, 1100);
             }
         }
 
@@ -1189,7 +1379,7 @@
         }
 
         /* =========================================
-           D. LANGUAGE SELECTOR & VOICE AI ASSISTANT
+           D. LANGUAGE SELECTOR, PREMIUM NATURAL VOICE & LIVE DOM SCANNING AI ASSISTANT
            ========================================= */
         function openLanguageModal() {
             let html = `<div class="lang-grid">`;
@@ -1201,11 +1391,38 @@
             showNeonAlert("🌐 Select Language (10)", html, true);
         }
 
+        // Preload voices so Chrome/Android selects highest quality Natural/Google voice
+        let cachedVoices = [];
+        if ('speechSynthesis' in window) {
+            const loadVoices = () => { cachedVoices = window.speechSynthesis.getVoices(); };
+            loadVoices();
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        function selectPremiumNaturalVoice(langCode) {
+            if (!cachedVoices.length && 'speechSynthesis' in window) {
+                cachedVoices = window.speechSynthesis.getVoices();
+            }
+            const prefix = langCode.split('-')[0].toLowerCase();
+            const matching = cachedVoices.filter(v => v.lang.toLowerCase().startsWith(prefix));
+            if (!matching.length) return null;
+
+            // Prioritize Natural, Online, Neural, or Google voices over robotic local voices
+            return matching.find(v => /natural|neural|online/i.test(v.name))
+                || matching.find(v => /google/i.test(v.name))
+                || matching[0];
+        }
+
         function speakResponse(text) {
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
             const utter = new SpeechSynthesisUtterance(text);
             utter.lang = currentLang;
+            const bestVoice = selectPremiumNaturalVoice(currentLang);
+            if (bestVoice) utter.voice = bestVoice;
+            utter.rate = 0.98;
+            utter.pitch = 1.02;
+
             const orb = document.getElementById('ai-orb-box');
             if (orb) orb.classList.add('ai-speaking');
             utter.onend = () => {
@@ -1213,6 +1430,110 @@
             };
             window.speechSynthesis.speak(utter);
         }
+
+        /* Live DOM Scanner: Reads real-time content directly from the webpage elements */
+        function scanWebpageForAnswer(rawQuery) {
+            const q = rawQuery.toLowerCase().trim();
+            const isHi = currentLang.startsWith('hi') || currentLang.startsWith('bho');
+            const isUr = currentLang.startsWith('ur');
+
+            // 1. Scan FF UID directly from DOM
+            const uidEl = document.getElementById('ff-uid-text');
+            const liveUid = uidEl ? uidEl.innerText.trim() : '';
+            if (/(uid|free fire|ff|id|आईडी|कॉपी|copy)/i.test(q)) {
+                if (!liveUid) return tr('coming_soon');
+                navigator.clipboard.writeText(liveUid).catch(() => {});
+                return isHi
+                    ? `पेज के अनुसार Free Fire UID ${liveUid} है। मैंने इसे आपके क्लिपबोर्ड पर कॉपी भी कर दिया है!`
+                    : `According to the page, the Free Fire UID is ${liveUid}. I have also copied it to your clipboard!`;
+            }
+
+            // 2. Scan Contact Details directly from DOM
+            const contactEl = document.getElementById('contact-display-area');
+            const contactText = contactEl ? contactEl.innerText.trim() : '';
+            if (/(contact|number|whatsapp|email|phone|संपर्क|नंबर|व्हाट्सएप|बात)/i.test(q)) {
+                if (!contactText || /coming soon/i.test(contactText)) {
+                    return tr('coming_soon');
+                }
+                return isHi
+                    ? `पेज पर उपलब्ध संपर्क विवरण यह है: ${contactText}`
+                    : `Here are the live contact details on the page: ${contactText}`;
+            }
+
+            // 3. Scan Uploaded Videos directly from DOM
+            const videoCards = document.querySelectorAll('#video-list .video-card');
+            if (/(video|upload|latest|youtube|वीडियो|अपलोड|नया)/i.test(q)) {
+                if (!videoCards.length) return tr('coming_soon');
+                const titles = Array.from(videoCards).slice(0, 3).map((card, i) => {
+                    const t = card.querySelector('.video-title');
+                    return `${i + 1}. ${t ? t.innerText.trim() : 'Video'}`;
+                });
+                return isHi
+                    ? `इस समय पेज पर कुल ${videoCards.length} वीडियो अपलोड हैं। ताज़ा वीडियो हैं: ${titles.join(', ')}`
+                    : `There are currently ${videoCards.length} uploaded videos on the page. Latest videos: ${titles.join(', ')}`;
+            }
+
+            // 4. Scan Custom Challenge Timing & Rules
+            if (/(custom|challenge|match|time|kab|कस्टम|चैलेंज|मैच|समय|कब|खेल)/i.test(q)) {
+                return tr('ch_notice');
+            }
+
+            // 5. Scan "More" Section (Family, Brothers, Education, State, Skills, Bio)
+            const moreBox = document.getElementById('more-details-box');
+            const moreItems = moreBox ? Array.from(moreBox.querySelectorAll('li, p')).map(el => el.innerText.trim()) : [];
+
+            if (/(brother|family|father|mother|israr|abrar|भाई|परिवार|फैमिली|पिता|माता)/i.test(q)) {
+                const famLines = moreItems.filter(line => /(Family|Father|Mother|Brother|Israr|Abrar|Reza)/i.test(line));
+                if (!famLines.length) return tr('coming_soon');
+                return isHi
+                    ? `पेज के 'More' सेक्शन के अनुसार परिवार में 5 सदस्य हैं: बड़े भाई इसरार अहमद (Israr Ahmad), मंझले भाई अबरार अहमद (Abrar Ahmad), और सबसे छोटे भाई रज़ा अहमद (Reza Ahmad), साथ में माता-पिता।`
+                    : `From the More section: ${famLines.join(' | ')}`;
+            }
+
+            if (/(study|education|qualification|bca|12th|state|bihar|where|कहाँ|पढ़ाई|बिहार|क्वालिफिकेशन)/i.test(q)) {
+                const eduLines = moreItems.filter(line => /(State|Qualification|BCA|Bihar|12th)/i.test(line));
+                if (!eduLines.length) return tr('coming_soon');
+                return isHi
+                    ? `पेज के अनुसार रज़ा अहमद बिहार (भारत) से हैं और 12वीं पास करने के बाद अभी BCA (Bachelor of Computer Applications) कर रहे हैं।`
+                    : `From the page details: ${eduLines.join(' | ')}`;
+            }
+
+            if (/(skill|work|who|about|reza|rax|कौन|काम|स्किल|बारे|वेबसाइट)/i.test(q)) {
+                const skillTags = Array.from(document.querySelectorAll('#neon-tags-bar .tag-pill')).map(el => el.innerText.trim());
+                return isHi
+                    ? `यह वेबसाइट रज़ा अहमद (RAX REZA 93K) की है, जो बिहार से हैं। उनकी मुख्य स्किल्स हैं: ${skillTags.join(', ')}।`
+                    : `This website belongs to Reza Ahmad (RAX REZA 93K) from Bihar, India. His key skills listed on the page are: ${skillTags.join(', ')}.`;
+            }
+
+            // 6. General DOM Keyword Search across all visible/hidden info sections
+            const words = q.split(/\s+/).filter(w => w.length > 2);
+            for (const line of moreItems) {
+                if (words.some(w => line.toLowerCase().includes(w))) {
+                    return line;
+                }
+            }
+
+            // 7. If requested info is not present anywhere on the webpage -> Coming Soon in selected language
+            return tr('coming_soon');
+        }
+
+        function processAIQuery(queryText) {
+            if (!queryText || !queryText.trim()) return;
+            const logEl = document.getElementById('ai-log');
+            const answer = scanWebpageForAnswer(queryText);
+            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${queryText}</div><div style="color:#ffffff;"><strong>RAX AI:</strong> ${answer}</div>`;
+            logEl.scrollTop = logEl.scrollHeight;
+            speakResponse(answer);
+        }
+
+        window.submitTypedAIQuery = function() {
+            const input = document.getElementById('ai-typed-input');
+            if (!input) return;
+            const val = input.value.trim();
+            if (!val) return;
+            input.value = "";
+            processAIQuery(val);
+        };
 
         function openVoiceAI() {
             const greet = tr('ai_hello');
@@ -1222,6 +1543,10 @@
                     <div class="ai-water-core">🤖</div>
                 </div>
                 <div class="ai-transcript-box" id="ai-log">${greet}</div>
+                <div class="ai-input-row">
+                    <input type="text" id="ai-typed-input" class="ai-text-input" placeholder="${tr('ai_type_ph')}" onkeydown="if(event.key==='Enter') submitTypedAIQuery()">
+                    <button type="button" class="ai-send-btn" onclick="submitTypedAIQuery()">${tr('ai_send')}</button>
+                </div>
                 <button class="btn-main btn-challenge" style="margin: 0 auto;" onclick="listenUserVoice()">
                     🎙️ बोलकर पूछें / Speak Now
                 </button>
@@ -1235,9 +1560,7 @@
             const logEl = document.getElementById('ai-log');
 
             if (!SpeechRec) {
-                const reply = tr('ai_uid');
-                logEl.innerText = reply;
-                speakResponse(reply);
+                logEl.innerText = "आपका ब्राउज़र वॉइस सपोर्ट नहीं करता, कृपया ऊपर बॉक्स में टाइप करके पूछें।";
                 return;
             }
 
@@ -1246,22 +1569,12 @@
             logEl.innerText = "🎙️ सुन रहा हूँ... / Listening...";
 
             rec.onresult = (e) => {
-                const speech = e.results[0][0].transcript.toLowerCase();
-                let reply = tr('ai_bio');
-
-                if (speech.includes('uid') || speech.includes('copy') || speech.includes('id') || speech.includes('कॉपी')) {
-                    navigator.clipboard.writeText('1928908489');
-                    reply = tr('ai_uid');
-                } else if (speech.includes('custom') || speech.includes('time') || speech.includes('कस्टम') || speech.includes('समय') || speech.includes('खेल')) {
-                    reply = tr('ai_time');
-                }
-
-                logEl.innerHTML = `<strong>You:</strong> ${speech}<br><br><strong>AI:</strong> ${reply}`;
-                speakResponse(reply);
+                const speech = e.results[0][0].transcript;
+                processAIQuery(speech);
             };
 
             rec.onerror = () => {
-                logEl.innerText = "माइक की अनुमति दें या दोबारा प्रयास करें।";
+                logEl.innerText = "माइक की अनुमति दें या ऊपर बॉक्स में टाइप करके पूछें।";
             };
 
             rec.start();
@@ -1315,7 +1628,7 @@
             localStorage.setItem('rax_ch_sent_count', (getDeviceMsgCount() + 1).toString());
         }
 
-        /* Auth State Listener (Strictly loads Mailbox ONLY when Admin is logged in) */
+        /* Auth State Listener */
         let mailboxListenerAttached = false;
 
         onAuthStateChanged(auth, (user) => {
@@ -1334,7 +1647,6 @@
             mailboxListenerAttached = true;
 
             onValue(ref(db, 'challengeRequests'), (snapshot) => {
-                // Only render if Admin is currently signed in
                 if (!auth.currentUser) return;
 
                 const box = document.getElementById('admin-mailbox-list');
@@ -1366,7 +1678,7 @@
             });
         }
 
-        /* Open Custom Challenge Popup with 3D Cosmos Loader */
+        /* Open Custom Challenge Popup */
         window.openChallengeModal = function() {
             const sent = getDeviceMsgCount();
             const remaining = MAX_DEVICE_CHALLENGES - sent;
@@ -1412,7 +1724,7 @@
                 incrementDeviceMsgCount();
                 const left = MAX_DEVICE_CHALLENGES - getDeviceMsgCount();
                 showNeonAlert("✅ Request Sent!", `${tr('ch_sent_ok')}\n\nUID: ${uidVal}\nRemaining from this device: ${left} / 5`, false, true);
-            }).catch((err) => {
+            }).catch(() => {
                 showNeonAlert("Error", "Could not send request. Check database rules.", false, true);
             });
         };
@@ -1429,7 +1741,7 @@
             }
         };
 
-        /* Existing Admin Functions */
+        /* Admin Login & Controls */
         window.openLogin = function() {
             if (auth.currentUser) {
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
