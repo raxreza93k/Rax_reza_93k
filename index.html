@@ -559,13 +559,13 @@
             border: 1px solid rgba(0, 242, 254, 0.4);
             border-radius: 12px;
             padding: 11px;
-            min-height: 68px;
-            max-height: 145px;
+            min-height: 75px;
+            max-height: 165px;
             overflow-y: auto;
             font-size: 13px;
             color: #e0f2fe;
             margin-bottom: 10px;
-            line-height: 1.5;
+            line-height: 1.55;
             text-align: left;
         }
         .ai-input-row {
@@ -1092,9 +1092,9 @@
 
     <script>
         /* =========================================
-           0. GEMINI API KEY (बस यहाँ अपनी Key पेस्ट करें)
+           0. GEMINI API KEY (अपनी नई API Key यहाँ पेस्ट करें)
            ========================================= */
-        const GEMINI_API_KEY = "AQ.Ab8RN6LR6JvtAVParPDb3jN6Yfj_D9qlaMNobKM2xvj4XGM7iw";
+        const GEMINI_API_KEY = "YAHAN_APNI_GEMINI_API_KEY_PASTE_KAREIN";
 
         /* =========================================
            A. SEQUENTIAL NEON LIGHTING ON TAGS & SOCIAL ICONS + ROLLING "ASK RAX AI"
@@ -1165,7 +1165,7 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप बोलकर या टाइप करके मुझसे कोई भी सवाल पूछ सकते हैं।',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप बोलकर या टाइप करके मुझसे डेवलपर, उनके भाइयों, सपनों या चैनल के बारे में कोई भी सवाल पूछ सकते हैं।',
                 ai_type_ph: 'यहाँ अपना सवाल लिखें...',
                 ai_send: 'भेजें'
             },
@@ -1183,7 +1183,7 @@
                 ch_send: 'Send Request',
                 ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
                 ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
-                ai_hello: 'Hello! I am RAX REZA 93K AI Assistant. Ask me anything by speaking or typing below!',
+                ai_hello: 'Hello! I am RAX REZA 93K AI Assistant. Ask me anything about the developer, his brothers, dreams, or channel!',
                 ai_type_ph: 'Type your question here...',
                 ai_send: 'Send'
             },
@@ -1409,7 +1409,7 @@
         }
 
         /* =========================================
-           D. GEMINI AI + CLEAR NATURAL AI VOICE ENGINE (FIXED)
+           D. SMART INTENT-BASED GEMINI AI + NATURAL VOICE ENGINE
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -1434,7 +1434,6 @@
             window.speechSynthesis.onvoiceschanged = loadAllBrowserVoices;
         }
 
-        // मेरी तरह साफ़ और नेचुरल AI आवाज़ चुनने का ऑटोमैटिक सिस्टम
         function getBestAssistantVoice(langCode) {
             loadAllBrowserVoices();
             const lookupCode = langCode === 'bho-IN' ? 'hi-IN' : langCode;
@@ -1443,7 +1442,6 @@
             
             if (!matching.length) return cachedVoices[0] || null;
 
-            // 1. सबसे पहले Google की ऑनलाइन/नेचुरल आवाज़ या Microsoft की Neural आवाज़ (जैसे Swara / Neerja / Aria) चुनें
             return matching.find(v => /google/i.test(v.name) && /हिन्दी|hindi|india|us|uk/i.test(v.name))
                 || matching.find(v => /swara|neerja|natural|neural|online|wavenet|aria|jenny/i.test(v.name))
                 || matching.find(v => /google/i.test(v.name))
@@ -1455,7 +1453,6 @@
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
             
-            // इमोजी और स्टार चिह्न हटा दें ताकि आवाज़ साफ़ और नेचुरल बोले
             const cleanSpeech = text
                 .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '')
                 .replace(/[*#_`]/g, '')
@@ -1469,7 +1466,6 @@
                 utter.voice = bestVoice;
             }
             
-            // एकदम संतुलित, साफ़ और मधुर AI टोन
             utter.rate = 0.98;
             utter.pitch = 1.05;
 
@@ -1485,78 +1481,103 @@
             window.speechSynthesis.speak(utter);
         }
 
-        // Gemini API से जवाब लाने का फंक्शन
+        function escapeHTML(str) {
+            return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        // मुख्य Gemini API फ़ंक्शन - जो सवाल की भावना और असली मतलब समझकर जवाब देगा
         async function fetchGeminiAIReply(userQuery) {
-            if (!GEMINI_API_KEY || GEMINI_API_KEY === "YAHAN_APNI_GEMINI_API_KEY_PASTE_KAREIN") {
-                return null;
+            const cleanKey = (GEMINI_API_KEY || "").trim();
+            if (!cleanKey || cleanKey === "AQ.Ab8RN6IYP4EZf1CTw1xkSKXdFwf16iKkPj8sng-bPLdgseoZqw") {
+                return "⚠️ कोड में GEMINI_API_KEY नहीं डाली गई है। कृपया अपनी API Key डालकर सेव करें।";
             }
 
-            const langObj = LANG_LIST.find(l => l.code === currentLang);
-            const langName = langObj ? langObj.label : 'Hindi';
+            const uidEl = document.getElementById('ff-uid-text');
+            const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
 
-            const systemContext = `You are RAX AI, the official helpful AI assistant for Reza Ahmad's website (YouTube channel: RAX REZA 93K).
-Information about Reza Ahmad:
-- Name: Reza Ahmad, from Bihar, India.
-- Education: 12th Pass, currently pursuing BCA (Bachelor of Computer Applications).
-- Skills: Gaming (Free Fire UID: 1928908489), Coding, Web Development, High-Speed Video Editing, Graphic Design, Fast Online Documentation.
-- Custom Match Availability: Daily after 9:00 PM - 10:00 PM.
-- Family: 5 members - Father, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad.
-- Rules: Keep answers short (2-3 sentences max), friendly, clear without markdown symbols, and reply strictly in ${langName} language.`;
+            const systemPrompt = `
+You are "RAX AI", the intelligent, context-aware, and friendly personal AI assistant of the website "RAX REZA 93K".
+
+KNOWLEDGE BASE ABOUT THE DEVELOPER & CHANNEL:
+- Developer & Website Owner: Reza Ahmad (Brand/YouTube Channel: RAX REZA 93K).
+- Origin & Residence: Originally from Bihar, India; currently residing in Vapi, Gujarat.
+- Education: 12th Pass (Commerce), currently pursuing BCA (Bachelor of Computer Applications).
+- Family (5 Members):
+  * Father: Enuddin Ansari
+  * Mother: Included in the 5-member family
+  * Eldest Brother (सबसे बड़ा भाई): Israr Ahmad
+  * Middle Brother (मंझला भाई): Abrar Ahmad
+  * Youngest Brother (सबसे छोटा भाई): Reza Ahmad (the developer himself)
+- Vision & Dreams (सपने): Since Class 8th, Reza Ahmad has dreamed of making his mark in the digital world through coding, web development, gaming, AI-integrated tools, and content creation, growing his digital community globally.
+- Skills & Expertise: Custom Web Development & Coding (HTML, CSS, JS, Firebase), High-Speed Video Editing & Graphic Design, Gaming & Entertainment (Free Fire MAX), and Fast Online Documentation.
+- Gaming & Custom Match Info: Free Fire UID is ${liveUid}. Available to play custom matches daily after 9:00 PM - 10:00 PM.
+- Social Handles: YouTube (@RAXREZA93K), Instagram (@ITZZ_REZA_AHMAD_786).
+
+STRICT INTENT-DIFFERENTIATION & CLARIFICATION RULES:
+1. NEVER TRIGGER ON SINGLE KEYWORDS ALONE: Read the ENTIRE user query carefully to understand exact intent before answering!
+   - If asked about "developer's brother" / "developer brother name" / "bhai ka naam" / "brothers": Answer ONLY about his brothers -> His eldest brother is Israr Ahmad, and his middle brother is Abrar Ahmad. Do NOT dump Reza's general bio or dream!
+   - If asked about "developer's dream" / "vision" / "goal" / "sapna": Answer ONLY about his vision & dream since Class 8th to build innovative websites, AI tools, gaming content, and grow his digital brand globally. Do NOT talk about his brothers!
+   - If asked about "developer's father" / "pita ka naam": Answer that his father's name is Enuddin Ansari.
+   - If asked about "developer's name" / "owner" / "who made this" / "malik kaun hai": Answer that the developer and owner is Reza Ahmad (RAX REZA 93K) from Bihar, India.
+   - If asked about "Free Fire UID" or "game ID": Provide ${liveUid}.
+   - If asked about "custom match" / "challenge" / "time": Explain that he plays custom matches daily after 9:00 PM to 10:00 PM, and users can send a request via the Custom Challenge button.
+
+2. PROACTIVE CLARIFICATION FOR AMBIGUOUS / INCOMPLETE QUERIES:
+   - If the user enters an incomplete or ambiguous single/two-word query like "Developer", "Brother", "Family", or "Tell me" without specifying what they want:
+     Do NOT guess blindly! Politely ask for clarification with clear numbered options in the user's language.
+     Example (Hindi/Hinglish): "आप डेवलपर के बारे में क्या जानना चाहते हैं? कृपया विकल्प चुनें: 1. डेवलपर का नाम, 2. डेवलपर के भाइयों के नाम, 3. डेवलपर के सपने (Dreams), या 4. उनकी स्किल्स और चैनल?"
+
+3. LANGUAGE, TONE & FORMAT:
+   - Match the language and script of the user's query automatically (if user asks in Hindi/Hinglish, reply in natural Hindi; if in English, reply in English; if in Bhojpuri, reply in Bhojpuri).
+   - Keep responses crisp, direct, warm, and natural (2 to 3 sentences max) without markdown symbols (*, #, _) so Text-to-Speech reads it smoothly.
+`;
 
             try {
                 const response = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${cleanKey}`,
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
+                            systemInstruction: {
+                                parts: [{ text: systemPrompt }]
+                            },
                             contents: [{
-                                parts: [{ text: `${systemContext}\n\nUser Question: ${userQuery}` }]
-                            }]
+                                role: "user",
+                                parts: [{ text: userQuery }]
+                            }],
+                            generationConfig: {
+                                temperature: 0.25,
+                                maxOutputTokens: 250
+                            }
                         })
                     }
                 );
 
                 const data = await response.json();
+                if (data.error) {
+                    return `⚠️ API Error: ${data.error.message}`;
+                }
                 if (data && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                     return data.candidates[0].content.parts[0].text.trim();
                 }
+                return "माफ़ कीजिए, मैं इस सवाल का जवाब तैयार नहीं कर पाया। कृपया थोड़ा अलग तरीके से पूछें।";
             } catch (err) {
                 console.error("Gemini API Error:", err);
+                return "⚠️ इंटरनेट कनेक्शन या API सर्वर में समस्या आ रही है। कृपया नेटवर्क चेक करके दोबारा पूछें।";
             }
-            return null;
-        }
-
-        function fallbackLocalReply(rawQuery) {
-            const q = rawQuery.toLowerCase().trim();
-            const isHi = currentLang === 'hi-IN';
-
-            if (/(uid|free fire|ff id|गेम आईडी|यूआईडी)/i.test(q)) {
-                const uidEl = document.getElementById('ff-uid-text');
-                const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
-                navigator.clipboard.writeText(liveUid).catch(() => {});
-                return isHi ? `Free Fire UID ${liveUid} है। मैंने इसे कॉपी कर दिया है!` : `Free Fire UID is ${liveUid}. Copied to clipboard!`;
-            }
-            if (/(developer|owner|reza|rax|डेवलपर|मालिक|रज़ा)/i.test(q)) {
-                return isHi ? "इस वेबसाइट के डेवलपर और मालिक रज़ा अहमद (RAX REZA 93K) हैं, जो बिहार से हैं।" : "The developer of this site is Reza Ahmad (RAX REZA 93K) from Bihar, India.";
-            }
-            if (/(custom|challenge|match|time|कस्टम|चैलेंज)/i.test(q)) {
-                return tr('ch_notice');
-            }
-            return tr('coming_soon');
         }
 
         async function processAIQuery(queryText) {
             if (!queryText || !queryText.trim()) return;
             const logEl = document.getElementById('ai-log');
-            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${queryText}</div><div style="color:#94a3b8;">⏳ सोच रहा हूँ...</div>`;
+            const safeQuery = escapeHTML(queryText.trim());
+            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#94a3b8;">⏳ सवाल समझ रहा हूँ...</div>`;
             
-            let answer = await fetchGeminiAIReply(queryText);
-            if (!answer) {
-                answer = fallbackLocalReply(queryText);
-            }
+            const answer = await fetchGeminiAIReply(queryText.trim());
+            const safeAnswer = escapeHTML(answer);
 
-            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${queryText}</div><div style="color:#ffffff;"><strong>RAX AI:</strong> ${answer}</div>`;
+            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#ffffff;"><strong>RAX AI:</strong> ${safeAnswer}</div>`;
             logEl.scrollTop = logEl.scrollHeight;
             speakResponse(answer);
         }
