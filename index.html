@@ -193,37 +193,32 @@
             backdrop-filter: blur(4px);
             transition: all 0.35s ease;
         }
-        .tag-pill.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 14px #00f2fe, inset 0 0 6px #00f2fe; transform: scale(1.06); }
-        .tag-pill.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 14px #ff0055, inset 0 0 6px #ff0055; transform: scale(1.06); }
-        .tag-pill.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 14px #00ff87, inset 0 0 6px #00ff87; transform: scale(1.06); }
-        .tag-pill.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 14px #ffbe0b, inset 0 0 6px #ffbe0b; transform: scale(1.06); }
-        .tag-pill.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 14px #a855f7, inset 0 0 6px #a855f7; transform: scale(1.06); }
+        .tag-pill.neon-glow-1, .social-icon.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe, inset 0 0 8px #00f2fe; transform: scale(1.08); }
+        .tag-pill.neon-glow-2, .social-icon.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 16px #ff0055, inset 0 0 8px #ff0055; transform: scale(1.08); }
+        .tag-pill.neon-glow-3, .social-icon.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 16px #00ff87, inset 0 0 8px #00ff87; transform: scale(1.08); }
+        .tag-pill.neon-glow-4, .social-icon.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b, inset 0 0 8px #ffbe0b; transform: scale(1.08); }
+        .tag-pill.neon-glow-5, .social-icon.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 16px #a855f7, inset 0 0 8px #a855f7; transform: scale(1.08); }
 
         /* =========================================
-           4. SOCIAL MEDIA ICONS & ACTION BUTTONS
+           4. SOCIAL MEDIA ICONS WITH SEQUENTIAL NEON FLOW & ACTION BUTTONS
            ========================================= */
         .social-bar {
-            display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 13px; margin-top: 16px; flex-wrap: wrap;
         }
         .social-icon {
-            width: 44px; height: 44px; border-radius: 50%;
-            background: rgba(24, 24, 38, 0.85);
-            border: 1.5px solid rgba(0, 242, 254, 0.45);
+            width: 46px; height: 46px; border-radius: 50%;
+            background: rgba(24, 24, 38, 0.88);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+            transition: all 0.35s ease;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
         }
         .social-icon:hover {
             border-color: #ff0055;
             background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(121, 0, 255, 0.3));
-            transform: translateY(-3px) scale(1.06);
-            box-shadow: 0 0 18px rgba(255, 0, 85, 0.6);
-        }
-        .social-icon.wa-icon:hover {
-            border-color: #00ff87;
-            box-shadow: 0 0 18px rgba(0, 255, 135, 0.65);
-            color: #00ff87;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
         }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
@@ -337,7 +332,7 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER & CLEAN NEON MODAL (NO GRID LINES + 3-COLOR GLOWING RINGS)
+           6. 3D COSMOS SPHERE LOADER & CLEAN 3-COLOR GLOWING RINGS MODAL
            ========================================= */
         .neon-modal-overlay {
             display: none;
@@ -387,7 +382,6 @@
             pointer-events: none;
         }
 
-        /* 3-Color Glowing Gradient Rings Behind Card Content (Replaces Grid Lines) */
         .tri-ring-stage {
             position: absolute;
             inset: 0;
@@ -464,7 +458,6 @@
         }
         .neon-modal-btn:active { transform: scale(0.95); }
 
-        /* Challenge Modal Inputs & Notice */
         .notice-box {
             background: rgba(255, 190, 11, 0.14);
             border: 1px solid #ffbe0b;
@@ -499,7 +492,6 @@
             outline: none;
         }
 
-        /* 10 Languages Grid */
         .lang-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -568,7 +560,7 @@
             border-radius: 12px;
             padding: 11px;
             min-height: 68px;
-            max-height: 135px;
+            max-height: 145px;
             overflow-y: auto;
             font-size: 13px;
             color: #e0f2fe;
@@ -600,6 +592,11 @@
             font-weight: 800;
             cursor: pointer;
             font-size: 13px;
+        }
+        .mic-listening {
+            background: linear-gradient(90deg, #00ff87, #00f2fe) !important;
+            color: #050510 !important;
+            box-shadow: 0 0 22px #00ff87 !important;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
@@ -659,7 +656,6 @@
             z-index: 999;
         }
 
-        /* Ask RAX AI Pill -> Rolls smoothly into RGB Circle Logo */
         .ask-ai-pill {
             position: relative;
             height: 50px;
@@ -731,7 +727,6 @@
             opacity: 1;
             transition: opacity 0.35s ease, width 0.45s ease;
         }
-        /* Rolled-in state (Compact RGB AI Orb Logo) */
         .ask-ai-pill.rolled {
             max-width: 50px;
             padding: 0 12px;
@@ -826,7 +821,6 @@
         .btn-blue { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: #fff; }
         .btn-gray { background: #334155; color: #fff; }
 
-        /* Mailbox Styles inside Admin Panel */
         .mailbox-header {
             display: flex;
             justify-content: space-between;
@@ -910,8 +904,8 @@
             <span class="tag-pill">Documentation</span>
         </div>
 
-        <!-- Social Media Icons (YouTube, Instagram, Facebook, Twitter, WhatsApp) -->
-        <div class="social-bar">
+        <!-- Social Media Icons (Sequential Neon Lighting Flow) -->
+        <div class="social-bar" id="neon-socials-bar">
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="social-icon" title="YouTube">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
@@ -1098,10 +1092,13 @@
 
     <script>
         /* =========================================
-           A. SEQUENTIAL NEON TAG LIGHTING & AUTO-ROLLING "ASK RAX AI" PILL
+           A. SEQUENTIAL NEON LIGHTING ON TAGS & SOCIAL ICONS + ROLLING "ASK RAX AI"
            ========================================= */
         const pillTags = document.querySelectorAll('#neon-tags-bar .tag-pill');
+        const socialIcons = document.querySelectorAll('#neon-socials-bar .social-icon');
         let activeTagIdx = 0;
+        let activeSocialIdx = 0;
+
         setInterval(() => {
             pillTags.forEach((el, idx) => {
                 el.className = 'tag-pill';
@@ -1110,9 +1107,16 @@
                 }
             });
             activeTagIdx = (activeTagIdx + 1) % pillTags.length;
-        }, 700);
 
-        // Auto-roll "Ask RAX AI" text into compact RGB AI Orb logo after 3.2 seconds or on scroll
+            socialIcons.forEach((el, idx) => {
+                el.classList.remove('neon-glow-1', 'neon-glow-2', 'neon-glow-3', 'neon-glow-4', 'neon-glow-5');
+                if (idx === activeSocialIdx) {
+                    el.classList.add(`neon-glow-${(idx % 5) + 1}`);
+                }
+            });
+            activeSocialIdx = (activeSocialIdx + 1) % socialIcons.length;
+        }, 650);
+
         const askAiPill = document.getElementById('ask-rax-ai-btn');
         setTimeout(() => {
             if (askAiPill) askAiPill.classList.add('rolled');
@@ -1124,19 +1128,19 @@
         }, { passive: true });
 
         /* =========================================
-           B. 10 LANGUAGES SUPPORT
+           B. 10 LANGUAGES SUPPORT (INCLUDING BHOJPURI)
            ========================================= */
         const LANG_LIST = [
             { code: 'hi-IN', label: 'हिन्दी (Hindi)' },
             { code: 'en-US', label: 'English' },
+            { code: 'bho-IN', label: 'भोजपुरी (Bhojpuri)' },
             { code: 'ur-PK', label: 'اردو (Urdu)' },
             { code: 'gu-IN', label: 'ગુજરાતી (Gujarati)' },
             { code: 'mr-IN', label: 'मराठी (Marathi)' },
             { code: 'bn-IN', label: 'বাংলা (Bengali)' },
             { code: 'ta-IN', label: 'தமிழ் (Tamil)' },
             { code: 'te-IN', label: 'తెలుగు (Telugu)' },
-            { code: 'pa-IN', label: 'ਪੰਜਾਬੀ (Punjabi)' },
-            { code: 'bho-IN', label: 'भोजपुरी (Bhojpuri)' }
+            { code: 'pa-IN', label: 'ਪੰਜਾਬੀ (Punjabi)' }
         ];
 
         let currentLang = 'hi-IN';
@@ -1148,7 +1152,7 @@
                 contact: 'संपर्क विवरण',
                 challenge: 'कस्टम चैलेंज',
                 uid_done: 'UID कॉपी कंप्लीट!',
-                coming_soon: '⏳ जल्द आ रहा है! यह जानकारी जल्द ही अपडेट की जाएगी।',
+                coming_soon: '⏳ जल्द आ रहा है! यह लिंक या जानकारी जल्द ही अपडेट की जाएगी।',
                 ch_title: '🔥 कस्टम मैच चैलेंज',
                 ch_notice: 'नोटिस: मैं रोज़ रात 9:00 से 10:00 बजे के बाद ही कस्टम गेम खेलने के लिए उपलब्ध रहता हूँ।',
                 ch_uid_ph: 'अपना Free Fire UID डालें...',
@@ -1156,7 +1160,7 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप बोलकर या नीचे टाइप करके मुझसे वेबसाइट से जुड़ा कोई भी सवाल पूछ सकते हैं।',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI असिस्टेंट हूँ। आप बोलकर या टाइप करके मुझसे कोई भी सवाल पूछ सकते हैं।',
                 ai_type_ph: 'यहाँ अपना सवाल लिखें...',
                 ai_send: 'भेजें'
             },
@@ -1166,7 +1170,7 @@
                 contact: 'Contact Details',
                 challenge: 'Custom Challenge',
                 uid_done: 'UID Copy Complete!',
-                coming_soon: '⏳ Coming Soon! This detail will be updated shortly.',
+                coming_soon: '⏳ Coming Soon! This link or detail will be updated shortly.',
                 ch_title: '🔥 Custom Match Challenge',
                 ch_notice: 'Notice: I am available to play custom games daily after 9:00 PM - 10:00 PM.',
                 ch_uid_ph: 'Enter your Free Fire UID...',
@@ -1178,13 +1182,31 @@
                 ai_type_ph: 'Type your question here...',
                 ai_send: 'Send'
             },
+            'bho-IN': {
+                subscribe: 'सब्सक्राइब करीं',
+                more: 'अउरी जानीं',
+                contact: 'संपर्क विवरण',
+                challenge: 'कस्टम चैलेंज',
+                uid_done: 'UID कॉपी हो गइल!',
+                coming_soon: '⏳ जल्दिए आवे वाला बा! ई जानकारी या लिंक जल्दिए अपडेट कइल जाई।',
+                ch_title: '🔥 कस्टम मैच चैलेंज',
+                ch_notice: 'नोटिस: हम रोज रात 9:00 से 10:00 बजे के बाद ही कस्टम गेम खेले खातिर उपलब्ध रहेनी।',
+                ch_uid_ph: 'आपन Free Fire UID डालीं...',
+                ch_msg_ph: 'छोट मैसेज लिखीं (वैकल्पिक)...',
+                ch_send: 'रिक्वेस्ट भेजीं',
+                ch_sent_ok: 'रउआ कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दिहल गइल बा!',
+                ch_limit: 'एह डिवाइस से 5 मैसेज के सीमा पूरा हो गइल बा! (5/5)',
+                ai_hello: 'प्रणाम! हम RAX REZA 93K के AI असिस्टेंट हईं। रउआ बोल के भा लिख के हमरा से कवनो सवाल पूछ सकीले।',
+                ai_type_ph: 'इहाँ आपन सवाल लिखीं...',
+                ai_send: 'भेजीं'
+            },
             'ur-PK': {
                 subscribe: 'سبسکرائب کریں',
                 more: 'مزید معلومات',
                 contact: 'رابطہ کی تفصیلات',
                 challenge: 'کسٹم چیلنج',
                 uid_done: 'UID کاپی مکمل ہو گئی!',
-                coming_soon: '⏳ جلد آ رہا ہے! یہ معلومات جلد ہی اپ ڈیٹ کی جائیں گی۔',
+                coming_soon: '⏳ جلد آ رہا ہے! یہ لنک یا معلومات جلد ہی اپ ڈیٹ کی جائیں گی۔',
                 ch_title: '🔥 کسٹم میچ چیلنج',
                 ch_notice: 'نوٹس: میں روزانہ رات 9:00 سے 10:00 بجے کے بعد کسٹم گیم کھیلنے کے لیے دستیاب ہوں۔',
                 ch_uid_ph: 'اپنا Free Fire UID درج کریں...',
@@ -1342,6 +1364,9 @@
         function closeNeonModal() {
             cancelAnimationFrame(loaderRAF);
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            if (activeRecognition) {
+                try { activeRecognition.stop(); } catch (e) {}
+            }
             document.getElementById('neon-modal').classList.remove('active');
         }
 
@@ -1379,8 +1404,10 @@
         }
 
         /* =========================================
-           D. LANGUAGE SELECTOR, PREMIUM NATURAL VOICE & LIVE DOM SCANNING AI ASSISTANT
+           D. SMART CONVERSATIONAL AI ASSISTANT + PREMIUM NATURAL VOICE + VOICE INPUT
            ========================================= */
+        window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
+
         function openLanguageModal() {
             let html = `<div class="lang-grid">`;
             LANG_LIST.forEach(l => {
@@ -1391,7 +1418,6 @@
             showNeonAlert("🌐 Select Language (10)", html, true);
         }
 
-        // Preload voices so Chrome/Android selects highest quality Natural/Google voice
         let cachedVoices = [];
         if ('speechSynthesis' in window) {
             const loadVoices = () => { cachedVoices = window.speechSynthesis.getVoices(); };
@@ -1403,12 +1429,14 @@
             if (!cachedVoices.length && 'speechSynthesis' in window) {
                 cachedVoices = window.speechSynthesis.getVoices();
             }
-            const prefix = langCode.split('-')[0].toLowerCase();
+            // Bhojpuri falls back cleanly to Hindi voice for clearest pronunciation
+            const lookupCode = langCode === 'bho-IN' ? 'hi-IN' : langCode;
+            const prefix = lookupCode.split('-')[0].toLowerCase();
             const matching = cachedVoices.filter(v => v.lang.toLowerCase().startsWith(prefix));
-            if (!matching.length) return null;
+            if (!matching.length) return cachedVoices[0] || null;
 
-            // Prioritize Natural, Online, Neural, or Google voices over robotic local voices
-            return matching.find(v => /natural|neural|online/i.test(v.name))
+            return matching.find(v => /natural|neural|online|wavenet/i.test(v.name))
+                || matching.find(v => /google/i.test(v.name) && !/local/i.test(v.name))
                 || matching.find(v => /google/i.test(v.name))
                 || matching[0];
         }
@@ -1416,12 +1444,14 @@
         function speakResponse(text) {
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = currentLang;
+            // Strip emojis so TTS reads naturally without saying emoji names
+            const cleanSpeech = text.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim();
+            const utter = new SpeechSynthesisUtterance(cleanSpeech);
+            utter.lang = currentLang === 'bho-IN' ? 'hi-IN' : currentLang;
             const bestVoice = selectPremiumNaturalVoice(currentLang);
             if (bestVoice) utter.voice = bestVoice;
-            utter.rate = 0.98;
-            utter.pitch = 1.02;
+            utter.rate = 0.96;
+            utter.pitch = 1.03;
 
             const orb = document.getElementById('ai-orb-box');
             if (orb) orb.classList.add('ai-speaking');
@@ -1431,96 +1461,224 @@
             window.speechSynthesis.speak(utter);
         }
 
-        /* Live DOM Scanner: Reads real-time content directly from the webpage elements */
-        function scanWebpageForAnswer(rawQuery) {
-            const q = rawQuery.toLowerCase().trim();
-            const isHi = currentLang.startsWith('hi') || currentLang.startsWith('bho');
-            const isUr = currentLang.startsWith('ur');
+        /* Conversation Context Memory so follow-up answers like "Name", "Dreams", "Big", "Middle", "Yes", "No" work naturally */
+        let pendingTopic = null;
 
-            // 1. Scan FF UID directly from DOM
-            const uidEl = document.getElementById('ff-uid-text');
-            const liveUid = uidEl ? uidEl.innerText.trim() : '';
-            if (/(uid|free fire|ff|id|आईडी|कॉपी|copy)/i.test(q)) {
-                if (!liveUid) return tr('coming_soon');
-                navigator.clipboard.writeText(liveUid).catch(() => {});
-                return isHi
-                    ? `पेज के अनुसार Free Fire UID ${liveUid} है। मैंने इसे आपके क्लिपबोर्ड पर कॉपी भी कर दिया है!`
-                    : `According to the page, the Free Fire UID is ${liveUid}. I have also copied it to your clipboard!`;
+        function getDeveloperAnswer(aspect) {
+            const isHi = currentLang === 'hi-IN';
+            const isBho = currentLang === 'bho-IN';
+
+            if (aspect === 'name') {
+                if (isBho) return "एह वेबसाइट के डेवलपर आ मालिक रज़ा अहमद (Reza Ahmad / RAX REZA 93K) हउवन।";
+                if (isHi) return "इस वेबसाइट के डेवलपर और मालिक रज़ा अहमद (Reza Ahmad / RAX REZA 93K) हैं।";
+                return "The developer and owner of this website is Reza Ahmad (RAX REZA 93K).";
+            }
+            if (aspect === 'dreams') {
+                if (isBho) return "कक्षा 8वीं से ही रज़ा अहमद के सपना कोडिंग, वेब डेवलपमेंट, गेमिंग आ कंटेंट क्रिएशन से डिजिटल दुनिया में आपन पहचान बनावे के बा।";
+                if (isHi) return "कक्षा 8वीं से ही रज़ा अहमद का सपना कोडिंग, वेब डेवलपमेंट, गेमिंग और कंटेंट क्रिएशन के ज़रिए डिजिटल दुनिया में अपनी पहचान बनाना है।";
+                return "Since Class 8th, Reza Ahmad's dream has been to make his mark in the digital world through coding, web development, gaming, and content creation.";
+            }
+            if (aspect === 'study') {
+                if (isBho) return "रज़ा अहमद बिहार (भारत) से हउवन आ 12वीं पास कइला के बाद अभी BCA (Bachelor of Computer Applications) के पढ़ाई करत बाड़न।";
+                if (isHi) return "रज़ा अहमद बिहार (भारत) से हैं और 12वीं पास करने के बाद अभी BCA (Bachelor of Computer Applications) की पढ़ाई कर रहे हैं।";
+                return "Reza Ahmad is from Bihar, India, and after completing 12th, he is currently pursuing BCA (Bachelor of Computer Applications).";
+            }
+            if (aspect === 'skills') {
+                const tags = Array.from(document.querySelectorAll('#neon-tags-bar .tag-pill')).map(e => e.innerText.trim()).join(', ');
+                if (isBho) return `रज़ा अहमद के मुख्य स्किल्स बा: ${tags}।`;
+                if (isHi) return `रज़ा अहमद की मुख्य स्किल्स हैं: ${tags}।`;
+                return `Reza Ahmad's key skills are: ${tags}.`;
+            }
+            return "";
+        }
+
+        function smartConversationalReply(rawQuery) {
+            const q = rawQuery.toLowerCase().trim();
+            const isHi = currentLang === 'hi-IN';
+            const isBho = currentLang === 'bho-IN';
+
+            // 0. Handle "No" / Cancel when a follow-up question was pending
+            if (/^(no|nahi|nah|नहीं|ना|नाहीं|छोड़ो|cancel)$/i.test(q)) {
+                pendingTopic = null;
+                if (isBho) return "ठीक बा, कवनो बात नइखे! कुछ अउर पूछे के होखे त बताइब।";
+                if (isHi) return "ठीक है, कोई बात नहीं! कुछ और पूछना हो तो बताइए।";
+                return "Okay, no problem! Let me know if you want to ask anything else.";
             }
 
-            // 2. Scan Contact Details directly from DOM
-            const contactEl = document.getElementById('contact-display-area');
-            const contactText = contactEl ? contactEl.innerText.trim() : '';
-            if (/(contact|number|whatsapp|email|phone|संपर्क|नंबर|व्हाट्सएप|बात)/i.test(q)) {
+            // 1. Handle Follow-up Responses when pendingTopic is active
+            if (pendingTopic === 'developer_menu') {
+                if (/(yes|haan|ha|हां|हाँ|जी|name|naam|नाम|kaun|कौन|के ह)/i.test(q)) {
+                    pendingTopic = null;
+                    return getDeveloperAnswer('name');
+                }
+                if (/(dream|sapna|सपना|सपने|vision|goal)/i.test(q)) {
+                    pendingTopic = null;
+                    return getDeveloperAnswer('dreams');
+                }
+                if (/(study|education|bihar|where|state|कहाँ|कहां|पढ़ाई|बिहार|क्वालिफिकेशन)/i.test(q)) {
+                    pendingTopic = null;
+                    return getDeveloperAnswer('study');
+                }
+                if (/(skill|work|काम|स्किल)/i.test(q)) {
+                    pendingTopic = null;
+                    return getDeveloperAnswer('skills');
+                }
+            }
+
+            if (pendingTopic === 'brother_menu') {
+                if (/(big|elder|eldest|bada|bade|बड़ा|बड़े|बड़का)/i.test(q)) {
+                    pendingTopic = null;
+                    if (isBho) return "रज़ा जी के सबसे बड़ भाई के नाम इसरार अहमद (Israr Ahmad) ह।";
+                    if (isHi) return "रज़ा जी के सबसे बड़े भाई का नाम इसरार अहमद (Israr Ahmad) है।";
+                    return "Reza's eldest brother's name is Israr Ahmad.";
+                }
+                if (/(middle|manjhle|बचला|मंझले|बीच)/i.test(q)) {
+                    pendingTopic = null;
+                    if (isBho) return "रज़ा जी के मंझले भाई के नाम अबरार अहमद (Abrar Ahmad) ह।";
+                    if (isHi) return "रज़ा जी के मंझले भाई का नाम अबरार अहमद (Abrar Ahmad) है।";
+                    return "Reza's middle brother's name is Abrar Ahmad.";
+                }
+            }
+
+            // 2. SPECIFIC DEVELOPER QUESTIONS (Direct answer without repeating prompt)
+            const mentionsDev = /(developer|owner|creator|made|built|reza|rax|डेवलपर|मालिक|बनाया|रज़ा|रेक्स)/i.test(q);
+            const asksName = /(name|naam|who|kaun|कौन|नाम|के ह)/i.test(q);
+            const asksDreams = /(dream|dreams|sapna|sapne|vision|goal|सपना|सपने)/i.test(q);
+            const asksStudy = /(study|education|qualification|bca|12th|bihar|state|from|where|कहाँ|कहां|पढ़ाई|पढ़े|बिहार)/i.test(q);
+            const asksSkills = /(skill|skills|expertise|work|स्किल|काम)/i.test(q);
+
+            if (mentionsDev && asksDreams) {
+                pendingTopic = null;
+                return getDeveloperAnswer('dreams');
+            }
+            if (mentionsDev && asksStudy) {
+                pendingTopic = null;
+                return getDeveloperAnswer('study');
+            }
+            if (mentionsDev && asksSkills) {
+                pendingTopic = null;
+                return getDeveloperAnswer('skills');
+            }
+            if (mentionsDev && asksName) {
+                pendingTopic = null;
+                return getDeveloperAnswer('name');
+            }
+
+            // Only "Developer" / "Owner" spoken without specifying what they want -> Ask for clarification!
+            if (mentionsDev && !asksName && !asksDreams && !asksStudy && !asksSkills) {
+                pendingTopic = 'developer_menu';
+                if (isBho) return "रउआ डेवलपर के बारे में का जानल चाहत बानी — उनकर नाम, उनकर सपना (Dreams), भा उ कहाँ से बाड़न आ का पढ़ाई कइले बाड़न?";
+                if (isHi) return "आप डेवलपर के बारे में क्या जानना चाहते हैं — क्या आप उनका नाम जानना चाहते हैं, उनके सपने (Dreams), या वे कहाँ से हैं और कहाँ तक पढ़े हैं?";
+                return "What would you like to know about the developer — their name, their dreams, or their education and state?";
+            }
+
+            // 3. SPECIFIC vs AMBIGUOUS BROTHER QUESTIONS
+            const asksBigBrother = /(big|elder|eldest|bada|bade|बड़ा|बड़े|बड़का)/i.test(q) && /(brother|bhai|भाई)/i.test(q);
+            const asksMiddleBrother = /(middle|manjhle|मंझले|बीच)/i.test(q) && /(brother|bhai|भाई)/i.test(q);
+            const asksGenericBrother = /(brother|brothers|bhai|भाई)/i.test(q);
+
+            if (asksBigBrother) {
+                pendingTopic = null;
+                if (isBho) return "बड़ भाई के नाम इसरार अहमद (Israr Ahmad) ह।";
+                if (isHi) return "बड़े भाई का नाम इसरार अहमद (Israr Ahmad) है।";
+                return "Big brother's name is Israr Ahmad.";
+            }
+            if (asksMiddleBrother) {
+                pendingTopic = null;
+                if (isBho) return "मंझले भाई के नाम अबरार अहमद (Abrar Ahmad) ह।";
+                if (isHi) return "मंझले भाई का नाम अबरार अहमद (Abrar Ahmad) है।";
+                return "Middle brother's name is Abrar Ahmad.";
+            }
+            if (asksGenericBrother) {
+                pendingTopic = 'brother_menu';
+                if (isBho) return "रउआ केकरा बारे में जानल चाहत बानी — बड़ भाई (Big Brother) भा मंझले भाई (Middle Brother)?";
+                if (isHi) return "आप किसके बारे में जानना चाहते हैं — बड़े भाई (Big Brother) या मंझले भाई (Middle Brother)?";
+                return "Which brother would you like to know about — Big Brother or Middle Brother?";
+            }
+
+            // 4. FREE FIRE UID (Only copies when explicitly asked about UID / FF ID)
+            if (/(uid|free fire|ff id|गेम आईडी|यूआईडी)/i.test(q)) {
+                pendingTopic = null;
+                const uidEl = document.getElementById('ff-uid-text');
+                const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
+                navigator.clipboard.writeText(liveUid).catch(() => {});
+                if (isBho) return `Free Fire UID ${liveUid} बा। हम एकरा के कॉपी कर देले बानी!`;
+                if (isHi) return `Free Fire UID ${liveUid} है। मैंने इसे आपके लिए कॉपी कर दिया है!`;
+                return `The Free Fire UID is ${liveUid}. I have copied it to your clipboard!`;
+            }
+
+            // 5. SOCIAL MEDIA LINKS (Never copies; opens if present, else says Coming Soon)
+            if (/(instagram|insta|इंस्टाग्राम)/i.test(q)) {
+                pendingTopic = null;
+                const link = window.liveSocialStore.instagram;
+                if (link) {
+                    window.open(link, "_blank");
+                    return isHi ? "मैंने आपके लिए Instagram लिंक खोल दिया है।" : "I have opened the Instagram link for you.";
+                }
+                return tr('coming_soon');
+            }
+            if (/(facebook|fb|फेसबुक)/i.test(q)) {
+                pendingTopic = null;
+                const link = window.liveSocialStore.facebook;
+                if (link) {
+                    window.open(link, "_blank");
+                    return isHi ? "मैंने आपके लिए Facebook लिंक खोल दिया है।" : "I have opened the Facebook link for you.";
+                }
+                return tr('coming_soon');
+            }
+            if (/(twitter|x\.com|ट्विटर)/i.test(q)) {
+                pendingTopic = null;
+                const link = window.liveSocialStore.twitter;
+                if (link) {
+                    window.open(link, "_blank");
+                    return isHi ? "मैंने आपके लिए Twitter लिंक खोल दिया है।" : "I have opened the Twitter link for you.";
+                }
+                return tr('coming_soon');
+            }
+            if (/(youtube|channel|यूट्यूब|चैनल)/i.test(q)) {
+                pendingTopic = null;
+                if (isBho) return "YouTube चैनल के नाम RAX REZA 93K ह। ऊपर YouTube आइकन भा Subscribe बटन पर दबा के चैनल खोल सकीले।";
+                if (isHi) return "YouTube चैनल का नाम RAX REZA 93K है। आप ऊपर YouTube आइकन या Subscribe बटन दबाकर चैनल खोल सकते हैं।";
+                return "The YouTube channel name is RAX REZA 93K. You can tap the YouTube icon or Subscribe button to open it.";
+            }
+
+            // 6. CONTACT DETAILS (Live DOM Scan)
+            if (/(contact|number|whatsapp|email|phone|संपर्क|नंबर|व्हाट्सएप)/i.test(q)) {
+                pendingTopic = null;
+                const contactEl = document.getElementById('contact-display-area');
+                const contactText = contactEl ? contactEl.innerText.trim() : '';
                 if (!contactText || /coming soon/i.test(contactText)) {
                     return tr('coming_soon');
                 }
-                return isHi
-                    ? `पेज पर उपलब्ध संपर्क विवरण यह है: ${contactText}`
-                    : `Here are the live contact details on the page: ${contactText}`;
+                return isHi ? `संपर्क विवरण: ${contactText}` : `Contact Details: ${contactText}`;
             }
 
-            // 3. Scan Uploaded Videos directly from DOM
-            const videoCards = document.querySelectorAll('#video-list .video-card');
-            if (/(video|upload|latest|youtube|वीडियो|अपलोड|नया)/i.test(q)) {
-                if (!videoCards.length) return tr('coming_soon');
-                const titles = Array.from(videoCards).slice(0, 3).map((card, i) => {
-                    const t = card.querySelector('.video-title');
-                    return `${i + 1}. ${t ? t.innerText.trim() : 'Video'}`;
-                });
-                return isHi
-                    ? `इस समय पेज पर कुल ${videoCards.length} वीडियो अपलोड हैं। ताज़ा वीडियो हैं: ${titles.join(', ')}`
-                    : `There are currently ${videoCards.length} uploaded videos on the page. Latest videos: ${titles.join(', ')}`;
-            }
-
-            // 4. Scan Custom Challenge Timing & Rules
-            if (/(custom|challenge|match|time|kab|कस्टम|चैलेंज|मैच|समय|कब|खेल)/i.test(q)) {
+            // 7. CUSTOM CHALLENGE TIMING
+            if (/(custom|challenge|match|time|kab|कस्टम|चैलेंज|मैच|समय|कब)/i.test(q)) {
+                pendingTopic = null;
                 return tr('ch_notice');
             }
 
-            // 5. Scan "More" Section (Family, Brothers, Education, State, Skills, Bio)
-            const moreBox = document.getElementById('more-details-box');
-            const moreItems = moreBox ? Array.from(moreBox.querySelectorAll('li, p')).map(el => el.innerText.trim()) : [];
-
-            if (/(brother|family|father|mother|israr|abrar|भाई|परिवार|फैमिली|पिता|माता)/i.test(q)) {
-                const famLines = moreItems.filter(line => /(Family|Father|Mother|Brother|Israr|Abrar|Reza)/i.test(line));
-                if (!famLines.length) return tr('coming_soon');
+            // 8. UPLOADED VIDEOS (Live DOM Scan)
+            if (/(video|upload|latest|वीडियो|अपलोड)/i.test(q)) {
+                pendingTopic = null;
+                const videoCards = document.querySelectorAll('#video-list .video-card');
+                if (!videoCards.length) return tr('coming_soon');
+                const latest = videoCards[0].querySelector('.video-title')?.innerText.trim() || 'Video';
                 return isHi
-                    ? `पेज के 'More' सेक्शन के अनुसार परिवार में 5 सदस्य हैं: बड़े भाई इसरार अहमद (Israr Ahmad), मंझले भाई अबरार अहमद (Abrar Ahmad), और सबसे छोटे भाई रज़ा अहमद (Reza Ahmad), साथ में माता-पिता।`
-                    : `From the More section: ${famLines.join(' | ')}`;
+                    ? `पेज पर अभी ${videoCards.length} वीडियो अपलोड हैं। सबसे नया वीडियो है: ${latest}`
+                    : `There are ${videoCards.length} videos uploaded on the page. The latest video is: ${latest}`;
             }
 
-            if (/(study|education|qualification|bca|12th|state|bihar|where|कहाँ|पढ़ाई|बिहार|क्वालिफिकेशन)/i.test(q)) {
-                const eduLines = moreItems.filter(line => /(State|Qualification|BCA|Bihar|12th)/i.test(line));
-                if (!eduLines.length) return tr('coming_soon');
-                return isHi
-                    ? `पेज के अनुसार रज़ा अहमद बिहार (भारत) से हैं और 12वीं पास करने के बाद अभी BCA (Bachelor of Computer Applications) कर रहे हैं।`
-                    : `From the page details: ${eduLines.join(' | ')}`;
-            }
-
-            if (/(skill|work|who|about|reza|rax|कौन|काम|स्किल|बारे|वेबसाइट)/i.test(q)) {
-                const skillTags = Array.from(document.querySelectorAll('#neon-tags-bar .tag-pill')).map(el => el.innerText.trim());
-                return isHi
-                    ? `यह वेबसाइट रज़ा अहमद (RAX REZA 93K) की है, जो बिहार से हैं। उनकी मुख्य स्किल्स हैं: ${skillTags.join(', ')}।`
-                    : `This website belongs to Reza Ahmad (RAX REZA 93K) from Bihar, India. His key skills listed on the page are: ${skillTags.join(', ')}.`;
-            }
-
-            // 6. General DOM Keyword Search across all visible/hidden info sections
-            const words = q.split(/\s+/).filter(w => w.length > 2);
-            for (const line of moreItems) {
-                if (words.some(w => line.toLowerCase().includes(w))) {
-                    return line;
-                }
-            }
-
-            // 7. If requested info is not present anywhere on the webpage -> Coming Soon in selected language
+            // 9. ANY OTHER UNKNOWN QUESTION -> Coming Soon
+            pendingTopic = null;
             return tr('coming_soon');
         }
 
         function processAIQuery(queryText) {
             if (!queryText || !queryText.trim()) return;
             const logEl = document.getElementById('ai-log');
-            const answer = scanWebpageForAnswer(queryText);
+            const answer = smartConversationalReply(queryText);
             logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${queryText}</div><div style="color:#ffffff;"><strong>RAX AI:</strong> ${answer}</div>`;
             logEl.scrollTop = logEl.scrollHeight;
             speakResponse(answer);
@@ -1536,6 +1694,7 @@
         };
 
         function openVoiceAI() {
+            pendingTopic = null;
             const greet = tr('ai_hello');
             const html = `
                 <div class="ai-orb-wrap" id="ai-orb-box">
@@ -1547,7 +1706,7 @@
                     <input type="text" id="ai-typed-input" class="ai-text-input" placeholder="${tr('ai_type_ph')}" onkeydown="if(event.key==='Enter') submitTypedAIQuery()">
                     <button type="button" class="ai-send-btn" onclick="submitTypedAIQuery()">${tr('ai_send')}</button>
                 </div>
-                <button class="btn-main btn-challenge" style="margin: 0 auto;" onclick="listenUserVoice()">
+                <button type="button" id="ai-mic-btn" class="btn-main btn-challenge" style="margin: 0 auto;" onclick="listenUserVoice()">
                     🎙️ बोलकर पूछें / Speak Now
                 </button>
             `;
@@ -1555,29 +1714,71 @@
             speakResponse(greet);
         }
 
+        let activeRecognition = null;
+
         function listenUserVoice() {
             const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
             const logEl = document.getElementById('ai-log');
+            const micBtn = document.getElementById('ai-mic-btn');
 
             if (!SpeechRec) {
-                logEl.innerText = "आपका ब्राउज़र वॉइस सपोर्ट नहीं करता, कृपया ऊपर बॉक्स में टाइप करके पूछें।";
+                logEl.innerText = "आपका ब्राउज़र वॉइस इनपुट सपोर्ट नहीं करता, कृपया ऊपर बॉक्स में टाइप करके पूछें।";
                 return;
             }
 
+            // Stop ongoing TTS speech before opening microphone so mic captures user's voice cleanly
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            if (activeRecognition) {
+                try { activeRecognition.abort(); } catch (e) {}
+            }
+
             const rec = new SpeechRec();
-            rec.lang = currentLang;
-            logEl.innerText = "🎙️ सुन रहा हूँ... / Listening...";
+            activeRecognition = rec;
+            rec.lang = currentLang === 'bho-IN' ? 'hi-IN' : currentLang;
+            rec.interimResults = false;
+            rec.maxAlternatives = 1;
+
+            logEl.innerHTML = `<span style="color:#00ff87;">🎙️ बोलिए, मैं सुन रहा हूँ... / Listening...</span>`;
+            if (micBtn) {
+                micBtn.classList.add('mic-listening');
+                micBtn.innerText = "🟢 सुन रहा हूँ... बोलिए";
+            }
 
             rec.onresult = (e) => {
+                if (micBtn) {
+                    micBtn.classList.remove('mic-listening');
+                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                }
                 const speech = e.results[0][0].transcript;
                 processAIQuery(speech);
             };
 
-            rec.onerror = () => {
-                logEl.innerText = "माइक की अनुमति दें या ऊपर बॉक्स में टाइप करके पूछें।";
+            rec.onerror = (err) => {
+                if (micBtn) {
+                    micBtn.classList.remove('mic-listening');
+                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                }
+                if (err.error === 'not-allowed') {
+                    logEl.innerText = "कृपया ब्राउज़र सेटिंग से माइक (Microphone) की अनुमति दें।";
+                } else {
+                    logEl.innerText = "आवाज़ साफ़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें या टाइप करें।";
+                }
             };
 
-            rec.start();
+            rec.onend = () => {
+                if (micBtn) {
+                    micBtn.classList.remove('mic-listening');
+                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                }
+            };
+
+            try {
+                rec.start();
+            } catch (err) {
+                logEl.innerText = "माइक शुरू करने में समस्या आई, कृपया दोबारा दबाएं।";
+            }
         }
     </script>
 
@@ -1608,7 +1809,6 @@
             whatsapp: ""
         };
 
-        /* Device Limit Helpers (Max 5 Challenge Requests per Device) */
         const MAX_DEVICE_CHALLENGES = 5;
 
         function getDeviceTag() {
@@ -1628,7 +1828,6 @@
             localStorage.setItem('rax_ch_sent_count', (getDeviceMsgCount() + 1).toString());
         }
 
-        /* Auth State Listener */
         let mailboxListenerAttached = false;
 
         onAuthStateChanged(auth, (user) => {
@@ -1678,7 +1877,6 @@
             });
         }
 
-        /* Open Custom Challenge Popup */
         window.openChallengeModal = function() {
             const sent = getDeviceMsgCount();
             const remaining = MAX_DEVICE_CHALLENGES - sent;
@@ -1741,7 +1939,6 @@
             }
         };
 
-        /* Admin Login & Controls */
         window.openLogin = function() {
             if (auth.currentUser) {
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
@@ -1876,6 +2073,7 @@
                 socialLinks.facebook = data.socials.facebook || "";
                 socialLinks.twitter = data.socials.twitter || "";
                 socialLinks.whatsapp = data.socials.whatsapp || "";
+                window.liveSocialStore = { ...socialLinks };
 
                 document.getElementById('insta-input').value = socialLinks.instagram;
                 document.getElementById('fb-input').value = socialLinks.facebook;
