@@ -1,98 +1,426 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAX REZA 93K - Gaming Hub</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-    body { background: #0d0f17; color: #fff; display: flex; justify-content: center; padding: 20px; }
-    .container { width: 100%; max-width: 450px; background: #161925; border-radius: 15px; padding: 20px; border: 1px solid #ff4655; box-shadow: 0 0 20px rgba(255, 70, 85, 0.2); }
-    .header { text-align: center; margin-bottom: 20px; }
-    .header h1 { color: #ff4655; font-size: 24px; letter-spacing: 1px; }
-    .header p { color: #9ca3af; font-size: 13px; margin-top: 5px; }
-    .yt-btn { display: block; width: 100%; text-align: center; background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; margin-bottom: 20px; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 5px; }
-    input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #2d3348; background: #0d0f17; color: #fff; font-size: 14px; }
-    input:focus, select:focus { outline: none; border-color: #ff4655; }
-    button { width: 100%; padding: 12px; background: #ff4655; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-    button:hover { background: #e03a48; }
-    #status { text-align: center; margin-top: 15px; font-size: 14px; color: #10b981; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAX REZA 93K | Reza Ahmad</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0b0e; color: #ffffff; text-align: center; padding-bottom: 80px; }
+
+        /* चैनल बैनर */
+        .banner {
+            width: 100%; height: 210px;
+            background: radial-gradient(circle at center, #7a0000 0%, #1c0000 55%, #0b0b0e 100%);
+            background-size: cover; background-position: center;
+            border-bottom: 3px solid #ff0000;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .banner::after {
+            content: "RAX REZA 93K";
+            font-size: 32px; font-weight: 900; letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.14);
+        }
+        .banner.custom-img::after { content: ""; }
+        .banner.hidden { display: none; }
+
+        /* प्रोफाइल और YouTube लोगो */
+        .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 2; }
+        .profile-section.no-banner { margin-top: 25px; }
+        
+        .logo-wrapper {
+            width: 112px; height: 112px; margin: 0 auto; border-radius: 50%;
+            border: 4px solid #ff0000; background: #141414;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); overflow: hidden;
+        }
+        .logo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .yt-default-icon {
+            width: 62px; height: 44px; background: #ff0000; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .yt-default-icon::before {
+            content: ""; border-style: solid;
+            border-width: 9px 0 9px 17px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        h1 { font-size: 26px; margin-top: 10px; font-weight: 800; letter-spacing: 1px; }
+        .subtitle { color: #aaa; font-size: 13.5px; margin-top: 3px; }
+
+        /* मुख्य बटन्स: Subscribe, Copy UID, और More */
+        .action-buttons {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            margin-top: 18px;
+        }
+        .btn-main {
+            padding: 11px 20px; border-radius: 25px; font-weight: bold;
+            font-size: 14px; text-decoration: none; cursor: pointer;
+            border: none; display: inline-flex; align-items: center; gap: 7px;
+            transition: transform 0.2s;
+        }
+        .btn-main:active { transform: scale(0.96); }
+        .btn-sub {
+            background: #ff0000; color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+        }
+        .btn-uid { background: #1a1a22; color: #fff; border: 1px solid #3a3a48; }
+        .btn-more { background: #221215; color: #ff5555; border: 1px solid #ff0000; }
+
+        /* More पर टैप करने पर खुलने वाला बॉक्स (About + Family) */
+        #more-details-box {
+            display: none; max-width: 680px; margin: 20px auto 10px; padding: 20px;
+            background: #14141c; border: 1px solid #ff0000; border-radius: 14px;
+            text-align: left; line-height: 1.7; animation: fadeIn 0.25s ease;
+        }
+        #more-details-box.show { display: block; }
+        .detail-heading {
+            color: #ff4d4d; font-size: 17px; font-weight: bold;
+            margin-bottom: 8px; border-bottom: 1px solid #2a2a36; padding-bottom: 5px;
+        }
+        .detail-list { list-style: none; margin-bottom: 18px; }
+        .detail-list:last-child { margin-bottom: 0; }
+        .detail-list li { color: #dcdcdc; font-size: 14px; margin-bottom: 6px; }
+        .detail-list strong { color: #ffffff; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* वीडियो लिस्ट (लाइन से एक के नीचे एक + असली YouTube थंबनेल बैनर) */
+        .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
+        .videos-container h2 {
+            text-align: left; font-size: 19px; margin-bottom: 16px;
+            border-left: 4px solid #ff0000; padding-left: 10px;
+        }
+        .video-list { display: flex; flex-direction: column; gap: 18px; }
+        
+        .video-card {
+            background: #15151d; border-radius: 12px; overflow: hidden;
+            border: 1px solid #282834; text-align: left;
+            transition: border-color 0.2s;
+        }
+        .video-card:hover { border-color: #ff0000; }
+        
+        .video-link-area { text-decoration: none; color: inherit; display: block; }
+        
+        .thumb-wrapper {
+            position: relative; width: 100%; aspect-ratio: 16 / 9;
+            background: #000; overflow: hidden;
+        }
+        .thumb-wrapper img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .play-badge {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 58px; height: 40px; background: rgba(255, 0, 0, 0.9);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .play-badge::before {
+            content: ""; border-style: solid; border-width: 9px 0 9px 16px;
+            border-color: transparent transparent transparent #fff; margin-left: 3px;
+        }
+
+        .video-info { padding: 12px 14px; }
+        .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+        .video-url-text { font-size: 12.5px; color: #ff5555; word-break: break-all; }
+
+        /* एडमिन पैनल और लॉक बटन */
+        .admin-lock-btn {
+            position: fixed; bottom: 15px; right: 15px;
+            background: #1c1c24; color: #aaa; border: 1px solid #333;
+            padding: 10px 14px; border-radius: 50px; cursor: pointer; font-size: 14px; z-index: 999;
+        }
+        .delete-btn {
+            display: none; width: 100%; padding: 10px; background: #b00020;
+            color: white; border: none; cursor: pointer; font-weight: bold;
+        }
+        body.is-admin .delete-btn { display: block; }
+
+        .modal-box {
+            display: none; max-width: 480px; margin: 20px auto; background: #181820;
+            border: 2px solid #ff0000; border-radius: 12px; padding: 20px; text-align: left;
+        }
+        body.is-admin #admin-panel { display: block; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 13px; color: #bbb; margin-bottom: 5px; }
+        .form-group input {
+            width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444;
+            background: #0b0b0e; color: #fff;
+        }
+        .btn-sm {
+            padding: 9px 14px; border: none; border-radius: 6px;
+            cursor: pointer; font-weight: bold; margin-right: 6px; margin-top: 5px;
+        }
+        .btn-red { background: #ff0000; color: #fff; }
+        .btn-gray { background: #333; color: #fff; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <h1>🔥 RAX REZA 93K 🔥</h1>
-    <p>Free Fire MAX Tournament & Top-Up Request</p>
-  </div>
+    <!-- 1. चैनल बैनर -->
+    <div id="site-banner" class="banner"></div>
 
-  <!-- अपना YouTube लिंक नीचे href में डालें -->
-  <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="yt-btn">▶ Subscribe on YouTube</a>
+    <!-- 2. YouTube लोगो और बटन्स -->
+    <div id="profile-box" class="profile-section">
+        <div class="logo-wrapper" id="logo-container">
+            <div class="yt-default-icon"></div>
+        </div>
+        <h1>RAX REZA 93K</h1>
+        <p class="subtitle">Gaming • Coding • Web Development</p>
 
-  <form id="gamingForm">
-    <div class="form-group">
-      <label>In-Game Name (IGN)</label>
-      <input type="text" id="ign" placeholder="उदा. THE REZA 93K" required>
+        <div class="action-buttons">
+            <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="btn-main btn-sub">
+                ▶ Subscribe
+            </a>
+            <button class="btn-main btn-uid" onclick="copyUID()">
+                🎮 FF UID: <span id="ff-uid-text">1928908489</span>
+            </button>
+            <button class="btn-main btn-more" id="more-btn" onclick="toggleMore()">
+                ℹ️ More
+            </button>
+        </div>
     </div>
-    <div class="form-group">
-      <label>Free Fire UID</label>
-      <input type="number" id="uid" placeholder="अपनी 9 या 10 अंकों की UID डालें" required>
+
+    <!-- 3. More बटन दबाने पर खुलने वाली पूरी जानकारी (About + Family) -->
+    <div id="more-details-box">
+        <div class="detail-heading">👨‍💻 Mere Bare Me (Developer Details)</div>
+        <ul class="detail-list">
+            <li><strong>Developer Name:</strong> Reza Ahmad</li>
+            <li><strong>State:</strong> Bihar, India 🇮🇳</li>
+            <li><strong>Qualification:</strong> 12th Pass (अभी <strong>BCA</strong> की पढ़ाई चल रही है)</li>
+            <li><strong>Dream & Skills:</strong> Class 8th से ही खुद की वेबसाइट बनाने, Coding करने और Gaming का सपना रहा है।</li>
+        </ul>
+
+        <div class="detail-heading">👨‍👩‍👦‍👦 Family Members (कुल 5 सदस्य)</div>
+        <ul class="detail-list">
+            <li><strong>1. Dad (Father)</strong></li>
+            <li><strong>2. Mom (Mother)</strong></li>
+            <li><strong>3. Big Brother (सबसे बड़े भाई):</strong> Israr Ahmad</li>
+            <li><strong>4. Middle Brother (मझले भाई):</strong> Abrar Ahmad</li>
+            <li><strong>5. Youngest Brother (सबसे छोटा भाई):</strong> Reza Ahmad (मैं खुद)</li>
+        </ul>
     </div>
-    <div class="form-group">
-      <label>Service / Request Type</label>
-      <select id="service">
-        <option value="Custom Room / Tournament">Custom Room / Tournament Entry</option>
-        <option value="Guild Join Request">Guild Join Request</option>
-        <option value="Diamond Top-Up Inquiry">Diamond Top-Up Inquiry</option>
-      </select>
+
+    <!-- 4. एडमिन लॉगिन बॉक्स -->
+    <div id="login-box" class="modal-box">
+        <h3 style="color:#ff4d4d; margin-bottom:12px;">🔐 Admin Login</h3>
+        <div class="form-group">
+            <label>Admin Email:</label>
+            <input type="email" id="admin-email" placeholder="एडमिन ईमेल डालें">
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="admin-pass" placeholder="पासवर्ड डालें">
+        </div>
+        <button class="btn-sm btn-red" onclick="loginAdmin()">Login</button>
+        <button class="btn-sm btn-gray" onclick="closeLogin()">Cancel</button>
     </div>
-    <button type="submit">Submit Request</button>
-  </form>
 
-  <div id="status"></div>
-</div>
+    <!-- 5. एडमिन कंट्रोल पैनल (सिर्फ Admin के लिए) -->
+    <div id="admin-panel" class="modal-box">
+        <h3 style="color:#ff4d4d; margin-bottom:12px;">⚙️ Admin Control Panel</h3>
+        
+        <div class="form-group">
+            <label>Channel Banner Image Link:</label>
+            <input type="text" id="banner-input" placeholder="https://example.com/banner.jpg">
+            <button class="btn-sm btn-red" onclick="updateBanner()">Save Banner</button>
+            <button class="btn-sm btn-gray" onclick="removeBanner()">Hide Banner</button>
+        </div>
 
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+        <hr style="border-color: #333; margin: 15px 0;">
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBcuAs8PB0nvbyaXVO0Ikr_R-80LfuR17Y",
-    authDomain: "raxreza93k.firebaseapp.com",
-    databaseURL: "https://raxreza93k-default-rtdb.firebaseio.com",
-    projectId: "raxreza93k",
-    storageBucket: "raxreza93k.firebasestorage.app",
-    messagingSenderId: "1090562108450",
-    appId: "1:1090562108450:web:5f0beac7b3be209d752e7b"
-  };
+        <div class="form-group">
+            <label>YouTube Video Link:</label>
+            <input type="text" id="video-url" placeholder="https://youtu.be/xxxxxxx">
+        </div>
+        <div class="form-group">
+            <label>Video Title:</label>
+            <input type="text" id="video-title" placeholder="वीडियो का नाम लिखें">
+        </div>
+        <button class="btn-sm btn-red" onclick="addVideo()">+ Upload Video Link</button>
+        <button class="btn-sm btn-gray" onclick="logoutAdmin()">Logout</button>
+    </div>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+    <!-- 6. वीडियो लिस्ट (लाइन से एक के नीचे एक + YouTube Thumbnail Banner) -->
+    <div class="videos-container">
+        <h2>🔥 Uploaded Videos</h2>
+        <div id="video-list" class="video-list">
+            <p style="color:#777;">Loading videos...</p>
+        </div>
+    </div>
 
-  document.getElementById('gamingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const ign = document.getElementById('ign').value;
-    const uid = document.getElementById('uid').value;
-    const service = document.getElementById('service').value;
+    <!-- कोने में लॉक बटन -->
+    <button class="admin-lock-btn" onclick="openLogin()">🔒</button>
 
-    push(ref(db, 'requests'), {
-      ign: ign,
-      uid: uid,
-      service: service,
-      timestamp: new Date().toLocaleString()
-    }).then(() => {
-      document.getElementById('status').innerText = "✅ आपकी रिक्वेस्ट सबमिट हो गई है!";
-      document.getElementById('gamingForm').reset();
-    }).catch((error) => {
-      document.getElementById('status').style.color = "#ef4444";
-      document.getElementById('status').innerText = "❌ एरर: " + error.message;
-    });
-  });
-</script>
+    <script>
+        function copyUID() {
+            const uid = document.getElementById('ff-uid-text').innerText;
+            navigator.clipboard.writeText(uid).then(() => {
+                alert("FF UID कॉपी हो गई: " + uid);
+            });
+        }
 
+        function toggleMore() {
+            const box = document.getElementById('more-details-box');
+            const btn = document.getElementById('more-btn');
+            box.classList.toggle('show');
+            btn.innerHTML = box.classList.contains('show') ? "✖ Close Details" : "ℹ️ More";
+        }
+    </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcuAs8PB0nvbyaXVO0Ikr_R-80LfuR17Y",
+            authDomain: "raxreza93k.firebaseapp.com",
+            databaseURL: "https://raxreza93k-default-rtdb.firebaseio.com",
+            projectId: "raxreza93k",
+            storageBucket: "raxreza93k.firebasestorage.app",
+            messagingSenderId: "1090562108450",
+            appId: "1:1090562108450:web:5f0beac7b3be209d752e7b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.body.classList.add('is-admin');
+                document.getElementById('login-box').style.display = 'none';
+            } else {
+                document.body.classList.remove('is-admin');
+            }
+        });
+
+        window.openLogin = function() {
+            if (auth.currentUser) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            document.getElementById('login-box').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.closeLogin = function() {
+            document.getElementById('login-box').style.display = 'none';
+        };
+
+        window.loginAdmin = function() {
+            const email = document.getElementById('admin-email').value.trim();
+            const pass = document.getElementById('admin-pass').value;
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => alert("Admin Login सफल!"))
+                .catch(() => alert("गलत ईमेल या पासवर्ड!"));
+        };
+
+        window.logoutAdmin = function() {
+            signOut(auth).then(() => alert("Logout हो गया।"));
+        };
+
+        window.updateBanner = function() {
+            const url = document.getElementById('banner-input').value.trim();
+            set(ref(db, 'siteSettings/banner'), url);
+            alert("Banner अपडेट हो गया!");
+        };
+
+        window.removeBanner = function() {
+            set(ref(db, 'siteSettings/banner'), "HIDE");
+            alert("Banner हटा दिया गया!");
+        };
+
+        function extractVideoID(url) {
+            const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regExp);
+            return (match && match[1]) ? match[1] : null;
+        }
+
+        window.addVideo = function() {
+            const url = document.getElementById('video-url').value.trim();
+            const title = document.getElementById('video-title').value.trim() || "RAX REZA 93K Video";
+            const videoId = extractVideoID(url);
+
+            if (!videoId) return alert("सही YouTube वीडियो लिंक डालें!");
+
+            push(ref(db, 'videos'), {
+                videoId: videoId,
+                fullUrl: `https://www.youtube.com/watch?v=${videoId}`,
+                title: title,
+                timestamp: Date.now()
+            });
+
+            document.getElementById('video-url').value = "";
+            document.getElementById('video-title').value = "";
+        };
+
+        window.deleteVideo = function(key) {
+            if (confirm("क्या आप इस वीडियो को हटाना चाहते हैं?")) {
+                remove(ref(db, 'videos/' + key));
+            }
+        };
+
+        // बैनर लोड करना
+        onValue(ref(db, 'siteSettings'), (snapshot) => {
+            const data = snapshot.val() || {};
+            const bannerEl = document.getElementById('site-banner');
+            const profileEl = document.getElementById('profile-box');
+
+            if (data.banner === "HIDE") {
+                bannerEl.classList.add('hidden');
+                profileEl.classList.add('no-banner');
+            } else if (data.banner && data.banner !== "") {
+                bannerEl.style.backgroundImage = `url('${data.banner}')`;
+                bannerEl.classList.add('custom-img');
+                bannerEl.classList.remove('hidden');
+                profileEl.classList.remove('no-banner');
+            } else {
+                bannerEl.style.backgroundImage = "";
+                bannerEl.classList.remove('custom-img', 'hidden');
+                profileEl.classList.remove('no-banner');
+            }
+        });
+
+        // सारे वीडियो और उनका असली YouTube Thumbnail Banner लोड करना
+        onValue(ref(db, 'videos'), (snapshot) => {
+            const list = document.getElementById('video-list');
+            list.innerHTML = "";
+            const data = snapshot.val();
+
+            if (!data) {
+                list.innerHTML = "<p style='color:#777;'>अभी कोई वीडियो नहीं है।</p>";
+                return;
+            }
+
+            Object.keys(data).reverse().forEach((key) => {
+                const vid = data[key];
+                const ytLink = vid.fullUrl || `https://www.youtube.com/watch?v=${vid.videoId}`;
+                const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
+
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.innerHTML = `
+                    <a href="${ytLink}" target="_blank" class="video-link-area">
+                        <div class="thumb-wrapper">
+                            <img src="${thumbUrl}" alt="${vid.title}">
+                            <div class="play-badge"></div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">${vid.title}</div>
+                            <div class="video-url-text">${ytLink}</div>
+                        </div>
+                    </a>
+                    <button class="delete-btn" onclick="deleteVideo('${key}')">🗑️ Delete Video</button>
+                `;
+                list.appendChild(card);
+            });
+        });
+    </script>
 </body>
 </html>
