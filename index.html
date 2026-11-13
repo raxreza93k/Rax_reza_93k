@@ -419,7 +419,7 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER, NEON MODAL & NEON ENERGY SPHERE AI CORE
+           6. 3D COSMOS SPHERE LOADER, NEON MODAL & AI CORE ORB
            ========================================= */
         .neon-modal-overlay {
             display: none;
@@ -612,34 +612,18 @@
         }
 
         /* =========================================
-           FUTURISTIC MULTI-STATE AI CORE ORB + NEON ENERGY SPHERE IMAGE GENERATOR
+           FUTURISTIC MULTI-STATE AI CORE ORB
            ========================================= */
         .ai-cyber-stage {
             position: relative;
-            width: 156px;
-            height: 156px;
+            width: 140px;
+            height: 140px;
             margin: 2px auto 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
-        #ai-energy-sphere-canvas {
-            position: absolute;
-            inset: 0;
-            width: 156px;
-            height: 156px;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0.72;
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-        .ai-cyber-stage.ai-state-imaging #ai-energy-sphere-canvas {
-            opacity: 1;
-            transform: scale(1.12);
-            filter: drop-shadow(0 0 18px #00f2fe) drop-shadow(0 0 28px #a855f7);
-        }
-
         .ai-orbit-outer {
             position: absolute;
             width: 126px;
@@ -714,26 +698,6 @@
             box-shadow: 0 0 28px #ffbe0b;
         }
 
-        /* IMAGING STATE: Intense Cyan + Purple + Blue Neon Energy Surge */
-        .ai-state-imaging .ai-orbit-outer {
-            border: 3px solid #a855f7;
-            box-shadow: 0 0 38px #00f2fe, 0 0 55px #a855f7;
-            animation: spinFast 0.7s linear infinite;
-        }
-        .ai-state-imaging .ai-orbit-mid {
-            border-top-color: #00f2fe;
-            border-left-color: #a855f7;
-            border-right-color: #0066ff;
-            border-bottom-color: #ffffff;
-            animation: spinFastRev 0.5s linear infinite;
-        }
-        .ai-state-imaging .ai-chip-core {
-            border-color: #ffffff;
-            background: radial-gradient(circle, #00f2fe, #6d28d9, #030b1c);
-            box-shadow: 0 0 40px #00f2fe, 0 0 60px #a855f7, inset 0 0 22px #ffffff;
-            animation: listenBlinkCore 0.38s ease-in-out infinite alternate;
-        }
-
         .ai-state-speaking .ai-orbit-mid {
             border-color: #00f2fe;
             box-shadow: 0 0 32px #00f2fe;
@@ -791,23 +755,6 @@
             margin-bottom: 10px;
             line-height: 1.55;
             text-align: left;
-        }
-        .ai-gen-img-wrap {
-            margin-top: 8px;
-            text-align: center;
-            background: rgba(0, 18, 42, 0.85);
-            border: 1.5px solid #00f2fe;
-            border-radius: 12px;
-            padding: 8px;
-            box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
-        }
-        .ai-gen-img-wrap img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: cover;
-            border-radius: 9px;
-            display: block;
-            margin-bottom: 8px;
         }
         .ai-input-row {
             display: flex;
@@ -890,7 +837,6 @@
 
         /* =========================================
            8. FLOATING DOCK: ALL 3 ROLLING CYBER PILLS
-              (ASK RAX AI, LANGUAGE, ADMIN LOGIN)
            ========================================= */
         .floating-dock {
             position: fixed;
@@ -1914,77 +1860,6 @@
         }
 
         /* =================================================================
-           1B. NEON ENERGY SPHERE CANVAS ANIMATION (FOR AI IMAGE GENERATION)
-           ================================================================= */
-        let energySphereRAF = null;
-        let energyParticles = [];
-        let isEnergyBoosted = false;
-
-        function startNeonEnergySphereAnimation() {
-            const canvas = document.getElementById('ai-energy-sphere-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const cx = canvas.width / 2;
-            const cy = canvas.height / 2;
-
-            energyParticles = [];
-            for (let i = 0; i < 65; i++) {
-                energyParticles.push({
-                    angle: Math.random() * Math.PI * 2,
-                    radius: 26 + Math.random() * 44,
-                    speed: (Math.random() * 0.04 + 0.015) * (Math.random() > 0.5 ? 1 : -1),
-                    size: Math.random() * 2.2 + 0.8,
-                    color: ['#00f2fe', '#0066ff', '#a855f7', '#ffffff'][Math.floor(Math.random() * 4)]
-                });
-            }
-
-            let rot = 0;
-            function drawSphere() {
-                if (!document.getElementById('ai-energy-sphere-canvas')) return;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const speedMult = isEnergyBoosted ? 3.2 : 1.0;
-                rot += 0.03 * speedMult;
-
-                const ringConfigs = [
-                    { rx: 52, ry: 22, tilt: rot, color: '#00f2fe' },
-                    { rx: 50, ry: 24, tilt: -rot * 1.2 + 1.0, color: '#a855f7' },
-                    { rx: 46, ry: 20, tilt: rot * 0.8 + 2.1, color: '#0066ff' },
-                    { rx: 54, ry: 18, tilt: -rot * 1.4 + 0.5, color: '#38bdf8' }
-                ];
-
-                ringConfigs.forEach(rc => {
-                    ctx.save();
-                    ctx.translate(cx, cy);
-                    ctx.rotate(rc.tilt);
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, rc.rx, rc.ry, 0, 0, Math.PI * 2);
-                    ctx.strokeStyle = rc.color;
-                    ctx.lineWidth = isEnergyBoosted ? 2.4 : 1.4;
-                    ctx.shadowBlur = isEnergyBoosted ? 18 : 10;
-                    ctx.shadowColor = rc.color;
-                    ctx.stroke();
-                    ctx.restore();
-                });
-
-                energyParticles.forEach(p => {
-                    p.angle += p.speed * speedMult;
-                    const px = cx + Math.cos(p.angle) * p.radius;
-                    const py = cy + Math.sin(p.angle) * (p.radius * 0.72);
-                    ctx.beginPath();
-                    ctx.arc(px, py, isEnergyBoosted ? p.size * 1.35 : p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = p.color;
-                    ctx.fill();
-                });
-
-                energySphereRAF = requestAnimationFrame(drawSphere);
-            }
-            cancelAnimationFrame(energySphereRAF);
-            drawSphere();
-        }
-
-        /* =================================================================
            2. TAPPABLE SKILL BIO POP-UPS
            ================================================================= */
         const SKILL_BIO_DATA = {
@@ -2257,7 +2132,6 @@
                     .then(r => r.json())
                     .then(d => { if (d && d.ip) window.visitorInfo.ip = d.ip; });
             });
-
         /* =========================================
            C. 10 LANGUAGES FULL UI & AI LOCALIZATION
            ========================================= */
@@ -2291,14 +2165,13 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI मॉडल हूँ। आप कोई भी सवाल पूछ सकते हैं या इमेज बनाने के लिए कह सकते हैं।',
-                ai_type_ph: 'यहाँ लिखें या इमेज बनाने के लिए कहें...',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI मॉडल हूँ। आप मुझसे कोई भी सवाल पूछ सकते हैं।',
+                ai_type_ph: 'यहाँ अपना सवाल लिखें...',
                 ai_send: 'भेजें',
                 ai_speak_btn: '🎙️ बोलकर पूछें',
                 ai_state_idle: 'तैयार है • बोलने या टाइप करने के लिए टैप करें',
                 ai_state_listen: '🎙️ सुन रहा हूँ... बोलिए',
                 ai_state_search: '⚡ सिस्टम में खोजा जा रहा है...',
-                ai_state_imaging: '🌌 इमेज जनरेट किया जा रहा है...',
                 ai_state_speak: '🔊 AI जवाब दे रहा है...',
                 ai_no_voice: '⚠️ आवाज़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें।'
             },
@@ -2316,14 +2189,13 @@
                 ch_send: 'Send Request',
                 ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
                 ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
-                ai_hello: 'Hello! I am RAX AI. Ask me any question or tell me to generate an image.',
-                ai_type_ph: 'Type your question or image prompt...',
+                ai_hello: 'Hello! I am RAX AI. Ask me any question.',
+                ai_type_ph: 'Type your question here...',
                 ai_send: 'Send',
                 ai_speak_btn: '🎙️ Speak Now',
                 ai_state_idle: 'IDLE • Tap Core to Speak or Type',
                 ai_state_listen: '🎙️ Listening... Speak now',
                 ai_state_search: '⚡ Searching neural network...',
-                ai_state_imaging: '🌌 Generating AI Image...',
                 ai_state_speak: '🔊 AI is responding...',
                 ai_no_voice: '⚠️ No voice detected, please tap Speak Now and try again.'
             },
@@ -2341,14 +2213,13 @@
                 ch_send: 'रिक्वेस्ट भेजीं',
                 ch_sent_ok: 'रउआ कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दिहल गइल बा!',
                 ch_limit: 'एह डिवाइस से 5 मैसेज के सीमा पूरा हो गइल बा! (5/5)',
-                ai_hello: 'प्रणाम! हम RAX AI हईं। रउआ कवनो सवाल पूछ सकीले या इमेज बनावे खातिर कह सकीले।',
-                ai_type_ph: 'इहाँ आपन सवाल या इमेज लिखीं...',
+                ai_hello: 'प्रणाम! हम RAX AI हईं। रउआ कवनो सवाल पूछ सकीले।',
+                ai_type_ph: 'इहाँ आपन सवाल लिखीं...',
                 ai_send: 'भेजीं',
                 ai_speak_btn: '🎙️ बोल के पूछीं',
                 ai_state_idle: 'तैयार बा • बोले खातिर टैप करीं',
                 ai_state_listen: '🎙️ सुनत बानी... बोलीं',
                 ai_state_search: '⚡ सिस्टम में खोजल जा रहल बा...',
-                ai_state_imaging: '🌌 इमेज बनावल जा रहल बा...',
                 ai_state_speak: '🔊 AI जवाब दे रहल बा...',
                 ai_no_voice: '⚠️ आवाज ना सुनाइल, कृपया दुबारा बटन दबा के बोलीं।'
             },
@@ -2366,14 +2237,13 @@
                 ch_send: 'درخواست بھیجیں',
                 ch_sent_ok: 'آپ کی کسٹم چیلنج کی درخواست ایڈمن میل باکس میں بھیج دی گئی ہے!',
                 ch_limit: 'اس ڈیوائس سے 5 پیغامات کی حد پوری ہو گئی ہے! (5/5)',
-                ai_hello: 'السلام علیکم! میں RAX AI ہوں۔ آپ کوئی بھی سوال پوچھ سکتے ہیں یا تصویر بنانے کے لیے کہہ سکتے ہیں۔',
-                ai_type_ph: 'اپنا سوال یا تصویر یہاں لکھیں...',
+                ai_hello: 'السلام علیکم! میں RAX AI ہوں۔ آپ کوئی بھی سوال پوچھ سکتے ہیں۔',
+                ai_type_ph: 'اپنا سوال یہاں لکھیں...',
                 ai_send: 'بھیجیں',
                 ai_speak_btn: '🎙️ بول کر پوچھیں',
                 ai_state_idle: 'تیار ہے • بولنے کے لیے ٹیپ کریں',
                 ai_state_listen: '🎙️ سن رہا ہوں... بولیے',
                 ai_state_search: '⚡ سسٹم میں تلاش کیا جا رہا ہے...',
-                ai_state_imaging: '🌌 تصویر بنائی جا رہی ہے...',
                 ai_state_speak: '🔊 AI جواب دے رہا ہے...',
                 ai_no_voice: '⚠️ آواز سنائی نہیں دی، دوبارہ بٹن دبا کر بولیے۔'
             },
@@ -2391,14 +2261,13 @@
                 ch_send: 'વિનંતી મોકલો',
                 ch_sent_ok: 'તમારી કસ્ટમ ચેલેન્જ વિનંતી એડમિન મેઈલબોક્સમાં મોકલવામાં આવી છે!',
                 ch_limit: 'આ ડિવાઇસમાંથી 5 મેસેજની મર્યાદા પૂરી થઈ ગઈ છે! (5/5)',
-                ai_hello: 'નમસ્તે! હું RAX AI છું. તમે કોઈપણ પ્રશ્ન પૂછી શકો છો અથવા ઇમેજ બનાવવા કહી શકો છો.',
-                ai_type_ph: 'તમારો પ્રશ્ન અથવા ઇમેજ અહીં લખો...',
+                ai_hello: 'નમસ્તે! હું RAX AI છું. તમે કોઈપણ પ્રશ્ન પૂછી શકો છો.',
+                ai_type_ph: 'તમારો પ્રશ્ન અહીં લખો...',
                 ai_send: 'મોકલો',
                 ai_speak_btn: '🎙️ બોલીને પૂછો',
                 ai_state_idle: 'તૈયાર છે • બોલવા માટે ટેપ કરો',
                 ai_state_listen: '🎙️ સાંભળી રહ્યો છું... બોલો',
                 ai_state_search: '⚡ સિસ્ટમમાં શોધાઈ રહ્યું છે...',
-                ai_state_imaging: '🌌 ઇમેજ જનરેટ થઈ રહી છે...',
                 ai_state_speak: '🔊 AI જવાબ આપી રહ્યું છે...',
                 ai_no_voice: '⚠️ અવાજ સંભળાયો નથી, કૃપા કરીને ફરીથી બટન દબાવીને બોલો.'
             },
@@ -2416,14 +2285,13 @@
                 ch_send: 'विनंती पाठवा',
                 ch_sent_ok: 'तुमची कस्टम चॅलेंज विनंती ॲडमिन इनबॉक्समध्ये पाठवली आहे!',
                 ch_limit: 'या डिव्हाइसवरून 5 मेसेजची मर्यादा पूर्ण झाली आहे! (5/5)',
-                ai_hello: 'नमस्कार! मी RAX AI आहे. तुम्ही कोणताही प्रश्न विचारू शकता किंवा इमेज बनवायला सांगू शकता.',
+                ai_hello: 'नमस्कार! मी RAX AI आहे. तुम्ही कोणताही प्रश्न विचारू शकता.',
                 ai_type_ph: 'तुमचा प्रश्न येथे लिहा...',
                 ai_send: 'पाठवा',
                 ai_speak_btn: '🎙️ बोलून विचारा',
                 ai_state_idle: 'तयार आहे • बोलण्यासाठी टॅप करा',
                 ai_state_listen: '🎙️ ऐकत आहे... बोला',
                 ai_state_search: '⚡ सिस्टीममध्ये शोधले जात आहे...',
-                ai_state_imaging: '🌌 इमेज तयार केली जात आहे...',
                 ai_state_speak: '🔊 AI उत्तर देत आहे...',
                 ai_no_voice: '⚠️ आवाज ऐकू आला नाही, कृपया पुन्हा बटण दाबून बोला.'
             },
@@ -2441,14 +2309,13 @@
                 ch_send: 'অনুরোধ পাঠান',
                 ch_sent_ok: 'আপনার কাস্টম চ্যালেঞ্জ অনুরোধ অ্যাডমিন মেইলবক্সে পাঠানো হয়েছে!',
                 ch_limit: 'এই ডিভাইস থেকে ৫টি মেসেজের সীমা পূর্ণ হয়ে গেছে! (5/5)',
-                ai_hello: 'নমস্কার! আমি RAX AI। আপনি যেকোনো প্রশ্ন জিজ্ঞাসা করতে পারেন বা ছবি তৈরি করতে বলতে পারেন।',
+                ai_hello: 'নমস্কার! আমি RAX AI। আপনি যেকোনো প্রশ্ন জিজ্ঞাসা করতে পারেন।',
                 ai_type_ph: 'আপনার প্রশ্ন এখানে লিখুন...',
                 ai_send: 'পাঠান',
                 ai_speak_btn: '🎙️ বলে জিজ্ঞাসা করুন',
                 ai_state_idle: 'প্রস্তুত • কথা বলতে ট্যাপ করুন',
                 ai_state_listen: '🎙️ শুনছি... বলুন',
                 ai_state_search: '⚡ সিস্টেমে খোঁজা হচ্ছে...',
-                ai_state_imaging: '🌌 ছবি তৈরি করা হচ্ছে...',
                 ai_state_speak: '🔊 AI উত্তর দিচ্ছে...',
                 ai_no_voice: '⚠️ কোনো আওয়াজ শোনা যায়নি, অনুগ্রহ করে আবার বোতাম টিপে বলুন।'
             },
@@ -2466,14 +2333,13 @@
                 ch_send: 'அனுப்பு',
                 ch_sent_ok: 'உங்கள் கோரிக்கை அனுப்பப்பட்டது!',
                 ch_limit: '5 செய்திகள் வரம்பு முடிந்துவிட்டது! (5/5)',
-                ai_hello: 'வணக்கம்! நான் RAX AI. எந்த கேள்வியையும் கேட்கலாம் அல்லது படம் உருவாக்கச் சொல்லலாம்.',
+                ai_hello: 'வணக்கம்! நான் RAX AI. எந்த கேள்வியையும் கேட்கலாம்.',
                 ai_type_ph: 'உங்கள் கேள்வியை இங்கே டைப் செய்யவும்...',
                 ai_send: 'அனுப்பு',
                 ai_speak_btn: '🎙️ பேசி கேளுங்கள்',
                 ai_state_idle: 'தயார் • பேச தட்டவும்',
                 ai_state_listen: '🎙️ கேட்கிறேன்... பேசுங்கள்',
                 ai_state_search: '⚡ கணினியில் தேடுகிறது...',
-                ai_state_imaging: '🌌 படம் உருவாக்கப்படுகிறது...',
                 ai_state_speak: '🔊 AI பதிலளிக்கிறது...',
                 ai_no_voice: '⚠️ குரல் கேட்கவில்லை, மீண்டும் பொத்தானை அழுத்தி பேசவும்.'
             },
@@ -2491,14 +2357,13 @@
                 ch_send: 'పంపండి',
                 ch_sent_ok: 'మీ అభ్యర్థన పంపబడింది!',
                 ch_limit: '5 సందేశాల పరిమితి పూర్తయింది! (5/5)',
-                ai_hello: 'నమస్కారం! నేను RAX AI. ఏ ప్రశ్ననైనా అడగవచ్చు లేదా చిత్రాన్ని రూపొందించమని చెప్పవచ్చు.',
+                ai_hello: 'నమస్కారం! నేను RAX AI. ఏ ప్రశ్ననైనా అడగవచ్చు.',
                 ai_type_ph: 'మీ ప్రశ్నను ఇక్కడ టైప్ చేయండి...',
                 ai_send: 'పంపండి',
                 ai_speak_btn: '🎙️ మాట్లాడి అడగండి',
                 ai_state_idle: 'సిద్ధం • మాట్లాడటానికి నొక్కండి',
                 ai_state_listen: '🎙️ వింటున్నాను... మాట్లాడండి',
                 ai_state_search: '⚡ సిస్టమ్‌లో శోధిస్తోంది...',
-                ai_state_imaging: '🌌 చిత్రం రూపొందించబడుతోంది...',
                 ai_state_speak: '🔊 AI సమాధానం ఇస్తోంది...',
                 ai_no_voice: '⚠️ స్వరం వినిపించలేదు, దయచేసి మళ్లీ బటన్ నొక్కి మాట్లాడండి.'
             },
@@ -2516,14 +2381,13 @@
                 ch_send: 'ਬੇਨਤੀ ਭੇਜੋ',
                 ch_sent_ok: 'ਤੁਹਾਡੀ ਬੇਨਤੀ ਭੇਜ ਦਿੱਤੀ ਗਈ ਹੈ!',
                 ch_limit: '5 ਸੁਨੇਹਿਆਂ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ ਹੈ! (5/5)',
-                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX AI ਹਾਂ। ਤੁਸੀਂ ਕੋਈ ਵੀ ਸਵਾਲ ਪੁੱਛ ਸਕਦੇ ਹੋ ਜਾਂ ਤਸਵੀਰ ਬਣਾਉਣ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ।',
+                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX AI ਹਾਂ। ਤੁਸੀਂ ਕੋਈ ਵੀ ਸਵਾਲ ਪੁੱਛ ਸਕਦੇ ਹੋ।',
                 ai_type_ph: 'ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਲਿਖੋ...',
                 ai_send: 'ਭੇਜੋ',
                 ai_speak_btn: '🎙️ ਬੋਲ ਕੇ ਪੁੱਛੋ',
                 ai_state_idle: 'ਤਿਆਰ ਹੈ • ਬੋਲਣ ਲਈ ਟੈਪ ਕਰੋ',
                 ai_state_listen: '🎙️ ਸੁਣ ਰਿਹਾ ਹਾਂ... ਬੋਲੋ',
                 ai_state_search: '⚡ ਸਿਸਟਮ ਵਿੱਚ ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...',
-                ai_state_imaging: '🌌 ਤਸਵੀਰ ਬਣਾਈ ਜਾ ਰਹੀ ਹੈ...',
                 ai_state_speak: '🔊 AI ਜਵਾਬ ਦੇ ਰਿਹਾ ਹੈ...',
                 ai_no_voice: '⚠️ ਆਵਾਜ਼ ਨਹੀਂ ਸੁਣਾਈ ਦਿੱਤੀ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਬਟਨ ਦਬਾ ਕੇ ਬੋਲੋ।'
             }
@@ -2685,8 +2549,6 @@
         function closeNeonModal() {
             cancelAnimationFrame(loaderRAF);
             cancelAnimationFrame(modalCircuitRAF);
-            cancelAnimationFrame(energySphereRAF);
-            isEnergyBoosted = false;
             const card = document.getElementById('neon-modal-card');
             if (card) card.classList.remove('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
@@ -2838,7 +2700,7 @@
         };
 
         /* =========================================
-           F. FUTURISTIC AI ORB, SMART ACTIONS, IMAGE GENERATOR & PRECISE QA
+           F. FUTURISTIC AI ORB, SMART ACTIONS & PRECISE QA
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -2847,12 +2709,10 @@
             const badge = document.getElementById('ai-state-badge');
             if (!orb) return;
             orb.className = 'ai-cyber-stage ai-state-' + stateName;
-            isEnergyBoosted = (stateName === 'imaging');
 
             if (badge) {
                 if (stateName === 'listening') badge.innerText = tr('ai_state_listen');
                 else if (stateName === 'thinking') badge.innerText = tr('ai_state_search');
-                else if (stateName === 'imaging') badge.innerText = tr('ai_state_imaging');
                 else if (stateName === 'speaking') badge.innerText = tr('ai_state_speak');
                 else badge.innerText = tr('ai_state_idle');
             }
@@ -2925,15 +2785,18 @@
         }
 
         /* =========================================
-           SMART ACTION DETECTOR (FIXED WITH WORD BOUNDARIES)
+           SMART ACTION DETECTOR (ENGLISH + HINDI DEVANAGARI SUPPORT)
            ========================================= */
         function handleSmartWebsiteCommand(userQuery, liveUid) {
             const q = userQuery.toLowerCase().trim();
             const isEn = currentLang === 'en-US';
             const isGu = currentLang === 'gu-IN';
 
-            // 1. Copy Free Fire UID command (Strictly requires copy + uid/free fire)
-            if (/\b(copy|कॉपी|કોપી)\b/i.test(q) && /\b(uid|free\s*fire|ff|id)\b/i.test(q)) {
+            // 1. Copy Free Fire UID command (Supports English + Hindi "यूआईडी", "फ्री फायर", "एफ")
+            const hasCopyWord = /\bcopy\b|कॉपी|કોપી/i.test(q);
+            const hasUidOrFF = /\b(uid|free\s*fire|ff|id)\b|यूआईडी|फ्री\s*फायर|एफ\s*एफ|एफ|આઈડી/i.test(q);
+
+            if (hasCopyWord && hasUidOrFF) {
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(liveUid).catch(() => {});
                 }
@@ -2973,14 +2836,14 @@
                     }
                 }
             }
+
             return null;
         }
 
         /* =========================================
            STRICT, ACCURATE & TO-THE-POINT FALLBACK ANSWERS
-           (FIXED WITH WORD BOUNDARIES SO IT DOES NOT TRIGGER ON NORMAL WORDS)
            ========================================= */
-        function getSystemMatchedReply(userQuery, liveUid) {
+        function getSystemMatchedReply(userQuery, liveUid, apiErr = "") {
             const q = userQuery.toLowerCase().trim();
             const isEn = currentLang === 'en-US';
             const isGu = currentLang === 'gu-IN';
@@ -2993,17 +2856,24 @@
                      : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
             }
 
-            // Video count / video list queries
-            if (/\b(video|videos|link)\b|वीडियो|વિડિયો|लिंक/i.test(q) && /\b(kitne|total|count|how many)\b|कितने|कुल|કેટલા/i.test(q)) {
-                return isEn ? `There are currently ${vidCount} uploaded videos on this website.`
-                     : isGu ? `હાલમાં આ વેબસાઇટ પર કુલ ${vidCount} વિડિયો અપલોડ થયેલા છે.`
-                     : `अभी इस वेबसाइट पर कुल ${vidCount} वीडियो अपलोड किए गए हैं।`;
+            // 1. Developer / Owner / Name queries
+            if (/\b(developer|owner|creator|founder|malik|bnaya|banaya)\b|डेवलपर|मालिक|बनाया/i.test(q)) {
+                return isEn ? "The developer and owner of RAX REZA 93K is Reza Ahmad from Bihar, India, who is currently pursuing BCA."
+                     : isGu ? "RAX REZA 93K ના ડેવલપર અને માલિક બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) છે."
+                     : "RAX REZA 93K वेबसाइट और चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
             }
 
-            // Brother / Family queries
+            // 2. Education & Dream queries
+            if (/(padhai|study|qualification|education|dream|sapna|vision|goal|पढ़ाई|पढ़ाई|सपना|सपने|ભણતર|સપનું)/i.test(q)) {
+                return isEn ? "Reza Ahmad is 12th Pass and pursuing BCA. Since Class 8th, his dream has been coding, web development, and gaming."
+                     : isGu ? "રેઝા અહેમદ 12મું પાસ છે અને BCA કરી રહ્યા છે. ધોરણ 8 થી તેમનું સપનું કોડિંગ અને વેબ ડેવલપમેન્ટનું છે."
+                     : "रेज़ा अहमद 12वीं पास हैं और अभी BCA की पढ़ाई कर रहे हैं। कक्षा 8वीं से ही उनका सपना कोडिंग, वेब डेवलपमेंट और गेमिंग में पहचान बनाना है।";
+            }
+
+            // 3. Brother / Family queries
             if (/\b(bhai|brother|brothers)\b|भाई|भाइयों|ભાઈ/i.test(q)) {
-                return isEn ? "Reza Ahmad has two older brothers: eldest brother Israr Ahmad and middle brother Abrar Ahmad, and Reza Ahmad is the youngest brother."
-                     : isGu ? "રેઝા અહેમદના બે મોટા ભાઈઓ છે: સૌથી મોટા ભાઈ ઇસરાર અહેમદ અને મધ્યમ ભાઈ અબરાર અહેમદ, અને રેઝા અહેમદ સૌથી નાના ભાઈ છે."
+                return isEn ? "Reza Ahmad has two older brothers: eldest brother Israr Ahmad and middle brother Abrar Ahmad, and Reza Ahmad is the youngest."
+                     : isGu ? "રેઝા અહેમદના બે મોટા ભાઈઓ છે: ઇસરાર અહેમદ અને અબરાર અહેમદ, અને રેઝા સૌથી નાના છે."
                      : "रेज़ा अहमद के दो बड़े भाई हैं: सबसे बड़े भाई इसरार अहमद और मझले भाई अबरार अहमद, और रेज़ा अहमद सबसे छोटे भाई हैं।";
             }
 
@@ -3014,127 +2884,38 @@
             }
 
             if (/\b(family|parivar)\b|परिवार|પરિવાર/i.test(q)) {
-                return isEn ? "There are 5 members in Reza Ahmad's family: Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad."
+                return isEn ? "Reza Ahmad's family has 5 members: Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad."
                      : isGu ? "રેઝા અહેમદના પરિવારમાં 5 સભ્યો છે: પિતા એનુદ્દીਨ અંસારી, માતા, મોટા ભાઈ ઇસરાર અહેમદ, મધ્યમ ભાઈ અબરાર અહેમદ અને નાના ભાઈ રેઝા અહેમદ."
-                     : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माता, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और सबसे छोटे भाई रेज़ा अहमद।";
+                     : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माता, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और छोटे भाई रेज़ा अहमद।";
             }
 
-            // Greeting
-            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम|નમસ્તે)\b/i.test(q)) {
-                return isEn ? "Hello! How can I help you today?"
-                     : isGu ? "નમસ્તે! હું તમારી શું મદદ કરી શકું?"
-                     : "नमस्ते! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
+            // 4. Video count
+            if (/\b(video|videos|link)\b|वीडियो|વિડિયો/i.test(q) && /\b(kitne|total|count|how many)\b|कितने|कुल|કેટલા/i.test(q)) {
+                return isEn ? `There are currently ${vidCount} uploaded videos on this website.`
+                     : isGu ? `હાલમાં આ વેબસાઇટ પર કુલ ${vidCount} વિડિયો અપલોડ થયેલા છે.`
+                     : `अभी इस वेबसाइट पर कुल ${vidCount} वीडियो अपलोड किए गए हैं।`;
             }
 
-            // Free Fire UID / Custom match (Strictly using word boundaries \b)
-            if (/\b(uid|free\s*fire|ff|custom|match|1v1)\b|कस्टम|मैच/i.test(q)) {
+            // 5. Free Fire UID
+            if (/\b(uid|free\s*fire|ff|custom|match|1v1)\b|यूआईडी|फ्री\s*फायर|कस्टम|मैच/i.test(q)) {
                 return isEn ? `Reza Ahmad's Free Fire UID is ${liveUid}. Custom matches are played daily after 9:00 PM - 10:00 PM.`
                      : isGu ? `રેઝા અહેમદનું Free Fire UID ${liveUid} છે. કસ્ટમ મેચ દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી રમાય છે.`
                      : `रेज़ा अहमद का Free Fire UID ${liveUid} है। कस्टम मैच रोज़ रात 9:00 से 10:00 बजे के बाद खेले जाते हैं।`;
             }
 
-            // Developer / Owner
-            if (/\b(bnaya|banaya|owner|developer|creator|founder|malik)\b|बनाया|मालिक|બનાવ્યું/i.test(q) && /\b(website|channel|site|app|rax|reza)\b|वेबसाइट|चैनल/i.test(q)) {
-                return isEn ? "This website and RAX REZA 93K channel were created by Reza Ahmad from Bihar, India, who is pursuing BCA."
-                     : isGu ? "આ વેબસાઇટ અને RAX REZA 93K ચેનલ બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) દ્વારા બનાવવામાં આવી છે."
-                     : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
+            // 6. Greeting
+            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|સલામ|નમસ્તે)\b/i.test(q)) {
+                return isEn ? "Hello! How can I help you today?"
+                     : isGu ? "નમસ્તે! હું તમારી શું મદદ કરી શકું?"
+                     : "नमस्ते! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
             }
 
-            return isEn ? "Please check your Gemini API Key in the Admin Panel so I can answer all general questions accurately!"
-                 : isGu ? "કૃપા કરીને Admin Panel માં તમારી Gemini API Key ચેક કરો જેથી હું દરેક સવાલનો સાચો જવાબ આપી શકું!"
-                 : "कृपया Admin Panel में अपनी सही Gemini API Key सेव करें ताकि मैं आपके हर सवाल का सटीक जवाब दे सकूँ!";
+            return apiErr
+                ? `API Status: ${apiErr}`
+                : "Please check your Gemini API Key in the Admin Panel!";
         }
 
-        /* =========================================
-           AI IMAGE GENERATION DETECTOR & GENERATOR (FIXED PROMPT + FLUX MODEL)
-           ========================================= */
-        function isImageGenerationRequest(q) {
-            const lower = q.toLowerCase();
-            const hasImageWord = /\b(image|photo|picture|pic|wallpaper|logo|drawing|art|tasveer|tasvir|chitra)\b|इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|ઇમેજ|ફોટો|تصویر/i.test(lower);
-            const hasActionWord = /\b(generate|create|make|draw|banao|bana|banado|bna|diya|dikhao)\b|बनाओ|बना|जनरेट|બનાવો|બનાવ|दिखाओ/i.test(lower);
-            return hasImageWord && hasActionWord;
-        }
-
-        async function translatePromptToEnglishForImage(rawPrompt) {
-            // Clean command words safely using word boundaries \b so letters inside words are NEVER cut
-            let cleaned = rawPrompt
-                .replace(/\b(generate|create|make|draw|banao|bana\s*do|bna\s*do|dikhao|please|plz|ek|a|an|the|of|for|image|photo|picture|pic|wallpaper|tasveer|chitra)\b/gi, ' ')
-                .replace(/(इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|बनाओ|बना\s*दो|बना|जनरेट|दिखाओ|एक|का|की|के|ઇમેજ|ફોટો|બનાવો)/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-
-            if (!cleaned) cleaned = rawPrompt.trim();
-
-            const validKeys = (window.GEMINI_API_KEYS_LIST || [])
-                .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
-                .filter(k => k.length > 10);
-
-            if (validKeys.length > 0) {
-                for (const apiKey of validKeys) {
-                    try {
-                        const res = await fetchWithTimeout(
-                            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
-                            {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    contents: [{
-                                        role: "user",
-                                        parts: [{
-                                            text: `Convert this user request into a clear, detailed, photorealistic English image generation prompt (max 25 words, ONLY output the English prompt, no explanation). User request: "${cleaned}"`
-                                        }]
-                                    }],
-                                    generationConfig: { temperature: 0.3, maxOutputTokens: 60 }
-                                })
-                            },
-                            4500
-                        );
-                        const data = await res.json();
-                        const translated = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-                        if (translated && translated.trim().length > 2) {
-                            return translated.replace(/["*\n]/g, '').trim();
-                        }
-                    } catch (e) {
-                        continue;
-                    }
-                }
-            }
-
-            // Fallback basic Hindi-to-English dictionary if no Gemini key is active
-            return cleaned
-                .replace(/लाल/g, 'red')
-                .replace(/काली|काला/g, 'black')
-                .replace(/नीली|नीला/g, 'blue')
-                .replace(/सफेद/g, 'white')
-                .replace(/कार|गाड़ी/g, 'luxury sports car')
-                .replace(/बाइक/g, 'superbike motorcycle')
-                .replace(/घर/g, 'modern luxury house')
-                .replace(/शेर/g, 'majestic lion')
-                .replace(/पहाड़/g, 'scenic mountains')
-                .trim();
-        }
-
-        async function generateAIImageCardHTML(promptText) {
-            const englishPrompt = await translatePromptToEnglishForImage(promptText);
-            const seed = Math.floor(Math.random() * 999999);
-            const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt)}?width=768&height=768&model=flux&nologo=true&seed=${seed}`;
-            const fileName = `RAX_AI_${seed}.jpg`;
-
-            return {
-                imgUrl,
-                html: `
-                    <div class="ai-gen-img-wrap">
-                        <img src="${imgUrl}" alt="AI Generated Image" onload="window.setAIOrbState('idle')" onerror="this.alt='Image load failed, try again'; window.setAIOrbState('idle');">
-                        <div style="font-size:11px; color:#94a3b8; margin-bottom:6px;">Prompt: ${escapeHTML(englishPrompt)}</div>
-                        <a href="${imgUrl}" target="_blank" download="${fileName}" class="btn-sm btn-blue" style="display:inline-block; text-decoration:none; padding:6px 14px; border-radius:16px; font-size:12px; margin:0;">
-                            ⬇️ Open / Download HD Image
-                        </a>
-                    </div>
-                `
-            };
-        }
-
-        async function fetchWithTimeout(url, options, timeoutMs = 7000) {
+        async function fetchWithTimeout(url, options, timeoutMs = 8000) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeoutMs);
             try {
@@ -3158,29 +2939,28 @@
                 .filter(k => k.length > 10);
 
             if (validKeys.length === 0) {
-                await new Promise(r => setTimeout(r, 650));
-                return getSystemMatchedReply(userQuery, liveUid);
+                return getSystemMatchedReply(userQuery, liveUid, "No API Key found in Firebase");
             }
 
             const systemPrompt = `
-You are "RAX AI", a smart, helpful, and accurate AI assistant built for the website "RAX REZA 93K".
+You are "RAX AI", the intelligent AI assistant of "RAX REZA 93K" website.
 Selected UI Language Code: ${currentLang}. Reply strictly in the same language the user used (Hindi, English, Hinglish, Bhojpuri, etc.).
 
 CRITICAL INSTRUCTIONS:
-1. Understand the user's question carefully and answer accurately! You can answer BOTH general knowledge / coding / science / everyday questions AND questions about RAX REZA 93K.
-2. NEVER bring up "RAX REZA UID", "Free Fire", or Reza Ahmad's biography unless the user actually asks about them! If the user asks about a car, science, math, coding, or general topics, answer ONLY that topic accurately.
-3. NEVER mention Vapi or Gujarat. Reza Ahmad's home state is strictly Bihar, India.
-4. If the user uses abusive words or insults, politely ask them to speak respectfully.
-5. Keep answers concise (1 to 3 clear sentences) without markdown symbols (*, #, _) so voice playback sounds natural.
+1. Answer BOTH general knowledge / science / coding / everyday questions AND questions about RAX REZA 93K accurately.
+2. NEVER bring up Free Fire UID or biography unless asked.
+3. NEVER mention Vapi or Gujarat. Reza Ahmad is strictly from Bihar, India.
+4. Keep answers short (1 to 3 sentences) without markdown symbols (*, #, _) for clear voice output.
 
-WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
-- Website & Channel Owner: Reza Ahmad (YouTube: RAX REZA 93K), from Bihar, India; 12th Pass, pursuing BCA.
+WEBSITE FACTS (Use when asked about developer/owner/site):
+- Developer & Owner: Reza Ahmad (YouTube: RAX REZA 93K), from Bihar, India; 12th Pass, pursuing BCA. Dream since Class 8th: coding, web development, gaming & content creation.
 - Family (5 Members): Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, Youngest Brother Reza Ahmad.
 - Free Fire UID: ${liveUid}. Custom matches daily after 9:00 PM - 10:00 PM.
-- Total Uploaded Videos on Website: ${vidCount} videos (${vidTitles || 'None'}).
+- Uploaded Videos Count: ${vidCount} (${vidTitles || 'None'}).
 `;
 
-            const modelsToTry = ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
+            const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash"];
+            let lastApiError = "";
 
             for (const apiKey of validKeys) {
                 for (const modelName of modelsToTry) {
@@ -3196,24 +2976,26 @@ WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
                                     generationConfig: { temperature: 0.4, maxOutputTokens: 250 }
                                 })
                             },
-                            7000
+                            8000
                         );
 
                         const data = await response.json();
                         if (data.error) {
-                            if (/api key not valid|api_key_invalid|expired|permission|quota|exceeded/i.test(data.error.message)) break;
+                            lastApiError = data.error.message || "API Error";
+                            if (/api key not valid|api_key_invalid|expired|permission|quota|exceeded/i.test(lastApiError)) break;
                             continue;
                         }
                         if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
                             return data.candidates[0].content.parts[0].text.trim();
                         }
                     } catch (err) {
+                        lastApiError = err.message || "Network Timeout";
                         continue;
                     }
                 }
             }
 
-            return getSystemMatchedReply(userQuery, liveUid);
+            return getSystemMatchedReply(userQuery, liveUid, lastApiError);
         }
 
         async function processAIQuery(queryText) {
@@ -3234,24 +3016,7 @@ WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
                 return;
             }
 
-            // 2. Check Image Generation Request
-            if (isImageGenerationRequest(queryText.trim())) {
-                window.setAIOrbState('imaging');
-                const genStatus = tr('ai_state_imaging');
-                logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#a855f7; font-weight:bold;">${genStatus}</div>`;
-
-                const generated = await generateAIImageCardHTML(queryText.trim());
-
-                logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div>${generated.html}`;
-                logEl.scrollTop = logEl.scrollHeight;
-
-                if (typeof window.logAIChatToFirebase === "function") {
-                    window.logAIChatToFirebase(queryText.trim(), "[Generated Image]");
-                }
-                return;
-            }
-
-            // 3. Standard Question Answering
+            // 2. Standard Question Answering
             window.setAIOrbState('thinking');
             logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#ffbe0b;">${tr('ai_state_search')}</div>`;
             
@@ -3280,7 +3045,6 @@ WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
             const greet = tr('ai_hello');
             const html = `
                 <div class="ai-cyber-stage ai-state-idle" id="ai-orb-box" onclick="listenUserVoice()" title="Tap to Speak">
-                    <canvas id="ai-energy-sphere-canvas" width="156" height="156"></canvas>
                     <div class="ai-orbit-outer"></div>
                     <div class="ai-orbit-mid"></div>
                     <div class="ai-chip-core">AI</div>
@@ -3296,7 +3060,6 @@ WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
                 </button>
             `;
             showNeonAlert("RAX AI CYBER CORE", html, true, true);
-            setTimeout(startNeonEnergySphereAnimation, 40);
             speakResponse(greet);
         }
 
