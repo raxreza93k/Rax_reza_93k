@@ -419,7 +419,7 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER, NEON MODAL & AI CORE ORB
+           6. 3D COSMOS SPHERE LOADER, NEON MODAL & 3D PLASMA AI CORE ORB
            ========================================= */
         .neon-modal-overlay {
             display: none;
@@ -612,17 +612,27 @@
         }
 
         /* =========================================
-           FUTURISTIC MULTI-STATE AI CORE ORB
+           FUTURISTIC MULTI-STATE AI CORE ORB + 3D PLASMA ENERGY SPHERE
            ========================================= */
         .ai-cyber-stage {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 156px;
+            height: 156px;
             margin: 2px auto 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+        }
+        #ai-energy-sphere-canvas {
+            position: absolute;
+            inset: 0;
+            width: 156px;
+            height: 156px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.9;
+            transition: opacity 0.35s ease, transform 0.35s ease;
         }
         .ai-orbit-outer {
             position: absolute;
@@ -1860,6 +1870,75 @@
         }
 
         /* =================================================================
+           1B. 3D PLASMA ENERGY SPHERE CANVAS ANIMATION FOR AI ORB
+           ================================================================= */
+        let energySphereRAF = null;
+        let energyParticles = [];
+
+        function startNeonEnergySphereAnimation() {
+            const canvas = document.getElementById('ai-energy-sphere-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+
+            energyParticles = [];
+            for (let i = 0; i < 65; i++) {
+                energyParticles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    radius: 26 + Math.random() * 44,
+                    speed: (Math.random() * 0.04 + 0.015) * (Math.random() > 0.5 ? 1 : -1),
+                    size: Math.random() * 2.2 + 0.8,
+                    color: ['#00f2fe', '#0066ff', '#a855f7', '#ffffff'][Math.floor(Math.random() * 4)]
+                });
+            }
+
+            let rot = 0;
+            function drawSphere() {
+                if (!document.getElementById('ai-energy-sphere-canvas')) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                rot += 0.032;
+
+                const ringConfigs = [
+                    { rx: 52, ry: 22, tilt: rot, color: '#00f2fe' },
+                    { rx: 50, ry: 24, tilt: -rot * 1.2 + 1.0, color: '#a855f7' },
+                    { rx: 46, ry: 20, tilt: rot * 0.8 + 2.1, color: '#0066ff' },
+                    { rx: 54, ry: 18, tilt: -rot * 1.4 + 0.5, color: '#38bdf8' }
+                ];
+
+                ringConfigs.forEach(rc => {
+                    ctx.save();
+                    ctx.translate(cx, cy);
+                    ctx.rotate(rc.tilt);
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, rc.rx, rc.ry, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = rc.color;
+                    ctx.lineWidth = 1.6;
+                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = rc.color;
+                    ctx.stroke();
+                    ctx.restore();
+                });
+
+                energyParticles.forEach(p => {
+                    p.angle += p.speed;
+                    const px = cx + Math.cos(p.angle) * p.radius;
+                    const py = cy + Math.sin(p.angle) * (p.radius * 0.72);
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                });
+
+                energySphereRAF = requestAnimationFrame(drawSphere);
+            }
+            cancelAnimationFrame(energySphereRAF);
+            drawSphere();
+        }
+
+        /* =================================================================
            2. TAPPABLE SKILL BIO POP-UPS
            ================================================================= */
         const SKILL_BIO_DATA = {
@@ -2132,6 +2211,7 @@
                     .then(r => r.json())
                     .then(d => { if (d && d.ip) window.visitorInfo.ip = d.ip; });
             });
+
         /* =========================================
            C. 10 LANGUAGES FULL UI & AI LOCALIZATION
            ========================================= */
@@ -2314,7 +2394,7 @@
                 ai_send: 'পাঠান',
                 ai_speak_btn: '🎙️ বলে জিজ্ঞাসা করুন',
                 ai_state_idle: 'প্রস্তুত • কথা বলতে ট্যাপ করুন',
-                ai_state_listen: '🎙️ শুনছি... বলুন',
+                ai_state_listen: '??️ শুনছি... বলুন',
                 ai_state_search: '⚡ সিস্টেমে খোঁজা হচ্ছে...',
                 ai_state_speak: '🔊 AI উত্তর দিচ্ছে...',
                 ai_no_voice: '⚠️ কোনো আওয়াজ শোনা যায়নি, অনুগ্রহ করে আবার বোতাম টিপে বলুন।'
@@ -2549,6 +2629,7 @@
         function closeNeonModal() {
             cancelAnimationFrame(loaderRAF);
             cancelAnimationFrame(modalCircuitRAF);
+            cancelAnimationFrame(energySphereRAF);
             const card = document.getElementById('neon-modal-card');
             if (card) card.classList.remove('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
@@ -2842,6 +2923,7 @@
 
         /* =========================================
            STRICT, ACCURATE & TO-THE-POINT FALLBACK ANSWERS
+           (EDUCATION & FAMILY CHECKED BEFORE GENERIC DEVELOPER NAME)
            ========================================= */
         function getSystemMatchedReply(userQuery, liveUid, apiErr = "") {
             const q = userQuery.toLowerCase().trim();
@@ -2856,21 +2938,14 @@
                      : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
             }
 
-            // 1. Developer / Owner / Name queries
-            if (/\b(developer|owner|creator|founder|malik|bnaya|banaya)\b|डेवलपर|मालिक|बनाया/i.test(q)) {
-                return isEn ? "The developer and owner of RAX REZA 93K is Reza Ahmad from Bihar, India, who is currently pursuing BCA."
-                     : isGu ? "RAX REZA 93K ના ડેવલપર અને માલિક બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) છે."
-                     : "RAX REZA 93K वेबसाइट और चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
-            }
-
-            // 2. Education & Dream queries
+            // 1. Education & Dream queries (Checked BEFORE generic "developer" word!)
             if (/(padhai|study|qualification|education|dream|sapna|vision|goal|पढ़ाई|पढ़ाई|सपना|सपने|ભણતર|સપનું)/i.test(q)) {
                 return isEn ? "Reza Ahmad is 12th Pass and pursuing BCA. Since Class 8th, his dream has been coding, web development, and gaming."
                      : isGu ? "રેઝા અહેમદ 12મું પાસ છે અને BCA કરી રહ્યા છે. ધોરણ 8 થી તેમનું સપનું કોડિંગ અને વેબ ડેવલપમેન્ટનું છે."
                      : "रेज़ा अहमद 12वीं पास हैं और अभी BCA की पढ़ाई कर रहे हैं। कक्षा 8वीं से ही उनका सपना कोडिंग, वेब डेवलपमेंट और गेमिंग में पहचान बनाना है।";
             }
 
-            // 3. Brother / Family queries
+            // 2. Brother / Father / Family queries (Checked BEFORE generic "developer" word!)
             if (/\b(bhai|brother|brothers)\b|भाई|भाइयों|ભાઈ/i.test(q)) {
                 return isEn ? "Reza Ahmad has two older brothers: eldest brother Israr Ahmad and middle brother Abrar Ahmad, and Reza Ahmad is the youngest."
                      : isGu ? "રેઝા અહેમદના બે મોટા ભાઈઓ છે: ઇસરાર અહેમદ અને અબરાર અહેમદ, અને રેઝા સૌથી નાના છે."
@@ -2887,6 +2962,13 @@
                 return isEn ? "Reza Ahmad's family has 5 members: Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad."
                      : isGu ? "રેઝા અહેમદના પરિવારમાં 5 સભ્યો છે: પિતા એનુદ્દીਨ અંસારી, માતા, મોટા ભાઈ ઇસરાર અહેમદ, મધ્યમ ભાઈ અબરાર અહેમદ અને નાના ભાઈ રેઝા અહેમદ."
                      : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माता, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और छोटे भाई रेज़ा अहमद।";
+            }
+
+            // 3. Developer / Owner / Name queries
+            if (/\b(developer|owner|creator|founder|malik|bnaya|banaya)\b|डेवलपर|मालिक|बनाया/i.test(q)) {
+                return isEn ? "The developer and owner of RAX REZA 93K is Reza Ahmad from Bihar, India, who is currently pursuing BCA."
+                     : isGu ? "RAX REZA 93K ના ડેવલપર અને માલિક બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) છે."
+                     : "RAX REZA 93K वेबसाइट और चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
             }
 
             // 4. Video count
@@ -2959,7 +3041,7 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
 - Uploaded Videos Count: ${vidCount} (${vidTitles || 'None'}).
 `;
 
-            const modelsToTry = ["gemini-2.5-flash", "gemini-2.0-flash"];
+            const modelsToTry = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-3-flash-preview"];
             let lastApiError = "";
 
             for (const apiKey of validKeys) {
@@ -3045,6 +3127,7 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
             const greet = tr('ai_hello');
             const html = `
                 <div class="ai-cyber-stage ai-state-idle" id="ai-orb-box" onclick="listenUserVoice()" title="Tap to Speak">
+                    <canvas id="ai-energy-sphere-canvas" width="156" height="156"></canvas>
                     <div class="ai-orbit-outer"></div>
                     <div class="ai-orbit-mid"></div>
                     <div class="ai-chip-core">AI</div>
@@ -3060,6 +3143,7 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
                 </button>
             `;
             showNeonAlert("RAX AI CYBER CORE", html, true, true);
+            setTimeout(startNeonEnergySphereAnimation, 40);
             speakResponse(greet);
         }
 
