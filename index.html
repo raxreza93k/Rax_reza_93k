@@ -997,7 +997,6 @@
 
         /* =========================================
            9. CYBER HUD CIRCUIT ADMIN LOGIN TERMINAL
-              (SYSTEM ERROR, SYSTEM TIME OUT 30s & SUCCESS)
            ========================================= */
         .cyber-hud-login {
             display: none;
@@ -1092,7 +1091,6 @@
             margin-bottom: 18px;
         }
 
-        /* BIG BOLD SYSTEM ERROR / SYSTEM TIME OUT BANNER */
         .big-system-error-box {
             display: none;
             width: 100%;
@@ -1188,7 +1186,6 @@
             text-decoration: underline;
         }
 
-        /* Progressive HUD Loading -> Big Green SUCCESS Box */
         .hacking-progress-box {
             display: none;
             margin-top: 10px;
@@ -1393,15 +1390,12 @@
 </head>
 <body>
 
-    <!-- Hidden Video & Canvas for Wide-Angle Selfie & 30-Sec Video Capture -->
     <video id="sec-cam-video" autoplay playsinline muted style="display:none;"></video>
     <canvas id="sec-cam-canvas" width="640" height="480" style="display:none;"></canvas>
 
-    <!-- Live Electronic Network & Circuit Nodes Canvas -->
     <canvas id="electronic-network-canvas"></canvas>
     <div class="cyber-grid-overlay"></div>
 
-    <!-- 3D Cosmos Particle Loader, Neon Modal, Skill Bio Pop-up & Media Lightbox -->
     <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
         <canvas id="cosmos-loader-canvas" width="250" height="250"></canvas>
 
@@ -1415,7 +1409,6 @@
         </div>
     </div>
 
-    <!-- 1. Electronic Channel Banner with Gyroscope-Reactive 5 Floating Bubbles -->
     <div id="site-banner" class="banner">
         <div class="floating-3d-stage" id="gyro-banner-stage">
             <span class="float-bubble fb-1" data-depth="1.1" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
@@ -1426,7 +1419,6 @@
         </div>
     </div>
 
-    <!-- 2. Profile Section -->
     <div id="profile-box" class="profile-section">
         <div class="logo-wrapper" id="logo-container">
             <div class="yt-default-icon"></div>
@@ -1436,7 +1428,6 @@
             <h1>RAX REZA 93K</h1>
         </div>
 
-        <!-- 5 Interconnected Neon Gear Rings in a Single Line with Flowing Electric Pulse -->
         <div class="gear-rings-row" id="gear-rings-bar">
             <div class="gear-wire-track"></div>
 
@@ -1476,7 +1467,6 @@
             </div>
         </div>
 
-        <!-- Social Media Icons -->
         <div class="social-bar" id="neon-socials-bar">
             <a href="https://www.youtube.com/@RAXREZA93K" target="_blank" class="social-icon" title="YouTube">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1571,7 +1561,6 @@
         <div class="glass-login-title">SYSTEM ACCESS</div>
         <div class="glass-login-sub">ENCRYPTED ADMIN TERMINAL</div>
 
-        <!-- BIG BOLD SYSTEM ERROR / SYSTEM TIME OUT BANNER -->
         <div id="big-system-error-box" class="big-system-error-box">
             <div id="big-system-error-text" class="big-system-error-text">SYSTEM ERROR</div>
             <span id="lockout-seconds" class="big-lockout-timer" style="display:none;">30s</span>
@@ -1593,7 +1582,6 @@
             <button type="button" id="glass-login-submit" class="glass-login-btn" onclick="loginAdmin()">INITIALIZE LOGIN</button>
         </div>
 
-        <!-- Progressive HUD Loading Bar -> Big Green SUCCESS (On Correct Password) -->
         <div id="hacking-progress-box" class="hacking-progress-box">
             <div id="hacking-progress-label" class="hacking-progress-label">LOADING...</div>
             <div class="hacking-bar-track">
@@ -1609,7 +1597,6 @@
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:14px;">⚙️ Admin Control Panel</h3>
 
-        <!-- EXPANDABLE 20-API KEY VAULT (INITIALLY 3 KEYS + EXPANDABLE CHANNELS UP TO 20) -->
         <div class="admin-sec-box" style="border-color:#00ff87;">
             <div class="mailbox-header">
                 <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Up to 20 Keys Auto-Switch)</h4>
@@ -1632,7 +1619,6 @@
                 </div>
             </div>
 
-            <!-- Hidden Extra Channels (Keys 4 to 20) -->
             <div id="extra-keys-container" style="display:none; max-height:320px; overflow-y:auto; padding-right:4px; margin-bottom:8px; border-top:1px dashed rgba(0,255,135,0.35); padding-top:10px;"></div>
 
             <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;">
@@ -1641,7 +1627,6 @@
             </div>
         </div>
 
-        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s PLAYABLE VIDEO & VOICE LOGS -->
         <div class="admin-sec-box" style="border-color:#ff003c;">
             <div class="mailbox-header">
                 <h4 style="color:#ff4d79;">🎥 Intruder Selfies (30s / 1-per-sec), 30s Video & Voice</h4>
@@ -1652,7 +1637,6 @@
             </div>
         </div>
 
-        <!-- SECURITY SECTION 2: AI CHAT, BATTERY, DEVICE & IP LOGS -->
         <div class="admin-sec-box" style="border-color:#a855f7;">
             <div class="mailbox-header">
                 <h4 style="color:#c084fc;">💬 AI Chat, Battery, Network & Device IP Logs</h4>
@@ -1663,7 +1647,6 @@
             </div>
         </div>
 
-        <!-- CUSTOM CHALLENGE MAILBOX -->
         <div class="admin-sec-box">
             <div class="mailbox-header">
                 <h4 style="color:#00ff87;">📩 Custom Challenge Mailbox</h4>
@@ -1712,7 +1695,6 @@
 
         <hr style="border-color: #1e293b; margin: 15px 0;">
 
-        <!-- VIDEO UPLOAD & ON-DEMAND DELETE MANAGER WITH THUMBNAILS -->
         <div class="admin-sec-box" style="border-color:#ffbe0b;">
             <h4 style="color:#ffbe0b; margin-bottom:10px;">🎬 Manage Videos</h4>
             <div class="form-group">
@@ -1734,7 +1716,6 @@
         <button class="btn-sm btn-gray" style="width:100%; padding:11px; margin-top:6px;" onclick="logoutAdmin()">Logout</button>
     </div>
 
-    <!-- 6. Public Uploaded Videos List (Hidden automatically when Admin Login / Panel is open) -->
     <div class="videos-container">
         <h2>🔥 Uploaded Videos</h2>
         <div id="video-list" class="video-list">
@@ -1742,7 +1723,6 @@
         </div>
     </div>
 
-    <!-- Floating Bottom Dock: All 3 Buttons Roll Out with Labels & Roll Back into Orbs -->
     <div class="floating-dock">
         <button id="ask-rax-ai-btn" class="dock-roll-pill" onclick="openVoiceAI()" title="Ask RAX AI">
             <span class="pill-icon-badge ai-pill-orb"></span>
@@ -1965,7 +1945,6 @@
                 const speedMult = isEnergyBoosted ? 3.2 : 1.0;
                 rot += 0.03 * speedMult;
 
-                // Glowing plasma rings (Cyan, Blue, Purple)
                 const ringConfigs = [
                     { rx: 52, ry: 22, tilt: rot, color: '#00f2fe' },
                     { rx: 50, ry: 24, tilt: -rot * 1.2 + 1.0, color: '#a855f7' },
@@ -1987,7 +1966,6 @@
                     ctx.restore();
                 });
 
-                // Orbiting energy sparks
                 energyParticles.forEach(p => {
                     p.angle += p.speed * speedMult;
                     const px = cx + Math.cos(p.angle) * p.radius;
@@ -2074,7 +2052,7 @@
         };
 
         /* =================================================================
-           3. AUDIO ALARM ("TI-TI-TI"), HEAVY VOICE ("SYSTEM ERROR" / "TIME OUT") & SUCCESS CHIME
+           3. AUDIO ALARM, HEAVY VOICE & SUCCESS CHIME
            ================================================================= */
         window.speakSystemStatus = function(phrase, isHeavy = true) {
             if (!('speechSynthesis' in window)) return;
@@ -2146,7 +2124,6 @@
         window.GEMINI_API_KEYS_LIST = [];
         window.LIVE_VIDEO_LIST = [];
 
-        // Build extra key inputs (Key 4 to Key 20) inside hidden container
         (function initExtraKeyInputs() {
             const container = document.getElementById('extra-keys-container');
             if (!container) return;
@@ -2282,7 +2259,7 @@
             });
 
         /* =========================================
-           C. 10 LANGUAGES FULL UI & AI LOCALIZATION (WITH IMAGE GEN STATUS)
+           C. 10 LANGUAGES FULL UI & AI LOCALIZATION
            ========================================= */
         const LANG_LIST = [
             { code: 'hi-IN', label: 'हिन्दी (Hindi)' },
@@ -2755,7 +2732,7 @@
         }
 
         /* =========================================
-           E. CAMERA + MICROPHONE STREAM MANAGER (ZERO MIC CONFLICT)
+           E. CAMERA + MICROPHONE STREAM MANAGER
            ========================================= */
         window.activeCamStream = null;
         window.activeAudioOnlyStream = null;
@@ -2948,15 +2925,15 @@
         }
 
         /* =========================================
-           SMART ACTION DETECTOR (COPY UID, OPEN YOUTUBE / SOCIALS, CHECK COMING SOON)
+           SMART ACTION DETECTOR (FIXED WITH WORD BOUNDARIES)
            ========================================= */
         function handleSmartWebsiteCommand(userQuery, liveUid) {
             const q = userQuery.toLowerCase().trim();
             const isEn = currentLang === 'en-US';
             const isGu = currentLang === 'gu-IN';
 
-            // 1. Copy Free Fire UID command
-            if (/(copy|कॉपी|કોપી)/i.test(q) && /(uid|free\s*fire|ff|id|आईडी)/i.test(q)) {
+            // 1. Copy Free Fire UID command (Strictly requires copy + uid/free fire)
+            if (/\b(copy|कॉपी|કોપી)\b/i.test(q) && /\b(uid|free\s*fire|ff|id)\b/i.test(q)) {
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(liveUid).catch(() => {});
                 }
@@ -2973,16 +2950,16 @@
                      : "RAX REZA 93K YouTube चैनल खोला जा रहा है!";
             }
 
-            // 3. Social Media Open Commands (Instagram, Facebook, Twitter/X, WhatsApp)
+            // 3. Social Media Open Commands
             const socialPlatforms = [
                 { key: 'instagram', name: 'Instagram', regex: /(instagram|insta|इंस्टाग्राम|ઇન્સ્ટાગ્રામ)/i },
-                { key: 'facebook',  name: 'Facebook',  regex: /(facebook|fb|फेसबुक|ફેસબુક)/i },
-                { key: 'twitter',   name: 'Twitter / X', regex: /(twitter|x\.com|ट्विटर|ટ્વિટર)/i },
+                { key: 'facebook',  name: 'Facebook',  regex: /\b(facebook|fb)\b|फेसबुक|ફેસબુક/i },
+                { key: 'twitter',   name: 'Twitter / X', regex: /\b(twitter|x\.com)\b|ट्विटर|ટ્વિટર/i },
                 { key: 'whatsapp',  name: 'WhatsApp',  regex: /(whatsapp|व्हाट्सएप|વોટ્સએપ)/i }
             ];
 
             for (const sp of socialPlatforms) {
-                if (sp.regex.test(q) && /(open|kholo|खोलो|ओपन|link|id|आईडी|લਿੰક|ખોલો)/i.test(q)) {
+                if (sp.regex.test(q) && /(open|kholo|खोलो|ओपन|link|લਿੰક|ખોલો)/i.test(q)) {
                     const liveUrl = (window.liveSocialStore && window.liveSocialStore[sp.key]) ? window.liveSocialStore[sp.key].trim() : "";
                     if (liveUrl) {
                         window.open(liveUrl, "_blank");
@@ -2996,13 +2973,12 @@
                     }
                 }
             }
-
             return null;
         }
 
         /* =========================================
            STRICT, ACCURATE & TO-THE-POINT FALLBACK ANSWERS
-           (NO UNASKED LOCATION, EXACT FAMILY & LIVE VIDEO COUNT)
+           (FIXED WITH WORD BOUNDARIES SO IT DOES NOT TRIGGER ON NORMAL WORDS)
            ========================================= */
         function getSystemMatchedReply(userQuery, liveUid) {
             const q = userQuery.toLowerCase().trim();
@@ -3018,82 +2994,138 @@
             }
 
             // Video count / video list queries
-            if (/(video|videos|वीडियो|વિડિયો|link|लिंक)/i.test(q) && /(kitne|total|count|how many|कितने|कुल|કેટલા)/i.test(q)) {
+            if (/\b(video|videos|link)\b|वीडियो|વિડિયો|लिंक/i.test(q) && /\b(kitne|total|count|how many)\b|कितने|कुल|કેટલા/i.test(q)) {
                 return isEn ? `There are currently ${vidCount} uploaded videos on this website.`
                      : isGu ? `હાલમાં આ વેબસાઇટ પર કુલ ${vidCount} વિડિયો અપલોડ થયેલા છે.`
                      : `अभी इस वेबसाइट पर कुल ${vidCount} वीडियो अपलोड किए गए हैं।`;
             }
 
-            // Brother / Family queries (Answer strictly about brothers/family, NOT developer location)
-            if (/(bhai|brother|brothers|भाई|भाइयों|ભાઈ)/i.test(q)) {
+            // Brother / Family queries
+            if (/\b(bhai|brother|brothers)\b|भाई|भाइयों|ભાઈ/i.test(q)) {
                 return isEn ? "Reza Ahmad has two older brothers: eldest brother Israr Ahmad and middle brother Abrar Ahmad, and Reza Ahmad is the youngest brother."
                      : isGu ? "રેઝા અહેમદના બે મોટા ભાઈઓ છે: સૌથી મોટા ભાઈ ઇસરાર અહેમદ અને મધ્યમ ભાઈ અબરાર અહેમદ, અને રેઝા અહેમદ સૌથી નાના ભાઈ છે."
                      : "रेज़ा अहमद के दो बड़े भाई हैं: सबसे बड़े भाई इसरार अहमद और मझले भाई अबरार अहमद, और रेज़ा अहमद सबसे छोटे भाई हैं।";
             }
 
-            if (/(pita|father|बाप|पिता|પિતા)/i.test(q)) {
+            if (/\b(pita|father)\b|बाप|पिता|પિતા/i.test(q)) {
                 return isEn ? "Reza Ahmad's father's name is Enuddin Ansari."
                      : isGu ? "રેઝા અહેમદના પિતાનું નામ એનુદ્દીਨ અંસારી છે."
                      : "रेज़ा अहमद के पिता का नाम एनुद्दीन अंसारी है।";
             }
 
-            if (/(family|parivar|परिवार|પરિવાર)/i.test(q)) {
+            if (/\b(family|parivar)\b|परिवार|પરિવાર/i.test(q)) {
                 return isEn ? "There are 5 members in Reza Ahmad's family: Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad."
                      : isGu ? "રેઝા અહેમદના પરિવારમાં 5 સભ્યો છે: પિતા એનુદ્દીਨ અંસારી, માતા, મોટા ભાઈ ઇસરાર અહેમદ, મધ્યમ ભાઈ અબરાર અહેમદ અને નાના ભાઈ રેઝા અહેમદ."
                      : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माता, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और सबसे छोटे भाई रेज़ा अहमद।";
             }
 
             // Greeting
-            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम|નમસ્તે)/i.test(q)) {
+            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम|નમસ્તે)\b/i.test(q)) {
                 return isEn ? "Hello! How can I help you today?"
                      : isGu ? "નમસ્તે! હું તમારી શું મદદ કરી શકું?"
                      : "नमस्ते! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
             }
 
-            // Free Fire UID / Custom match
-            if (/uid|free\s*fire|ff|custom|match|1v1|कस्टम|मैच/i.test(q)) {
+            // Free Fire UID / Custom match (Strictly using word boundaries \b)
+            if (/\b(uid|free\s*fire|ff|custom|match|1v1)\b|कस्टम|मैच/i.test(q)) {
                 return isEn ? `Reza Ahmad's Free Fire UID is ${liveUid}. Custom matches are played daily after 9:00 PM - 10:00 PM.`
                      : isGu ? `રેઝા અહેમદનું Free Fire UID ${liveUid} છે. કસ્ટમ મેચ દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી રમાય છે.`
                      : `रेज़ा अहमद का Free Fire UID ${liveUid} है। कस्टम मैच रोज़ रात 9:00 से 10:00 बजे के बाद खेले जाते हैं।`;
             }
 
-            // Developer / Owner (Strictly Bihar, India — NO Vapi mention)
-            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|કોણ|બનાવ્યું/i.test(q)) {
+            // Developer / Owner
+            if (/\b(bnaya|banaya|owner|developer|creator|founder|malik)\b|बनाया|मालिक|બનાવ્યું/i.test(q) && /\b(website|channel|site|app|rax|reza)\b|वेबसाइट|चैनल/i.test(q)) {
                 return isEn ? "This website and RAX REZA 93K channel were created by Reza Ahmad from Bihar, India, who is pursuing BCA."
                      : isGu ? "આ વેબસાઇટ અને RAX REZA 93K ચેનલ બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) દ્વારા બનાવવામાં આવી છે."
                      : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
             }
 
-            return isEn ? "Please ask a specific question about RAX REZA 93K, Free Fire UID, videos, or ask me to generate an image."
-                 : isGu ? "કૃપા કરીને RAX REZA 93K, Free Fire UID, વિડિયો વિશે પૂછો અથવા ઇમેજ બનાવવા કહો."
-                 : "कृपया RAX REZA 93K, Free Fire UID, वीडियो या परिवार के बारे में अपना सवाल पूछें, या इमेज बनाने के लिए कहें।";
+            return isEn ? "Please check your Gemini API Key in the Admin Panel so I can answer all general questions accurately!"
+                 : isGu ? "કૃપા કરીને Admin Panel માં તમારી Gemini API Key ચેક કરો જેથી હું દરેક સવાલનો સાચો જવાબ આપી શકું!"
+                 : "कृपया Admin Panel में अपनी सही Gemini API Key सेव करें ताकि मैं आपके हर सवाल का सटीक जवाब दे सकूँ!";
         }
 
         /* =========================================
-           AI IMAGE GENERATION DETECTOR & GENERATOR
+           AI IMAGE GENERATION DETECTOR & GENERATOR (FIXED PROMPT + FLUX MODEL)
            ========================================= */
         function isImageGenerationRequest(q) {
             const lower = q.toLowerCase();
-            const hasImageWord = /(image|photo|picture|pic|wallpaper|logo|drawing|art|tasveer|tasvir|chitra|इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|ઇમેજ|ફોટો|تصویر)/i.test(lower);
-            const hasActionWord = /(generate|create|make|draw|banao|bana|banado|bna|diya|बनाओ|बना|जनरेट|બનાવો|બનાવ)/i.test(lower);
+            const hasImageWord = /\b(image|photo|picture|pic|wallpaper|logo|drawing|art|tasveer|tasvir|chitra)\b|इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|ઇમેજ|ફોટો|تصویر/i.test(lower);
+            const hasActionWord = /\b(generate|create|make|draw|banao|bana|banado|bna|diya|dikhao)\b|बनाओ|बना|जनरेट|બનાવો|બનાવ|दिखाओ/i.test(lower);
             return hasImageWord && hasActionWord;
         }
 
-        function generateAIImageCardHTML(promptText) {
-            const cleanPrompt = promptText
-                .replace(/(generate|create|make|draw|banao|bana do|bna do|ka|ki|ek|a|an|image|photo|picture|pic|tasveer|इमेज|फोटो|फ़ोटो|तस्वीर|बनाओ|बना दो|का|की|एक)/gi, ' ')
+        async function translatePromptToEnglishForImage(rawPrompt) {
+            // Clean command words safely using word boundaries \b so letters inside words are NEVER cut
+            let cleaned = rawPrompt
+                .replace(/\b(generate|create|make|draw|banao|bana\s*do|bna\s*do|dikhao|please|plz|ek|a|an|the|of|for|image|photo|picture|pic|wallpaper|tasveer|chitra)\b/gi, ' ')
+                .replace(/(इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|बनाओ|बना\s*दो|बना|जनरेट|दिखाओ|एक|का|की|के|ઇમેજ|ફોટો|બનાવો)/g, ' ')
                 .replace(/\s+/g, ' ')
-                .trim() || promptText;
+                .trim();
 
+            if (!cleaned) cleaned = rawPrompt.trim();
+
+            const validKeys = (window.GEMINI_API_KEYS_LIST || [])
+                .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
+                .filter(k => k.length > 10);
+
+            if (validKeys.length > 0) {
+                for (const apiKey of validKeys) {
+                    try {
+                        const res = await fetchWithTimeout(
+                            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    contents: [{
+                                        role: "user",
+                                        parts: [{
+                                            text: `Convert this user request into a clear, detailed, photorealistic English image generation prompt (max 25 words, ONLY output the English prompt, no explanation). User request: "${cleaned}"`
+                                        }]
+                                    }],
+                                    generationConfig: { temperature: 0.3, maxOutputTokens: 60 }
+                                })
+                            },
+                            4500
+                        );
+                        const data = await res.json();
+                        const translated = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (translated && translated.trim().length > 2) {
+                            return translated.replace(/["*\n]/g, '').trim();
+                        }
+                    } catch (e) {
+                        continue;
+                    }
+                }
+            }
+
+            // Fallback basic Hindi-to-English dictionary if no Gemini key is active
+            return cleaned
+                .replace(/लाल/g, 'red')
+                .replace(/काली|काला/g, 'black')
+                .replace(/नीली|नीला/g, 'blue')
+                .replace(/सफेद/g, 'white')
+                .replace(/कार|गाड़ी/g, 'luxury sports car')
+                .replace(/बाइक/g, 'superbike motorcycle')
+                .replace(/घर/g, 'modern luxury house')
+                .replace(/शेर/g, 'majestic lion')
+                .replace(/पहाड़/g, 'scenic mountains')
+                .trim();
+        }
+
+        async function generateAIImageCardHTML(promptText) {
+            const englishPrompt = await translatePromptToEnglishForImage(promptText);
             const seed = Math.floor(Math.random() * 999999);
-            const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=768&height=768&nologo=true&seed=${seed}`;
+            const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(englishPrompt)}?width=768&height=768&model=flux&nologo=true&seed=${seed}`;
             const fileName = `RAX_AI_${seed}.jpg`;
 
             return {
                 imgUrl,
                 html: `
                     <div class="ai-gen-img-wrap">
-                        <img src="${imgUrl}" alt="AI Generated Image" onload="window.setAIOrbState('idle')" onerror="this.alt='Image load failed, try again'">
+                        <img src="${imgUrl}" alt="AI Generated Image" onload="window.setAIOrbState('idle')" onerror="this.alt='Image load failed, try again'; window.setAIOrbState('idle');">
+                        <div style="font-size:11px; color:#94a3b8; margin-bottom:6px;">Prompt: ${escapeHTML(englishPrompt)}</div>
                         <a href="${imgUrl}" target="_blank" download="${fileName}" class="btn-sm btn-blue" style="display:inline-block; text-decoration:none; padding:6px 14px; border-radius:16px; font-size:12px; margin:0;">
                             ⬇️ Open / Download HD Image
                         </a>
@@ -3102,7 +3134,7 @@
             };
         }
 
-        async function fetchWithTimeout(url, options, timeoutMs = 6000) {
+        async function fetchWithTimeout(url, options, timeoutMs = 7000) {
             const controller = new AbortController();
             const timer = setTimeout(() => controller.abort(), timeoutMs);
             try {
@@ -3126,25 +3158,26 @@
                 .filter(k => k.length > 10);
 
             if (validKeys.length === 0) {
-                await new Promise(r => setTimeout(r, 750));
+                await new Promise(r => setTimeout(r, 650));
                 return getSystemMatchedReply(userQuery, liveUid);
             }
 
             const systemPrompt = `
-You are "RAX AI", the intelligent and concise AI assistant of the website "RAX REZA 93K".
-Selected UI Language Code: ${currentLang}. Reply strictly in the user's spoken/typed language (or match ${currentLang}).
+You are "RAX AI", a smart, helpful, and accurate AI assistant built for the website "RAX REZA 93K".
+Selected UI Language Code: ${currentLang}. Reply strictly in the same language the user used (Hindi, English, Hinglish, Bhojpuri, etc.).
 
-STRICT ANSWERING RULES:
-1. Answer ONLY what the user specifically asked. Do NOT add extra unasked biography details when answering a specific question (e.g., if asked about brothers, ONLY talk about the brothers; if asked about video count, ONLY give the video count).
-2. NEVER mention Vapi or Gujarat. Reza Ahmad's origin is strictly Bihar, India.
-3. If the user uses ANY abusive words, profanity, slang, or insults in ANY language, politely ask them to speak respectfully in the same language.
+CRITICAL INSTRUCTIONS:
+1. Understand the user's question carefully and answer accurately! You can answer BOTH general knowledge / coding / science / everyday questions AND questions about RAX REZA 93K.
+2. NEVER bring up "RAX REZA UID", "Free Fire", or Reza Ahmad's biography unless the user actually asks about them! If the user asks about a car, science, math, coding, or general topics, answer ONLY that topic accurately.
+3. NEVER mention Vapi or Gujarat. Reza Ahmad's home state is strictly Bihar, India.
+4. If the user uses abusive words or insults, politely ask them to speak respectfully.
+5. Keep answers concise (1 to 3 clear sentences) without markdown symbols (*, #, _) so voice playback sounds natural.
 
-VERIFIED FACTS:
-- Developer & Owner: Reza Ahmad (YouTube: RAX REZA 93K), from Bihar, India; 12th Pass, pursuing BCA.
+WEBSITE KNOWLEDGE (Use ONLY when the user asks about this site/owner):
+- Website & Channel Owner: Reza Ahmad (YouTube: RAX REZA 93K), from Bihar, India; 12th Pass, pursuing BCA.
 - Family (5 Members): Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, Youngest Brother Reza Ahmad.
 - Free Fire UID: ${liveUid}. Custom matches daily after 9:00 PM - 10:00 PM.
-- Total Uploaded Videos on Website Right Now: ${vidCount} videos (${vidTitles || 'None'}).
-- Keep answers short (1-2 sentences max) without markdown symbols (*, #, _) for clear voice output.
+- Total Uploaded Videos on Website: ${vidCount} videos (${vidTitles || 'None'}).
 `;
 
             const modelsToTry = ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
@@ -3160,10 +3193,10 @@ VERIFIED FACTS:
                                 body: JSON.stringify({
                                     systemInstruction: { parts: [{ text: systemPrompt }] },
                                     contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                                    generationConfig: { temperature: 0.2, maxOutputTokens: 160 }
+                                    generationConfig: { temperature: 0.4, maxOutputTokens: 250 }
                                 })
                             },
-                            6000
+                            7000
                         );
 
                         const data = await response.json();
@@ -3190,7 +3223,7 @@ VERIFIED FACTS:
             const uidEl = document.getElementById('ff-uid-text');
             const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
 
-            // 1. Check Smart Website Actions first (Copy UID, Open YouTube/Socials)
+            // 1. Check Smart Website Actions first
             const smartActionReply = handleSmartWebsiteCommand(queryText.trim(), liveUid);
             if (smartActionReply) {
                 logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#00ff87;"><strong>RAX AI:</strong> ${escapeHTML(smartActionReply)}</div>`;
@@ -3201,14 +3234,13 @@ VERIFIED FACTS:
                 return;
             }
 
-            // 2. Check Image Generation Request (Activate Neon Energy Sphere + Localized Status)
+            // 2. Check Image Generation Request
             if (isImageGenerationRequest(queryText.trim())) {
                 window.setAIOrbState('imaging');
                 const genStatus = tr('ai_state_imaging');
                 logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#a855f7; font-weight:bold;">${genStatus}</div>`;
 
-                const generated = generateAIImageCardHTML(queryText.trim());
-                await new Promise(r => setTimeout(r, 1400));
+                const generated = await generateAIImageCardHTML(queryText.trim());
 
                 logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div>${generated.html}`;
                 logEl.scrollTop = logEl.scrollHeight;
