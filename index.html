@@ -4,173 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="5F7KRaaMvEC3iT_v9_hTezDtGwwZPBxqFE9cFWiHGfo" />
-    <title>RAX REZA 93K | Reza Ahmad</title>
+    <title>RAX REZA 93K | Reza Ahmad - Electronic Cyber Hub</title>
     <style>
+        :root {
+            --neon-cyan: #00f2fe;
+            --neon-blue: #0066ff;
+            --neon-red: #ff003c;
+            --neon-green: #00ff87;
+            --neon-purple: #a855f7;
+            --neon-gold: #ffbe0b;
+            --bg-dark: #03060f;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
         body {
-            background-color: #07070c;
+            background-color: var(--bg-dark);
             color: #ffffff;
             text-align: center;
-            padding-bottom: 105px;
+            padding-bottom: 110px;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
         /* =========================================
-           1. FLUID GRADIENT MESH BACKGROUND
+           1. LIVE ELECTRONIC CIRCUIT & NODE NETWORK BACKGROUND
            ========================================= */
-        .fluid-bg {
+        #electronic-network-canvas {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: -2;
-            overflow: hidden;
-            background: #07070d;
-        }
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(75px);
-            opacity: 0.55;
-            animation: fluidMove 14s infinite alternate ease-in-out;
-        }
-        .orb-1 {
-            width: 340px; height: 340px;
-            background: radial-gradient(circle, #ff004c, #7900ff);
-            top: -60px; left: -80px;
-            animation-duration: 12s;
-        }
-        .orb-2 {
-            width: 380px; height: 380px;
-            background: radial-gradient(circle, #00d2ff, #3a7bd5);
-            top: 25%; right: -100px;
-            animation-duration: 16s;
-            animation-delay: -3s;
-        }
-        .orb-3 {
-            width: 320px; height: 320px;
-            background: radial-gradient(circle, #ff8c00, #ff0055);
-            bottom: 10%; left: 10%;
-            animation-duration: 15s;
-            animation-delay: -6s;
-        }
-        .orb-4 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, #00ff87, #60efff);
-            bottom: -80px; right: 15%;
-            animation-duration: 18s;
-            animation-delay: -2s;
+            background: radial-gradient(circle at 50% 35%, #071936 0%, #030712 65%, #010308 100%);
         }
 
-        @keyframes fluidMove {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            50% { transform: translate(45px, -35px) scale(1.18) rotate(120deg); }
-            100% { transform: translate(-35px, 45px) scale(0.92) rotate(240deg); }
+        .cyber-grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(0, 242, 254, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
+            background-size: 38px 38px;
         }
 
         /* =========================================
-           2. BANNER WITH 3D FLYING & FLOATING SKILLS
+           2. ELECTRONIC BANNER WITH FLOATING BUBBLES
            ========================================= */
         .banner {
-            width: 100%; height: 225px;
-            background: linear-gradient(135deg, rgba(255, 0, 60, 0.25), rgba(112, 0, 255, 0.25), rgba(0, 212, 255, 0.25));
+            width: 100%; height: 235px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.22), rgba(0, 242, 254, 0.14), rgba(168, 85, 247, 0.22));
             background-size: cover; background-position: center;
             border-bottom: 2px solid transparent;
-            border-image: linear-gradient(90deg, #ff0055, #00f2fe, #a855f7, #ff0055) 1;
+            border-image: linear-gradient(90deg, #00f2fe, #0066ff, #00ff87, #ff0055, #00f2fe) 1;
             display: flex; align-items: center; justify-content: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px rgba(0, 242, 254, 0.18);
         }
         .banner::after {
-            content: "RAX REZA 93K";
-            font-size: 32px; font-weight: 900; letter-spacing: 5px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(0,242,254,0.3), rgba(255,0,85,0.22));
+            content: "RAX REZA 93K // CYBER NODE";
+            font-size: 26px; font-weight: 900; letter-spacing: 5px;
+            background: linear-gradient(90deg, rgba(0,242,254,0.28), rgba(255,255,255,0.4), rgba(0,255,135,0.28));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             z-index: 1;
+            pointer-events: none;
         }
         .banner.custom-img::after { content: ""; }
         .banner.hidden { display: none; }
 
+        /* Floating Bubbles Stage inside Electronic Theme */
         .floating-3d-stage {
             position: absolute;
             inset: 0;
             perspective: 900px;
-            pointer-events: none;
             z-index: 2;
         }
-        .float-item {
+        .float-bubble {
             position: absolute;
-            padding: 5px 13px;
-            border-radius: 20px;
-            font-size: 11.5px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
             font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #fff;
-            background: rgba(15, 15, 28, 0.72);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.6px;
+            color: #ffffff;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.35), rgba(5, 18, 42, 0.85));
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.55), inset 0 0 10px rgba(255, 255, 255, 0.35);
+            border: 1.5px solid rgba(0, 242, 254, 0.75);
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.25s, box-shadow 0.25s;
             will-change: top, left, transform;
         }
-        .fi-1 { border-color: #ff0055; box-shadow: 0 0 16px #ff0055; animation: flyTag1 13s infinite alternate ease-in-out; }
-        .fi-2 { border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe; animation: flyTag2 15s infinite alternate ease-in-out; }
-        .fi-3 { border-color: #a855f7; box-shadow: 0 0 16px #a855f7; animation: flyTag3 14s infinite alternate ease-in-out; }
-        .fi-4 { border-color: #00ff87; box-shadow: 0 0 16px #00ff87; animation: flyTag4 16s infinite alternate ease-in-out; }
-        .fi-5 { border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b; animation: flyTag5 17s infinite alternate ease-in-out; }
+        .float-bubble:hover {
+            transform: scale(1.14) !important;
+            box-shadow: 0 0 28px #00f2fe, inset 0 0 14px #ffffff;
+            z-index: 10;
+        }
+        .fb-1 { border-color: #00f2fe; box-shadow: 0 0 18px rgba(0, 242, 254, 0.65); animation: flyBubble1 13s infinite alternate ease-in-out; }
+        .fb-2 { border-color: #00ff87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.65); animation: flyBubble2 15s infinite alternate ease-in-out; }
+        .fb-3 { border-color: #ff0055; box-shadow: 0 0 18px rgba(255, 0, 85, 0.65); animation: flyBubble3 14s infinite alternate ease-in-out; }
+        .fb-4 { border-color: #a855f7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.65); animation: flyBubble4 16s infinite alternate ease-in-out; }
+        .fb-5 { border-color: #ffbe0b; box-shadow: 0 0 18px rgba(255, 190, 11, 0.65); animation: flyBubble5 17s infinite alternate ease-in-out; }
 
-        @keyframes flyTag1 {
-            0%   { top: 14%; left: 6%;  transform: scale(0.95) rotate(-8deg); }
-            35%  { top: 55%; left: 38%; transform: scale(1.12) rotate(6deg); }
-            70%  { top: 18%; left: 72%; transform: scale(0.9)  rotate(-5deg); }
-            100% { top: 62%; left: 15%; transform: scale(1.06) rotate(8deg); }
+        @keyframes flyBubble1 {
+            0%   { top: 14%; left: 6%;  transform: scale(0.96) rotate(-5deg); }
+            35%  { top: 56%; left: 36%; transform: scale(1.1)  rotate(4deg); }
+            70%  { top: 16%; left: 70%; transform: scale(0.92) rotate(-4deg); }
+            100% { top: 62%; left: 16%; transform: scale(1.06) rotate(6deg); }
         }
-        @keyframes flyTag2 {
-            0%   { top: 20%; left: 72%; transform: scale(1.08) rotate(7deg); }
-            35%  { top: 62%; left: 48%; transform: scale(0.92) rotate(-7deg); }
-            70%  { top: 15%; left: 14%; transform: scale(1.1)  rotate(5deg); }
-            100% { top: 52%; left: 70%; transform: scale(0.95) rotate(-6deg); }
+        @keyframes flyBubble2 {
+            0%   { top: 18%; left: 72%; transform: scale(1.06) rotate(5deg); }
+            35%  { top: 62%; left: 48%; transform: scale(0.94) rotate(-5deg); }
+            70%  { top: 14%; left: 14%; transform: scale(1.08) rotate(4deg); }
+            100% { top: 54%; left: 68%; transform: scale(0.96) rotate(-4deg); }
         }
-        @keyframes flyTag3 {
-            0%   { top: 60%; left: 10%; transform: scale(1.05) rotate(6deg); }
-            35%  { top: 14%; left: 44%; transform: scale(0.92) rotate(-8deg); }
-            70%  { top: 58%; left: 68%; transform: scale(1.12) rotate(7deg); }
-            100% { top: 22%; left: 22%; transform: scale(0.96) rotate(-5deg); }
+        @keyframes flyBubble3 {
+            0%   { top: 60%; left: 10%; transform: scale(1.04) rotate(4deg); }
+            35%  { top: 14%; left: 44%; transform: scale(0.94) rotate(-6deg); }
+            70%  { top: 58%; left: 66%; transform: scale(1.1)  rotate(5deg); }
+            100% { top: 20%; left: 22%; transform: scale(0.96) rotate(-4deg); }
         }
-        @keyframes flyTag4 {
-            0%   { top: 58%; left: 68%; transform: scale(0.94) rotate(-6deg); }
-            35%  { top: 18%; left: 24%; transform: scale(1.1)  rotate(8deg); }
-            70%  { top: 60%; left: 32%; transform: scale(0.92) rotate(-7deg); }
-            100% { top: 14%; left: 66%; transform: scale(1.08) rotate(6deg); }
+        @keyframes flyBubble4 {
+            0%   { top: 58%; left: 66%; transform: scale(0.95) rotate(-5deg); }
+            35%  { top: 18%; left: 22%; transform: scale(1.08) rotate(6deg); }
+            70%  { top: 60%; left: 32%; transform: scale(0.94) rotate(-5deg); }
+            100% { top: 14%; left: 64%; transform: scale(1.06) rotate(4deg); }
         }
-        @keyframes flyTag5 {
-            0%   { top: 12%; left: 42%; transform: scale(1.06) rotate(-5deg); }
-            35%  { top: 58%; left: 14%; transform: scale(0.94) rotate(7deg); }
-            70%  { top: 26%; left: 68%; transform: scale(1.12) rotate(-6deg); }
-            100% { top: 54%; left: 48%; transform: scale(0.96) rotate(5deg); }
+        @keyframes flyBubble5 {
+            0%   { top: 12%; left: 40%; transform: scale(1.05) rotate(-4deg); }
+            35%  { top: 58%; left: 14%; transform: scale(0.95) rotate(5deg); }
+            70%  { top: 24%; left: 66%; transform: scale(1.1)  rotate(-5deg); }
+            100% { top: 54%; left: 46%; transform: scale(0.96) rotate(4deg); }
         }
 
         /* =========================================
-           3. PROFILE, BLINKING NAME & SEQUENTIAL NEON TAGS
+           3. PROFILE, ELECTRONIC RING & TAPPABLE SKILL TAGS
            ========================================= */
         .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 3; }
         .profile-section.no-banner { margin-top: 25px; }
         
         .logo-wrapper {
-            width: 112px; height: 112px; margin: 0 auto; border-radius: 50%;
-            border: 3px solid #ff004c; background: #12121a;
+            width: 114px; height: 114px; margin: 0 auto; border-radius: 50%;
+            border: 3px solid var(--neon-cyan); background: #071124;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 28px rgba(255, 0, 76, 0.65), 0 0 45px rgba(0, 210, 255, 0.3);
+            box-shadow: 0 0 28px rgba(0, 242, 254, 0.7), inset 0 0 18px rgba(0, 102, 255, 0.5);
             overflow: hidden;
+            position: relative;
         }
         .logo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         
         .yt-default-icon {
-            width: 62px; height: 44px; background: linear-gradient(135deg, #ff0000, #ff0055);
+            width: 62px; height: 44px; background: linear-gradient(135deg, #ff003c, #0066ff);
             border-radius: 11px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
         }
         .yt-default-icon::before {
             content: ""; border-style: solid;
@@ -183,66 +175,76 @@
             position: relative;
             display: inline-block;
             margin-top: 12px;
-            padding: 5px 22px;
+            padding: 6px 24px;
         }
         .title-wrapper::before {
             content: "";
             position: absolute;
             inset: 0;
             border-radius: 30px;
-            background: linear-gradient(90deg, #ff0055, #7900ff, #00f2fe, #ff0055);
+            background: linear-gradient(90deg, #00f2fe, #0066ff, #00ff87, #ff0055, #00f2fe);
             background-size: 300% 300%;
             z-index: -1;
             animation: titleBlinkGlow 1.5s infinite alternate ease-in-out, gradientShift 4s linear infinite;
         }
         @keyframes titleBlinkGlow {
-            0% { opacity: 0.2; transform: scale(0.92); filter: blur(6px); }
-            100% { opacity: 0.95; transform: scale(1.12); filter: blur(11px); }
+            0% { opacity: 0.25; transform: scale(0.94); filter: blur(6px); }
+            100% { opacity: 0.95; transform: scale(1.1); filter: blur(11px); }
         }
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             100% { background-position: 300% 50%; }
         }
 
-        h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); }
+        h1 { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-shadow: 0 0 15px rgba(0, 242, 254, 0.7); }
         
+        /* Tappable Skill Pills */
         .subtitle {
-            color: #bbb; font-size: 13px; margin-top: 8px;
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 7px;
+            color: #bbb; font-size: 13px; margin-top: 10px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
         }
         .tag-pill {
-            background: rgba(22, 22, 35, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 5px 12px; border-radius: 14px; color: #cbd5e1; font-weight: 600;
-            backdrop-filter: blur(4px);
-            transition: all 0.35s ease;
+            background: rgba(8, 18, 38, 0.88);
+            border: 1.5px solid rgba(0, 242, 254, 0.35);
+            padding: 6px 14px; border-radius: 14px; color: #e0f2fe; font-weight: 700;
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+            transition: all 0.28s ease;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
         }
-        .tag-pill.neon-glow-1, .social-icon.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe, inset 0 0 8px #00f2fe; transform: scale(1.08); }
-        .tag-pill.neon-glow-2, .social-icon.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 16px #ff0055, inset 0 0 8px #ff0055; transform: scale(1.08); }
-        .tag-pill.neon-glow-3, .social-icon.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 16px #00ff87, inset 0 0 8px #00ff87; transform: scale(1.08); }
-        .tag-pill.neon-glow-4, .social-icon.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b, inset 0 0 8px #ffbe0b; transform: scale(1.08); }
-        .tag-pill.neon-glow-5, .social-icon.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 16px #a855f7, inset 0 0 8px #a855f7; transform: scale(1.08); }
+        .tag-pill:hover {
+            border-color: #00f2fe;
+            background: rgba(0, 242, 254, 0.2);
+            transform: translateY(-2px) scale(1.06);
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.65);
+        }
+        .tag-pill:active { transform: scale(0.95); }
+        .tag-pill.neon-glow-1, .social-icon.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe, inset 0 0 8px #00f2fe; transform: scale(1.07); }
+        .tag-pill.neon-glow-2, .social-icon.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 16px #ff0055, inset 0 0 8px #ff0055; transform: scale(1.07); }
+        .tag-pill.neon-glow-3, .social-icon.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 16px #00ff87, inset 0 0 8px #00ff87; transform: scale(1.07); }
+        .tag-pill.neon-glow-4, .social-icon.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b, inset 0 0 8px #ffbe0b; transform: scale(1.07); }
+        .tag-pill.neon-glow-5, .social-icon.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 16px #a855f7, inset 0 0 8px #a855f7; transform: scale(1.07); }
 
         /* =========================================
-           4. SOCIAL MEDIA ICONS & ACTION BUTTONS
+           4. SOCIAL MEDIA ICONS & CYBER ACTION BUTTONS
            ========================================= */
         .social-bar {
             display: flex; justify-content: center; gap: 13px; margin-top: 16px; flex-wrap: wrap;
         }
         .social-icon {
             width: 46px; height: 46px; border-radius: 50%;
-            background: rgba(24, 24, 38, 0.88);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            background: rgba(8, 18, 38, 0.9);
+            border: 1.5px solid rgba(0, 242, 254, 0.35);
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; cursor: pointer;
             transition: all 0.35s ease;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
         }
         .social-icon:hover {
-            border-color: #ff0055;
-            background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(121, 0, 255, 0.3));
+            border-color: #00f2fe;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.3), rgba(0, 102, 255, 0.35));
             transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.8);
         }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
@@ -258,31 +260,33 @@
         }
         .btn-main:active { transform: scale(0.95); }
         .btn-sub {
-            background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff;
-            box-shadow: 0 4px 18px rgba(255, 0, 60, 0.5);
+            background: linear-gradient(90deg, #ff003c, #ff0066); color: #fff;
+            box-shadow: 0 4px 18px rgba(255, 0, 60, 0.55);
         }
         .btn-uid {
-            background: linear-gradient(135deg, #6a00ff, #ff007f, #00d2ff);
+            background: linear-gradient(135deg, #0066ff, #00f2fe, #7900ff);
             background-size: 200% 200%;
             animation: gradientShift 4s linear infinite;
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.38);
-            box-shadow: 0 4px 18px rgba(255, 0, 127, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 0 4px 18px rgba(0, 242, 254, 0.45);
         }
         .btn-more {
-            background: linear-gradient(135deg, rgba(255, 0, 85, 0.25), rgba(121, 0, 255, 0.25));
-            color: #ff7597; border: 1px solid #ff0055;
+            background: rgba(8, 22, 48, 0.85);
+            color: #00f2fe; border: 1.5px solid #00f2fe;
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
         }
         .btn-contact {
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(58, 123, 213, 0.3));
-            color: #38bdf8; border: 1px solid #00f2fe;
-            box-shadow: 0 0 14px rgba(0, 242, 254, 0.25);
+            background: rgba(8, 22, 48, 0.85);
+            color: #00ff87; border: 1.5px solid #00ff87;
+            box-shadow: 0 0 12px rgba(0, 255, 135, 0.25);
         }
         .btn-challenge {
-            background: linear-gradient(90deg, #ff8c00, #ff0055, #7900ff);
-            color: #fff;
-            border: 1.5px solid #ffbe0b;
-            box-shadow: 0 0 20px rgba(255, 140, 0, 0.55);
+            background: linear-gradient(90deg, #0066ff, #00f2fe, #00ff87);
+            color: #030712;
+            font-weight: 900;
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.65);
             width: 100%;
             max-width: 340px;
             justify-content: center;
@@ -290,25 +294,25 @@
         }
 
         /* =========================================
-           5. COLORFUL NEON BOXES (MORE & CONTACT)
+           5. ELECTRONIC NEON INFO BOXES (MORE & CONTACT)
            ========================================= */
         .info-box {
             display: none; max-width: 680px; margin: 20px auto 10px; padding: 22px;
-            background: linear-gradient(135deg, rgba(18, 18, 32, 0.92), rgba(32, 12, 42, 0.92));
+            background: linear-gradient(135deg, rgba(6, 16, 36, 0.94), rgba(10, 26, 54, 0.94));
             border: 2px solid transparent;
             border-radius: 16px;
             background-clip: padding-box;
             position: relative;
             text-align: left; line-height: 1.7;
             animation: fadeIn 0.3s ease;
-            box-shadow: 0 10px 35px rgba(255, 0, 85, 0.25), 0 0 20px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 10px 35px rgba(0, 242, 254, 0.25);
         }
         .info-box::before {
             content: "";
             position: absolute;
             inset: -2px;
             border-radius: 17px;
-            background: linear-gradient(45deg, #ff0055, #7900ff, #00f2fe, #00ff87, #ff0055);
+            background: linear-gradient(45deg, #00f2fe, #0066ff, #00ff87, #ff0055, #00f2fe);
             background-size: 300% 300%;
             z-index: -1;
             animation: gradientShift 5s linear infinite;
@@ -316,12 +320,12 @@
         .info-box.show { display: block; }
         
         .detail-heading {
-            background: linear-gradient(90deg, #ff4d8d, #00f2fe);
+            background: linear-gradient(90deg, #00f2fe, #00ff87);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 17px; font-weight: 800;
             margin-top: 14px; margin-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(0, 242, 254, 0.25);
             padding-bottom: 5px;
         }
         .detail-heading:first-child { margin-top: 0; }
@@ -330,7 +334,7 @@
         .detail-list { list-style: none; margin-bottom: 12px; }
         .detail-list:last-child { margin-bottom: 0; }
         .detail-list li { color: #e2e8f0; font-size: 14px; margin-bottom: 6px; }
-        .detail-list strong { color: #ffffff; }
+        .detail-list strong { color: #00f2fe; }
         .detail-list a { color: #38bdf8; text-decoration: none; word-break: break-all; }
         
         .contact-content-area {
@@ -341,29 +345,29 @@
         }
         .coming-soon-badge {
             display: inline-block; padding: 10px 20px;
-            background: linear-gradient(90deg, rgba(255, 0, 85, 0.25), rgba(0, 242, 254, 0.25));
+            background: linear-gradient(90deg, rgba(0, 102, 255, 0.25), rgba(0, 242, 254, 0.25));
             color: #ffffff;
             border: 1.5px solid #00f2fe;
             border-radius: 12px;
             font-weight: 800; font-size: 14.5px;
             letter-spacing: 0.5px;
-            box-shadow: 0 0 18px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.45);
             animation: pulseBadge 1.8s infinite alternate;
         }
         @keyframes pulseBadge {
-            0% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.5); border-color: #ff0055; }
-            100% { box-shadow: 0 0 22px rgba(0, 242, 254, 0.8); border-color: #00f2fe; }
+            0% { box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); border-color: #0066ff; }
+            100% { box-shadow: 0 0 22px rgba(0, 242, 254, 0.85); border-color: #00f2fe; }
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER, MODAL & FULLSCREEN VIEWER
+           6. 3D COSMOS SPHERE LOADER, MODAL & FUTURISTIC AI ORB
            ========================================= */
         .neon-modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(5, 5, 14, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(2, 6, 16, 0.92);
+            backdrop-filter: blur(12px);
             z-index: 9999;
             flex-direction: column;
             align-items: center;
@@ -381,14 +385,14 @@
         .neon-modal-card {
             position: relative;
             width: 100%;
-            max-width: 420px;
+            max-width: 430px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 22px 18px;
+            padding: 24px 18px;
             border-radius: 20px;
-            background: radial-gradient(circle at top left, #1c1033, #0b0b16 72%);
+            background: radial-gradient(circle at top, #0a1f44, #040917 78%);
             text-align: center;
-            box-shadow: 0 0 40px rgba(121, 0, 255, 0.5), 0 0 25px rgba(0, 242, 254, 0.35);
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.45), inset 0 0 22px rgba(0, 102, 255, 0.3);
             animation: popScale 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: none;
         }
@@ -402,7 +406,7 @@
             inset: 0;
             border-radius: 20px;
             padding: 2px;
-            background: linear-gradient(135deg, #ff0055, #00f2fe, #a855f7, #00ff87);
+            background: linear-gradient(135deg, #00f2fe, #0066ff, #00ff87, #ff0055);
             background-size: 300% 300%;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -411,50 +415,15 @@
             pointer-events: none;
         }
 
-        .tri-ring-stage {
+        /* Electronic Circuit Corner Lines inside Modals */
+        .circuit-corners {
             position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
+            inset: 8px;
+            border: 1px dashed rgba(0, 242, 254, 0.25);
+            border-radius: 14px;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.42;
         }
-        .glow-ring {
-            width: 92px;
-            height: 92px;
-            border-radius: 50%;
-            position: relative;
-            filter: blur(1px);
-        }
-        .glow-ring::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            padding: 4px;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-        .ring-c1::before {
-            background: conic-gradient(from 0deg, #ff0055, #ffbe0b, transparent 70%);
-            animation: spinRing 2.2s linear infinite;
-            box-shadow: 0 0 20px #ff0055;
-        }
-        .ring-c2::before {
-            background: conic-gradient(from 120deg, #00f2fe, #3a7bd5, transparent 70%);
-            animation: spinRingRev 2.6s linear infinite;
-            box-shadow: 0 0 20px #00f2fe;
-        }
-        .ring-c3::before {
-            background: conic-gradient(from 240deg, #00ff87, #a855f7, transparent 70%);
-            animation: spinRing 3s linear infinite;
-            box-shadow: 0 0 20px #00ff87;
-        }
-        @keyframes spinRingRev { 100% { transform: rotate(-360deg); } }
 
         @keyframes popScale {
             from { opacity: 0; transform: scale(0.84); }
@@ -463,45 +432,44 @@
 
         .neon-modal-content { position: relative; z-index: 2; }
         .neon-modal-title {
-            font-size: 19px; font-weight: 800; margin-bottom: 10px;
-            background: linear-gradient(90deg, #00f2fe, #00ff87, #ffbe0b, #ff4d8d);
+            font-size: 19px; font-weight: 900; margin-bottom: 10px; letter-spacing: 0.8px;
+            background: linear-gradient(90deg, #00f2fe, #00ff87, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .neon-modal-msg {
-            color: #e2e8f0; font-size: 14px; margin-bottom: 14px; line-height: 1.5;
+            color: #e2e8f0; font-size: 14px; margin-bottom: 14px; line-height: 1.55;
         }
         .neon-modal-btn {
             padding: 9px 26px;
             border-radius: 25px;
-            border: none;
+            border: 1px solid #00f2fe;
             font-weight: 800;
             font-size: 13.5px;
             color: #fff;
             cursor: pointer;
-            background: linear-gradient(90deg, #ff0055, #7900ff, #00d2ff);
-            background-size: 200% 200%;
-            box-shadow: 0 4px 18px rgba(255, 0, 85, 0.5);
+            background: linear-gradient(90deg, #0066ff, #00f2fe);
+            box-shadow: 0 4px 18px rgba(0, 242, 254, 0.45);
             transition: transform 0.2s;
             margin-top: 8px;
         }
         .neon-modal-btn:active { transform: scale(0.95); }
 
         .notice-box {
-            background: rgba(255, 190, 11, 0.14);
-            border: 1px solid #ffbe0b;
+            background: rgba(0, 242, 254, 0.12);
+            border: 1px solid #00f2fe;
             border-radius: 10px;
             padding: 9px 11px;
             font-size: 12.5px;
-            color: #fef08a;
+            color: #bae6fd;
             margin-bottom: 10px;
             line-height: 1.45;
         }
         .limit-pill {
             display: inline-block;
-            background: rgba(0, 242, 254, 0.15);
-            border: 1px solid #00f2fe;
-            color: #00f2fe;
+            background: rgba(0, 255, 135, 0.14);
+            border: 1px solid #00ff87;
+            color: #00ff87;
             padding: 3px 10px;
             border-radius: 12px;
             font-size: 11.5px;
@@ -513,7 +481,7 @@
             padding: 10px 12px;
             border-radius: 10px;
             border: 1px solid #00f2fe;
-            background: rgba(10, 10, 22, 0.85);
+            background: rgba(4, 10, 24, 0.9);
             color: #fff;
             font-size: 14px;
             margin-bottom: 9px;
@@ -531,7 +499,7 @@
             padding: 8px 6px;
             border-radius: 10px;
             border: 1px solid rgba(0, 242, 254, 0.45);
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(0, 102, 255, 0.12);
             color: #fff;
             font-size: 12.5px;
             font-weight: 600;
@@ -539,53 +507,148 @@
             transition: 0.2s;
         }
         .lang-btn:hover, .lang-btn.active-lang {
-            background: linear-gradient(90deg, #00f2fe, #7900ff);
+            background: linear-gradient(90deg, #00f2fe, #0066ff);
             border-color: #fff;
             color: #fff;
+            box-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
         }
 
-        /* AI Assistant Water-Wave Ring & Typing Bar */
-        .ai-orb-wrap {
+        /* =========================================
+           FUTURISTIC MULTI-STATE AI CORE ORB (IDLE, LISTENING, THINKING, SPEAKING)
+           ========================================= */
+        .ai-cyber-stage {
             position: relative;
-            width: 96px;
-            height: 96px;
-            margin: 4px auto 12px;
+            width: 136px;
+            height: 136px;
+            margin: 4px auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
-        .ai-water-ring {
+        .ai-orbit-outer {
             position: absolute;
-            inset: 0;
+            width: 132px;
+            height: 132px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, #00f2fe, #ff0055, #00ff87, #a855f7, #00f2fe);
-            animation: spinRing 2.5s linear infinite;
-            filter: blur(3px);
+            border: 2px dashed rgba(0, 242, 254, 0.65);
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+            animation: spinSlow 11s linear infinite;
+            transition: all 0.3s ease;
         }
-        .ai-water-core {
-            position: relative;
-            width: 82px;
-            height: 82px;
+        .ai-orbit-mid {
+            position: absolute;
+            width: 108px;
+            height: 108px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #1a2a6c, #090d16);
+            border: 2.5px solid transparent;
+            border-top-color: #00f2fe;
+            border-bottom-color: #0066ff;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.5);
+            animation: spinSlowRev 7s linear infinite;
+            transition: all 0.3s ease;
+        }
+        .ai-chip-core {
+            position: relative;
+            width: 74px;
+            height: 74px;
+            border-radius: 18px;
+            background: radial-gradient(circle, #0b2b59, #030b1c);
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.8), inset 0 0 15px rgba(0, 242, 254, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            z-index: 2;
-            box-shadow: inset 0 0 18px rgba(0, 242, 254, 0.65);
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 0 12px #00f2fe;
+            z-index: 3;
+            transition: all 0.3s ease;
         }
-        .ai-speaking .ai-water-ring {
-            animation: spinRing 0.8s linear infinite, pulseWave 0.55s ease-in-out infinite alternate;
+
+        /* STATE 1: IDLE (Gentle slow spin) */
+        .ai-state-idle .ai-orbit-outer { animation: spinSlow 12s linear infinite; }
+        .ai-state-idle .ai-orbit-mid { animation: spinSlowRev 8s linear infinite; }
+
+        /* STATE 2: LISTENING (Distinct Green/Cyan Blink & Reactive Pulse) */
+        .ai-state-listening .ai-orbit-outer {
+            border-color: #00ff87;
+            box-shadow: 0 0 30px #00ff87;
+            animation: listenBlinkRing 0.55s ease-in-out infinite alternate;
         }
-        @keyframes spinRing { 100% { transform: rotate(360deg); } }
-        @keyframes pulseWave {
-            from { transform: scale(0.94) rotate(0deg); }
-            to { transform: scale(1.12) rotate(180deg); }
+        .ai-state-listening .ai-chip-core {
+            border-color: #00ff87;
+            box-shadow: 0 0 32px #00ff87, inset 0 0 18px #00ff87;
+            animation: listenBlinkCore 0.55s ease-in-out infinite alternate;
         }
+
+        /* STATE 3: THINKING / SEARCHING (Fast Circular Radar Spin) */
+        .ai-state-thinking .ai-orbit-outer {
+            border: 3px dotted #ffbe0b;
+            box-shadow: 0 0 32px #ffbe0b;
+            animation: spinFast 0.9s linear infinite;
+        }
+        .ai-state-thinking .ai-orbit-mid {
+            border-top-color: #00f2fe;
+            border-right-color: #ff0055;
+            border-bottom-color: #00ff87;
+            animation: spinFastRev 0.65s linear infinite;
+        }
+        .ai-state-thinking .ai-chip-core {
+            border-color: #ffbe0b;
+            box-shadow: 0 0 28px #ffbe0b;
+        }
+
+        /* STATE 4: SPEAKING (Up-Down / Wave Growth Rhythm) */
+        .ai-state-speaking .ai-orbit-mid {
+            border-color: #00f2fe;
+            box-shadow: 0 0 32px #00f2fe;
+            animation: speakWavePulse 0.42s ease-in-out infinite alternate;
+        }
+        .ai-state-speaking .ai-chip-core {
+            animation: speakCoreGrow 0.42s ease-in-out infinite alternate;
+            box-shadow: 0 0 35px #00f2fe, inset 0 0 20px #00f2fe;
+        }
+
+        @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+        @keyframes spinSlowRev { 100% { transform: rotate(-360deg); } }
+        @keyframes spinFast { 100% { transform: rotate(360deg); } }
+        @keyframes spinFastRev { 100% { transform: rotate(-360deg); } }
+        @keyframes listenBlinkRing {
+            0% { opacity: 0.35; transform: scale(0.94); }
+            100% { opacity: 1; transform: scale(1.07); }
+        }
+        @keyframes listenBlinkCore {
+            0% { opacity: 0.65; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes speakWavePulse {
+            0% { transform: scaleY(0.86) scaleX(1.06); }
+            100% { transform: scaleY(1.18) scaleX(0.92); }
+        }
+        @keyframes speakCoreGrow {
+            0% { transform: scale(0.93); }
+            100% { transform: scale(1.12); }
+        }
+
+        .ai-state-badge {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #00f2fe;
+            background: rgba(0, 242, 254, 0.12);
+            border: 1px solid rgba(0, 242, 254, 0.45);
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-bottom: 9px;
+            letter-spacing: 0.5px;
+        }
+
         .ai-transcript-box {
-            background: rgba(5, 8, 18, 0.78);
-            border: 1px solid rgba(0, 242, 254, 0.4);
+            background: rgba(3, 8, 20, 0.85);
+            border: 1px solid rgba(0, 242, 254, 0.45);
             border-radius: 12px;
             padding: 11px;
             min-height: 75px;
@@ -607,7 +670,7 @@
             padding: 10px 13px;
             border-radius: 22px;
             border: 1.5px solid #00f2fe;
-            background: rgba(8, 10, 22, 0.9);
+            background: rgba(4, 10, 24, 0.95);
             color: #fff;
             font-size: 13px;
             outline: none;
@@ -616,7 +679,7 @@
             padding: 0 15px;
             border-radius: 22px;
             border: none;
-            background: linear-gradient(135deg, #00f2fe, #7900ff);
+            background: linear-gradient(135deg, #00f2fe, #0066ff);
             color: #fff;
             font-weight: 800;
             cursor: pointer;
@@ -624,8 +687,8 @@
         }
         .mic-listening {
             background: linear-gradient(90deg, #00ff87, #00f2fe) !important;
-            color: #050510 !important;
-            box-shadow: 0 0 22px #00ff87 !important;
+            color: #030712 !important;
+            box-shadow: 0 0 24px #00ff87 !important;
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
@@ -638,19 +701,20 @@
 
         .videos-container h2 {
             text-align: left; font-size: 19px; margin-bottom: 16px;
-            border-left: 4px solid #ff0055; padding-left: 10px;
+            border-left: 4px solid #00f2fe; padding-left: 10px;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
         }
         .video-list { display: flex; flex-direction: column; gap: 18px; }
         
         .video-card {
-            background: rgba(20, 20, 32, 0.85);
-            backdrop-filter: blur(6px);
+            background: rgba(8, 18, 38, 0.85);
+            backdrop-filter: blur(8px);
             border-radius: 14px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(0, 242, 254, 0.25);
             text-align: left;
-            transition: border-color 0.25s, transform 0.2s;
+            transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
         }
-        .video-card:hover { border-color: #00f2fe; transform: translateY(-2px); }
+        .video-card:hover { border-color: #00f2fe; transform: translateY(-2px); box-shadow: 0 0 22px rgba(0, 242, 254, 0.3); }
         .video-link-area { text-decoration: none; color: inherit; display: block; }
         
         .thumb-wrapper {
@@ -660,9 +724,10 @@
         .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .play-badge {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 58px; height: 40px; background: rgba(255, 0, 50, 0.92);
+            width: 58px; height: 40px; background: rgba(0, 102, 255, 0.9);
+            border: 1.5px solid #00f2fe;
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.7);
         }
         .play-badge::before {
             content: ""; border-style: solid; border-width: 9px 0 9px 16px;
@@ -671,10 +736,10 @@
 
         .video-info { padding: 12px 14px; }
         .video-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
-        .video-url-text { font-size: 12.5px; color: #38bdf8; word-break: break-all; }
+        .video-url-text { font-size: 12.5px; color: #00f2fe; word-break: break-all; }
 
         /* =========================================
-           8. FLOATING DOCK & ROLLING "ASK RAX AI" RGB PILL
+           8. FLOATING DOCK & ROLLING "ASK RAX AI" CYBER PILL
            ========================================= */
         .floating-dock {
             position: fixed;
@@ -689,13 +754,13 @@
 
         .ask-ai-pill {
             position: relative;
-            height: 50px;
-            min-width: 50px;
-            max-width: 210px;
+            height: 52px;
+            min-width: 52px;
+            max-width: 215px;
             padding: 0 16px;
             border-radius: 30px;
             border: none;
-            background: #0b0b18;
+            background: #050d1f;
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -703,15 +768,15 @@
             gap: 9px;
             cursor: pointer;
             overflow: hidden;
-            box-shadow: 0 0 22px rgba(255, 0, 85, 0.55), 0 0 22px rgba(0, 242, 254, 0.55);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.65);
             transition: max-width 0.65s cubic-bezier(0.22, 1, 0.36, 1), padding 0.65s ease, transform 0.2s;
         }
         .ask-ai-pill::before {
             content: "";
             position: absolute;
             inset: -50%;
-            background: conic-gradient(from 0deg, #ff0055, #ffbe0b, #00ff87, #00f2fe, #a855f7, #ff0055);
-            animation: spinRing 3s linear infinite;
+            background: conic-gradient(from 0deg, #00f2fe, #0066ff, #00ff87, #ff0055, #00f2fe);
+            animation: spinSlow 3s linear infinite;
             z-index: 0;
         }
         .ask-ai-pill::after {
@@ -719,7 +784,7 @@
             position: absolute;
             inset: 2.5px;
             border-radius: 28px;
-            background: radial-gradient(circle at top left, #1c1038, #0a0a14);
+            background: radial-gradient(circle at top left, #0b2249, #040917);
             z-index: 1;
         }
         .ask-ai-pill:active { transform: scale(0.94); }
@@ -730,20 +795,26 @@
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, #00f2fe, #ff0055, #00ff87, #a855f7, #00f2fe);
-            animation: spinRing 2s linear infinite;
+            background: conic-gradient(from 0deg, #00f2fe, #00ff87, #0066ff, #00f2fe);
+            animation: spinSlow 2s linear infinite;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 10px #00f2fe;
+            box-shadow: 0 0 12px #00f2fe;
         }
         .ai-pill-orb::after {
-            content: "";
-            width: 15px;
-            height: 15px;
+            content: "AI";
+            font-size: 9px;
+            font-weight: 900;
+            color: #00f2fe;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            background: #0b0b18;
+            background: #040917;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .ai-pill-label {
             position: relative;
@@ -752,15 +823,15 @@
             font-weight: 800;
             white-space: nowrap;
             letter-spacing: 0.4px;
-            background: linear-gradient(90deg, #ffffff, #00f2fe, #ffbe0b);
+            background: linear-gradient(90deg, #ffffff, #00f2fe, #00ff87);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 1;
             transition: opacity 0.35s ease, width 0.45s ease;
         }
         .ask-ai-pill.rolled {
-            max-width: 50px;
-            padding: 0 12px;
+            max-width: 52px;
+            padding: 0 13px;
         }
         .ask-ai-pill.rolled .ai-pill-label {
             opacity: 0;
@@ -772,7 +843,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: rgba(20, 20, 34, 0.92);
+            background: rgba(6, 16, 36, 0.94);
             color: #fff;
             border: 1.5px solid #00f2fe;
             cursor: pointer;
@@ -780,47 +851,80 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 16px rgba(0, 242, 254, 0.45);
             transition: transform 0.2s;
         }
         .dock-circle-btn:active { transform: scale(0.92); }
 
         /* =========================================
-           GLASSMORPHISM ADMIN LOGIN BOX
+           9. GLASSMORPHISM HACKING ADMIN LOGIN BOX
+              (RED ERROR, BEEP SOUND, 3-TRY LOCKOUT & PROGRESSIVE LOADING)
            ========================================= */
         .glass-login-box {
             display: none;
             position: relative;
-            max-width: 390px;
+            max-width: 400px;
             margin: 26px auto;
-            padding: 32px 28px;
+            padding: 32px 26px;
             border-radius: 22px;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(8, 22, 48, 0.52);
             backdrop-filter: blur(22px);
             -webkit-backdrop-filter: blur(22px);
-            border: 1.5px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), inset 0 0 24px rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(0, 242, 254, 0.45);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(0, 242, 254, 0.22), inset 0 0 24px rgba(0, 242, 254, 0.08);
             text-align: center;
             animation: fadeIn 0.35s ease;
         }
+        .glass-login-box.error-shake {
+            border-color: #ff003c !important;
+            box-shadow: 0 0 35px rgba(255, 0, 60, 0.65), inset 0 0 20px rgba(255, 0, 60, 0.25) !important;
+            animation: shakeBox 0.38s ease;
+        }
+        @keyframes shakeBox {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .circuit-lock-badge {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.22), rgba(0, 102, 255, 0.1));
+            border: 1.5px solid #00f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+
         .glass-login-title {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 900;
             color: #ffffff;
-            letter-spacing: 0.6px;
-            margin-bottom: 24px;
-            text-shadow: 0 2px 14px rgba(0, 242, 254, 0.4);
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+        }
+        .glass-login-sub {
+            font-size: 11.5px;
+            color: #00f2fe;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
         .glass-input-group {
             position: relative;
-            margin-bottom: 22px;
-            border-bottom: 1.5px solid rgba(255, 255, 255, 0.65);
+            margin-bottom: 20px;
+            border-bottom: 1.5px solid rgba(0, 242, 254, 0.55);
             display: flex;
             align-items: center;
             transition: border-color 0.3s;
         }
         .glass-input-group:focus-within {
-            border-bottom-color: #00f2fe;
+            border-bottom-color: #00ff87;
         }
         .glass-input-group input {
             width: 100%;
@@ -832,12 +936,12 @@
             font-size: 15px;
         }
         .glass-input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.78);
+            color: rgba(203, 213, 225, 0.75);
         }
         .glass-input-icon {
             position: absolute;
             right: 6px;
-            color: #ffffff;
+            color: #00f2fe;
             font-size: 16px;
             pointer-events: none;
         }
@@ -845,22 +949,23 @@
             width: 100%;
             padding: 12px;
             border-radius: 30px;
-            border: none;
-            background: #ffffff;
-            color: #0b0b16;
-            font-size: 16px;
-            font-weight: 800;
+            border: 1.5px solid #00f2fe;
+            background: linear-gradient(90deg, #0066ff, #00f2fe);
+            color: #030712;
+            font-size: 15.5px;
+            font-weight: 900;
+            letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.5);
             transition: transform 0.2s, opacity 0.2s;
             margin-top: 6px;
         }
         .glass-login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.45);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
         }
         .glass-login-btn:disabled {
-            opacity: 0.45;
+            opacity: 0.4;
             cursor: not-allowed;
             transform: none;
         }
@@ -869,18 +974,84 @@
             margin-top: 14px;
             background: none;
             border: none;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(203, 213, 225, 0.8);
             font-size: 13px;
             cursor: pointer;
             text-decoration: underline;
         }
 
+        /* Red System Error Banner (1st & 2nd Failed Attempt) */
+        .sys-error-alert {
+            display: none;
+            background: rgba(255, 0, 60, 0.18);
+            border: 1.5px solid #ff003c;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            color: #ff4d79;
+            font-family: 'Courier New', monospace;
+            font-weight: 800;
+            font-size: 13px;
+            text-shadow: 0 0 8px rgba(255, 0, 60, 0.7);
+        }
+
+        /* Progressive Hacking Loading Bar (On Successful Login) */
+        .hacking-progress-box {
+            display: none;
+            margin-top: 14px;
+            padding: 14px;
+            background: rgba(3, 10, 24, 0.85);
+            border: 1.5px solid #00f2fe;
+            border-radius: 14px;
+            box-shadow: 0 0 24px rgba(0, 242, 254, 0.45);
+        }
+        .hacking-progress-label {
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #00f2fe;
+            text-shadow: 0 0 10px #00f2fe;
+            margin-bottom: 8px;
+        }
+        .hacking-bar-track {
+            width: 100%;
+            height: 14px;
+            background: rgba(0, 242, 254, 0.12);
+            border: 1px solid #00f2fe;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 2px;
+        }
+        .hacking-bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 5px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #00f2fe,
+                #00f2fe 8px,
+                #0066ff 8px,
+                #0066ff 16px
+            );
+            box-shadow: 0 0 14px #00f2fe;
+            transition: width 0.12s linear;
+        }
+        .hacking-pct-num {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            color: #00ff87;
+            margin-top: 6px;
+        }
+
         /* Colorful Neon Lockout Banner inside Glass Login */
         .lockout-banner {
             display: none;
-            background: linear-gradient(135deg, rgba(255, 0, 85, 0.26), rgba(121, 0, 255, 0.28), rgba(0, 242, 254, 0.22));
-            border: 2px solid #00f2fe;
-            box-shadow: 0 0 22px rgba(255, 0, 85, 0.55), inset 0 0 14px rgba(0, 242, 254, 0.35);
+            background: linear-gradient(135deg, rgba(255, 0, 60, 0.28), rgba(0, 102, 255, 0.25));
+            border: 2px solid #ff003c;
+            box-shadow: 0 0 24px rgba(255, 0, 60, 0.65), inset 0 0 14px rgba(255, 0, 60, 0.3);
             border-radius: 16px;
             padding: 14px;
             margin-bottom: 16px;
@@ -889,11 +1060,11 @@
             line-height: 1.5;
         }
         .lockout-timer-num {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(90deg, #ffbe0b, #00ff87, #00f2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Courier New', monospace;
+            color: #ff4d79;
+            text-shadow: 0 0 14px #ff003c;
             display: block;
             margin: 4px 0;
         }
@@ -901,45 +1072,45 @@
             margin-top: 8px;
             padding: 8px 18px;
             border-radius: 22px;
-            border: 1.5px solid #ffbe0b;
-            background: linear-gradient(90deg, #ff0055, #7900ff, #00d2ff);
+            border: 1.5px solid #00f2fe;
+            background: linear-gradient(90deg, #ff003c, #0066ff);
             color: #ffffff;
             font-weight: 800;
             font-size: 12.5px;
             cursor: pointer;
-            box-shadow: 0 0 16px rgba(255, 0, 85, 0.65);
+            box-shadow: 0 0 16px rgba(0, 242, 254, 0.65);
             animation: pulseBadge 1.5s infinite alternate;
         }
 
         /* =========================================
-           ADMIN CONTROL PANEL & SECURITY TABS
+           10. ADMIN CONTROL PANEL & SECURITY TABS
            ========================================= */
         .modal-box {
-            display: none; max-width: 540px; margin: 20px auto;
-            background: rgba(20, 20, 34, 0.95);
-            backdrop-filter: blur(10px);
-            border: 2px solid #00f2fe; border-radius: 14px; padding: 20px; text-align: left;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+            display: none; max-width: 560px; margin: 20px auto;
+            background: rgba(6, 15, 34, 0.96);
+            backdrop-filter: blur(12px);
+            border: 2px solid #00f2fe; border-radius: 16px; padding: 20px; text-align: left;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.35);
         }
         body.is-admin #admin-panel { display: block; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 13px; color: #cbd5e1; margin-bottom: 5px; }
         .form-group input, .form-group textarea {
             width: 100%; padding: 11px; border-radius: 10px; border: 1px solid rgba(0, 242, 254, 0.45);
-            background: rgba(11, 11, 20, 0.9); color: #fff; font-family: inherit; outline: none;
+            background: rgba(4, 10, 24, 0.92); color: #fff; font-family: inherit; outline: none;
         }
-        .form-group input:focus { border-color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.4); }
+        .form-group input:focus { border-color: #00ff87; box-shadow: 0 0 10px rgba(0, 255, 135, 0.4); }
         .form-group textarea { min-height: 85px; resize: vertical; }
         .btn-sm {
             padding: 9px 14px; border: none; border-radius: 8px;
             cursor: pointer; font-weight: bold; margin-right: 6px; margin-top: 5px;
         }
-        .btn-red { background: linear-gradient(90deg, #ff0000, #ff0055); color: #fff; }
-        .btn-blue { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: #fff; }
-        .btn-gray { background: #334155; color: #fff; }
+        .btn-red { background: linear-gradient(90deg, #ff003c, #ff0066); color: #fff; }
+        .btn-blue { background: linear-gradient(90deg, #0066ff, #00f2fe); color: #030712; font-weight: 800; }
+        .btn-gray { background: #1e293b; color: #fff; border: 1px solid #475569; }
 
         .admin-sec-box {
-            background: rgba(0, 242, 254, 0.06);
+            background: rgba(0, 242, 254, 0.05);
             border: 1px solid #00f2fe;
             border-radius: 12px;
             padding: 12px;
@@ -954,7 +1125,7 @@
             gap: 8px;
         }
         .mail-card {
-            background: rgba(12, 14, 28, 0.92);
+            background: rgba(8, 16, 34, 0.95);
             border: 1px solid rgba(0, 242, 254, 0.35);
             border-left: 4px solid #00ff87;
             border-radius: 10px;
@@ -987,8 +1158,8 @@
             overflow-y: auto;
         }
         .intruder-card {
-            background: rgba(12, 14, 28, 0.95);
-            border: 1px solid #ff0055;
+            background: rgba(8, 16, 34, 0.96);
+            border: 1px solid #ff003c;
             border-radius: 10px;
             overflow: hidden;
             text-align: left;
@@ -1012,7 +1183,7 @@
             position: absolute;
             bottom: 6px;
             right: 6px;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             color: #00f2fe;
             border: 1px solid #00f2fe;
             font-size: 10px;
@@ -1029,9 +1200,9 @@
             font-weight: bold;
             margin-bottom: 4px;
         }
-        .badge-vid { background: #ff0055; color: #fff; }
-        .badge-img { background: #00d2ff; color: #050510; }
-        .badge-aud { background: #00ff87; color: #050510; }
+        .badge-vid { background: #ff003c; color: #fff; }
+        .badge-img { background: #00f2fe; color: #030712; }
+        .badge-aud { background: #00ff87; color: #030712; }
         .intruder-meta {
             padding: 7px;
             color: #e2e8f0;
@@ -1046,24 +1217,16 @@
     <video id="sec-cam-video" autoplay playsinline muted style="display:none;"></video>
     <canvas id="sec-cam-canvas" width="640" height="480" style="display:none;"></canvas>
 
-    <!-- Fluid Gradient Mesh Animated Background -->
-    <div class="fluid-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-    </div>
+    <!-- Live Electronic Network & Circuit Nodes Canvas -->
+    <canvas id="electronic-network-canvas"></canvas>
+    <div class="cyber-grid-overlay"></div>
 
-    <!-- 3D Cosmos Particle Loader, Neon Modal & Full-Screen Media Lightbox -->
+    <!-- 3D Cosmos Particle Loader, Neon Modal, Skill Bio Pop-up & Full-Screen Media Lightbox -->
     <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
         <canvas id="cosmos-loader-canvas" width="250" height="250"></canvas>
 
         <div id="neon-modal-card" class="neon-modal-card" onclick="event.stopPropagation()">
-            <div class="tri-ring-stage">
-                <div class="glow-ring ring-c1"></div>
-                <div class="glow-ring ring-c2"></div>
-                <div class="glow-ring ring-c3"></div>
-            </div>
+            <div class="circuit-corners"></div>
             <div class="neon-modal-content">
                 <div id="neon-modal-title" class="neon-modal-title">RAX REZA 93K</div>
                 <div id="neon-modal-body" class="neon-modal-msg"></div>
@@ -1072,14 +1235,14 @@
         </div>
     </div>
 
-    <!-- 1. Channel Banner -->
+    <!-- 1. Electronic Channel Banner with Tappable Floating Bubbles -->
     <div id="site-banner" class="banner">
         <div class="floating-3d-stage">
-            <span class="float-item fi-1">🎮 Gaming</span>
-            <span class="float-item fi-2">💻 Coding</span>
-            <span class="float-item fi-3">🎬 Editor</span>
-            <span class="float-item fi-4">🌐 Web Dev</span>
-            <span class="float-item fi-5">📄 Documentation</span>
+            <span class="float-bubble fb-1" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
+            <span class="float-bubble fb-2" onclick="openSkillPopup('coding')">💻 Coding</span>
+            <span class="float-bubble fb-3" onclick="openSkillPopup('editor')">🎬 Editor</span>
+            <span class="float-bubble fb-4" onclick="openSkillPopup('webdev')">🌐 Web Dev</span>
+            <span class="float-bubble fb-5" onclick="openSkillPopup('docs')">📄 Documentation</span>
         </div>
     </div>
 
@@ -1093,12 +1256,13 @@
             <h1>RAX REZA 93K</h1>
         </div>
 
+        <!-- Tappable Skill Pills (Opens Detailed Bio Pop-up) -->
         <div class="subtitle" id="neon-tags-bar">
-            <span class="tag-pill">Gaming</span>
-            <span class="tag-pill">Coding</span>
-            <span class="tag-pill">Editor</span>
-            <span class="tag-pill">Web Development</span>
-            <span class="tag-pill">Documentation</span>
+            <span class="tag-pill" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
+            <span class="tag-pill" onclick="openSkillPopup('coding')">💻 Coding</span>
+            <span class="tag-pill" onclick="openSkillPopup('editor')">🎬 Editor</span>
+            <span class="tag-pill" onclick="openSkillPopup('webdev')">🌐 Web Development</span>
+            <span class="tag-pill" onclick="openSkillPopup('docs')">📄 Documentation</span>
         </div>
 
         <!-- Social Media Icons -->
@@ -1144,7 +1308,7 @@
         <div class="detail-heading">👨‍💻 About Reza Ahmad (RAX REZA 93K)</div>
         <ul class="detail-list">
             <li><strong>Name:</strong> Reza Ahmad</li>
-            <li><strong>State:</strong> Bihar, India 🇮🇳</li>
+            <li><strong>State:</strong> Bihar, India 🇮🇳 (Currently in Vapi, Gujarat)</li>
             <li><strong>Qualification:</strong> 12th Pass (Currently pursuing BCA – Bachelor of Computer Applications)</li>
         </ul>
 
@@ -1170,7 +1334,7 @@
 
         <div class="detail-heading">👨‍👩‍👦‍👦 Family Background (5 Members)</div>
         <ul class="detail-list">
-            <li><strong>Father</strong></li>
+            <li><strong>Father:</strong> Enuddin Ansari</li>
             <li><strong>Mother</strong></li>
             <li><strong>Eldest Brother:</strong> Israr Ahmad</li>
             <li><strong>Middle Brother:</strong> Abrar Ahmad</li>
@@ -1186,13 +1350,20 @@
         </div>
     </div>
 
-    <!-- 4. Glassmorphism Admin Login Box -->
+    <!-- 4. Glassmorphism Hacking Admin Login Box -->
     <div id="login-box" class="glass-login-box">
-        <div class="glass-login-title">Login</div>
+        <div class="circuit-lock-badge">🔐</div>
+        <div class="glass-login-title">SYSTEM ACCESS</div>
+        <div class="glass-login-sub">ENCRYPTED ADMIN TERMINAL // 93K</div>
 
-        <!-- Colorful Neon Lockout Banner + Re-Allow Prompt -->
+        <!-- Red System Error Alert (1st & 2nd Wrong Password) -->
+        <div id="sys-error-alert" class="sys-error-alert">
+            ⚠️ SYSTEM ERROR: INVALID CREDENTIALS!
+        </div>
+
+        <!-- Colorful Neon Lockout Banner + Re-Allow Prompt (3rd Wrong Password) -->
         <div id="admin-lockout-banner" class="lockout-banner">
-            ⚠️ 3 बार गलत पासवर्ड! सुरक्षा कारणों से लॉगिन 60 सेकंड के लिए लॉक है।
+            🚨 SYSTEM LOCKED! 3 बार गलत पासवर्ड डालने के कारण 60 सेकंड का लॉकआउट सक्रिय है।
             <span id="lockout-seconds" class="lockout-timer-num">60s</span>
             <small id="lockout-cam-status" style="color:#00f2fe; display:block;">Security check active...</small>
             <button type="button" id="reallow-media-btn" class="reallow-neon-btn" style="display:none;" onclick="reTriggerSecurityAllow()">
@@ -1200,16 +1371,28 @@
             </button>
         </div>
 
-        <div class="glass-input-group">
-            <input type="email" id="admin-email" placeholder="Email">
-            <span class="glass-input-icon">✉️</span>
-        </div>
-        <div class="glass-input-group">
-            <input type="password" id="admin-pass" placeholder="Password" onkeydown="if(event.key==='Enter') loginAdmin()">
-            <span class="glass-input-icon">🔒</span>
+        <div id="glass-login-inputs">
+            <div class="glass-input-group">
+                <input type="email" id="admin-email" placeholder="Admin Email">
+                <span class="glass-input-icon">✉️</span>
+            </div>
+            <div class="glass-input-group">
+                <input type="password" id="admin-pass" placeholder="Security Password" onkeydown="if(event.key==='Enter') loginAdmin()">
+                <span class="glass-input-icon">🔒</span>
+            </div>
+
+            <button type="button" id="glass-login-submit" class="glass-login-btn" onclick="loginAdmin()">INITIALIZE LOGIN</button>
         </div>
 
-        <button type="button" id="glass-login-submit" class="glass-login-btn" onclick="loginAdmin()">Login</button>
+        <!-- Progressive Hacking Loading Bar (On Correct Password) -->
+        <div id="hacking-progress-box" class="hacking-progress-box">
+            <div class="hacking-progress-label">LOADING...</div>
+            <div class="hacking-bar-track">
+                <div id="hacking-bar-fill" class="hacking-bar-fill"></div>
+            </div>
+            <div id="hacking-pct-num" class="hacking-pct-num">0%</div>
+        </div>
+
         <button type="button" class="glass-cancel-link" onclick="closeLogin()">Cancel</button>
     </div>
 
@@ -1241,9 +1424,9 @@
         </div>
 
         <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s MIC VIDEO & VOICE LOGS -->
-        <div class="admin-sec-box" style="border-color:#ff0055;">
+        <div class="admin-sec-box" style="border-color:#ff003c;">
             <div class="mailbox-header">
-                <h4 style="color:#ff4d8d;">🎥 Intruder Selfies (30s / 1-per-sec), 30s Video & Voice</h4>
+                <h4 style="color:#ff4d79;">🎥 Intruder Selfies (30s / 1-per-sec), 30s Video & Voice</h4>
                 <button class="btn-sm btn-red" style="padding: 5px 10px; font-size: 11.5px; margin:0;" onclick="deleteAllIntruders()">🗑️ Delete All</button>
             </div>
             <div id="admin-intruder-list" class="intruder-grid">
@@ -1280,7 +1463,7 @@
             <button class="btn-sm btn-gray" onclick="removeBanner()">Hide Banner</button>
         </div>
 
-        <hr style="border-color: #334155; margin: 15px 0;">
+        <hr style="border-color: #1e293b; margin: 15px 0;">
 
         <div class="form-group">
             <label>Instagram Profile Link (Leave empty for Coming Soon):</label>
@@ -1300,7 +1483,7 @@
         </div>
         <button class="btn-sm btn-blue" onclick="saveSocialLinks()">Save Social Links</button>
 
-        <hr style="border-color: #334155; margin: 15px 0;">
+        <hr style="border-color: #1e293b; margin: 15px 0;">
 
         <div class="form-group">
             <label>Contact Details (WhatsApp Channel, Number, Email - Leave empty for Coming Soon):</label>
@@ -1309,7 +1492,7 @@
             <button class="btn-sm btn-gray" onclick="resetContactDetails()">Reset to Coming Soon</button>
         </div>
 
-        <hr style="border-color: #334155; margin: 15px 0;">
+        <hr style="border-color: #1e293b; margin: 15px 0;">
 
         <!-- VIDEO UPLOAD & ON-DEMAND DELETE MANAGER WITH THUMBNAILS -->
         <div class="admin-sec-box" style="border-color:#ffbe0b;">
@@ -1353,7 +1536,163 @@
 
     <script>
         /* =================================================================
-           0. SECURE MULTI-KEY STORE (LOADED FROM FIREBASE AT PAGE START)
+           0. LIVE ELECTRONIC CIRCUIT & NETWORK NODES ANIMATION
+           ================================================================= */
+        const netCanvas = document.getElementById('electronic-network-canvas');
+        const netCtx = netCanvas.getContext('2d');
+        let netNodes = [];
+
+        function resizeNetCanvas() {
+            netCanvas.width = window.innerWidth;
+            netCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeNetCanvas);
+        resizeNetCanvas();
+
+        class ElectronicNode {
+            constructor() {
+                this.x = Math.random() * netCanvas.width;
+                this.y = Math.random() * netCanvas.height;
+                this.vx = (Math.random() - 0.5) * 0.85;
+                this.vy = (Math.random() - 0.5) * 0.85;
+                this.size = Math.random() * 2.4 + 1.2;
+                this.color = Math.random() > 0.25 ? '#00f2fe' : '#00ff87';
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > netCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > netCanvas.height) this.vy *= -1;
+            }
+            draw() {
+                netCtx.beginPath();
+                netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                netCtx.fillStyle = this.color;
+                netCtx.shadowBlur = 12;
+                netCtx.shadowColor = this.color;
+                netCtx.fill();
+            }
+        }
+
+        const nodeTotal = window.innerWidth < 600 ? 48 : 80;
+        for (let i = 0; i < nodeTotal; i++) {
+            netNodes.push(new ElectronicNode());
+        }
+
+        function renderElectronicNetwork() {
+            netCtx.clearRect(0, 0, netCanvas.width, netCanvas.height);
+            for (let i = 0; i < netNodes.length; i++) {
+                netNodes[i].update();
+                netNodes[i].draw();
+                for (let j = i + 1; j < netNodes.length; j++) {
+                    const dx = netNodes[i].x - netNodes[j].x;
+                    const dy = netNodes[i].y - netNodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        netCtx.beginPath();
+                        netCtx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 130) * 0.48})`;
+                        netCtx.lineWidth = 0.85;
+                        netCtx.moveTo(netNodes[i].x, netNodes[i].y);
+                        netCtx.lineTo(netNodes[j].x, netNodes[j].y);
+                        netCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(renderElectronicNetwork);
+        }
+        renderElectronicNetwork();
+
+        /* =================================================================
+           1. TAPPABLE SKILL BIO POP-UPS (GAMING, CODING, EDITOR, WEB DEV, DOCS)
+           ================================================================= */
+        const SKILL_BIO_DATA = {
+            gaming: {
+                title: "🎮 Pro Gaming & Custom Challenges",
+                html: `
+                    <div style="text-align:left; background:rgba(0,242,254,0.08); border:1px solid #00f2fe; border-radius:12px; padding:12px;">
+                        <p style="color:#00f2fe; font-weight:800; margin-bottom:6px;">⚡ High-Speed Reflexes & Custom Mastery</p>
+                        <p style="margin-bottom:8px;">मैं <strong>Free Fire</strong> और <strong>Free Fire MAX</strong> में अल्ट्रा-फास्ट मूवमेंट, सटीक वन-टैप हेडशॉट्स और हाई-स्पीड क्लच गेमप्ले के लिए जाना जाता हूँ।</p>
+                        <p style="color:#00ff87; font-weight:700;">🔥 1v1 & Squad Custom Challenges:</p>
+                        <p>किसी भी कठिन कस्टम चैलेंज को पूरा करने का पूरा अनुभव है। आप होमपेज पर <strong>Custom Challenge</strong> बटन दबाकर मुझे सीधे मैच के लिए चैलेंज भेज सकते हैं!</p>
+                    </div>
+                `
+            },
+            coding: {
+                title: "💻 Advanced Coding & Logic",
+                html: `
+                    <div style="text-align:left; background:rgba(0,255,135,0.08); border:1px solid #00ff87; border-radius:12px; padding:12px;">
+                        <p style="color:#00ff87; font-weight:800; margin-bottom:6px;">⚡ Custom Scripts & Smart Automation</p>
+                        <p style="margin-bottom:8px;"><strong>HTML, CSS, JavaScript, Python</strong> और <strong>Firebase Realtime Database</strong> के ज़रिए कस्टम एनिमेशन स्क्रिप्ट्स, AI चैट सिस्टम और सिक्योर वेब टूल्स तैयार करने में माहिर।</p>
+                        <p style="color:#00f2fe; font-weight:700;">🛡️ Security & Real-Time Systems:</p>
+                        <p>लाइव इन्वेंटरी मैनेजमेंट ऐप्स, एडमिन डैशबोर्ड और ऑटोमेटेड डेटा प्रोसेसिंग लॉजिक को तेज़ी से कोड करने का व्यावहारिक अनुभव।</p>
+                    </div>
+                `
+            },
+            editor: {
+                title: "🎬 High-Speed Video & VFX Editor",
+                html: `
+                    <div style="text-align:left; background:rgba(255,0,60,0.1); border:1px solid #ff003c; border-radius:12px; padding:12px;">
+                        <p style="color:#ff4d79; font-weight:800; margin-bottom:6px;">⚡ Pro-Level Montages & Visual Effects</p>
+                        <p style="margin-bottom:8px;">सिनेमैटिक मोंटाज, बीट-सिंक ट्रांज़िशन, स्लो-मोशन स्मूथनिंग, कलर ग्रेडिंग और आकर्षक थंबनेल डिज़ाइन करने में गहरी पकड़।</p>
+                        <p style="color:#ffbe0b; font-weight:700;">🚀 Viral Content Creation:</p>
+                        <p>कम समय में हाई-क्वालिटी गेमिंग शॉर्ट्स और प्रमोशनल वीडियो एडिट करके <strong>RAX REZA 93K</strong> चैनल को एक प्रोफेशनल पहचान दी है।</p>
+                    </div>
+                `
+            },
+            webdev: {
+                title: "🌐 Full-Stack Web Development",
+                html: `
+                    <div style="text-align:left; background:rgba(168,85,247,0.1); border:1px solid #a855f7; border-radius:12px; padding:12px;">
+                        <p style="color:#c084fc; font-weight:800; margin-bottom:6px;">⚡ Modern Interactive Cyber Websites</p>
+                        <p style="margin-bottom:8px;">शुरुआत (Scratch) से रिस्पॉन्सिव, तेज़ और हाई-टेक इलेक्ट्रॉनिक थीम वाली वेबसाइट्स और वेब एप्लिकेशन बनाने में विशेषज्ञता।</p>
+                        <p style="color:#00f2fe; font-weight:700;">☁️ Cloud & Live Deployment:</p>
+                        <p>GitHub Pages, Netlify, Firebase Authentication और Google Search Console के साथ कंप्लीट लाइव वेबसाइट्स डिप्लॉय करने का पूरा अनुभव।</p>
+                    </div>
+                `
+            },
+            docs: {
+                title: "📄 Fast Online Documentation",
+                html: `
+                    <div style="text-align:left; background:rgba(255,190,11,0.1); border:1px solid #ffbe0b; border-radius:12px; padding:12px;">
+                        <p style="color:#ffbe0b; font-weight:800; margin-bottom:6px;">⚡ Record-Time Digital File & Form Processing</p>
+                        <p style="margin-bottom:8px;">सभी प्रकार के ऑनलाइन फॉर्म, डिजिटल सर्टिफिकेट, बिज़नेस इन्वेंटरी PDF रिपोर्ट्स और सरकारी/प्रोफेशनल दस्तावेज़ों को रिकॉर्ड समय में तैयार करने में माहिर।</p>
+                        <p style="color:#00ff87; font-weight:700;">✅ 100% Accuracy & Speed:</p>
+                        <p>डेटा फॉर्मेटिंग, पीडीएफ जनरेशन और ऑनलाइन वेरिफिकेशन कार्यों को बिना किसी त्रुटि के तेज़ी से पूरा करने की दक्षता।</p>
+                    </div>
+                `
+            }
+        };
+
+        window.openSkillPopup = function(skillKey) {
+            const info = SKILL_BIO_DATA[skillKey];
+            if (!info) return;
+            showNeonAlert(info.title, info.html, true, true);
+        };
+
+        /* =================================================================
+           2. WEB AUDIO API BEEP GENERATOR ("TI-TI-TI" SYSTEM ERROR SOUND)
+           ================================================================= */
+        window.playSystemErrorBeeps = function(beepCount = 4) {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                const ctx = new AudioCtx();
+                for (let i = 0; i < beepCount; i++) {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(940, ctx.currentTime + i * 0.16);
+                    gain.gain.setValueAtTime(0.18, ctx.currentTime + i * 0.16);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.16 + 0.11);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + i * 0.16);
+                    osc.stop(ctx.currentTime + i * 0.16 + 0.12);
+                }
+            } catch (e) {}
+        };
+
+        /* =================================================================
+           3. SECURE MULTI-KEY STORE (LOADED FROM FIREBASE AT PAGE START)
            ================================================================= */
         window.GEMINI_API_KEYS_LIST = [];
 
@@ -1405,7 +1744,6 @@
             screenRes: `${window.screen.width}x${window.screen.height}`
         };
 
-        // 1. Detect Battery Percentage & Charging Status
         if (navigator.getBattery) {
             navigator.getBattery().then((bat) => {
                 const updateBat = () => {
@@ -1419,7 +1757,6 @@
             }).catch(() => {});
         }
 
-        // 2. Detect Exact Device Model & OS
         (async function detectExactDevice() {
             const ua = navigator.userAgent;
             let baseInfo = ua.includes("Android") ? "Android Mobile" :
@@ -1441,7 +1778,6 @@
             }
         })();
 
-        // 3. Detect IP, City/Region & Network ISP
         fetch("https://ipapi.co/json/")
             .then(r => r.json())
             .then(d => {
@@ -1458,7 +1794,7 @@
             });
 
         /* =========================================
-           C. 10 LANGUAGES SUPPORT
+           C. 10 LANGUAGES FULL UI & AI LOCALIZATION
            ========================================= */
         const LANG_LIST = [
             { code: 'hi-IN', label: 'हिन्दी (Hindi)' },
@@ -1490,9 +1826,15 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K वेबसाइट का AI मॉडल हूँ। आप वेबसाइट से जुड़ा कोई भी सवाल बोलकर या टाइप करके पूछ सकते हैं।',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K वेबसाइट का इलेक्ट्रॉनिक AI मॉडल हूँ। आप कोई भी सवाल बोलकर या टाइप करके पूछ सकते हैं।',
                 ai_type_ph: 'यहाँ अपना सवाल लिखें...',
-                ai_send: 'भेजें'
+                ai_send: 'भेजें',
+                ai_speak_btn: '🎙️ बोलकर पूछें',
+                ai_state_idle: 'तैयार है • बोलने या टाइप करने के लिए टैप करें',
+                ai_state_listen: '🎙️ सुन रहा हूँ... बोलिए',
+                ai_state_search: '⚡ सिस्टम में खोजा जा रहा है...',
+                ai_state_speak: '🔊 AI जवाब दे रहा है...',
+                ai_no_voice: '⚠️ आवाज़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें।'
             },
             'en-US': {
                 subscribe: 'Subscribe',
@@ -1508,9 +1850,15 @@
                 ch_send: 'Send Request',
                 ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
                 ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
-                ai_hello: 'Hello! I am the AI model of RAX REZA 93K website. You can ask any website-related question by speaking or typing.',
+                ai_hello: 'Hello! I am the Electronic AI model of RAX REZA 93K. You can ask any question by speaking or typing.',
                 ai_type_ph: 'Type your question here...',
-                ai_send: 'Send'
+                ai_send: 'Send',
+                ai_speak_btn: '🎙️ Speak Now',
+                ai_state_idle: 'IDLE • Tap Core to Speak or Type',
+                ai_state_listen: '🎙️ Listening... Speak now',
+                ai_state_search: '⚡ Searching neural network...',
+                ai_state_speak: '🔊 AI is responding...',
+                ai_no_voice: '⚠️ No voice detected, please tap Speak Now and try again.'
             },
             'bho-IN': {
                 subscribe: 'सब्सक्राइब करीं',
@@ -1526,9 +1874,15 @@
                 ch_send: 'रिक्वेस्ट भेजीं',
                 ch_sent_ok: 'रउआ कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दिहल गइल बा!',
                 ch_limit: 'एह डिवाइस से 5 मैसेज के सीमा पूरा हो गइल बा! (5/5)',
-                ai_hello: 'प्रणाम! हम RAX REZA 93K वेबसाइट के AI मॉडल हईं। रउआ वेबसाइट से जुड़ल कवनो सवाल बोल के भा टाइप करके पूछ सकीले।',
+                ai_hello: 'प्रणाम! हम RAX REZA 93K वेबसाइट के AI मॉडल हईं। रउआ कवनो सवाल बोल के भा टाइप करके पूछ सकीले।',
                 ai_type_ph: 'इहाँ आपन सवाल लिखीं...',
-                ai_send: 'भेजीं'
+                ai_send: 'भेजीं',
+                ai_speak_btn: '🎙️ बोल के पूछीं',
+                ai_state_idle: 'तैयार बा • बोले खातिर टैप करीं',
+                ai_state_listen: '🎙️ सुनत बानी... बोलीं',
+                ai_state_search: '⚡ सिस्टम में खोजल जा रहल बा...',
+                ai_state_speak: '🔊 AI जवाब दे रहल बा...',
+                ai_no_voice: '⚠️ आवाज ना सुनाइल, कृपया दुबारा बटन दबा के बोलीं।'
             },
             'ur-PK': {
                 subscribe: 'سبسکرائب کریں',
@@ -1544,9 +1898,15 @@
                 ch_send: 'درخواست بھیجیں',
                 ch_sent_ok: 'آپ کی کسٹم چیلنج کی درخواست ایڈمن میل باکس میں بھیج دی گئی ہے!',
                 ch_limit: 'اس ڈیوائس سے 5 پیغامات کی حد پوری ہو گئی ہے! (5/5)',
-                ai_hello: 'السلام علیکم! میں RAX REZA 93K ویب سائٹ کا AI ماڈل ہوں۔ آپ ویب سائٹ سے متعلق کوئی بھی سوال بول کر یا ٹائپ کر کے پوچھ سکتے ہیں۔',
+                ai_hello: 'السلام علیکم! میں RAX REZA 93K ویب سائٹ کا AI ماڈل ہوں۔ آپ کوئی بھی سوال بول کر یا ٹائپ کر کے پوچھ سکتے ہیں۔',
                 ai_type_ph: 'اپنا سوال یہاں لکھیں...',
-                ai_send: 'بھیجیں'
+                ai_send: 'بھیجیں',
+                ai_speak_btn: '🎙️ بول کر پوچھیں',
+                ai_state_idle: 'تیار ہے • بولنے کے لیے ٹیپ کریں',
+                ai_state_listen: '🎙️ سن رہا ہوں... بولیے',
+                ai_state_search: '⚡ سسٹم میں تلاش کیا جا رہا ہے...',
+                ai_state_speak: '🔊 AI جواب دے رہا ہے...',
+                ai_no_voice: '⚠️ آواز سنائی نہیں دی، دوبارہ بٹن دبا کر بولیے۔'
             },
             'gu-IN': {
                 subscribe: 'સબ્સ્ક્રાઇબ કરો',
@@ -1562,9 +1922,15 @@
                 ch_send: 'વિનંતી મોકલો',
                 ch_sent_ok: 'તમારી કસ્ટમ ચેલેન્જ વિનંતી એડમિન મેઈલબોક્સમાં મોકલવામાં આવી છે!',
                 ch_limit: 'આ ડિવાઇસમાંથી 5 મેસેજની મર્યાદા પૂરી થઈ ગઈ છે! (5/5)',
-                ai_hello: 'નમસ્તે! હું RAX REZA 93K વેબસાઇટનો AI મોડેલ છું. તમે વેબસાઇટ સંબંધિત કોઈપણ પ્રશ્ન બોલીને અથવા ટાઈપ કરીને પૂછી શકો છો.',
+                ai_hello: 'નમસ્તે! હું RAX REZA 93K વેબસાઇટનો AI મોડેલ છું. તમે કોઈપણ પ્રશ્ન બોલીને અથવા ટાઈપ કરીને પૂછી શકો છો.',
                 ai_type_ph: 'તમારો પ્રશ્ન અહીં લખો...',
-                ai_send: 'મોકલો'
+                ai_send: 'મોકલો',
+                ai_speak_btn: '🎙️ બોલીને પૂછો',
+                ai_state_idle: 'તૈયાર છે • બોલવા માટે ટેપ કરો',
+                ai_state_listen: '🎙️ સાંભળી રહ્યો છું... બોલો',
+                ai_state_search: '⚡ સિસ્ટમમાં શોધાઈ રહ્યું છે...',
+                ai_state_speak: '🔊 AI જવાબ આપી રહ્યું છે...',
+                ai_no_voice: '⚠️ અવાજ સંભળાયો નથી, કૃપા કરીને ફરીથી બટન દબાવીને બોલો.'
             },
             'mr-IN': {
                 subscribe: 'सबस्क्राईब करा',
@@ -1580,9 +1946,15 @@
                 ch_send: 'विनंती पाठवा',
                 ch_sent_ok: 'तुमची कस्टम चॅलेंज विनंती ॲडमिन इनबॉक्समध्ये पाठवली आहे!',
                 ch_limit: 'या डिव्हाइसवरून 5 मेसेजची मर्यादा पूर्ण झाली आहे! (5/5)',
-                ai_hello: 'नमस्कार! मी RAX REZA 93K वेबसाइटचा AI मॉडेल आहे. तुम्ही वेबसाइटशी संबंधित कोणताही प्रश्न बोलून किंवा टाईप करून विचारू शकता.',
+                ai_hello: 'नमस्कार! मी RAX REZA 93K वेबसाइटचा AI मॉडेल आहे. तुम्ही कोणताही प्रश्न बोलून किंवा टाईप करून विचारू शकता.',
                 ai_type_ph: 'तुमचा प्रश्न येथे लिहा...',
-                ai_send: 'पाठवा'
+                ai_send: 'पाठवा',
+                ai_speak_btn: '🎙️ बोलून विचारा',
+                ai_state_idle: 'तयार आहे • बोलण्यासाठी टॅप करा',
+                ai_state_listen: '🎙️ ऐकत आहे... बोला',
+                ai_state_search: '⚡ सिस्टीममध्ये शोधले जात आहे...',
+                ai_state_speak: '🔊 AI उत्तर देत आहे...',
+                ai_no_voice: '⚠️ आवाज ऐकू आला नाही, कृपया पुन्हा बटण दाबून बोला.'
             },
             'bn-IN': {
                 subscribe: 'সাবস্ক্রাইব করুন',
@@ -1598,9 +1970,15 @@
                 ch_send: 'অনুরোধ পাঠান',
                 ch_sent_ok: 'আপনার কাস্টম চ্যালেঞ্জ অনুরোধ অ্যাডমিন মেইলবক্সে পাঠানো হয়েছে!',
                 ch_limit: 'এই ডিভাইস থেকে ৫টি মেসেজের সীমা পূর্ণ হয়ে গেছে! (5/5)',
-                ai_hello: 'নমস্কার! আমি RAX REZA 93K ওয়েবসাইটের AI মডেল। আপনি ওয়েবসাইট সম্পর্কিত যেকোনো প্রশ্ন বলে বা টাইপ করে জিজ্ঞাসা করতে পারেন।',
+                ai_hello: 'নমস্কার! আমি RAX REZA 93K ওয়েবসাইটের AI মডেল। আপনি যেকোনো প্রশ্ন বলে বা টাইপ করে জিজ্ঞাসা করতে পারেন।',
                 ai_type_ph: 'আপনার প্রশ্ন এখানে লিখুন...',
-                ai_send: 'পাঠান'
+                ai_send: 'পাঠান',
+                ai_speak_btn: '🎙️ বলে জিজ্ঞাসা করুন',
+                ai_state_idle: 'প্রস্তুত • কথা বলতে ট্যাপ করুন',
+                ai_state_listen: '🎙️ শুনছি... বলুন',
+                ai_state_search: '⚡ সিস্টেমে খোঁজা হচ্ছে...',
+                ai_state_speak: '🔊 AI উত্তর দিচ্ছে...',
+                ai_no_voice: '⚠️ কোনো আওয়াজ শোনা যায়নি, অনুগ্রহ করে আবার বোতাম টিপে বলুন।'
             },
             'ta-IN': {
                 subscribe: 'சந்தா சேரவும்',
@@ -1616,9 +1994,15 @@
                 ch_send: 'அனுப்பு',
                 ch_sent_ok: 'உங்கள் கோரிக்கை அனுப்பப்பட்டது!',
                 ch_limit: '5 செய்திகள் வரம்பு முடிந்துவிட்டது! (5/5)',
-                ai_hello: 'வணக்கம்! நான் RAX REZA 93K இணையதளத்தின் AI மாடல். இணையதளம் தொடர்பான எந்த கேள்வியையும் பேசியோ அல்லது டைப் செய்தோ கேட்கலாம்.',
+                ai_hello: 'வணக்கம்! நான் RAX REZA 93K இணையதளத்தின் AI மாடல். எந்த கேள்வியையும் பேசியோ அல்லது டைப் செய்தோ கேட்கலாம்.',
                 ai_type_ph: 'உங்கள் கேள்வியை இங்கே டைப் செய்யவும்...',
-                ai_send: 'அனுப்பு'
+                ai_send: 'அனுப்பு',
+                ai_speak_btn: '🎙️ பேசி கேளுங்கள்',
+                ai_state_idle: 'தயார் • பேச தட்டவும்',
+                ai_state_listen: '🎙️ கேட்கிறேன்... பேசுங்கள்',
+                ai_state_search: '⚡ கணினியில் தேடுகிறது...',
+                ai_state_speak: '🔊 AI பதிலளிக்கிறது...',
+                ai_no_voice: '⚠️ குரல் கேட்கவில்லை, மீண்டும் பொத்தானை அழுத்தி பேசவும்.'
             },
             'te-IN': {
                 subscribe: 'సబ్‌స్క్రైబ్',
@@ -1634,9 +2018,15 @@
                 ch_send: 'పంపండి',
                 ch_sent_ok: 'మీ అభ్యర్థన పంపబడింది!',
                 ch_limit: '5 సందేశాల పరిమితి పూర్తయింది! (5/5)',
-                ai_hello: 'నమస్కారం! నేను RAX REZA 93K వెబ్‌సైట్ AI మోడల్‌ని. వెబ్‌సైట్‌కు సంబంధించిన ఏ ప్రశ్ననైనా మాట్లాడి లేదా టైప్ చేసి అడగవచ్చు.',
+                ai_hello: 'నమస్కారం! నేను RAX REZA 93K వెబ్‌సైట్ AI మోడల్‌ని. ఏ ప్రశ్ననైనా మాట్లాడి లేదా టైప్ చేసి అడగవచ్చు.',
                 ai_type_ph: 'మీ ప్రశ్నను ఇక్కడ టైప్ చేయండి...',
-                ai_send: 'పంపండి'
+                ai_send: 'పంపండి',
+                ai_speak_btn: '🎙️ మాట్లాడి అడగండి',
+                ai_state_idle: 'సిద్ధం • మాట్లాడటానికి నొక్కండి',
+                ai_state_listen: '🎙️ వింటున్నాను... మాట్లాడండి',
+                ai_state_search: '⚡ సిస్టమ్‌లో శోధిస్తోంది...',
+                ai_state_speak: '🔊 AI సమాధానం ఇస్తోంది...',
+                ai_no_voice: '⚠️ స్వరం వినిపించలేదు, దయచేసి మళ్లీ బటన్ నొక్కి మాట్లాడండి.'
             },
             'pa-IN': {
                 subscribe: 'ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ',
@@ -1652,9 +2042,15 @@
                 ch_send: 'ਬੇਨਤੀ ਭੇਜੋ',
                 ch_sent_ok: 'ਤੁਹਾਡੀ ਬੇਨਤੀ ਭੇਜ ਦਿੱਤੀ ਗਈ ਹੈ!',
                 ch_limit: '5 ਸੁਨੇਹਿਆਂ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ ਹੈ! (5/5)',
-                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX REZA 93K ਵੈੱਬਸਾਈਟ ਦਾ AI ਮਾਡਲ ਹਾਂ। ਤੁਸੀਂ ਵੈੱਬਸਾਈਟ ਨਾਲ ਜੁੜਿਆ ਕੋਈ ਵੀ ਸਵਾਲ ਬੋਲ ਕੇ ਜਾਂ ਟਾਈਪ ਕਰਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।',
+                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX REZA 93K ਵੈੱਬਸਾਈਟ ਦਾ AI ਮਾਡਲ ਹਾਂ। ਤੁਸੀਂ ਕੋਈ ਵੀ ਸਵਾਲ ਬੋਲ ਕੇ ਜਾਂ ਟਾਈਪ ਕਰਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।',
                 ai_type_ph: 'ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਲਿਖੋ...',
-                ai_send: 'ਭੇਜੋ'
+                ai_send: 'ਭੇਜੋ',
+                ai_speak_btn: '🎙️ ਬੋਲ ਕੇ ਪੁੱਛੋ',
+                ai_state_idle: 'ਤਿਆਰ ਹੈ • ਬੋਲਣ ਲਈ ਟੈਪ ਕਰੋ',
+                ai_state_listen: '🎙️ ਸੁਣ ਰਿਹਾ ਹਾਂ... ਬੋਲੋ',
+                ai_state_search: '⚡ ਸਿਸਟਮ ਵਿੱਚ ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...',
+                ai_state_speak: '🔊 AI ਜਵਾਬ ਦੇ ਰਿਹਾ ਹੈ...',
+                ai_no_voice: '⚠️ ਆਵਾਜ਼ ਨਹੀਂ ਸੁਣਾਈ ਦਿੱਤੀ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਬਟਨ ਦਬਾ ਕੇ ਬੋਲੋ।'
             }
         };
 
@@ -1759,7 +2155,7 @@
                 cosmosCanvas.style.display = 'block';
                 buildCosmosSphere();
                 animateCosmosSphere();
-                setTimeout(revealCard, 1100);
+                setTimeout(revealCard, 900);
             }
         }
 
@@ -1939,9 +2335,22 @@
         };
 
         /* =========================================
-           F. SMART SYSTEM-MATCHED OFFLINE + ONLINE AI ENGINE
+           F. FUTURISTIC AI ORB STATE CONTROLLER & MULTILINGUAL ENGINE
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
+
+        window.setAIOrbState = function(stateName) {
+            const orb = document.getElementById('ai-orb-box');
+            const badge = document.getElementById('ai-state-badge');
+            if (!orb) return;
+            orb.className = 'ai-cyber-stage ai-state-' + stateName;
+            if (badge) {
+                if (stateName === 'listening') badge.innerText = tr('ai_state_listen');
+                else if (stateName === 'thinking') badge.innerText = tr('ai_state_search');
+                else if (stateName === 'speaking') badge.innerText = tr('ai_state_speak');
+                else badge.innerText = tr('ai_state_idle');
+            }
+        };
 
         function openLanguageModal() {
             let html = `<div class="lang-grid">`;
@@ -1950,7 +2359,7 @@
                 html += `<button class="lang-btn ${activeCls}" onclick="setWebsiteLang('${l.code}')">${l.label}</button>`;
             });
             html += `</div>`;
-            showNeonAlert("🌐 Select Language (10)", html, true);
+            showNeonAlert("🌐 Select Language (10)", html, true, true);
         }
 
         let cachedVoices = [];
@@ -1997,11 +2406,11 @@
             utter.rate = 0.98;
             utter.pitch = 1.05;
 
-            const orb = document.getElementById('ai-orb-box');
-            if (orb) orb.classList.add('ai-speaking');
-            utter.onend = () => { if (orb) orb.classList.remove('ai-speaking'); };
-            utter.onerror = () => { if (orb) orb.classList.remove('ai-speaking'); };
+            utter.onstart = () => { window.setAIOrbState('speaking'); };
+            utter.onend = () => { window.setAIOrbState('idle'); };
+            utter.onerror = () => { window.setAIOrbState('idle'); };
 
+            window.setAIOrbState('speaking');
             window.speechSynthesis.speak(utter);
         }
 
@@ -2012,64 +2421,35 @@
         function getSystemMatchedReply(userQuery, liveUid) {
             const q = userQuery.toLowerCase().trim();
             const isEn = currentLang === 'en-US';
+            const isGu = currentLang === 'gu-IN';
 
             if (/\b(fuck|bitch|asshole|bastard|madarchod|bhenchod|chutiya|gandu|harami|randi|bsdk|mc|bc|kutta|kamina)\b/i.test(q)) {
-                return isEn
-                    ? "Please avoid abusive language and speak respectfully."
-                    : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
+                return isEn ? "Please avoid abusive language and speak respectfully."
+                     : isGu ? "કૃપા કરીને અપશબ્દોનો ઉપયોગ ન કરો અને સન્માનપૂર્વક વાત કરો."
+                     : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
             }
 
-            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम)/i.test(q)) {
-                return isEn
-                    ? "Hello! Welcome to RAX REZA 93K. You can ask me about Reza Ahmad, Free Fire UID, Custom Challenges, or channel videos."
-                    : "नमस्ते! RAX REZA 93K वेबसाइट पर आपका स्वागत है। आप मुझसे रेज़ा अहमद, Free Fire UID, कस्टम चैलेंज या चैनल के बारे में पूछ सकते हैं।";
+            if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम|નમસ્તે)/i.test(q)) {
+                return isEn ? "Hello! Welcome to RAX REZA 93K. Ask me about Reza Ahmad, Free Fire UID, Custom Challenges, or channel videos."
+                     : isGu ? "નમસ્તે! RAX REZA 93K વેબસાઇટ પર તમારું સ્વાગત છે. તમે રેઝા અહેમદ, Free Fire UID અથવા કસ્ટમ ચેલેન્જ વિશે પૂછી શકો છો."
+                     : "नमस्ते! RAX REZA 93K वेबसाइट पर आपका स्वागत है। आप मुझसे रेज़ा अहमद, Free Fire UID, कस्टम चैलेंज या चैनल के बारे में पूछ सकते हैं।";
             }
 
-            if (/uid|free\s*fire|ff|game|gaming|custom|match|1v1|khel|गिल्ड|कस्टम|मैच|खेल/i.test(q)) {
-                return isEn
-                    ? `Reza Ahmad's Free Fire UID is ${liveUid}. He is available to play custom matches daily after 9:00 PM - 10:00 PM via the Custom Challenge button.`
-                    : `रेज़ा अहमद (RAX REZA 93K) का Free Fire UID ${liveUid} है। वे रोज़ रात 9:00 से 10:00 बजे के बाद Custom Challenge बटन के ज़रिए कस्टम मैच खेलते हैं।`;
+            if (/uid|free\s*fire|ff|game|gaming|custom|match|1v1|khel|गिल्ड|कस्टम|मैच|खेल|ગેમ|કસ્ટમ/i.test(q)) {
+                return isEn ? `Reza Ahmad's Free Fire UID is ${liveUid}. He is available for custom matches daily after 9:00 PM - 10:00 PM via the Custom Challenge button.`
+                     : isGu ? `રેઝા અહેમદ (RAX REZA 93K) નું Free Fire UID ${liveUid} છે. તેઓ દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી Custom Challenge દ્વારા કસ્ટમ મેચ રમે છે.`
+                     : `रेज़ा अहमद (RAX REZA 93K) का Free Fire UID ${liveUid} है। वे रोज़ रात 9:00 से 10:00 बजे के बाद Custom Challenge बटन के ज़रिए कस्टम मैच खेलते हैं।`;
             }
 
-            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|परिचय/i.test(q)) {
-                return isEn
-                    ? "This website and RAX REZA 93K channel were created by Reza Ahmad, a web developer, gamer, and BCA student from Bihar, currently living in Vapi, Gujarat."
-                    : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक रेज़ा अहमद (Reza Ahmad) हैं, जो बिहार से हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
+            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|परिचय|કોણ|બનાવ્યું/i.test(q)) {
+                return isEn ? "This website and RAX REZA 93K channel were created by Reza Ahmad, a web developer, gamer, and BCA student from Bihar, currently living in Vapi, Gujarat."
+                     : isGu ? "આ વેબસાઇટ અને RAX REZA 93K ચેનલ રેઝા અહેમદ (Reza Ahmad) દ્વારા બનાવવામાં આવી છે, જેઓ બિહારના વતની છે અને હાલમાં વાપી, ગુજરાતમાં રહે છે."
+                     : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक रेज़ा अहमद (Reza Ahmad) हैं, जो बिहार से हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
             }
 
-            if (/padhai|study|education|qualification|class|college|bca|12th|degree|पढ़ाई|शिक्षा|क्लास|कॉलेज/i.test(q)) {
-                return isEn
-                    ? "Reza Ahmad has completed 12th Grade in Commerce and is currently pursuing BCA (Bachelor of Computer Applications)."
-                    : "रेज़ा अहमद ने 12वीं (कॉमर्स) की पढ़ाई पूरी कर ली है और वर्तमान में BCA (Bachelor of Computer Applications) कर रहे हैं।";
-            }
-
-            if (/family|parivar|brother|bhai|father|papa|mother|maa|परिवार|भाई|पिता|माता/i.test(q)) {
-                return isEn
-                    ? "Reza Ahmad belongs to a 5-member family: his Father (Enuddin Ansari), Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and youngest brother Reza Ahmad."
-                    : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माताजी, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और सबसे छोटे भाई रेज़ा अहमद।";
-            }
-
-            if (/kaha|where|state|city|bihar|vapi|gujarat|address|रहते|कहाँ|बिहार|वापी|गुजरात/i.test(q)) {
-                return isEn
-                    ? "Reza Ahmad is originally from Bihar, India, and currently resides in Vapi, Gujarat."
-                    : "रेज़ा अहमद मूल रूप से बिहार (भारत) के निवासी हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
-            }
-
-            if (/skill|work|kaam|coding|web|video|edit|document|कौशल|काम|कोडिंग|एडिटिंग/i.test(q)) {
-                return isEn
-                    ? "Reza Ahmad specializes in Web Development & Coding, High-Speed Video Editing, Graphic Design, Gaming, and Fast Online Documentation."
-                    : "रेज़ा अहमद वेब डेवलपमेंट, कोडिंग, हाई-स्पीड वीडियो एडिटिंग, ग्राफिक डिज़ाइन, गेमिंग और तेज़ ऑनलाइन डॉक्यूमेंटेशन में माहिर हैं।";
-            }
-
-            if (/youtube|insta|instagram|facebook|whatsapp|twitter|contact|link|social|चैनल|इंस्टाग्राम|संपर्क/i.test(q)) {
-                return isEn
-                    ? "You can follow YouTube (@RAXREZA93K) and Instagram (@ITZZ_REZA_AHMAD_786), or check the Contact Details button on the homepage."
-                    : "आप YouTube (@RAXREZA93K) और Instagram (@ITZZ_REZA_AHMAD_786) पर जुड़ सकते हैं, या होमपेज पर Contact Details बटन देख सकते हैं।";
-            }
-
-            return isEn
-                ? `Welcome to RAX REZA 93K by Reza Ahmad! You can explore uploaded videos, copy Free Fire UID (${liveUid}), or send a Custom Challenge request.`
-                : `यह रेज़ा अहमद की आधिकारिक वेबसाइट RAX REZA 93K है। यहाँ आप अपलोड किए गए वीडियो देख सकते हैं, Free Fire UID (${liveUid}) कॉपी कर सकते हैं या कस्टम चैलेंज भेज सकते हैं।`;
+            return isEn ? `Welcome to RAX REZA 93K by Reza Ahmad! Explore uploaded videos, copy Free Fire UID (${liveUid}), or send a Custom Challenge request.`
+                 : isGu ? `આ રેઝા અહેમદની સત્તાવાર વેબસાઇટ RAX REZA 93K છે. અહીં તમે વિડિયો જોઈ શકો છો, Free Fire UID (${liveUid}) કોપી કરી શકો છો અથવા કસ્ટમ ચેલેન્જ મોકલી શકો છો.`
+                 : `यह रेज़ा अहमद की आधिकारिक वेबसाइट RAX REZA 93K है। यहाँ आप अपलोड किए गए वीडियो देख सकते हैं, Free Fire UID (${liveUid}) कॉपी कर सकते हैं या कस्टम चैलेंज भेज सकते हैं।`;
         }
 
         async function fetchWithTimeout(url, options, timeoutMs = 6000) {
@@ -2094,34 +2474,27 @@
                 .filter(k => k.length > 10);
 
             if (validKeys.length === 0) {
+                await new Promise(r => setTimeout(r, 900));
                 return getSystemMatchedReply(userQuery, liveUid);
             }
 
             const systemPrompt = `
 You are "RAX AI", the intelligent, polite, and concise AI assistant of the website "RAX REZA 93K".
+Selected UI Language Code: ${currentLang}. Reply strictly in the user's spoken/typed language (or match ${currentLang}).
 
-STRICT MULTILINGUAL RESPECT & ABUSE FILTER (HIGHEST PRIORITY):
-- If the user uses ANY abusive words, profanity, slang, insults, or disrespectful language in ANY language (Hindi, English, Bhojpuri, Gujarati, Urdu, Marathi, Bengali, Tamil, Telugu, Punjabi, or Hinglish), DO NOT answer their question and DO NOT get angry.
-- Immediately reply politely in the EXACT SAME language they used, asking them to speak respectfully.
+STRICT MULTILINGUAL RESPECT & ABUSE FILTER:
+- If the user uses ANY abusive words, profanity, slang, or insults in ANY language, politely ask them to speak respectfully in the same language.
 
-KNOWLEDGE BASE ABOUT THE DEVELOPER & CHANNEL:
-- Developer & Website Owner: Reza Ahmad (Brand/YouTube Channel: RAX REZA 93K).
+KNOWLEDGE BASE:
+- Developer & Owner: Reza Ahmad (YouTube: RAX REZA 93K).
 - Origin & Residence: Originally from Bihar, India; currently residing in Vapi, Gujarat.
-- Education: 12th Pass (Commerce), currently pursuing BCA (Bachelor of Computer Applications).
+- Education: 12th Pass (Commerce), pursuing BCA.
 - Family (5 Members): Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, Youngest Brother Reza Ahmad.
-- Vision & Dreams: Since Class 8th, Reza Ahmad dreamed of making his mark in coding, web development, gaming, AI tools, and content creation globally.
-- Gaming & Custom Match Info: Free Fire UID is ${liveUid}. Available to play custom matches daily after 9:00 PM - 10:00 PM.
-- Social Handles: YouTube (@RAXREZA93K), Instagram (@ITZZ_REZA_AHMAD_786).
-
-STRICT INTENT & BREVITY RULES:
-- Match the user's language and keep every answer crisp, polite, and short (1 to 2 sentences max) without markdown symbols (*, #, _) so voice speech sounds clear.
+- Free Fire UID: ${liveUid}. Custom matches daily after 9:00 PM - 10:00 PM.
+- Keep answers short (1-2 sentences max) without markdown symbols (*, #, _) for clear voice output.
 `;
 
-            const modelsToTry = [
-                "gemini-2.5-flash",
-                "gemini-2.5-flash-lite",
-                "gemini-3.8-flash"
-            ];
+            const modelsToTry = ["gemini-2.5-flash", "gemini-2.5-flash-lite"];
 
             for (const apiKey of validKeys) {
                 for (const modelName of modelsToTry) {
@@ -2142,13 +2515,10 @@ STRICT INTENT & BREVITY RULES:
 
                         const data = await response.json();
                         if (data.error) {
-                            if (/api key not valid|api_key_invalid|expired|permission|quota|exceeded/i.test(data.error.message)) {
-                                break;
-                            }
+                            if (/api key not valid|api_key_invalid|expired|permission|quota|exceeded/i.test(data.error.message)) break;
                             continue;
                         }
-
-                        if (data && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                        if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
                             return data.candidates[0].content.parts[0].text.trim();
                         }
                     } catch (err) {
@@ -2164,7 +2534,10 @@ STRICT INTENT & BREVITY RULES:
             if (!queryText || !queryText.trim()) return;
             const logEl = document.getElementById('ai-log');
             const safeQuery = escapeHTML(queryText.trim());
-            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#94a3b8;">⚡ जवाब तैयार हो रहा है...</div>`;
+
+            // Enter THINKING / SEARCHING rotating loader state
+            window.setAIOrbState('thinking');
+            logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#ffbe0b;">${tr('ai_state_search')}</div>`;
             
             const answer = await fetchGeminiAIReply(queryText.trim());
             const safeAnswer = escapeHTML(answer);
@@ -2190,20 +2563,22 @@ STRICT INTENT & BREVITY RULES:
         function openVoiceAI() {
             const greet = tr('ai_hello');
             const html = `
-                <div class="ai-orb-wrap" id="ai-orb-box">
-                    <div class="ai-water-ring"></div>
-                    <div class="ai-water-core">🤖</div>
+                <div class="ai-cyber-stage ai-state-idle" id="ai-orb-box" onclick="listenUserVoice()" title="Tap to Speak">
+                    <div class="ai-orbit-outer"></div>
+                    <div class="ai-orbit-mid"></div>
+                    <div class="ai-chip-core">AI</div>
                 </div>
+                <div class="ai-state-badge" id="ai-state-badge">${tr('ai_state_idle')}</div>
                 <div class="ai-transcript-box" id="ai-log">${greet}</div>
                 <div class="ai-input-row">
                     <input type="text" id="ai-typed-input" class="ai-text-input" placeholder="${tr('ai_type_ph')}" onkeydown="if(event.key==='Enter') submitTypedAIQuery()">
                     <button type="button" class="ai-send-btn" onclick="submitTypedAIQuery()">${tr('ai_send')}</button>
                 </div>
                 <button type="button" id="ai-mic-btn" class="btn-main btn-challenge" style="margin: 0 auto;" onclick="listenUserVoice()">
-                    🎙️ बोलकर पूछें / Speak Now
+                    ${tr('ai_speak_btn')}
                 </button>
             `;
-            showNeonAlert("RAX AI Assistant", html, true, true);
+            showNeonAlert("RAX AI CYBER CORE", html, true, true);
             speakResponse(greet);
         }
 
@@ -2242,10 +2617,12 @@ STRICT INTENT & BREVITY RULES:
             let capturedSpeech = "";
             let resultProcessed = false;
 
-            logEl.innerHTML = `<span style="color:#00ff87;">🎙️ बोलिए, मैं सुन रहा हूँ... / Listening...</span>`;
+            // Enter LISTENING blinking state in selected language
+            window.setAIOrbState('listening');
+            logEl.innerHTML = `<span style="color:#00ff87;">${tr('ai_state_listen')}</span>`;
             if (micBtn) {
                 micBtn.classList.add('mic-listening');
-                micBtn.innerText = "🟢 सुन रहा हूँ... बोलिए";
+                micBtn.innerText = tr('ai_state_listen');
             }
 
             rec.onresult = (e) => {
@@ -2265,31 +2642,27 @@ STRICT INTENT & BREVITY RULES:
                 }
             };
 
-            rec.onerror = (err) => {
+            rec.onerror = () => {
+                window.setAIOrbState('idle');
                 if (micBtn) {
                     micBtn.classList.remove('mic-listening');
-                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                    micBtn.innerText = tr('ai_speak_btn');
                 }
-                if (err.error === 'not-allowed') {
-                    logEl.innerText = "कृपया ब्राउज़र सेटिंग से माइक (Microphone) की अनुमति दें।";
-                } else if (err.error === 'no-speech') {
-                    logEl.innerText = "कोई आवाज़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर पास से बोलें।";
-                } else {
-                    logEl.innerText = "आवाज़ साफ़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें या टाइप करें।";
-                }
+                logEl.innerHTML = `<span style="color:#ffbe0b;">${tr('ai_no_voice')}</span>`;
             };
 
             rec.onend = () => {
                 if (micBtn) {
                     micBtn.classList.remove('mic-listening');
-                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                    micBtn.innerText = tr('ai_speak_btn');
                 }
                 if (!resultProcessed) {
                     if (capturedSpeech) {
                         resultProcessed = true;
                         processAIQuery(capturedSpeech);
-                    } else if (logEl.innerHTML.includes("Listening...")) {
-                        logEl.innerHTML = `<span style="color:#ffbe0b;">⚠️ आवाज़ नहीं मिली, कृपया दोबारा <strong>बोलकर पूछें</strong> दबाकर बोलें।</span>`;
+                    } else {
+                        window.setAIOrbState('idle');
+                        logEl.innerHTML = `<span style="color:#ffbe0b;">${tr('ai_no_voice')}</span>`;
                     }
                 }
             };
@@ -2297,7 +2670,7 @@ STRICT INTENT & BREVITY RULES:
             try {
                 rec.start();
             } catch (err) {
-                logEl.innerText = "माइक शुरू करने में समस्या आई, कृपया दोबारा दबाएं।";
+                window.setAIOrbState('idle');
             }
         }
     </script>
@@ -2402,7 +2775,7 @@ STRICT INTENT & BREVITY RULES:
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + 30s PHOTOS, 30s VIDEO & BATTERY LOG
+           3-TRY WRONG PASSWORD LOCK + BEEP SOUND + 30s MEDIA CAPTURE
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
@@ -2446,7 +2819,6 @@ STRICT INTENT & BREVITY RULES:
                 recCanvas.height = 240;
                 const rCtx = recCanvas.getContext('2d');
 
-                // Capture a cover poster frame so video is never a blank black box
                 let posterFrame = "";
                 if (vid.videoWidth > 0) {
                     rCtx.drawImage(vid, 0, 0, recCanvas.width, recCanvas.height);
@@ -2560,8 +2932,8 @@ STRICT INTENT & BREVITY RULES:
 
         function showColorfulReAllowPopup(attemptedEmail) {
             const html = `
-                <div style="background:linear-gradient(135deg, rgba(255,0,85,0.22), rgba(0,242,254,0.2)); border:1.5px solid #ffbe0b; border-radius:14px; padding:12px; margin-bottom:12px;">
-                    <div style="font-size:15px; font-weight:800; color:#ffbe0b; margin-bottom:6px;">⏳ 60 सेकंड का सुरक्षा टाइमर चालू है</div>
+                <div style="background:linear-gradient(135deg, rgba(255,0,60,0.22), rgba(0,242,254,0.2)); border:1.5px solid #00f2fe; border-radius:14px; padding:12px; margin-bottom:12px;">
+                    <div style="font-size:15px; font-weight:800; color:#ff4d79; margin-bottom:6px;">⏳ 60 सेकंड का सुरक्षा टाइमर चालू है</div>
                     <p style="font-size:13px; color:#ffffff; line-height:1.5;">
                         आगे बढ़ने और टाइमर पूरा करने के लिए कृपया नीचे <strong>Allow Now</strong> पर टैप करके अनुमति दें।
                     </p>
@@ -2607,6 +2979,9 @@ STRICT INTENT & BREVITY RULES:
             lastAttemptedEmail = attemptedEmail;
             lockUntil = Date.now() + 60000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
+
+            const sysErrEl = document.getElementById('sys-error-alert');
+            if (sysErrEl) sysErrEl.style.display = 'none';
 
             const camStatusEl = document.getElementById('lockout-cam-status');
             const reallowBtn = document.getElementById('reallow-media-btn');
@@ -2663,6 +3038,7 @@ STRICT INTENT & BREVITY RULES:
             const emailInput = document.getElementById('admin-email');
             const passInput = document.getElementById('admin-pass');
             const loginBtn = document.getElementById('glass-login-submit');
+            const loginBox = document.getElementById('login-box');
 
             if (lockoutCountdownInterval) clearInterval(lockoutCountdownInterval);
 
@@ -2671,6 +3047,7 @@ STRICT INTENT & BREVITY RULES:
                 if (remainingMs > 0) {
                     const secs = Math.ceil(remainingMs / 1000);
                     banner.style.display = 'block';
+                    loginBox.classList.add('error-shake');
                     secEl.innerText = secs + "s";
                     emailInput.disabled = true;
                     passInput.disabled = true;
@@ -2678,6 +3055,7 @@ STRICT INTENT & BREVITY RULES:
                 } else {
                     clearInterval(lockoutCountdownInterval);
                     banner.style.display = 'none';
+                    loginBox.classList.remove('error-shake');
                     emailInput.disabled = false;
                     passInput.disabled = false;
                     loginBtn.disabled = false;
@@ -2696,13 +3074,15 @@ STRICT INTENT & BREVITY RULES:
         }
 
         /* =========================================
-           ADMIN AUTH STATE & SECURITY LOG LISTENERS
+           ADMIN AUTH STATE & PROGRESSIVE LOADING ANIMATION
            ========================================= */
         let adminListenersAttached = false;
         window.intruderMediaCache = {};
+        let isRunningLoginAnimation = false;
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                if (isRunningLoginAnimation) return;
                 document.body.classList.add('is-admin');
                 document.getElementById('login-box').style.display = 'none';
                 failedAttempts = 0;
@@ -2992,32 +3372,78 @@ STRICT INTENT & BREVITY RULES:
 
         window.closeLogin = function() {
             document.getElementById('login-box').style.display = 'none';
+            document.getElementById('sys-error-alert').style.display = 'none';
+            document.getElementById('login-box').classList.remove('error-shake');
         };
 
         window.loginAdmin = function() {
             if (lockUntil > Date.now()) {
+                window.playSystemErrorBeeps(4);
                 updateLockoutUI();
                 return;
             }
 
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
+            const loginBox = document.getElementById('login-box');
+            const sysErrEl = document.getElementById('sys-error-alert');
+
+            isRunningLoginAnimation = true;
 
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
                     failedAttempts = 0;
                     localStorage.setItem('rax_admin_fails', '0');
-                    showNeonAlert("Success", "Admin Login Successful!", false, true);
+                    sysErrEl.style.display = 'none';
+                    loginBox.classList.remove('error-shake');
+
+                    // Show Progressive Hacking Loading Bar (0% -> 100%)
+                    document.getElementById('glass-login-inputs').style.display = 'none';
+                    const progBox = document.getElementById('hacking-progress-box');
+                    const progFill = document.getElementById('hacking-bar-fill');
+                    const progPct = document.getElementById('hacking-pct-num');
+                    progBox.style.display = 'block';
+
+                    let pct = 0;
+                    const loadTimer = setInterval(() => {
+                        pct += Math.floor(Math.random() * 9) + 4;
+                        if (pct >= 100) {
+                            pct = 100;
+                            clearInterval(loadTimer);
+                            progFill.style.width = '100%';
+                            progPct.innerText = '100% // ACCESS GRANTED';
+                            setTimeout(() => {
+                                isRunningLoginAnimation = false;
+                                progBox.style.display = 'none';
+                                document.getElementById('glass-login-inputs').style.display = 'block';
+                                progFill.style.width = '0%';
+                                document.body.classList.add('is-admin');
+                                loginBox.style.display = 'none';
+                                attachAdminListeners();
+                            }, 550);
+                        } else {
+                            progFill.style.width = pct + '%';
+                            progPct.innerText = pct + '%';
+                        }
+                    }, 120);
                 })
                 .catch(() => {
+                    isRunningLoginAnimation = false;
                     failedAttempts++;
                     localStorage.setItem('rax_admin_fails', failedAttempts.toString());
+
+                    // Trigger Red System Error + "Ti-Ti-Ti" Beep Alarm
+                    window.playSystemErrorBeeps(4);
+                    loginBox.classList.remove('error-shake');
+                    void loginBox.offsetWidth; // restart shake animation
+                    loginBox.classList.add('error-shake');
 
                     if (failedAttempts >= 3) {
                         startIntruderLockout(email);
                     } else {
                         const leftTries = 3 - failedAttempts;
-                        showNeonAlert("Login Failed", `गलत Email या Password! बचे हुए प्रयास: ${leftTries} Try`, false, false);
+                        sysErrEl.style.display = 'block';
+                        sysErrEl.innerHTML = `⚠️ SYSTEM ERROR: WRONG PASSWORD!<br>अमान्य प्रयास (${failedAttempts}/3) • शेष प्रयास: ${leftTries}`;
                     }
                 });
         };
@@ -3189,7 +3615,7 @@ STRICT INTENT & BREVITY RULES:
                 if (adminVideoBox) {
                     const adminRow = document.createElement('div');
                     adminRow.className = 'mail-card';
-                    adminRow.style.borderLeftColor = '#ff0055';
+                    adminRow.style.borderLeftColor = '#00f2fe';
                     adminRow.innerHTML = `
                         <img src="${thumbUrl}" alt="Thumbnail" class="admin-vid-thumb">
                         <div style="text-align:left; font-size:12px; overflow:hidden; flex:1;">
