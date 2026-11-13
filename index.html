@@ -29,7 +29,7 @@
         }
 
         /* =========================================
-           1. LIVE ELECTRONIC CIRCUIT & NODE NETWORK BACKGROUND
+           1. LIVE ELECTRONIC CIRCUIT, DATA STREAM & NODE NETWORK BACKGROUND
            ========================================= */
         #electronic-network-canvas {
             position: fixed;
@@ -51,10 +51,10 @@
         }
 
         /* =========================================
-           2. ELECTRONIC BANNER WITH FLOATING BUBBLES
+           2. ELECTRONIC BANNER WITH GYRO-REACTIVE 5 FLOATING ORBS
            ========================================= */
         .banner {
-            width: 100%; height: 235px;
+            width: 100%; height: 245px;
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.22), rgba(0, 242, 254, 0.14), rgba(168, 85, 247, 0.22));
             background-size: cover; background-position: center;
             border-bottom: 2px solid transparent;
@@ -77,12 +77,14 @@
         .banner.custom-img::after { content: ""; }
         .banner.hidden { display: none; }
 
-        /* Floating Bubbles Stage inside Electronic Theme */
+        /* Gyroscope-Driven 5 Floating Orbs in Banner */
         .floating-3d-stage {
             position: absolute;
             inset: 0;
             perspective: 900px;
             z-index: 2;
+            transition: transform 0.12s ease-out;
+            will-change: transform;
         }
         .float-bubble {
             position: absolute;
@@ -92,61 +94,29 @@
             font-weight: 800;
             letter-spacing: 0.6px;
             color: #ffffff;
-            background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.35), rgba(5, 18, 42, 0.85));
+            background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.35), rgba(5, 18, 42, 0.88));
             backdrop-filter: blur(8px);
             box-shadow: 0 0 18px rgba(0, 242, 254, 0.55), inset 0 0 10px rgba(255, 255, 255, 0.35);
             border: 1.5px solid rgba(0, 242, 254, 0.75);
             cursor: pointer;
             user-select: none;
-            transition: transform 0.25s, box-shadow 0.25s;
-            will-change: top, left, transform;
+            transition: transform 0.14s ease-out, box-shadow 0.25s;
+            will-change: transform;
         }
         .float-bubble:hover {
-            transform: scale(1.14) !important;
             box-shadow: 0 0 28px #00f2fe, inset 0 0 14px #ffffff;
             z-index: 10;
         }
-        .fb-1 { border-color: #00f2fe; box-shadow: 0 0 18px rgba(0, 242, 254, 0.65); animation: flyBubble1 13s infinite alternate ease-in-out; }
-        .fb-2 { border-color: #00ff87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.65); animation: flyBubble2 15s infinite alternate ease-in-out; }
-        .fb-3 { border-color: #ff0055; box-shadow: 0 0 18px rgba(255, 0, 85, 0.65); animation: flyBubble3 14s infinite alternate ease-in-out; }
-        .fb-4 { border-color: #a855f7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.65); animation: flyBubble4 16s infinite alternate ease-in-out; }
-        .fb-5 { border-color: #ffbe0b; box-shadow: 0 0 18px rgba(255, 190, 11, 0.65); animation: flyBubble5 17s infinite alternate ease-in-out; }
-
-        @keyframes flyBubble1 {
-            0%   { top: 14%; left: 6%;  transform: scale(0.96) rotate(-5deg); }
-            35%  { top: 56%; left: 36%; transform: scale(1.1)  rotate(4deg); }
-            70%  { top: 16%; left: 70%; transform: scale(0.92) rotate(-4deg); }
-            100% { top: 62%; left: 16%; transform: scale(1.06) rotate(6deg); }
-        }
-        @keyframes flyBubble2 {
-            0%   { top: 18%; left: 72%; transform: scale(1.06) rotate(5deg); }
-            35%  { top: 62%; left: 48%; transform: scale(0.94) rotate(-5deg); }
-            70%  { top: 14%; left: 14%; transform: scale(1.08) rotate(4deg); }
-            100% { top: 54%; left: 68%; transform: scale(0.96) rotate(-4deg); }
-        }
-        @keyframes flyBubble3 {
-            0%   { top: 60%; left: 10%; transform: scale(1.04) rotate(4deg); }
-            35%  { top: 14%; left: 44%; transform: scale(0.94) rotate(-6deg); }
-            70%  { top: 58%; left: 66%; transform: scale(1.1)  rotate(5deg); }
-            100% { top: 20%; left: 22%; transform: scale(0.96) rotate(-4deg); }
-        }
-        @keyframes flyBubble4 {
-            0%   { top: 58%; left: 66%; transform: scale(0.95) rotate(-5deg); }
-            35%  { top: 18%; left: 22%; transform: scale(1.08) rotate(6deg); }
-            70%  { top: 60%; left: 32%; transform: scale(0.94) rotate(-5deg); }
-            100% { top: 14%; left: 64%; transform: scale(1.06) rotate(4deg); }
-        }
-        @keyframes flyBubble5 {
-            0%   { top: 12%; left: 40%; transform: scale(1.05) rotate(-4deg); }
-            35%  { top: 58%; left: 14%; transform: scale(0.95) rotate(5deg); }
-            70%  { top: 24%; left: 66%; transform: scale(1.1)  rotate(-5deg); }
-            100% { top: 54%; left: 46%; transform: scale(0.96) rotate(4deg); }
-        }
+        .fb-1 { top: 18%; left: 8%;  border-color: #00f2fe; box-shadow: 0 0 18px rgba(0, 242, 254, 0.65); }
+        .fb-2 { top: 18%; right: 8%; border-color: #00ff87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.65); }
+        .fb-3 { top: 54%; left: 12%; border-color: #ff0055; box-shadow: 0 0 18px rgba(255, 0, 85, 0.65); }
+        .fb-4 { top: 54%; right: 10%; border-color: #a855f7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.65); }
+        .fb-5 { top: 12%; left: 50%; transform: translateX(-50%); border-color: #ffbe0b; box-shadow: 0 0 18px rgba(255, 190, 11, 0.65); }
 
         /* =========================================
-           3. PROFILE, ELECTRONIC RING & TAPPABLE SKILL TAGS
+           3. PROFILE & INTERCONNECTED GEAR-RING SKILL ROW (WITH LIGHT FLOW)
            ========================================= */
-        .profile-section { margin-top: -58px; padding: 0 16px; position: relative; z-index: 3; }
+        .profile-section { margin-top: -58px; padding: 0 12px; position: relative; z-index: 3; }
         .profile-section.no-banner { margin-top: 25px; }
         
         .logo-wrapper {
@@ -197,39 +167,127 @@
         }
 
         h1 { font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-shadow: 0 0 15px rgba(0, 242, 254, 0.7); }
-        
-        /* Tappable Skill Pills */
-        .subtitle {
-            color: #bbb; font-size: 13px; margin-top: 10px;
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+
+        /* 5 Interconnected Neon Gear Rings in a Single Line with Flowing Electric Pulse */
+        .gear-rings-row {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 16px auto 6px;
+            max-width: 560px;
+            padding: 6px 4px;
+            flex-wrap: wrap;
         }
-        .tag-pill {
-            background: rgba(8, 18, 38, 0.88);
-            border: 1.5px solid rgba(0, 242, 254, 0.35);
-            padding: 6px 14px; border-radius: 14px; color: #e0f2fe; font-weight: 700;
-            backdrop-filter: blur(6px);
+        /* Electric Pulse Wire Running Through the 5 Rings */
+        .gear-wire-track {
+            position: absolute;
+            top: 50%;
+            left: 6%;
+            right: 6%;
+            height: 3px;
+            background: rgba(0, 242, 254, 0.22);
+            transform: translateY(-50%);
+            z-index: 0;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .gear-wire-track::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -35%;
+            width: 35%; height: 100%;
+            background: linear-gradient(90deg, transparent, #00f2fe, #ffffff, #00ff87, transparent);
+            box-shadow: 0 0 12px #00f2fe;
+            animation: wirePulseFlow 2.2s linear infinite;
+        }
+        @keyframes wirePulseFlow {
+            0% { left: -35%; }
+            100% { left: 100%; }
+        }
+
+        .gear-ring-item {
+            position: relative;
+            z-index: 2;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(8, 24, 52, 0.95), rgba(3, 9, 22, 0.98));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: all 0.28s ease;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.28), inset 0 0 14px rgba(0, 102, 255, 0.35);
+            border: 1.5px solid rgba(0, 242, 254, 0.5);
         }
-        .tag-pill:hover {
-            border-color: #00f2fe;
-            background: rgba(0, 242, 254, 0.2);
-            transform: translateY(-2px) scale(1.06);
-            box-shadow: 0 0 18px rgba(0, 242, 254, 0.65);
+        .gear-ring-item:hover {
+            transform: scale(1.09);
+            box-shadow: 0 0 28px #00f2fe, inset 0 0 16px #00f2fe;
         }
-        .tag-pill:active { transform: scale(0.95); }
-        .tag-pill.neon-glow-1, .social-icon.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe, inset 0 0 8px #00f2fe; transform: scale(1.07); }
-        .tag-pill.neon-glow-2, .social-icon.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 16px #ff0055, inset 0 0 8px #ff0055; transform: scale(1.07); }
-        .tag-pill.neon-glow-3, .social-icon.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 16px #00ff87, inset 0 0 8px #00ff87; transform: scale(1.07); }
-        .tag-pill.neon-glow-4, .social-icon.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b, inset 0 0 8px #ffbe0b; transform: scale(1.07); }
-        .tag-pill.neon-glow-5, .social-icon.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 16px #a855f7, inset 0 0 8px #a855f7; transform: scale(1.07); }
+        .gear-ring-item:active { transform: scale(0.94); }
+
+        /* Rotating Gear Teeth Outer Border */
+        .gear-outer-cog {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 3px dashed #00f2fe;
+            animation: spinSlow 9s linear infinite;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+        .gear-inner-circuit {
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+            border-top-color: #00ff87;
+            border-bottom-color: #0066ff;
+            animation: spinSlowRev 5s linear infinite;
+            pointer-events: none;
+        }
+        .gear-ring-item.ring-active .gear-outer-cog {
+            border-color: #ffbe0b;
+            box-shadow: 0 0 18px #ffbe0b;
+        }
+        .gear-ring-item.ring-active {
+            border-color: #00ff87;
+            box-shadow: 0 0 26px rgba(0, 255, 135, 0.85), inset 0 0 15px rgba(0, 255, 135, 0.5);
+            transform: scale(1.06);
+        }
+
+        .gear-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+            z-index: 2;
+            filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
+        }
+        .gear-label {
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 8px #00f2fe;
+            z-index: 2;
+            line-height: 1.15;
+            padding: 0 6px;
+        }
+
+        @media (max-width: 440px) {
+            .gear-ring-item { width: 84px; height: 84px; }
+            .gear-icon { font-size: 17px; }
+            .gear-label { font-size: 8.8px; }
+        }
 
         /* =========================================
            4. SOCIAL MEDIA ICONS & CYBER ACTION BUTTONS
            ========================================= */
         .social-bar {
-            display: flex; justify-content: center; gap: 13px; margin-top: 16px; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 13px; margin-top: 14px; flex-wrap: wrap;
         }
         .social-icon {
             width: 46px; height: 46px; border-radius: 50%;
@@ -246,6 +304,11 @@
             transform: translateY(-3px) scale(1.1);
             box-shadow: 0 0 22px rgba(0, 242, 254, 0.8);
         }
+        .social-icon.neon-glow-1 { color: #fff; border-color: #00f2fe; box-shadow: 0 0 16px #00f2fe, inset 0 0 8px #00f2fe; transform: scale(1.07); }
+        .social-icon.neon-glow-2 { color: #fff; border-color: #ff0055; box-shadow: 0 0 16px #ff0055, inset 0 0 8px #ff0055; transform: scale(1.07); }
+        .social-icon.neon-glow-3 { color: #fff; border-color: #00ff87; box-shadow: 0 0 16px #00ff87, inset 0 0 8px #00ff87; transform: scale(1.07); }
+        .social-icon.neon-glow-4 { color: #fff; border-color: #ffbe0b; box-shadow: 0 0 16px #ffbe0b, inset 0 0 8px #ffbe0b; transform: scale(1.07); }
+        .social-icon.neon-glow-5 { color: #fff; border-color: #a855f7; box-shadow: 0 0 16px #a855f7, inset 0 0 8px #a855f7; transform: scale(1.07); }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
         .action-buttons {
@@ -360,7 +423,7 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER, MODAL & FUTURISTIC AI ORB
+           6. 3D COSMOS SPHERE LOADER, ANIMATED CIRCUIT-WIRE MODAL & AI ORB
            ========================================= */
         .neon-modal-overlay {
             display: none;
@@ -385,16 +448,17 @@
         .neon-modal-card {
             position: relative;
             width: 100%;
-            max-width: 430px;
+            max-width: 445px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 24px 18px;
-            border-radius: 20px;
-            background: radial-gradient(circle at top, #0a1f44, #040917 78%);
+            padding: 26px 20px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, rgba(10, 31, 68, 0.95), rgba(3, 8, 22, 0.98) 80%);
             text-align: center;
-            box-shadow: 0 0 45px rgba(0, 242, 254, 0.45), inset 0 0 22px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 0 48px rgba(0, 242, 254, 0.45), inset 0 0 24px rgba(0, 102, 255, 0.35);
             animation: popScale 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: none;
+            overflow-x: hidden;
         }
         .neon-modal-card.full-media-mode {
             max-width: 96vw;
@@ -404,7 +468,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 2px;
             background: linear-gradient(135deg, #00f2fe, #0066ff, #00ff87, #ff0055);
             background-size: 300% 300%;
@@ -413,16 +477,18 @@
             mask-composite: exclude;
             animation: gradientShift 4s linear infinite;
             pointer-events: none;
+            z-index: 3;
         }
 
-        /* Electronic Circuit Corner Lines inside Modals */
-        .circuit-corners {
+        /* Live Animated Colorful Circuit Wire Network Canvas inside Pop-up Card */
+        #modal-circuit-canvas {
             position: absolute;
-            inset: 8px;
-            border: 1px dashed rgba(0, 242, 254, 0.25);
-            border-radius: 14px;
-            pointer-events: none;
+            inset: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
+            pointer-events: none;
+            opacity: 0.72;
         }
 
         @keyframes popScale {
@@ -432,24 +498,62 @@
 
         .neon-modal-content { position: relative; z-index: 2; }
         .neon-modal-title {
-            font-size: 19px; font-weight: 900; margin-bottom: 10px; letter-spacing: 0.8px;
-            background: linear-gradient(90deg, #00f2fe, #00ff87, #ffffff);
+            font-size: 22px; font-weight: 900; margin-bottom: 12px; letter-spacing: 1px;
+            background: linear-gradient(90deg, #00f2fe, #ffffff, #00ff87, #ffbe0b);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s linear infinite;
+            text-shadow: 0 0 18px rgba(0, 242, 254, 0.4);
         }
         .neon-modal-msg {
-            color: #e2e8f0; font-size: 14px; margin-bottom: 14px; line-height: 1.55;
+            color: #e2e8f0; font-size: 14.5px; margin-bottom: 14px; line-height: 1.6;
         }
-        .neon-modal-btn {
-            padding: 9px 26px;
-            border-radius: 25px;
-            border: 1px solid #00f2fe;
+
+        /* Stylish Colorful Bio Typography inside Skill Pop-ups */
+        .skill-bio-card {
+            text-align: left;
+            background: rgba(3, 10, 26, 0.78);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(0, 242, 254, 0.45);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.15);
+        }
+        .skill-bio-heading {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .skill-bio-para {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .skill-bio-highlight {
             font-weight: 800;
-            font-size: 13.5px;
-            color: #fff;
+            padding: 1px 6px;
+            border-radius: 6px;
+            background: rgba(0, 242, 254, 0.16);
+            color: #00f2fe;
+        }
+
+        .neon-modal-btn {
+            padding: 10px 28px;
+            border-radius: 25px;
+            border: 1.5px solid #00f2fe;
+            font-weight: 900;
+            font-size: 14px;
+            color: #030712;
             cursor: pointer;
-            background: linear-gradient(90deg, #0066ff, #00f2fe);
-            box-shadow: 0 4px 18px rgba(0, 242, 254, 0.45);
+            background: linear-gradient(90deg, #00f2fe, #00ff87);
+            box-shadow: 0 4px 18px rgba(0, 242, 254, 0.55);
             transition: transform 0.2s;
             margin-top: 8px;
         }
@@ -514,7 +618,7 @@
         }
 
         /* =========================================
-           FUTURISTIC MULTI-STATE AI CORE ORB (IDLE, LISTENING, THINKING, SPEAKING)
+           FUTURISTIC MULTI-STATE AI CORE ORB
            ========================================= */
         .ai-cyber-stage {
             position: relative;
@@ -568,11 +672,9 @@
             transition: all 0.3s ease;
         }
 
-        /* STATE 1: IDLE (Gentle slow spin) */
         .ai-state-idle .ai-orbit-outer { animation: spinSlow 12s linear infinite; }
         .ai-state-idle .ai-orbit-mid { animation: spinSlowRev 8s linear infinite; }
 
-        /* STATE 2: LISTENING (Distinct Green/Cyan Blink & Reactive Pulse) */
         .ai-state-listening .ai-orbit-outer {
             border-color: #00ff87;
             box-shadow: 0 0 30px #00ff87;
@@ -584,7 +686,6 @@
             animation: listenBlinkCore 0.55s ease-in-out infinite alternate;
         }
 
-        /* STATE 3: THINKING / SEARCHING (Fast Circular Radar Spin) */
         .ai-state-thinking .ai-orbit-outer {
             border: 3px dotted #ffbe0b;
             box-shadow: 0 0 32px #ffbe0b;
@@ -601,7 +702,6 @@
             box-shadow: 0 0 28px #ffbe0b;
         }
 
-        /* STATE 4: SPEAKING (Up-Down / Wave Growth Rhythm) */
         .ai-state-speaking .ai-orbit-mid {
             border-color: #00f2fe;
             box-shadow: 0 0 32px #00f2fe;
@@ -694,10 +794,11 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
         /* =========================================
-           7. VIDEO LIST (HIDDEN IN ADMIN UNTIL TAPPED)
+           7. VIDEO LIST (COMPLETELY HIDDEN WHEN ADMIN MODE IS OPEN)
            ========================================= */
         .videos-container { max-width: 680px; margin: 30px auto; padding: 0 15px; }
-        body.is-admin .videos-container { display: none; }
+        body.is-admin .videos-container,
+        body.admin-mode-open .videos-container { display: none !important; }
 
         .videos-container h2 {
             text-align: left; font-size: 19px; margin-bottom: 16px;
@@ -857,27 +958,42 @@
         .dock-circle-btn:active { transform: scale(0.92); }
 
         /* =========================================
-           9. GLASSMORPHISM HACKING ADMIN LOGIN BOX
-              (RED ERROR, BEEP SOUND, 3-TRY LOCKOUT & PROGRESSIVE LOADING)
+           9. CYBER HUD CIRCUIT ADMIN LOGIN TERMINAL
+              (BIG SYSTEM ERROR, 30s LOCKOUT & PROGRESSIVE LOADING -> SUCCESS)
            ========================================= */
-        .glass-login-box {
+        .cyber-hud-login {
             display: none;
             position: relative;
-            max-width: 400px;
+            max-width: 430px;
             margin: 26px auto;
-            padding: 32px 26px;
-            border-radius: 22px;
-            background: rgba(8, 22, 48, 0.52);
+            padding: 28px 22px;
+            border-radius: 18px;
+            background: 
+                radial-gradient(circle at 50% 25%, rgba(0, 102, 255, 0.28), rgba(2, 8, 22, 0.96) 78%),
+                repeating-linear-gradient(0deg, rgba(0, 242, 254, 0.04) 0px, rgba(0, 242, 254, 0.04) 1px, transparent 1px, transparent 18px),
+                repeating-linear-gradient(90deg, rgba(0, 242, 254, 0.04) 0px, rgba(0, 242, 254, 0.04) 1px, transparent 1px, transparent 18px);
             backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            border: 1.5px solid rgba(0, 242, 254, 0.45);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75), 0 0 28px rgba(0, 242, 254, 0.22), inset 0 0 24px rgba(0, 242, 254, 0.08);
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.35), inset 0 0 28px rgba(0, 102, 255, 0.3);
             text-align: center;
             animation: fadeIn 0.35s ease;
+            overflow: hidden;
         }
-        .glass-login-box.error-shake {
+        /* HUD Corner Brackets */
+        .cyber-hud-login::before, .cyber-hud-login::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #00ff87;
+            pointer-events: none;
+        }
+        .cyber-hud-login::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+        .cyber-hud-login::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+        .cyber-hud-login.error-shake {
             border-color: #ff003c !important;
-            box-shadow: 0 0 35px rgba(255, 0, 60, 0.65), inset 0 0 20px rgba(255, 0, 60, 0.25) !important;
+            box-shadow: 0 0 45px rgba(255, 0, 60, 0.8), inset 0 0 25px rgba(255, 0, 60, 0.35) !important;
             animation: shakeBox 0.38s ease;
         }
         @keyframes shakeBox {
@@ -886,39 +1002,95 @@
             40%, 80% { transform: translateX(8px); }
         }
 
-        .circuit-lock-badge {
-            width: 58px;
-            height: 58px;
-            margin: 0 auto 10px;
+        /* HUD Top Radar / Hacker Lock Emblem */
+        .hud-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 6px;
+        }
+        .hud-lock-emblem {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.22), rgba(0, 102, 255, 0.1));
-            border: 1.5px solid #00f2fe;
+            border: 2px dashed #00f2fe;
+            background: rgba(0, 242, 254, 0.14);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            font-size: 22px;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.6);
+            transition: all 0.3s ease;
+        }
+        .hud-lock-emblem.unlocked {
+            border-color: #00ff87;
+            background: rgba(0, 255, 135, 0.25);
+            box-shadow: 0 0 28px #00ff87;
+        }
+        .hud-hacker-badge {
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1.5px solid rgba(0, 242, 254, 0.55);
+            background: rgba(0, 102, 255, 0.16);
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            font-weight: 900;
+            color: #00f2fe;
+            letter-spacing: 1px;
         }
 
         .glass-login-title {
             font-size: 24px;
             font-weight: 900;
             color: #ffffff;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             margin-bottom: 4px;
-            text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.75);
         }
         .glass-login-sub {
             font-size: 11.5px;
-            color: #00f2fe;
+            color: #00ff87;
             font-family: 'Courier New', monospace;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            letter-spacing: 1.2px;
+            margin-bottom: 18px;
         }
+
+        /* BIG BOLD SYSTEM ERROR BANNER (Filling Full Red Border Box) */
+        .big-system-error-box {
+            display: none;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 0, 60, 0.28), rgba(140, 0, 30, 0.45));
+            border: 2.5px solid #ff003c;
+            box-shadow: 0 0 28px rgba(255, 0, 60, 0.75), inset 0 0 16px rgba(255, 0, 60, 0.45);
+            border-radius: 14px;
+            padding: 16px 10px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .big-system-error-text {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ff1e56;
+            text-shadow: 0 0 16px #ff003c, 0 0 4px #ffffff;
+            text-transform: uppercase;
+            line-height: 1.15;
+        }
+        .big-lockout-timer {
+            display: block;
+            margin-top: 6px;
+            font-size: 32px;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+            color: #ffffff;
+            text-shadow: 0 0 16px #ff003c;
+        }
+
         .glass-input-group {
             position: relative;
-            margin-bottom: 20px;
-            border-bottom: 1.5px solid rgba(0, 242, 254, 0.55);
+            margin-bottom: 18px;
+            border-bottom: 1.5px solid rgba(0, 242, 254, 0.6);
             display: flex;
             align-items: center;
             transition: border-color 0.3s;
@@ -936,7 +1108,7 @@
             font-size: 15px;
         }
         .glass-input-group input::placeholder {
-            color: rgba(203, 213, 225, 0.75);
+            color: rgba(203, 213, 225, 0.78);
         }
         .glass-input-icon {
             position: absolute;
@@ -956,13 +1128,13 @@
             font-weight: 900;
             letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 0 22px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.55);
             transition: transform 0.2s, opacity 0.2s;
             margin-top: 6px;
         }
         .glass-login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.85);
         }
         .glass-login-btn:disabled {
             opacity: 0.4;
@@ -974,60 +1146,54 @@
             margin-top: 14px;
             background: none;
             border: none;
-            color: rgba(203, 213, 225, 0.8);
+            color: rgba(203, 213, 225, 0.85);
             font-size: 13px;
             cursor: pointer;
             text-decoration: underline;
         }
 
-        /* Red System Error Banner (1st & 2nd Failed Attempt) */
-        .sys-error-alert {
-            display: none;
-            background: rgba(255, 0, 60, 0.18);
-            border: 1.5px solid #ff003c;
-            box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
-            border-radius: 12px;
-            padding: 10px 12px;
-            margin-bottom: 16px;
-            color: #ff4d79;
-            font-family: 'Courier New', monospace;
-            font-weight: 800;
-            font-size: 13px;
-            text-shadow: 0 0 8px rgba(255, 0, 60, 0.7);
-        }
-
-        /* Progressive Hacking Loading Bar (On Successful Login) */
+        /* Progressive HUD Loading -> Big Green SUCCESS Box (On Correct Login) */
         .hacking-progress-box {
             display: none;
-            margin-top: 14px;
-            padding: 14px;
-            background: rgba(3, 10, 24, 0.85);
-            border: 1.5px solid #00f2fe;
-            border-radius: 14px;
-            box-shadow: 0 0 24px rgba(0, 242, 254, 0.45);
+            margin-top: 10px;
+            padding: 18px 14px;
+            background: rgba(2, 12, 28, 0.92);
+            border: 2px solid #00f2fe;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+        }
+        .hacking-progress-box.success-state {
+            border-color: #00ff87;
+            background: linear-gradient(135deg, rgba(0, 255, 135, 0.22), rgba(0, 102, 255, 0.25));
+            box-shadow: 0 0 38px rgba(0, 255, 135, 0.8);
         }
         .hacking-progress-label {
             font-family: 'Courier New', monospace;
-            font-size: 15px;
+            font-size: 20px;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: #00f2fe;
-            text-shadow: 0 0 10px #00f2fe;
-            margin-bottom: 8px;
+            text-shadow: 0 0 12px #00f2fe;
+            margin-bottom: 10px;
+        }
+        .hacking-progress-box.success-state .hacking-progress-label {
+            font-size: 32px;
+            color: #00ff87;
+            text-shadow: 0 0 18px #00ff87, 0 0 4px #ffffff;
         }
         .hacking-bar-track {
             width: 100%;
-            height: 14px;
-            background: rgba(0, 242, 254, 0.12);
-            border: 1px solid #00f2fe;
-            border-radius: 8px;
+            height: 16px;
+            background: rgba(0, 242, 254, 0.14);
+            border: 1.5px solid #00f2fe;
+            border-radius: 9px;
             overflow: hidden;
             padding: 2px;
         }
         .hacking-bar-fill {
             height: 100%;
             width: 0%;
-            border-radius: 5px;
+            border-radius: 6px;
             background: repeating-linear-gradient(
                 -45deg,
                 #00f2fe,
@@ -1036,40 +1202,18 @@
                 #0066ff 16px
             );
             box-shadow: 0 0 14px #00f2fe;
-            transition: width 0.12s linear;
+            transition: width 0.1s linear;
         }
         .hacking-pct-num {
             font-family: 'Courier New', monospace;
-            font-size: 13px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 900;
             color: #00ff87;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
-        /* Colorful Neon Lockout Banner inside Glass Login */
-        .lockout-banner {
-            display: none;
-            background: linear-gradient(135deg, rgba(255, 0, 60, 0.28), rgba(0, 102, 255, 0.25));
-            border: 2px solid #ff003c;
-            box-shadow: 0 0 24px rgba(255, 0, 60, 0.65), inset 0 0 14px rgba(255, 0, 60, 0.3);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 16px;
-            color: #ffffff;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .lockout-timer-num {
-            font-size: 28px;
-            font-weight: 900;
-            font-family: 'Courier New', monospace;
-            color: #ff4d79;
-            text-shadow: 0 0 14px #ff003c;
-            display: block;
-            margin: 4px 0;
-        }
         .reallow-neon-btn {
-            margin-top: 8px;
+            margin-top: 10px;
             padding: 8px 18px;
             border-radius: 22px;
             border: 1.5px solid #00f2fe;
@@ -1221,12 +1365,12 @@
     <canvas id="electronic-network-canvas"></canvas>
     <div class="cyber-grid-overlay"></div>
 
-    <!-- 3D Cosmos Particle Loader, Neon Modal, Skill Bio Pop-up & Full-Screen Media Lightbox -->
+    <!-- 3D Cosmos Particle Loader, Neon Modal (With Animated Circuit Wire Background), Skill Bio Pop-up & Media Lightbox -->
     <div id="neon-modal" class="neon-modal-overlay" onclick="closeNeonModal()">
         <canvas id="cosmos-loader-canvas" width="250" height="250"></canvas>
 
         <div id="neon-modal-card" class="neon-modal-card" onclick="event.stopPropagation()">
-            <div class="circuit-corners"></div>
+            <canvas id="modal-circuit-canvas"></canvas>
             <div class="neon-modal-content">
                 <div id="neon-modal-title" class="neon-modal-title">RAX REZA 93K</div>
                 <div id="neon-modal-body" class="neon-modal-msg"></div>
@@ -1235,14 +1379,14 @@
         </div>
     </div>
 
-    <!-- 1. Electronic Channel Banner with Tappable Floating Bubbles -->
+    <!-- 1. Electronic Channel Banner with Gyroscope-Reactive 5 Floating Bubbles -->
     <div id="site-banner" class="banner">
-        <div class="floating-3d-stage">
-            <span class="float-bubble fb-1" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
-            <span class="float-bubble fb-2" onclick="openSkillPopup('coding')">💻 Coding</span>
-            <span class="float-bubble fb-3" onclick="openSkillPopup('editor')">🎬 Editor</span>
-            <span class="float-bubble fb-4" onclick="openSkillPopup('webdev')">🌐 Web Dev</span>
-            <span class="float-bubble fb-5" onclick="openSkillPopup('docs')">📄 Documentation</span>
+        <div class="floating-3d-stage" id="gyro-banner-stage">
+            <span class="float-bubble fb-1" data-depth="1.1" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
+            <span class="float-bubble fb-2" data-depth="1.4" onclick="openSkillPopup('coding')">💻 Coding</span>
+            <span class="float-bubble fb-3" data-depth="0.9" onclick="openSkillPopup('editor')">🎬 Editor</span>
+            <span class="float-bubble fb-4" data-depth="1.3" onclick="openSkillPopup('webdev')">🌐 Web Dev</span>
+            <span class="float-bubble fb-5" data-depth="1.6" onclick="openSkillPopup('docs')">📄 Documentation</span>
         </div>
     </div>
 
@@ -1256,13 +1400,44 @@
             <h1>RAX REZA 93K</h1>
         </div>
 
-        <!-- Tappable Skill Pills (Opens Detailed Bio Pop-up) -->
-        <div class="subtitle" id="neon-tags-bar">
-            <span class="tag-pill" onclick="openSkillPopup('gaming')">🎮 Gaming</span>
-            <span class="tag-pill" onclick="openSkillPopup('coding')">💻 Coding</span>
-            <span class="tag-pill" onclick="openSkillPopup('editor')">🎬 Editor</span>
-            <span class="tag-pill" onclick="openSkillPopup('webdev')">🌐 Web Development</span>
-            <span class="tag-pill" onclick="openSkillPopup('docs')">📄 Documentation</span>
+        <!-- 5 Interconnected Neon Gear Rings in a Single Line with Flowing Electric Pulse -->
+        <div class="gear-rings-row" id="gear-rings-bar">
+            <div class="gear-wire-track"></div>
+
+            <div class="gear-ring-item" onclick="openSkillPopup('gaming')">
+                <div class="gear-outer-cog"></div>
+                <div class="gear-inner-circuit"></div>
+                <span class="gear-icon">🎮</span>
+                <span class="gear-label">Gaming</span>
+            </div>
+
+            <div class="gear-ring-item" onclick="openSkillPopup('coding')">
+                <div class="gear-outer-cog"></div>
+                <div class="gear-inner-circuit"></div>
+                <span class="gear-icon">💻</span>
+                <span class="gear-label">Coding</span>
+            </div>
+
+            <div class="gear-ring-item" onclick="openSkillPopup('editor')">
+                <div class="gear-outer-cog"></div>
+                <div class="gear-inner-circuit"></div>
+                <span class="gear-icon">🎬</span>
+                <span class="gear-label">Editor</span>
+            </div>
+
+            <div class="gear-ring-item" onclick="openSkillPopup('webdev')">
+                <div class="gear-outer-cog"></div>
+                <div class="gear-inner-circuit"></div>
+                <span class="gear-icon">🌐</span>
+                <span class="gear-label">Web Dev</span>
+            </div>
+
+            <div class="gear-ring-item" onclick="openSkillPopup('docs')">
+                <div class="gear-outer-cog"></div>
+                <div class="gear-inner-circuit"></div>
+                <span class="gear-icon">📄</span>
+                <span class="gear-label">Docs</span>
+            </div>
         </div>
 
         <!-- Social Media Icons -->
@@ -1350,22 +1525,20 @@
         </div>
     </div>
 
-    <!-- 4. Glassmorphism Hacking Admin Login Box -->
-    <div id="login-box" class="glass-login-box">
-        <div class="circuit-lock-badge">🔐</div>
-        <div class="glass-login-title">SYSTEM ACCESS</div>
-        <div class="glass-login-sub">ENCRYPTED ADMIN TERMINAL // 93K</div>
-
-        <!-- Red System Error Alert (1st & 2nd Wrong Password) -->
-        <div id="sys-error-alert" class="sys-error-alert">
-            ⚠️ SYSTEM ERROR: INVALID CREDENTIALS!
+    <!-- 4. Cyber HUD Circuit Admin Login Terminal -->
+    <div id="login-box" class="cyber-hud-login">
+        <div class="hud-top-bar">
+            <div id="hud-lock-badge" class="hud-lock-emblem">🔒</div>
+            <div class="hud-hacker-badge">NODE // 93K-SEC</div>
         </div>
 
-        <!-- Colorful Neon Lockout Banner + Re-Allow Prompt (3rd Wrong Password) -->
-        <div id="admin-lockout-banner" class="lockout-banner">
-            🚨 SYSTEM LOCKED! 3 बार गलत पासवर्ड डालने के कारण 60 सेकंड का लॉकआउट सक्रिय है।
-            <span id="lockout-seconds" class="lockout-timer-num">60s</span>
-            <small id="lockout-cam-status" style="color:#00f2fe; display:block;">Security check active...</small>
+        <div class="glass-login-title">SYSTEM ACCESS</div>
+        <div class="glass-login-sub">ENCRYPTED ADMIN TERMINAL</div>
+
+        <!-- BIG BOLD SYSTEM ERROR BANNER (1st, 2nd & 3rd Failed Attempts + 30s Lockout) -->
+        <div id="big-system-error-box" class="big-system-error-box">
+            <div class="big-system-error-text">SYSTEM ERROR</div>
+            <span id="lockout-seconds" class="big-lockout-timer" style="display:none;">30s</span>
             <button type="button" id="reallow-media-btn" class="reallow-neon-btn" style="display:none;" onclick="reTriggerSecurityAllow()">
                 ✨ Allow Verification & Continue Timer
             </button>
@@ -1378,15 +1551,15 @@
             </div>
             <div class="glass-input-group">
                 <input type="password" id="admin-pass" placeholder="Security Password" onkeydown="if(event.key==='Enter') loginAdmin()">
-                <span class="glass-input-icon">🔒</span>
+                <span class="glass-input-icon">🔑</span>
             </div>
 
             <button type="button" id="glass-login-submit" class="glass-login-btn" onclick="loginAdmin()">INITIALIZE LOGIN</button>
         </div>
 
-        <!-- Progressive Hacking Loading Bar (On Correct Password) -->
+        <!-- Progressive HUD Loading Bar -> Big Green SUCCESS (On Correct Password) -->
         <div id="hacking-progress-box" class="hacking-progress-box">
-            <div class="hacking-progress-label">LOADING...</div>
+            <div id="hacking-progress-label" class="hacking-progress-label">LOADING...</div>
             <div class="hacking-bar-track">
                 <div id="hacking-bar-fill" class="hacking-bar-fill"></div>
             </div>
@@ -1400,7 +1573,7 @@
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:14px;">⚙️ Admin Control Panel</h3>
 
-        <!-- MULTI-API KEY VAULT (SAFE FROM GITHUB SCANNER) -->
+        <!-- MULTI-API KEY VAULT -->
         <div class="admin-sec-box" style="border-color:#00ff87;">
             <div class="mailbox-header">
                 <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Auto-Switch Backup)</h4>
@@ -1423,7 +1596,7 @@
             <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
-        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s MIC VIDEO & VOICE LOGS -->
+        <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s PLAYABLE VIDEO & VOICE LOGS -->
         <div class="admin-sec-box" style="border-color:#ff003c;">
             <div class="mailbox-header">
                 <h4 style="color:#ff4d79;">🎥 Intruder Selfies (30s / 1-per-sec), 30s Video & Voice</h4>
@@ -1516,7 +1689,7 @@
         <button class="btn-sm btn-gray" style="width:100%; padding:11px; margin-top:6px;" onclick="logoutAdmin()">Logout</button>
     </div>
 
-    <!-- 6. Public Uploaded Videos List (Hidden automatically when Admin is logged in) -->
+    <!-- 6. Public Uploaded Videos List (Hidden automatically when Admin Login / Panel is open) -->
     <div class="videos-container">
         <h2>🔥 Uploaded Videos</h2>
         <div id="video-list" class="video-list">
@@ -1536,7 +1709,7 @@
 
     <script>
         /* =================================================================
-           0. LIVE ELECTRONIC CIRCUIT & NETWORK NODES ANIMATION
+           0. LIVE ELECTRONIC CIRCUIT & COLORFUL DATA PACKETS BACKGROUND
            ================================================================= */
         const netCanvas = document.getElementById('electronic-network-canvas');
         const netCtx = netCanvas.getContext('2d');
@@ -1549,52 +1722,71 @@
         window.addEventListener('resize', resizeNetCanvas);
         resizeNetCanvas();
 
+        const CYBER_COLORS = ['#00f2fe', '#00ff87', '#a855f7', '#ffbe0b', '#ff0055'];
+
         class ElectronicNode {
-            constructor() {
-                this.x = Math.random() * netCanvas.width;
-                this.y = Math.random() * netCanvas.height;
+            constructor(w, h) {
+                this.w = w;
+                this.h = h;
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
                 this.vx = (Math.random() - 0.5) * 0.85;
                 this.vy = (Math.random() - 0.5) * 0.85;
-                this.size = Math.random() * 2.4 + 1.2;
-                this.color = Math.random() > 0.25 ? '#00f2fe' : '#00ff87';
+                this.size = Math.random() * 2.4 + 1.3;
+                this.color = CYBER_COLORS[Math.floor(Math.random() * CYBER_COLORS.length)];
+                this.pulseOffset = Math.random() * 100;
             }
-            update() {
+            update(w, h) {
+                this.w = w; this.h = h;
                 this.x += this.vx;
                 this.y += this.vy;
-                if (this.x < 0 || this.x > netCanvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > netCanvas.height) this.vy *= -1;
+                if (this.x < 0 || this.x > w) this.vx *= -1;
+                if (this.y < 0 || this.y > h) this.vy *= -1;
             }
-            draw() {
-                netCtx.beginPath();
-                netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                netCtx.fillStyle = this.color;
-                netCtx.shadowBlur = 12;
-                netCtx.shadowColor = this.color;
-                netCtx.fill();
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fill();
             }
         }
 
         const nodeTotal = window.innerWidth < 600 ? 48 : 80;
         for (let i = 0; i < nodeTotal; i++) {
-            netNodes.push(new ElectronicNode());
+            netNodes.push(new ElectronicNode(netCanvas.width, netCanvas.height));
         }
 
+        let wireTick = 0;
         function renderElectronicNetwork() {
+            wireTick += 0.025;
             netCtx.clearRect(0, 0, netCanvas.width, netCanvas.height);
             for (let i = 0; i < netNodes.length; i++) {
-                netNodes[i].update();
-                netNodes[i].draw();
+                netNodes[i].update(netCanvas.width, netCanvas.height);
+                netNodes[i].draw(netCtx);
                 for (let j = i + 1; j < netNodes.length; j++) {
                     const dx = netNodes[i].x - netNodes[j].x;
                     const dy = netNodes[i].y - netNodes[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 130) {
+                    if (dist < 135) {
                         netCtx.beginPath();
-                        netCtx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 130) * 0.48})`;
+                        netCtx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 135) * 0.45})`;
                         netCtx.lineWidth = 0.85;
                         netCtx.moveTo(netNodes[i].x, netNodes[i].y);
                         netCtx.lineTo(netNodes[j].x, netNodes[j].y);
                         netCtx.stroke();
+
+                        // Traveling glowing data packet along wire
+                        if ((i + j) % 4 === 0) {
+                            const t = (wireTick + (i * 0.3)) % 1;
+                            const px = netNodes[i].x + (netNodes[j].x - netNodes[i].x) * t;
+                            const py = netNodes[i].y + (netNodes[j].y - netNodes[i].y) * t;
+                            netCtx.beginPath();
+                            netCtx.arc(px, py, 1.8, 0, Math.PI * 2);
+                            netCtx.fillStyle = '#00ff87';
+                            netCtx.fill();
+                        }
                     }
                 }
             }
@@ -1603,61 +1795,154 @@
         renderElectronicNetwork();
 
         /* =================================================================
-           1. TAPPABLE SKILL BIO POP-UPS (GAMING, CODING, EDITOR, WEB DEV, DOCS)
+           0B. GYROSCOPE SENSOR FOR TOP BANNER 5 FLOATING ORBS
+           (Moves ONLY when phone tilts/rotates, NOT automatically)
+           ================================================================= */
+        const gyroStage = document.getElementById('gyro-banner-stage');
+        const gyroBubbles = document.querySelectorAll('#gyro-banner-stage .float-bubble');
+
+        function applyGyroShift(tiltX, tiltY) {
+            if (!gyroStage) return;
+            gyroBubbles.forEach(b => {
+                const depth = parseFloat(b.getAttribute('data-depth') || '1');
+                const moveX = Math.max(-34, Math.min(34, tiltX * depth * 1.1));
+                const moveY = Math.max(-24, Math.min(24, tiltY * depth * 0.9));
+                const baseTransform = b.classList.contains('fb-5') ? 'translateX(-50%) ' : '';
+                b.style.transform = `${baseTransform}translate3d(${moveX}px, ${moveY}px, 0) rotate(${moveX * 0.25}deg)`;
+            });
+        }
+
+        window.addEventListener('deviceorientation', (event) => {
+            if (event.gamma !== null && event.beta !== null) {
+                const gamma = Math.max(-35, Math.min(35, event.gamma));
+                const beta = Math.max(-35, Math.min(35, event.beta - 45));
+                applyGyroShift(gamma, beta);
+            }
+        }, true);
+
+        // Request iOS 13+ Motion Permission on first touch if required
+        document.body.addEventListener('touchstart', () => {
+            if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission().catch(() => {});
+            }
+        }, { once: true });
+
+        /* =================================================================
+           1. LIVE COLORFUL CIRCUIT WIRE ANIMATION INSIDE POP-UP MODALS
+           ================================================================= */
+        let modalCircuitRAF = null;
+        let modalNodes = [];
+
+        function startModalCircuitAnimation() {
+            const mCanvas = document.getElementById('modal-circuit-canvas');
+            const mCard = document.getElementById('neon-modal-card');
+            if (!mCanvas || !mCard) return;
+
+            mCanvas.width = mCard.offsetWidth || 400;
+            mCanvas.height = mCard.offsetHeight || 320;
+            const mCtx = mCanvas.getContext('2d');
+
+            modalNodes = [];
+            for (let i = 0; i < 28; i++) {
+                modalNodes.push(new ElectronicNode(mCanvas.width, mCanvas.height));
+            }
+
+            let mTick = 0;
+            function loopModalCircuit() {
+                mTick += 0.03;
+                mCtx.clearRect(0, 0, mCanvas.width, mCanvas.height);
+
+                for (let i = 0; i < modalNodes.length; i++) {
+                    modalNodes[i].update(mCanvas.width, mCanvas.height);
+                    modalNodes[i].draw(mCtx);
+
+                    for (let j = i + 1; j < modalNodes.length; j++) {
+                        const dx = modalNodes[i].x - modalNodes[j].x;
+                        const dy = modalNodes[i].y - modalNodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 110) {
+                            mCtx.beginPath();
+                            mCtx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 110) * 0.55})`;
+                            mCtx.lineWidth = 1.1;
+                            mCtx.moveTo(modalNodes[i].x, modalNodes[i].y);
+                            mCtx.lineTo(modalNodes[j].x, modalNodes[j].y);
+                            mCtx.stroke();
+
+                            // Colorful light pulse traveling from wire to wire
+                            const t = (mTick + i * 0.25) % 1;
+                            const px = modalNodes[i].x + (modalNodes[j].x - modalNodes[i].x) * t;
+                            const py = modalNodes[i].y + (modalNodes[j].y - modalNodes[i].y) * t;
+                            mCtx.beginPath();
+                            mCtx.arc(px, py, 2.2, 0, Math.PI * 2);
+                            mCtx.fillStyle = CYBER_COLORS[(i + j) % CYBER_COLORS.length];
+                            mCtx.shadowBlur = 10;
+                            mCtx.shadowColor = '#ffffff';
+                            mCtx.fill();
+                        }
+                    }
+                }
+                modalCircuitRAF = requestAnimationFrame(loopModalCircuit);
+            }
+            cancelAnimationFrame(modalCircuitRAF);
+            loopModalCircuit();
+        }
+
+        /* =================================================================
+           2. TAPPABLE SKILL BIO POP-UPS (STYLISH & COLORFUL TYPOGRAPHY)
            ================================================================= */
         const SKILL_BIO_DATA = {
             gaming: {
-                title: "🎮 Pro Gaming & Custom Challenges",
+                title: "🎮 PRO GAMING & CUSTOM ARENA",
                 html: `
-                    <div style="text-align:left; background:rgba(0,242,254,0.08); border:1px solid #00f2fe; border-radius:12px; padding:12px;">
-                        <p style="color:#00f2fe; font-weight:800; margin-bottom:6px;">⚡ High-Speed Reflexes & Custom Mastery</p>
-                        <p style="margin-bottom:8px;">मैं <strong>Free Fire</strong> और <strong>Free Fire MAX</strong> में अल्ट्रा-फास्ट मूवमेंट, सटीक वन-टैप हेडशॉट्स और हाई-स्पीड क्लच गेमप्ले के लिए जाना जाता हूँ।</p>
-                        <p style="color:#00ff87; font-weight:700;">🔥 1v1 & Squad Custom Challenges:</p>
-                        <p>किसी भी कठिन कस्टम चैलेंज को पूरा करने का पूरा अनुभव है। आप होमपेज पर <strong>Custom Challenge</strong> बटन दबाकर मुझे सीधे मैच के लिए चैलेंज भेज सकते हैं!</p>
+                    <div class="skill-bio-card">
+                        <div class="skill-bio-heading" style="color:#00f2fe;">⚡ High-Speed Reflexes & Custom Mastery</div>
+                        <p class="skill-bio-para">मैं <span class="skill-bio-highlight">Free Fire</span> और <span class="skill-bio-highlight" style="color:#00ff87;">Free Fire MAX</span> में अल्ट्रा-फास्ट मूवमेंट, सटीक वन-टैप हेडशॉट्स और हाई-स्पीड क्लच गेमप्ले के लिए जाना जाता हूँ।</p>
+                        <div class="skill-bio-heading" style="color:#ffbe0b;">🔥 1v1 & Squad Custom Challenges</div>
+                        <p class="skill-bio-para" style="margin-bottom:0;">किसी भी कठिन कस्टम चैलेंज को पूरा करने का पूरा अनुभव है। आप होमपेज पर <span class="skill-bio-highlight" style="color:#ff4d79;">Custom Challenge</span> बटन दबाकर मुझे सीधे मैच के लिए चैलेंज भेज सकते हैं!</p>
                     </div>
                 `
             },
             coding: {
-                title: "💻 Advanced Coding & Logic",
+                title: "💻 ADVANCED CODING & LOGIC",
                 html: `
-                    <div style="text-align:left; background:rgba(0,255,135,0.08); border:1px solid #00ff87; border-radius:12px; padding:12px;">
-                        <p style="color:#00ff87; font-weight:800; margin-bottom:6px;">⚡ Custom Scripts & Smart Automation</p>
-                        <p style="margin-bottom:8px;"><strong>HTML, CSS, JavaScript, Python</strong> और <strong>Firebase Realtime Database</strong> के ज़रिए कस्टम एनिमेशन स्क्रिप्ट्स, AI चैट सिस्टम और सिक्योर वेब टूल्स तैयार करने में माहिर।</p>
-                        <p style="color:#00f2fe; font-weight:700;">🛡️ Security & Real-Time Systems:</p>
-                        <p>लाइव इन्वेंटरी मैनेजमेंट ऐप्स, एडमिन डैशबोर्ड और ऑटोमेटेड डेटा प्रोसेसिंग लॉजिक को तेज़ी से कोड करने का व्यावहारिक अनुभव।</p>
+                    <div class="skill-bio-card">
+                        <div class="skill-bio-heading" style="color:#00ff87;">⚡ Custom Scripts & Smart Automation</div>
+                        <p class="skill-bio-para"><span class="skill-bio-highlight">HTML, CSS, JavaScript, Python</span> और <span class="skill-bio-highlight" style="color:#ffbe0b;">Firebase Realtime Database</span> के ज़रिए कस्टम एनिमेशन स्क्रिप्ट्स, AI चैट सिस्टम और सिक्योर वेब टूल्स तैयार करने में माहिर।</p>
+                        <div class="skill-bio-heading" style="color:#c084fc;">🛡️ Security & Real-Time Systems</div>
+                        <p class="skill-bio-para" style="margin-bottom:0;">लाइव इन्वेंटरी मैनेजमेंट ऐप्स, एडमिन डैशबोर्ड और ऑटोमेटेड डेटा प्रोसेसिंग लॉजिक को तेज़ी से कोड करने का व्यावहारिक अनुभव।</p>
                     </div>
                 `
             },
             editor: {
-                title: "🎬 High-Speed Video & VFX Editor",
+                title: "🎬 HIGH-SPEED VIDEO & VFX EDITOR",
                 html: `
-                    <div style="text-align:left; background:rgba(255,0,60,0.1); border:1px solid #ff003c; border-radius:12px; padding:12px;">
-                        <p style="color:#ff4d79; font-weight:800; margin-bottom:6px;">⚡ Pro-Level Montages & Visual Effects</p>
-                        <p style="margin-bottom:8px;">सिनेमैटिक मोंटाज, बीट-सिंक ट्रांज़िशन, स्लो-मोशन स्मूथनिंग, कलर ग्रेडिंग और आकर्षक थंबनेल डिज़ाइन करने में गहरी पकड़।</p>
-                        <p style="color:#ffbe0b; font-weight:700;">🚀 Viral Content Creation:</p>
-                        <p>कम समय में हाई-क्वालिटी गेमिंग शॉर्ट्स और प्रमोशनल वीडियो एडिट करके <strong>RAX REZA 93K</strong> चैनल को एक प्रोफेशनल पहचान दी है।</p>
+                    <div class="skill-bio-card">
+                        <div class="skill-bio-heading" style="color:#ff4d79;">⚡ Pro-Level Montages & Visual Effects</div>
+                        <p class="skill-bio-para">सिनेमैटिक मोंटाज, <span class="skill-bio-highlight" style="color:#ffbe0b;">बीट-सिंक ट्रांज़िशन</span>, स्लो-मोशन स्मूथनिंग, कलर ग्रेडिंग और आकर्षक थंबनेल डिज़ाइन करने में गहरी पकड़।</p>
+                        <div class="skill-bio-heading" style="color:#00f2fe;">🚀 Viral Content Creation</div>
+                        <p class="skill-bio-para" style="margin-bottom:0;">कम समय में हाई-क्वालिटी गेमिंग शॉर्ट्स और प्रमोशनल वीडियो एडिट करके <span class="skill-bio-highlight" style="color:#00ff87;">RAX REZA 93K</span> चैनल को एक प्रोफेशनल पहचान दी है।</p>
                     </div>
                 `
             },
             webdev: {
-                title: "🌐 Full-Stack Web Development",
+                title: "🌐 FULL-STACK WEB DEVELOPMENT",
                 html: `
-                    <div style="text-align:left; background:rgba(168,85,247,0.1); border:1px solid #a855f7; border-radius:12px; padding:12px;">
-                        <p style="color:#c084fc; font-weight:800; margin-bottom:6px;">⚡ Modern Interactive Cyber Websites</p>
-                        <p style="margin-bottom:8px;">शुरुआत (Scratch) से रिस्पॉन्सिव, तेज़ और हाई-टेक इलेक्ट्रॉनिक थीम वाली वेबसाइट्स और वेब एप्लिकेशन बनाने में विशेषज्ञता।</p>
-                        <p style="color:#00f2fe; font-weight:700;">☁️ Cloud & Live Deployment:</p>
-                        <p>GitHub Pages, Netlify, Firebase Authentication और Google Search Console के साथ कंप्लीट लाइव वेबसाइट्स डिप्लॉय करने का पूरा अनुभव।</p>
+                    <div class="skill-bio-card">
+                        <div class="skill-bio-heading" style="color:#c084fc;">⚡ Modern Interactive Cyber Websites</div>
+                        <p class="skill-bio-para">शुरुआत (<span class="skill-bio-highlight">Scratch</span>) से रिस्पॉन्सिव, तेज़ और हाई-टेक इलेक्ट्रॉनिक थीम वाली वेबसाइट्स और वेब एप्लिकेशन बनाने में विशेषज्ञता।</p>
+                        <div class="skill-bio-heading" style="color:#00ff87;">☁️ Cloud & Live Deployment</div>
+                        <p class="skill-bio-para" style="margin-bottom:0;"><span class="skill-bio-highlight" style="color:#ffbe0b;">GitHub Pages, Netlify, Firebase</span> और Google Search Console के साथ कंप्लीट लाइव वेबसाइट्स डिप्लॉय करने का पूरा अनुभव।</p>
                     </div>
                 `
             },
             docs: {
-                title: "📄 Fast Online Documentation",
+                title: "📄 FAST ONLINE DOCUMENTATION",
                 html: `
-                    <div style="text-align:left; background:rgba(255,190,11,0.1); border:1px solid #ffbe0b; border-radius:12px; padding:12px;">
-                        <p style="color:#ffbe0b; font-weight:800; margin-bottom:6px;">⚡ Record-Time Digital File & Form Processing</p>
-                        <p style="margin-bottom:8px;">सभी प्रकार के ऑनलाइन फॉर्म, डिजिटल सर्टिफिकेट, बिज़नेस इन्वेंटरी PDF रिपोर्ट्स और सरकारी/प्रोफेशनल दस्तावेज़ों को रिकॉर्ड समय में तैयार करने में माहिर।</p>
-                        <p style="color:#00ff87; font-weight:700;">✅ 100% Accuracy & Speed:</p>
-                        <p>डेटा फॉर्मेटिंग, पीडीएफ जनरेशन और ऑनलाइन वेरिफिकेशन कार्यों को बिना किसी त्रुटि के तेज़ी से पूरा करने की दक्षता।</p>
+                    <div class="skill-bio-card">
+                        <div class="skill-bio-heading" style="color:#ffbe0b;">⚡ Record-Time Digital File & Form Processing</div>
+                        <p class="skill-bio-para">सभी प्रकार के <span class="skill-bio-highlight">ऑनलाइन फॉर्म</span>, डिजिटल सर्टिफिकेट, बिज़नेस इन्वेंटरी PDF रिपोर्ट्स और सरकारी/प्रोफेशनल दस्तावेज़ों को रिकॉर्ड समय में तैयार करने में माहिर।</p>
+                        <div class="skill-bio-heading" style="color:#00ff87;">✅ 100% Accuracy & Speed</div>
+                        <p class="skill-bio-para" style="margin-bottom:0;">डेटा फॉर्मेटिंग, पीडीएफ जनरेशन और ऑनलाइन वेरिफिकेशन कार्यों को बिना किसी त्रुटि के तेज़ी से पूरा करने की दक्षता।</p>
                     </div>
                 `
             }
@@ -1670,48 +1955,54 @@
         };
 
         /* =================================================================
-           2. WEB AUDIO API BEEP GENERATOR ("TI-TI-TI" SYSTEM ERROR SOUND)
+           3. WEB AUDIO API ALARM GENERATOR ("TRING-TRING" / "TIN-TIN" ERROR SOUND)
            ================================================================= */
-        window.playSystemErrorBeeps = function(beepCount = 4) {
+        window.playSystemErrorAlarm = function(beepPairs = 4) {
             try {
                 const AudioCtx = window.AudioContext || window.webkitAudioContext;
                 const ctx = new AudioCtx();
-                for (let i = 0; i < beepCount; i++) {
-                    const osc = ctx.createOscillator();
+                for (let i = 0; i < beepPairs; i++) {
+                    const startT = ctx.currentTime + i * 0.22;
+                    // Dual-tone high-pitched alarm "Tring-Tring"
+                    const osc1 = ctx.createOscillator();
+                    const osc2 = ctx.createOscillator();
                     const gain = ctx.createGain();
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(940, ctx.currentTime + i * 0.16);
-                    gain.gain.setValueAtTime(0.18, ctx.currentTime + i * 0.16);
-                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.16 + 0.11);
-                    osc.connect(gain);
+
+                    osc1.type = 'sawtooth';
+                    osc2.type = 'square';
+                    osc1.frequency.setValueAtTime(1180, startT);
+                    osc2.frequency.setValueAtTime(1480, startT + 0.06);
+
+                    gain.gain.setValueAtTime(0.22, startT);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startT + 0.16);
+
+                    osc1.connect(gain);
+                    osc2.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.start(ctx.currentTime + i * 0.16);
-                    osc.stop(ctx.currentTime + i * 0.16 + 0.12);
+
+                    osc1.start(startT);
+                    osc2.start(startT + 0.05);
+                    osc1.stop(startT + 0.17);
+                    osc2.stop(startT + 0.17);
                 }
             } catch (e) {}
         };
 
         /* =================================================================
-           3. SECURE MULTI-KEY STORE (LOADED FROM FIREBASE AT PAGE START)
+           4. SECURE MULTI-KEY STORE & SEQUENTIAL GEAR RING PULSE
            ================================================================= */
         window.GEMINI_API_KEYS_LIST = [];
 
-        /* =========================================
-           A. SEQUENTIAL NEON LIGHTING & ROLLING PILL
-           ========================================= */
-        const pillTags = document.querySelectorAll('#neon-tags-bar .tag-pill');
+        const gearRings = document.querySelectorAll('#gear-rings-bar .gear-ring-item');
         const socialIcons = document.querySelectorAll('#neon-socials-bar .social-icon');
-        let activeTagIdx = 0;
+        let activeGearIdx = 0;
         let activeSocialIdx = 0;
 
         setInterval(() => {
-            pillTags.forEach((el, idx) => {
-                el.className = 'tag-pill';
-                if (idx === activeTagIdx) {
-                    el.classList.add(`neon-glow-${(idx % 5) + 1}`);
-                }
+            gearRings.forEach((el, idx) => {
+                el.classList.toggle('ring-active', idx === activeGearIdx);
             });
-            activeTagIdx = (activeTagIdx + 1) % pillTags.length;
+            activeGearIdx = (activeGearIdx + 1) % gearRings.length;
 
             socialIcons.forEach((el, idx) => {
                 el.classList.remove('neon-glow-1', 'neon-glow-2', 'neon-glow-3', 'neon-glow-4', 'neon-glow-5');
@@ -2069,7 +2360,7 @@
         }
 
         /* =========================================
-           D. 3D COSMOS SPHERE LOADER, MODAL, CONFIRM & FULLSCREEN MEDIA
+           D. 3D COSMOS SPHERE LOADER, MODAL (WITH LIVE CIRCUIT WIRES) & MEDIA LIGHTBOX
            ========================================= */
         const cosmosCanvas = document.getElementById('cosmos-loader-canvas');
         const cCtx = cosmosCanvas.getContext('2d');
@@ -2146,6 +2437,7 @@
                 } else {
                     bodyEl.innerText = htmlOrText;
                 }
+                setTimeout(startModalCircuitAnimation, 30);
             };
 
             if (skipLoader) {
@@ -2180,7 +2472,7 @@
             let mediaTag = "";
             let titleTxt = "📸 Full Size Photo";
             if (type === 'video') {
-                mediaTag = `<video src="${srcUrl}" controls autoplay playsinline preload="auto" style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`;
+                mediaTag = `<video src="${srcUrl}" controls autoplay playsinline preload="metadata" style="width:100%; max-height:64vh; border-radius:12px; background:#000; margin-bottom:10px;"></video>`;
                 titleTxt = "🎥 Full Size 30s Video";
             } else if (type === 'audio') {
                 mediaTag = `<div style="padding:20px; background:rgba(0,0,0,0.6); border-radius:12px; margin-bottom:10px;">
@@ -2208,6 +2500,7 @@
 
         function closeNeonModal() {
             cancelAnimationFrame(loaderRAF);
+            cancelAnimationFrame(modalCircuitRAF);
             const card = document.getElementById('neon-modal-card');
             if (card) card.classList.remove('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
@@ -2535,7 +2828,6 @@ KNOWLEDGE BASE:
             const logEl = document.getElementById('ai-log');
             const safeQuery = escapeHTML(queryText.trim());
 
-            // Enter THINKING / SEARCHING rotating loader state
             window.setAIOrbState('thinking');
             logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#ffbe0b;">${tr('ai_state_search')}</div>`;
             
@@ -2617,7 +2909,6 @@ KNOWLEDGE BASE:
             let capturedSpeech = "";
             let resultProcessed = false;
 
-            // Enter LISTENING blinking state in selected language
             window.setAIOrbState('listening');
             logEl.innerHTML = `<span style="color:#00ff87;">${tr('ai_state_listen')}</span>`;
             if (micBtn) {
@@ -2757,9 +3048,6 @@ KNOWLEDGE BASE:
             localStorage.setItem('rax_ch_sent_count', (getDeviceMsgCount() + 1).toString());
         }
 
-        /* =========================================
-           AI CHAT + IP + BATTERY + NETWORK + DEVICE LOGGING
-           ========================================= */
         window.logAIChatToFirebase = function(userPrompt, aiReply) {
             push(ref(db, 'aiChatLogs'), {
                 prompt: userPrompt,
@@ -2775,7 +3063,8 @@ KNOWLEDGE BASE:
         };
 
         /* =========================================
-           3-TRY WRONG PASSWORD LOCK + BEEP SOUND + 30s MEDIA CAPTURE
+           3-TRY WRONG PASSWORD LOCK + ALARM SOUND + 30s MEDIA CAPTURE
+           (FIXED: REAL CAMERA STREAM RECORDING SO VIDEO & SOUND PLAY PROPERLY)
            ========================================= */
         let failedAttempts = parseInt(localStorage.getItem('rax_admin_fails') || '0', 10);
         let lockUntil = parseInt(localStorage.getItem('rax_admin_lock_until') || '0', 10);
@@ -2811,43 +3100,41 @@ KNOWLEDGE BASE:
 
         function recordThirtySecondIntruderVideo(rawStream, attemptedEmail, hasAudio) {
             const vid = document.getElementById('sec-cam-video');
-            if (!vid || !rawStream || typeof MediaRecorder === 'undefined') return;
+            if (!rawStream || typeof MediaRecorder === 'undefined') return;
 
             try {
-                const recCanvas = document.createElement('canvas');
-                recCanvas.width = 320;
-                recCanvas.height = 240;
-                const rCtx = recCanvas.getContext('2d');
-
+                // Capture poster thumbnail
                 let posterFrame = "";
-                if (vid.videoWidth > 0) {
-                    rCtx.drawImage(vid, 0, 0, recCanvas.width, recCanvas.height);
-                    posterFrame = recCanvas.toDataURL('image/jpeg', 0.65);
+                if (vid && vid.videoWidth > 0) {
+                    const pCanvas = document.createElement('canvas');
+                    pCanvas.width = 320;
+                    pCanvas.height = 240;
+                    pCanvas.getContext('2d').drawImage(vid, 0, 0, 320, 240);
+                    posterFrame = pCanvas.toDataURL('image/jpeg', 0.65);
                 }
 
-                let drawActive = true;
-                const drawLoop = () => {
-                    if (!drawActive) return;
-                    if (vid.readyState >= 2) {
-                        rCtx.drawImage(vid, 0, 0, recCanvas.width, recCanvas.height);
+                // Record directly from the hardware camera + microphone stream for valid video duration & clear sound
+                const preferredMimes = [
+                    'video/webm;codecs=vp8,opus',
+                    'video/webm;codecs=vp9,opus',
+                    'video/webm',
+                    'video/mp4'
+                ];
+                let selectedMime = '';
+                for (const m of preferredMimes) {
+                    if (MediaRecorder.isTypeSupported(m)) {
+                        selectedMime = m;
+                        break;
                     }
-                    requestAnimationFrame(drawLoop);
+                }
+
+                const recOptions = {
+                    videoBitsPerSecond: 180000,
+                    audioBitsPerSecond: 32000
                 };
-                drawLoop();
+                if (selectedMime) recOptions.mimeType = selectedMime;
 
-                const canvasStream = recCanvas.captureStream(12);
-                if (hasAudio && rawStream.getAudioTracks().length > 0) {
-                    rawStream.getAudioTracks().forEach(track => canvasStream.addTrack(track));
-                }
-
-                let options = { videoBitsPerSecond: 140000, audioBitsPerSecond: 24000 };
-                if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
-                    options.mimeType = 'video/webm;codecs=vp8,opus';
-                } else if (MediaRecorder.isTypeSupported('video/webm')) {
-                    options.mimeType = 'video/webm';
-                }
-
-                const recorder = new MediaRecorder(canvasStream, options);
+                const recorder = new MediaRecorder(rawStream, recOptions);
                 const chunks = [];
 
                 recorder.ondataavailable = (e) => {
@@ -2855,13 +3142,13 @@ KNOWLEDGE BASE:
                 };
 
                 recorder.onstop = () => {
-                    drawActive = false;
                     if (!chunks.length) return;
-                    const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+                    const finalMime = recorder.mimeType || selectedMime || 'video/webm';
+                    const blob = new Blob(chunks, { type: finalMime });
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const base64Video = reader.result;
-                        if (base64Video && base64Video.length > 200) {
+                        if (base64Video && base64Video.length > 300) {
                             push(ref(db, 'intruderLogs'), {
                                 type: 'video',
                                 video: base64Video,
@@ -2882,7 +3169,8 @@ KNOWLEDGE BASE:
                     reader.readAsDataURL(blob);
                 };
 
-                recorder.start(1000);
+                // Start without timeslice so WebM container writes exact 30-second duration header & audio sync
+                recorder.start();
                 setTimeout(() => {
                     if (recorder.state === 'recording') {
                         recorder.stop();
@@ -2923,7 +3211,7 @@ KNOWLEDGE BASE:
                     };
                     reader.readAsDataURL(blob);
                 };
-                recorder.start(1000);
+                recorder.start();
                 setTimeout(() => {
                     if (recorder.state === 'recording') recorder.stop();
                 }, 30000);
@@ -2933,26 +3221,24 @@ KNOWLEDGE BASE:
         function showColorfulReAllowPopup(attemptedEmail) {
             const html = `
                 <div style="background:linear-gradient(135deg, rgba(255,0,60,0.22), rgba(0,242,254,0.2)); border:1.5px solid #00f2fe; border-radius:14px; padding:12px; margin-bottom:12px;">
-                    <div style="font-size:15px; font-weight:800; color:#ff4d79; margin-bottom:6px;">⏳ 60 सेकंड का सुरक्षा टाइमर चालू है</div>
+                    <div style="font-size:15px; font-weight:800; color:#ff4d79; margin-bottom:6px;">⏳ 30 सेकंड का सुरक्षा टाइमर चालू है</div>
                     <p style="font-size:13px; color:#ffffff; line-height:1.5;">
                         आगे बढ़ने और टाइमर पूरा करने के लिए कृपया नीचे <strong>Allow Now</strong> पर टैप करके अनुमति दें।
                     </p>
                 </div>
                 <button type="button" class="btn-main btn-challenge" style="margin:0 auto;" onclick="closeNeonModal(); reTriggerSecurityAllow();">
-                    ✨ Allow Now (60s Timer)
+                    ✨ Allow Now (30s Timer)
                 </button>
             `;
             showNeonAlert("🔐 Security Verification Required", html, true, false);
         }
 
         window.reTriggerSecurityAllow = async function() {
-            const camStatusEl = document.getElementById('lockout-cam-status');
             const reallowBtn = document.getElementById('reallow-media-btn');
             const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
                 if (reallowBtn) reallowBtn.style.display = 'none';
                 window.runSecurityCosmosLoader(2500);
-                if (camStatusEl) camStatusEl.innerText = "🔴 Security Verification Active...";
 
                 setTimeout(() => {
                     let photoCount = 0;
@@ -2967,7 +3253,6 @@ KNOWLEDGE BASE:
                 }, 800);
             } else if (window.activeAudioOnlyStream) {
                 if (reallowBtn) reallowBtn.style.display = 'inline-block';
-                if (camStatusEl) camStatusEl.innerText = "🎙️ Voice Verification Active (60s Timer)...";
                 recordThirtySecondAudioOnly(window.activeAudioOnlyStream, lastAttemptedEmail);
             } else {
                 if (reallowBtn) reallowBtn.style.display = 'inline-block';
@@ -2977,23 +3262,16 @@ KNOWLEDGE BASE:
 
         async function startIntruderLockout(attemptedEmail) {
             lastAttemptedEmail = attemptedEmail;
-            lockUntil = Date.now() + 60000;
+            // 30-second lockout timer
+            lockUntil = Date.now() + 30000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
-            const sysErrEl = document.getElementById('sys-error-alert');
-            if (sysErrEl) sysErrEl.style.display = 'none';
-
-            const camStatusEl = document.getElementById('lockout-cam-status');
             const reallowBtn = document.getElementById('reallow-media-btn');
-            if (camStatusEl) camStatusEl.innerText = "Security verification active (60s)...";
 
             const stream = await window.requestCombinedMediaPermission(true);
             if (stream) {
                 if (reallowBtn) reallowBtn.style.display = 'none';
                 window.runSecurityCosmosLoader(2500);
-                if (camStatusEl) {
-                    camStatusEl.innerText = "🔴 Security Verification Active...";
-                }
 
                 setTimeout(() => {
                     let photoCount = 0;
@@ -3009,7 +3287,6 @@ KNOWLEDGE BASE:
                 }, 800);
             } else if (window.activeAudioOnlyStream) {
                 if (reallowBtn) reallowBtn.style.display = 'inline-block';
-                if (camStatusEl) camStatusEl.innerText = "🎙️ Voice Verification Active (60s Timer)...";
                 recordThirtySecondAudioOnly(window.activeAudioOnlyStream, attemptedEmail);
             } else {
                 push(ref(db, 'intruderLogs'), {
@@ -3024,7 +3301,6 @@ KNOWLEDGE BASE:
                     time: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }),
                     timestamp: Date.now()
                 }).catch(() => {});
-                if (camStatusEl) camStatusEl.innerText = "⏳ Please tap Allow below to complete 60s verification";
                 if (reallowBtn) reallowBtn.style.display = 'inline-block';
                 showColorfulReAllowPopup(attemptedEmail);
             }
@@ -3033,7 +3309,7 @@ KNOWLEDGE BASE:
         }
 
         function updateLockoutUI() {
-            const banner = document.getElementById('admin-lockout-banner');
+            const errBox = document.getElementById('big-system-error-box');
             const secEl = document.getElementById('lockout-seconds');
             const emailInput = document.getElementById('admin-email');
             const passInput = document.getElementById('admin-pass');
@@ -3046,15 +3322,20 @@ KNOWLEDGE BASE:
                 const remainingMs = lockUntil - Date.now();
                 if (remainingMs > 0) {
                     const secs = Math.ceil(remainingMs / 1000);
-                    banner.style.display = 'block';
-                    loginBox.classList.add('error-shake');
+                    errBox.style.display = 'block';
+                    secEl.style.display = 'block';
                     secEl.innerText = secs + "s";
+                    loginBox.classList.add('error-shake');
                     emailInput.disabled = true;
                     passInput.disabled = true;
                     loginBtn.disabled = true;
+
+                    // Play "Tin-Tin" error alarm beep every single second during 30s lockout
+                    window.playSystemErrorAlarm(1);
                 } else {
                     clearInterval(lockoutCountdownInterval);
-                    banner.style.display = 'none';
+                    errBox.style.display = 'none';
+                    secEl.style.display = 'none';
                     loginBox.classList.remove('error-shake');
                     emailInput.disabled = false;
                     passInput.disabled = false;
@@ -3074,7 +3355,7 @@ KNOWLEDGE BASE:
         }
 
         /* =========================================
-           ADMIN AUTH STATE & PROGRESSIVE LOADING ANIMATION
+           ADMIN AUTH STATE & LOADING -> BIG GREEN SUCCESS -> ADMIN PROFILE
            ========================================= */
         let adminListenersAttached = false;
         window.intruderMediaCache = {};
@@ -3084,12 +3365,16 @@ KNOWLEDGE BASE:
             if (user) {
                 if (isRunningLoginAnimation) return;
                 document.body.classList.add('is-admin');
+                document.body.classList.add('admin-mode-open');
                 document.getElementById('login-box').style.display = 'none';
                 failedAttempts = 0;
                 localStorage.setItem('rax_admin_fails', '0');
                 attachAdminListeners();
             } else {
                 document.body.classList.remove('is-admin');
+                if (document.getElementById('login-box').style.display !== 'block') {
+                    document.body.classList.remove('admin-mode-open');
+                }
                 document.getElementById('admin-mailbox-list').innerHTML = "";
                 document.getElementById('admin-intruder-list').innerHTML = "";
                 document.getElementById('admin-ai-logs-list').innerHTML = "";
@@ -3164,8 +3449,8 @@ KNOWLEDGE BASE:
                     if (isVideo) {
                         const posterAttr = item.poster ? `poster="${item.poster}"` : "";
                         mediaHTML = `<div class="intruder-media-box" onclick="openIntruderItemFull('${key}')">
-                               <video src="${mediaSrc}" ${posterAttr} muted playsinline preload="auto"></video>
-                               <span class="tap-fullscreen-tag">▶️ Tap Full Size</span>
+                               <video src="${mediaSrc}" ${posterAttr} muted playsinline preload="metadata"></video>
+                               <span class="tap-fullscreen-tag">▶️ Tap Full Size (30s)</span>
                            </div>`;
                     } else if (isAudio) {
                         mediaHTML = `<div class="intruder-media-box" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px;" onclick="openIntruderItemFull('${key}')">
@@ -3361,6 +3646,8 @@ KNOWLEDGE BASE:
         };
 
         window.openLogin = function() {
+            // Immediately hide public videos list when tapping Admin lock icon
+            document.body.classList.add('admin-mode-open');
             if (auth.currentUser) {
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
                 return;
@@ -3372,13 +3659,16 @@ KNOWLEDGE BASE:
 
         window.closeLogin = function() {
             document.getElementById('login-box').style.display = 'none';
-            document.getElementById('sys-error-alert').style.display = 'none';
+            document.getElementById('big-system-error-box').style.display = 'none';
             document.getElementById('login-box').classList.remove('error-shake');
+            if (!auth.currentUser) {
+                document.body.classList.remove('admin-mode-open');
+            }
         };
 
         window.loginAdmin = function() {
             if (lockUntil > Date.now()) {
-                window.playSystemErrorBeeps(4);
+                window.playSystemErrorAlarm(4);
                 updateLockoutUI();
                 return;
             }
@@ -3386,7 +3676,9 @@ KNOWLEDGE BASE:
             const email = document.getElementById('admin-email').value.trim();
             const pass = document.getElementById('admin-pass').value;
             const loginBox = document.getElementById('login-box');
-            const sysErrEl = document.getElementById('sys-error-alert');
+            const errBox = document.getElementById('big-system-error-box');
+            const secEl = document.getElementById('lockout-seconds');
+            const lockEmblem = document.getElementById('hud-lock-badge');
 
             isRunningLoginAnimation = true;
 
@@ -3394,62 +3686,87 @@ KNOWLEDGE BASE:
                 .then(() => {
                     failedAttempts = 0;
                     localStorage.setItem('rax_admin_fails', '0');
-                    sysErrEl.style.display = 'none';
+                    errBox.style.display = 'none';
+                    secEl.style.display = 'none';
                     loginBox.classList.remove('error-shake');
 
-                    // Show Progressive Hacking Loading Bar (0% -> 100%)
+                    // Progressive HUD Loading Bar (0% -> 100%) -> Big Green SUCCESS -> Admin Profile
                     document.getElementById('glass-login-inputs').style.display = 'none';
                     const progBox = document.getElementById('hacking-progress-box');
+                    const progLabel = document.getElementById('hacking-progress-label');
                     const progFill = document.getElementById('hacking-bar-fill');
                     const progPct = document.getElementById('hacking-pct-num');
+
+                    progBox.classList.remove('success-state');
+                    progLabel.innerText = 'LOADING...';
                     progBox.style.display = 'block';
 
                     let pct = 0;
                     const loadTimer = setInterval(() => {
-                        pct += Math.floor(Math.random() * 9) + 4;
+                        pct += Math.floor(Math.random() * 10) + 5;
                         if (pct >= 100) {
                             pct = 100;
                             clearInterval(loadTimer);
                             progFill.style.width = '100%';
-                            progPct.innerText = '100% // ACCESS GRANTED';
+                            progPct.innerText = '100%';
+
+                            // Unlock icon & display BIG GREEN SUCCESS
+                            if (lockEmblem) {
+                                lockEmblem.innerText = '🔓';
+                                lockEmblem.classList.add('unlocked');
+                            }
+                            progBox.classList.add('success-state');
+                            progLabel.innerText = 'SUCCESS';
+                            progPct.innerText = 'ACCESS GRANTED // OPENING PROFILE';
+
                             setTimeout(() => {
                                 isRunningLoginAnimation = false;
                                 progBox.style.display = 'none';
+                                progBox.classList.remove('success-state');
                                 document.getElementById('glass-login-inputs').style.display = 'block';
                                 progFill.style.width = '0%';
+                                if (lockEmblem) {
+                                    lockEmblem.innerText = '🔒';
+                                    lockEmblem.classList.remove('unlocked');
+                                }
                                 document.body.classList.add('is-admin');
+                                document.body.classList.add('admin-mode-open');
                                 loginBox.style.display = 'none';
                                 attachAdminListeners();
-                            }, 550);
+                            }, 900);
                         } else {
                             progFill.style.width = pct + '%';
                             progPct.innerText = pct + '%';
                         }
-                    }, 120);
+                    }, 110);
                 })
                 .catch(() => {
                     isRunningLoginAnimation = false;
                     failedAttempts++;
                     localStorage.setItem('rax_admin_fails', failedAttempts.toString());
 
-                    // Trigger Red System Error + "Ti-Ti-Ti" Beep Alarm
-                    window.playSystemErrorBeeps(4);
+                    // Trigger Big Red "SYSTEM ERROR" Box + 4-5x "Tring-Tring" Alarm
+                    window.playSystemErrorAlarm(5);
                     loginBox.classList.remove('error-shake');
-                    void loginBox.offsetWidth; // restart shake animation
+                    void loginBox.offsetWidth;
                     loginBox.classList.add('error-shake');
+
+                    errBox.style.display = 'block';
 
                     if (failedAttempts >= 3) {
                         startIntruderLockout(email);
                     } else {
-                        const leftTries = 3 - failedAttempts;
-                        sysErrEl.style.display = 'block';
-                        sysErrEl.innerHTML = `⚠️ SYSTEM ERROR: WRONG PASSWORD!<br>अमान्य प्रयास (${failedAttempts}/3) • शेष प्रयास: ${leftTries}`;
+                        secEl.style.display = 'none';
                     }
                 });
         };
 
         window.logoutAdmin = function() {
-            signOut(auth).then(() => showNeonAlert("Logged Out", "You have logged out safely.", false, true));
+            signOut(auth).then(() => {
+                document.body.classList.remove('is-admin');
+                document.body.classList.remove('admin-mode-open');
+                showNeonAlert("Logged Out", "You have logged out safely.", false, true);
+            });
         };
 
         window.updateBanner = function() {
