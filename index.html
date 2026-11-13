@@ -419,7 +419,7 @@
         }
 
         /* =========================================
-           6. 3D COSMOS SPHERE LOADER, ANIMATED CIRCUIT-WIRE MODAL & AI ORB
+           6. 3D COSMOS SPHERE LOADER, NEON MODAL & NEON ENERGY SPHERE AI CORE
            ========================================= */
         .neon-modal-overlay {
             display: none;
@@ -612,52 +612,70 @@
         }
 
         /* =========================================
-           FUTURISTIC MULTI-STATE AI CORE ORB
+           FUTURISTIC MULTI-STATE AI CORE ORB + NEON ENERGY SPHERE IMAGE GENERATOR
            ========================================= */
         .ai-cyber-stage {
             position: relative;
-            width: 136px;
-            height: 136px;
-            margin: 4px auto 10px;
+            width: 156px;
+            height: 156px;
+            margin: 2px auto 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
+        #ai-energy-sphere-canvas {
+            position: absolute;
+            inset: 0;
+            width: 156px;
+            height: 156px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.72;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .ai-cyber-stage.ai-state-imaging #ai-energy-sphere-canvas {
+            opacity: 1;
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 18px #00f2fe) drop-shadow(0 0 28px #a855f7);
+        }
+
         .ai-orbit-outer {
             position: absolute;
-            width: 132px;
-            height: 132px;
+            width: 126px;
+            height: 126px;
             border-radius: 50%;
             border: 2px dashed rgba(0, 242, 254, 0.65);
             box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
             animation: spinSlow 11s linear infinite;
             transition: all 0.3s ease;
+            z-index: 1;
         }
         .ai-orbit-mid {
             position: absolute;
-            width: 108px;
-            height: 108px;
+            width: 102px;
+            height: 102px;
             border-radius: 50%;
             border: 2.5px solid transparent;
             border-top-color: #00f2fe;
-            border-bottom-color: #0066ff;
+            border-bottom-color: #a855f7;
             box-shadow: 0 0 18px rgba(0, 242, 254, 0.5);
             animation: spinSlowRev 7s linear infinite;
             transition: all 0.3s ease;
+            z-index: 1;
         }
         .ai-chip-core {
             position: relative;
-            width: 74px;
-            height: 74px;
-            border-radius: 18px;
-            background: radial-gradient(circle, #0b2b59, #030b1c);
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(11, 43, 89, 0.88), rgba(3, 11, 28, 0.94));
             border: 2px solid #00f2fe;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.8), inset 0 0 15px rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.85), inset 0 0 15px rgba(168, 85, 247, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             letter-spacing: 2px;
             color: #ffffff;
@@ -696,6 +714,26 @@
             box-shadow: 0 0 28px #ffbe0b;
         }
 
+        /* IMAGING STATE: Intense Cyan + Purple + Blue Neon Energy Surge */
+        .ai-state-imaging .ai-orbit-outer {
+            border: 3px solid #a855f7;
+            box-shadow: 0 0 38px #00f2fe, 0 0 55px #a855f7;
+            animation: spinFast 0.7s linear infinite;
+        }
+        .ai-state-imaging .ai-orbit-mid {
+            border-top-color: #00f2fe;
+            border-left-color: #a855f7;
+            border-right-color: #0066ff;
+            border-bottom-color: #ffffff;
+            animation: spinFastRev 0.5s linear infinite;
+        }
+        .ai-state-imaging .ai-chip-core {
+            border-color: #ffffff;
+            background: radial-gradient(circle, #00f2fe, #6d28d9, #030b1c);
+            box-shadow: 0 0 40px #00f2fe, 0 0 60px #a855f7, inset 0 0 22px #ffffff;
+            animation: listenBlinkCore 0.38s ease-in-out infinite alternate;
+        }
+
         .ai-state-speaking .ai-orbit-mid {
             border-color: #00f2fe;
             box-shadow: 0 0 32px #00f2fe;
@@ -716,7 +754,7 @@
         }
         @keyframes listenBlinkCore {
             0% { opacity: 0.65; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1.06); }
         }
         @keyframes speakWavePulse {
             0% { transform: scaleY(0.86) scaleX(1.06); }
@@ -734,7 +772,7 @@
             color: #00f2fe;
             background: rgba(0, 242, 254, 0.12);
             border: 1px solid rgba(0, 242, 254, 0.45);
-            padding: 3px 12px;
+            padding: 4px 13px;
             border-radius: 12px;
             margin-bottom: 9px;
             letter-spacing: 0.5px;
@@ -746,13 +784,30 @@
             border-radius: 12px;
             padding: 11px;
             min-height: 75px;
-            max-height: 165px;
+            max-height: 245px;
             overflow-y: auto;
             font-size: 13px;
             color: #e0f2fe;
             margin-bottom: 10px;
             line-height: 1.55;
             text-align: left;
+        }
+        .ai-gen-img-wrap {
+            margin-top: 8px;
+            text-align: center;
+            background: rgba(0, 18, 42, 0.85);
+            border: 1.5px solid #00f2fe;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+        }
+        .ai-gen-img-wrap img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 9px;
+            display: block;
+            margin-bottom: 8px;
         }
         .ai-input-row {
             display: flex;
@@ -1208,7 +1263,7 @@
         }
 
         /* =========================================
-           10. ADMIN CONTROL PANEL & SECURITY TABS
+           10. ADMIN CONTROL PANEL & EXPANDABLE 20-KEY VAULT
            ========================================= */
         .modal-box {
             display: none; max-width: 560px; margin: 20px auto;
@@ -1464,7 +1519,7 @@
         <div class="detail-heading">👨‍💻 About Reza Ahmad (RAX REZA 93K)</div>
         <ul class="detail-list">
             <li><strong>Name:</strong> Reza Ahmad</li>
-            <li><strong>State:</strong> Bihar, India 🇮🇳 (Currently in Vapi, Gujarat)</li>
+            <li><strong>State:</strong> Bihar, India 🇮🇳</li>
             <li><strong>Qualification:</strong> 12th Pass (Currently pursuing BCA – Bachelor of Computer Applications)</li>
         </ul>
 
@@ -1554,27 +1609,36 @@
     <div id="admin-panel" class="modal-box">
         <h3 style="color:#00f2fe; margin-bottom:14px;">⚙️ Admin Control Panel</h3>
 
-        <!-- MULTI-API KEY VAULT -->
+        <!-- EXPANDABLE 20-API KEY VAULT (INITIALLY 3 KEYS + EXPANDABLE CHANNELS UP TO 20) -->
         <div class="admin-sec-box" style="border-color:#00ff87;">
             <div class="mailbox-header">
-                <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Auto-Switch Backup)</h4>
+                <h4 style="color:#00ff87;">🔑 Gemini API Keys Vault (Up to 20 Keys Auto-Switch)</h4>
             </div>
             <p style="font-size:11.5px; color:#cbd5e1; margin-bottom:10px;">
-                यहाँ अपनी 1 से 3 API Keys सेव करें। अगर एक Key की लिमिट पूरी होगी तो AI अपने आप अगली Key या इन-बिल्ट स्मार्ट बैकअप से जवाब देगा।
+                यहाँ अपनी API Keys सेव करें। एक Key की लिमिट पूरी होने पर AI अपने आप अगली Key या स्मार्ट बैकअप से जवाब देगा।
             </p>
-            <div class="form-group">
-                <label>Primary API Key (Key 1):</label>
-                <input type="password" id="fb-key-1" placeholder="AIzaSy... Key 1">
+            <div id="primary-keys-container">
+                <div class="form-group">
+                    <label>Primary API Key 1:</label>
+                    <input type="password" id="fb-key-1" placeholder="AIzaSy... Key 1">
+                </div>
+                <div class="form-group">
+                    <label>Backup API Key 2:</label>
+                    <input type="password" id="fb-key-2" placeholder="AIzaSy... Key 2">
+                </div>
+                <div class="form-group">
+                    <label>Backup API Key 3:</label>
+                    <input type="password" id="fb-key-3" placeholder="AIzaSy... Key 3">
+                </div>
             </div>
-            <div class="form-group">
-                <label>Backup API Key 2 (Optional - Another Gmail):</label>
-                <input type="password" id="fb-key-2" placeholder="AIzaSy... Key 2">
+
+            <!-- Hidden Extra Channels (Keys 4 to 20) -->
+            <div id="extra-keys-container" style="display:none; max-height:320px; overflow-y:auto; padding-right:4px; margin-bottom:8px; border-top:1px dashed rgba(0,255,135,0.35); padding-top:10px;"></div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;">
+                <button type="button" class="btn-sm btn-gray" id="toggle-extra-keys-btn" onclick="toggleExtraKeyChannels()">➕ Add / Show More Keys (4–20)</button>
+                <button type="button" class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
             </div>
-            <div class="form-group">
-                <label>Backup API Key 3 (Optional - Another Gmail):</label>
-                <input type="password" id="fb-key-3" placeholder="AIzaSy... Key 3">
-            </div>
-            <button class="btn-sm btn-blue" onclick="saveMultiKeysToFirebase()">💾 Save All API Keys</button>
         </div>
 
         <!-- SECURITY SECTION 1: 30s BURST SELFIES (1/SEC), 30s PLAYABLE VIDEO & VOICE LOGS -->
@@ -1870,6 +1934,79 @@
         }
 
         /* =================================================================
+           1B. NEON ENERGY SPHERE CANVAS ANIMATION (FOR AI IMAGE GENERATION)
+           ================================================================= */
+        let energySphereRAF = null;
+        let energyParticles = [];
+        let isEnergyBoosted = false;
+
+        function startNeonEnergySphereAnimation() {
+            const canvas = document.getElementById('ai-energy-sphere-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+
+            energyParticles = [];
+            for (let i = 0; i < 65; i++) {
+                energyParticles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    radius: 26 + Math.random() * 44,
+                    speed: (Math.random() * 0.04 + 0.015) * (Math.random() > 0.5 ? 1 : -1),
+                    size: Math.random() * 2.2 + 0.8,
+                    color: ['#00f2fe', '#0066ff', '#a855f7', '#ffffff'][Math.floor(Math.random() * 4)]
+                });
+            }
+
+            let rot = 0;
+            function drawSphere() {
+                if (!document.getElementById('ai-energy-sphere-canvas')) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const speedMult = isEnergyBoosted ? 3.2 : 1.0;
+                rot += 0.03 * speedMult;
+
+                // Glowing plasma rings (Cyan, Blue, Purple)
+                const ringConfigs = [
+                    { rx: 52, ry: 22, tilt: rot, color: '#00f2fe' },
+                    { rx: 50, ry: 24, tilt: -rot * 1.2 + 1.0, color: '#a855f7' },
+                    { rx: 46, ry: 20, tilt: rot * 0.8 + 2.1, color: '#0066ff' },
+                    { rx: 54, ry: 18, tilt: -rot * 1.4 + 0.5, color: '#38bdf8' }
+                ];
+
+                ringConfigs.forEach(rc => {
+                    ctx.save();
+                    ctx.translate(cx, cy);
+                    ctx.rotate(rc.tilt);
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, rc.rx, rc.ry, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = rc.color;
+                    ctx.lineWidth = isEnergyBoosted ? 2.4 : 1.4;
+                    ctx.shadowBlur = isEnergyBoosted ? 18 : 10;
+                    ctx.shadowColor = rc.color;
+                    ctx.stroke();
+                    ctx.restore();
+                });
+
+                // Orbiting energy sparks
+                energyParticles.forEach(p => {
+                    p.angle += p.speed * speedMult;
+                    const px = cx + Math.cos(p.angle) * p.radius;
+                    const py = cy + Math.sin(p.angle) * (p.radius * 0.72);
+                    ctx.beginPath();
+                    ctx.arc(px, py, isEnergyBoosted ? p.size * 1.35 : p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                });
+
+                energySphereRAF = requestAnimationFrame(drawSphere);
+            }
+            cancelAnimationFrame(energySphereRAF);
+            drawSphere();
+        }
+
+        /* =================================================================
            2. TAPPABLE SKILL BIO POP-UPS
            ================================================================= */
         const SKILL_BIO_DATA = {
@@ -1986,7 +2123,7 @@
             try {
                 const AudioCtx = window.AudioContext || window.webkitAudioContext;
                 const ctx = new AudioCtx();
-                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5 -> E5 -> G5 -> C6
+                const notes = [523.25, 659.25, 783.99, 1046.50];
                 notes.forEach((freq, idx) => {
                     const startT = ctx.currentTime + idx * 0.09;
                     const osc = ctx.createOscillator();
@@ -2004,9 +2141,35 @@
         };
 
         /* =================================================================
-           4. SECURE MULTI-KEY STORE, SEQUENTIAL GEAR RINGS & 3 ROLLING DOCK PILLS
+           4. SECURE MULTI-KEY STORE (UP TO 20 KEYS), GEAR RINGS & 3 ROLLING DOCK PILLS
            ================================================================= */
         window.GEMINI_API_KEYS_LIST = [];
+        window.LIVE_VIDEO_LIST = [];
+
+        // Build extra key inputs (Key 4 to Key 20) inside hidden container
+        (function initExtraKeyInputs() {
+            const container = document.getElementById('extra-keys-container');
+            if (!container) return;
+            let html = "";
+            for (let i = 4; i <= 20; i++) {
+                html += `
+                    <div class="form-group">
+                        <label>Backup API Key ${i}:</label>
+                        <input type="password" id="fb-key-${i}" placeholder="AIzaSy... Key ${i}">
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        })();
+
+        window.toggleExtraKeyChannels = function() {
+            const extraBox = document.getElementById('extra-keys-container');
+            const btn = document.getElementById('toggle-extra-keys-btn');
+            if (!extraBox || !btn) return;
+            const isHidden = extraBox.style.display === 'none';
+            extraBox.style.display = isHidden ? 'block' : 'none';
+            btn.innerText = isHidden ? '➖ Hide Extra Keys (4–20)' : '➕ Add / Show More Keys (4–20)';
+        };
 
         const gearRings = document.querySelectorAll('#gear-rings-bar .gear-ring-item');
         const socialIcons = document.querySelectorAll('#neon-socials-bar .social-icon');
@@ -2028,7 +2191,6 @@
             activeSocialIdx = (activeSocialIdx + 1) % socialIcons.length;
         }, 650);
 
-        // Staggered Roll-In & Periodic Roll-Out for all 3 Floating Dock Pills
         const dockPills = [
             document.getElementById('ask-rax-ai-btn'),
             document.getElementById('lang-dock-btn'),
@@ -2045,10 +2207,8 @@
             });
         }
 
-        // Start expanded so user sees all 3 names, then roll them into circular orbs after 3.4s
         setTimeout(() => rollAllDockPills(true), 3400);
 
-        // Re-roll out briefly every 14 seconds or when scrolling to top so labels stay discoverable
         setInterval(() => {
             rollAllDockPills(false);
             setTimeout(() => rollAllDockPills(true), 3000);
@@ -2122,7 +2282,7 @@
             });
 
         /* =========================================
-           C. 10 LANGUAGES FULL UI & AI LOCALIZATION
+           C. 10 LANGUAGES FULL UI & AI LOCALIZATION (WITH IMAGE GEN STATUS)
            ========================================= */
         const LANG_LIST = [
             { code: 'hi-IN', label: 'हिन्दी (Hindi)' },
@@ -2154,13 +2314,14 @@
                 ch_send: 'रिक्वेस्ट भेजें',
                 ch_sent_ok: 'आपकी कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दी गई है!',
                 ch_limit: 'इस डिवाइस से 5 मैसेज की सीमा पूरी हो गई है! (5/5)',
-                ai_hello: 'नमस्ते! मैं RAX REZA 93K वेबसाइट का इलेक्ट्रॉनिक AI मॉडल हूँ। आप कोई भी सवाल बोलकर या टाइप करके पूछ सकते हैं।',
-                ai_type_ph: 'यहाँ अपना सवाल लिखें...',
+                ai_hello: 'नमस्ते! मैं RAX REZA 93K का AI मॉडल हूँ। आप कोई भी सवाल पूछ सकते हैं या इमेज बनाने के लिए कह सकते हैं।',
+                ai_type_ph: 'यहाँ लिखें या इमेज बनाने के लिए कहें...',
                 ai_send: 'भेजें',
                 ai_speak_btn: '🎙️ बोलकर पूछें',
                 ai_state_idle: 'तैयार है • बोलने या टाइप करने के लिए टैप करें',
                 ai_state_listen: '🎙️ सुन रहा हूँ... बोलिए',
                 ai_state_search: '⚡ सिस्टम में खोजा जा रहा है...',
+                ai_state_imaging: '🌌 इमेज जनरेट किया जा रहा है...',
                 ai_state_speak: '🔊 AI जवाब दे रहा है...',
                 ai_no_voice: '⚠️ आवाज़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें।'
             },
@@ -2178,13 +2339,14 @@
                 ch_send: 'Send Request',
                 ch_sent_ok: 'Your Custom Challenge request has been sent to Admin Mailbox!',
                 ch_limit: 'Maximum limit of 5 requests from this device reached! (5/5)',
-                ai_hello: 'Hello! I am the Electronic AI model of RAX REZA 93K. You can ask any question by speaking or typing.',
-                ai_type_ph: 'Type your question here...',
+                ai_hello: 'Hello! I am RAX AI. Ask me any question or tell me to generate an image.',
+                ai_type_ph: 'Type your question or image prompt...',
                 ai_send: 'Send',
                 ai_speak_btn: '🎙️ Speak Now',
                 ai_state_idle: 'IDLE • Tap Core to Speak or Type',
                 ai_state_listen: '🎙️ Listening... Speak now',
                 ai_state_search: '⚡ Searching neural network...',
+                ai_state_imaging: '🌌 Generating AI Image...',
                 ai_state_speak: '🔊 AI is responding...',
                 ai_no_voice: '⚠️ No voice detected, please tap Speak Now and try again.'
             },
@@ -2202,13 +2364,14 @@
                 ch_send: 'रिक्वेस्ट भेजीं',
                 ch_sent_ok: 'रउआ कस्टम रिक्वेस्ट एडमिन मेलबॉक्स में भेज दिहल गइल बा!',
                 ch_limit: 'एह डिवाइस से 5 मैसेज के सीमा पूरा हो गइल बा! (5/5)',
-                ai_hello: 'प्रणाम! हम RAX REZA 93K वेबसाइट के AI मॉडल हईं। रउआ कवनो सवाल बोल के भा टाइप करके पूछ सकीले।',
-                ai_type_ph: 'इहाँ आपन सवाल लिखीं...',
+                ai_hello: 'प्रणाम! हम RAX AI हईं। रउआ कवनो सवाल पूछ सकीले या इमेज बनावे खातिर कह सकीले।',
+                ai_type_ph: 'इहाँ आपन सवाल या इमेज लिखीं...',
                 ai_send: 'भेजीं',
                 ai_speak_btn: '🎙️ बोल के पूछीं',
                 ai_state_idle: 'तैयार बा • बोले खातिर टैप करीं',
                 ai_state_listen: '🎙️ सुनत बानी... बोलीं',
                 ai_state_search: '⚡ सिस्टम में खोजल जा रहल बा...',
+                ai_state_imaging: '🌌 इमेज बनावल जा रहल बा...',
                 ai_state_speak: '🔊 AI जवाब दे रहल बा...',
                 ai_no_voice: '⚠️ आवाज ना सुनाइल, कृपया दुबारा बटन दबा के बोलीं।'
             },
@@ -2226,13 +2389,14 @@
                 ch_send: 'درخواست بھیجیں',
                 ch_sent_ok: 'آپ کی کسٹم چیلنج کی درخواست ایڈمن میل باکس میں بھیج دی گئی ہے!',
                 ch_limit: 'اس ڈیوائس سے 5 پیغامات کی حد پوری ہو گئی ہے! (5/5)',
-                ai_hello: 'السلام علیکم! میں RAX REZA 93K ویب سائٹ کا AI ماڈل ہوں۔ آپ کوئی بھی سوال بول کر یا ٹائپ کر کے پوچھ سکتے ہیں۔',
-                ai_type_ph: 'اپنا سوال یہاں لکھیں...',
+                ai_hello: 'السلام علیکم! میں RAX AI ہوں۔ آپ کوئی بھی سوال پوچھ سکتے ہیں یا تصویر بنانے کے لیے کہہ سکتے ہیں۔',
+                ai_type_ph: 'اپنا سوال یا تصویر یہاں لکھیں...',
                 ai_send: 'بھیجیں',
                 ai_speak_btn: '🎙️ بول کر پوچھیں',
                 ai_state_idle: 'تیار ہے • بولنے کے لیے ٹیپ کریں',
                 ai_state_listen: '🎙️ سن رہا ہوں... بولیے',
                 ai_state_search: '⚡ سسٹم میں تلاش کیا جا رہا ہے...',
+                ai_state_imaging: '🌌 تصویر بنائی جا رہی ہے...',
                 ai_state_speak: '🔊 AI جواب دے رہا ہے...',
                 ai_no_voice: '⚠️ آواز سنائی نہیں دی، دوبارہ بٹن دبا کر بولیے۔'
             },
@@ -2250,13 +2414,14 @@
                 ch_send: 'વિનંતી મોકલો',
                 ch_sent_ok: 'તમારી કસ્ટમ ચેલેન્જ વિનંતી એડમિન મેઈલબોક્સમાં મોકલવામાં આવી છે!',
                 ch_limit: 'આ ડિવાઇસમાંથી 5 મેસેજની મર્યાદા પૂરી થઈ ગઈ છે! (5/5)',
-                ai_hello: 'નમસ્તે! હું RAX REZA 93K વેબસાઇટનો AI મોડેલ છું. તમે કોઈપણ પ્રશ્ન બોલીને અથવા ટાઈપ કરીને પૂછી શકો છો.',
-                ai_type_ph: 'તમારો પ્રશ્ન અહીં લખો...',
+                ai_hello: 'નમસ્તે! હું RAX AI છું. તમે કોઈપણ પ્રશ્ન પૂછી શકો છો અથવા ઇમેજ બનાવવા કહી શકો છો.',
+                ai_type_ph: 'તમારો પ્રશ્ન અથવા ઇમેજ અહીં લખો...',
                 ai_send: 'મોકલો',
                 ai_speak_btn: '🎙️ બોલીને પૂછો',
                 ai_state_idle: 'તૈયાર છે • બોલવા માટે ટેપ કરો',
                 ai_state_listen: '🎙️ સાંભળી રહ્યો છું... બોલો',
                 ai_state_search: '⚡ સિસ્ટમમાં શોધાઈ રહ્યું છે...',
+                ai_state_imaging: '🌌 ઇમેજ જનરેટ થઈ રહી છે...',
                 ai_state_speak: '🔊 AI જવાબ આપી રહ્યું છે...',
                 ai_no_voice: '⚠️ અવાજ સંભળાયો નથી, કૃપા કરીને ફરીથી બટન દબાવીને બોલો.'
             },
@@ -2274,13 +2439,14 @@
                 ch_send: 'विनंती पाठवा',
                 ch_sent_ok: 'तुमची कस्टम चॅलेंज विनंती ॲडमिन इनबॉक्समध्ये पाठवली आहे!',
                 ch_limit: 'या डिव्हाइसवरून 5 मेसेजची मर्यादा पूर्ण झाली आहे! (5/5)',
-                ai_hello: 'नमस्कार! मी RAX REZA 93K वेबसाइटचा AI मॉडेल आहे. तुम्ही कोणताही प्रश्न बोलून किंवा टाईप करून विचारू शकता.',
+                ai_hello: 'नमस्कार! मी RAX AI आहे. तुम्ही कोणताही प्रश्न विचारू शकता किंवा इमेज बनवायला सांगू शकता.',
                 ai_type_ph: 'तुमचा प्रश्न येथे लिहा...',
                 ai_send: 'पाठवा',
                 ai_speak_btn: '🎙️ बोलून विचारा',
                 ai_state_idle: 'तयार आहे • बोलण्यासाठी टॅप करा',
                 ai_state_listen: '🎙️ ऐकत आहे... बोला',
                 ai_state_search: '⚡ सिस्टीममध्ये शोधले जात आहे...',
+                ai_state_imaging: '🌌 इमेज तयार केली जात आहे...',
                 ai_state_speak: '🔊 AI उत्तर देत आहे...',
                 ai_no_voice: '⚠️ आवाज ऐकू आला नाही, कृपया पुन्हा बटण दाबून बोला.'
             },
@@ -2298,13 +2464,14 @@
                 ch_send: 'অনুরোধ পাঠান',
                 ch_sent_ok: 'আপনার কাস্টম চ্যালেঞ্জ অনুরোধ অ্যাডমিন মেইলবক্সে পাঠানো হয়েছে!',
                 ch_limit: 'এই ডিভাইস থেকে ৫টি মেসেজের সীমা পূর্ণ হয়ে গেছে! (5/5)',
-                ai_hello: 'নমস্কার! আমি RAX REZA 93K ওয়েবসাইটের AI মডেল। আপনি যেকোনো প্রশ্ন বলে বা টাইপ করে জিজ্ঞাসা করতে পারেন।',
+                ai_hello: 'নমস্কার! আমি RAX AI। আপনি যেকোনো প্রশ্ন জিজ্ঞাসা করতে পারেন বা ছবি তৈরি করতে বলতে পারেন।',
                 ai_type_ph: 'আপনার প্রশ্ন এখানে লিখুন...',
                 ai_send: 'পাঠান',
                 ai_speak_btn: '🎙️ বলে জিজ্ঞাসা করুন',
                 ai_state_idle: 'প্রস্তুত • কথা বলতে ট্যাপ করুন',
                 ai_state_listen: '🎙️ শুনছি... বলুন',
                 ai_state_search: '⚡ সিস্টেমে খোঁজা হচ্ছে...',
+                ai_state_imaging: '🌌 ছবি তৈরি করা হচ্ছে...',
                 ai_state_speak: '🔊 AI উত্তর দিচ্ছে...',
                 ai_no_voice: '⚠️ কোনো আওয়াজ শোনা যায়নি, অনুগ্রহ করে আবার বোতাম টিপে বলুন।'
             },
@@ -2322,13 +2489,14 @@
                 ch_send: 'அனுப்பு',
                 ch_sent_ok: 'உங்கள் கோரிக்கை அனுப்பப்பட்டது!',
                 ch_limit: '5 செய்திகள் வரம்பு முடிந்துவிட்டது! (5/5)',
-                ai_hello: 'வணக்கம்! நான் RAX REZA 93K இணையதளத்தின் AI மாடல். எந்த கேள்வியையும் பேசியோ அல்லது டைப் செய்தோ கேட்கலாம்.',
+                ai_hello: 'வணக்கம்! நான் RAX AI. எந்த கேள்வியையும் கேட்கலாம் அல்லது படம் உருவாக்கச் சொல்லலாம்.',
                 ai_type_ph: 'உங்கள் கேள்வியை இங்கே டைப் செய்யவும்...',
                 ai_send: 'அனுப்பு',
                 ai_speak_btn: '🎙️ பேசி கேளுங்கள்',
                 ai_state_idle: 'தயார் • பேச தட்டவும்',
                 ai_state_listen: '🎙️ கேட்கிறேன்... பேசுங்கள்',
                 ai_state_search: '⚡ கணினியில் தேடுகிறது...',
+                ai_state_imaging: '🌌 படம் உருவாக்கப்படுகிறது...',
                 ai_state_speak: '🔊 AI பதிலளிக்கிறது...',
                 ai_no_voice: '⚠️ குரல் கேட்கவில்லை, மீண்டும் பொத்தானை அழுத்தி பேசவும்.'
             },
@@ -2346,13 +2514,14 @@
                 ch_send: 'పంపండి',
                 ch_sent_ok: 'మీ అభ్యర్థన పంపబడింది!',
                 ch_limit: '5 సందేశాల పరిమితి పూర్తయింది! (5/5)',
-                ai_hello: 'నమస్కారం! నేను RAX REZA 93K వెబ్‌సైట్ AI మోడల్‌ని. ఏ ప్రశ్ననైనా మాట్లాడి లేదా టైప్ చేసి అడగవచ్చు.',
+                ai_hello: 'నమస్కారం! నేను RAX AI. ఏ ప్రశ్ననైనా అడగవచ్చు లేదా చిత్రాన్ని రూపొందించమని చెప్పవచ్చు.',
                 ai_type_ph: 'మీ ప్రశ్నను ఇక్కడ టైప్ చేయండి...',
                 ai_send: 'పంపండి',
                 ai_speak_btn: '🎙️ మాట్లాడి అడగండి',
                 ai_state_idle: 'సిద్ధం • మాట్లాడటానికి నొక్కండి',
                 ai_state_listen: '🎙️ వింటున్నాను... మాట్లాడండి',
                 ai_state_search: '⚡ సిస్టమ్‌లో శోధిస్తోంది...',
+                ai_state_imaging: '🌌 చిత్రం రూపొందించబడుతోంది...',
                 ai_state_speak: '🔊 AI సమాధానం ఇస్తోంది...',
                 ai_no_voice: '⚠️ స్వరం వినిపించలేదు, దయచేసి మళ్లీ బటన్ నొక్కి మాట్లాడండి.'
             },
@@ -2370,13 +2539,14 @@
                 ch_send: 'ਬੇਨਤੀ ਭੇਜੋ',
                 ch_sent_ok: 'ਤੁਹਾਡੀ ਬੇਨਤੀ ਭੇਜ ਦਿੱਤੀ ਗਈ ਹੈ!',
                 ch_limit: '5 ਸੁਨੇਹਿਆਂ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋ ਗਈ ਹੈ! (5/5)',
-                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX REZA 93K ਵੈੱਬਸਾਈਟ ਦਾ AI ਮਾਡਲ ਹਾਂ। ਤੁਸੀਂ ਕੋਈ ਵੀ ਸਵਾਲ ਬੋਲ ਕੇ ਜਾਂ ਟਾਈਪ ਕਰਕੇ ਪੁੱਛ ਸਕਦੇ ਹੋ।',
+                ai_hello: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ RAX AI ਹਾਂ। ਤੁਸੀਂ ਕੋਈ ਵੀ ਸਵਾਲ ਪੁੱਛ ਸਕਦੇ ਹੋ ਜਾਂ ਤਸਵੀਰ ਬਣਾਉਣ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ।',
                 ai_type_ph: 'ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਲਿਖੋ...',
                 ai_send: 'ਭੇਜੋ',
                 ai_speak_btn: '🎙️ ਬੋਲ ਕੇ ਪੁੱਛੋ',
                 ai_state_idle: 'ਤਿਆਰ ਹੈ • ਬੋਲਣ ਲਈ ਟੈਪ ਕਰੋ',
                 ai_state_listen: '🎙️ ਸੁਣ ਰਿਹਾ ਹਾਂ... ਬੋਲੋ',
                 ai_state_search: '⚡ ਸਿਸਟਮ ਵਿੱਚ ਖੋਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...',
+                ai_state_imaging: '🌌 ਤਸਵੀਰ ਬਣਾਈ ਜਾ ਰਹੀ ਹੈ...',
                 ai_state_speak: '🔊 AI ਜਵਾਬ ਦੇ ਰਿਹਾ ਹੈ...',
                 ai_no_voice: '⚠️ ਆਵਾਜ਼ ਨਹੀਂ ਸੁਣਾਈ ਦਿੱਤੀ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਬਟਨ ਦਬਾ ਕੇ ਬੋਲੋ।'
             }
@@ -2538,6 +2708,8 @@
         function closeNeonModal() {
             cancelAnimationFrame(loaderRAF);
             cancelAnimationFrame(modalCircuitRAF);
+            cancelAnimationFrame(energySphereRAF);
+            isEnergyBoosted = false;
             const card = document.getElementById('neon-modal-card');
             if (card) card.classList.remove('full-media-mode');
             const okBtn = document.getElementById('neon-modal-close-btn');
@@ -2689,7 +2861,7 @@
         };
 
         /* =========================================
-           F. FUTURISTIC AI ORB STATE CONTROLLER & MULTILINGUAL ENGINE
+           F. FUTURISTIC AI ORB, SMART ACTIONS, IMAGE GENERATOR & PRECISE QA
            ========================================= */
         window.liveSocialStore = { instagram: "", facebook: "", twitter: "", whatsapp: "" };
 
@@ -2698,9 +2870,12 @@
             const badge = document.getElementById('ai-state-badge');
             if (!orb) return;
             orb.className = 'ai-cyber-stage ai-state-' + stateName;
+            isEnergyBoosted = (stateName === 'imaging');
+
             if (badge) {
                 if (stateName === 'listening') badge.innerText = tr('ai_state_listen');
                 else if (stateName === 'thinking') badge.innerText = tr('ai_state_search');
+                else if (stateName === 'imaging') badge.innerText = tr('ai_state_imaging');
                 else if (stateName === 'speaking') badge.innerText = tr('ai_state_speak');
                 else badge.innerText = tr('ai_state_idle');
             }
@@ -2772,38 +2947,159 @@
             return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
         }
 
-        function getSystemMatchedReply(userQuery, liveUid) {
+        /* =========================================
+           SMART ACTION DETECTOR (COPY UID, OPEN YOUTUBE / SOCIALS, CHECK COMING SOON)
+           ========================================= */
+        function handleSmartWebsiteCommand(userQuery, liveUid) {
             const q = userQuery.toLowerCase().trim();
             const isEn = currentLang === 'en-US';
             const isGu = currentLang === 'gu-IN';
 
+            // 1. Copy Free Fire UID command
+            if (/(copy|कॉपी|કોપી)/i.test(q) && /(uid|free\s*fire|ff|id|आईडी)/i.test(q)) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(liveUid).catch(() => {});
+                }
+                return isEn ? `Your Free Fire UID (${liveUid}) has been copied to clipboard!`
+                     : isGu ? `તમારું Free Fire UID (${liveUid}) કોપી કરી દેવામાં આવ્યું છે!`
+                     : `आपका Free Fire UID (${liveUid}) कॉपी कर दिया गया है!`;
+            }
+
+            // 2. Open YouTube Channel command
+            if (/(open|kholo|खोलो|ओपन|ખોલો)/i.test(q) && /(youtube|यूट्यूब|યુટ્યુબ|channel|चैनल)/i.test(q)) {
+                window.open("https://www.youtube.com/@RAXREZA93K", "_blank");
+                return isEn ? "Opening the RAX REZA 93K YouTube channel!"
+                     : isGu ? "RAX REZA 93K YouTube ચેનલ ખોલવામાં આવી રહી છે!"
+                     : "RAX REZA 93K YouTube चैनल खोला जा रहा है!";
+            }
+
+            // 3. Social Media Open Commands (Instagram, Facebook, Twitter/X, WhatsApp)
+            const socialPlatforms = [
+                { key: 'instagram', name: 'Instagram', regex: /(instagram|insta|इंस्टाग्राम|ઇન્સ્ટાગ્રામ)/i },
+                { key: 'facebook',  name: 'Facebook',  regex: /(facebook|fb|फेसबुक|ફેસબુક)/i },
+                { key: 'twitter',   name: 'Twitter / X', regex: /(twitter|x\.com|ट्विटर|ટ્વિટર)/i },
+                { key: 'whatsapp',  name: 'WhatsApp',  regex: /(whatsapp|व्हाट्सएप|વોટ્સએપ)/i }
+            ];
+
+            for (const sp of socialPlatforms) {
+                if (sp.regex.test(q) && /(open|kholo|खोलो|ओपन|link|id|आईडी|લਿੰક|ખોલો)/i.test(q)) {
+                    const liveUrl = (window.liveSocialStore && window.liveSocialStore[sp.key]) ? window.liveSocialStore[sp.key].trim() : "";
+                    if (liveUrl) {
+                        window.open(liveUrl, "_blank");
+                        return isEn ? `Opening ${sp.name} now!`
+                             : isGu ? `${sp.name} ખોલવામાં આવી રહ્યું છે!`
+                             : `${sp.name} खोला जा रहा है!`;
+                    } else {
+                        return isEn ? `${sp.name} ID is not linked on the website yet (Coming Soon).`
+                             : isGu ? `અત્યારે વેબસાઇટમાં ${sp.name} ID લિંક નથી (Coming Soon).`
+                             : `अभी वेबसाइट में ${sp.name} ID लिंक नहीं है, जल्द ही जोड़ी जाएगी।`;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /* =========================================
+           STRICT, ACCURATE & TO-THE-POINT FALLBACK ANSWERS
+           (NO UNASKED LOCATION, EXACT FAMILY & LIVE VIDEO COUNT)
+           ========================================= */
+        function getSystemMatchedReply(userQuery, liveUid) {
+            const q = userQuery.toLowerCase().trim();
+            const isEn = currentLang === 'en-US';
+            const isGu = currentLang === 'gu-IN';
+            const vidCount = (window.LIVE_VIDEO_LIST || []).length;
+
+            // Profanity check
             if (/\b(fuck|bitch|asshole|bastard|madarchod|bhenchod|chutiya|gandu|harami|randi|bsdk|mc|bc|kutta|kamina)\b/i.test(q)) {
                 return isEn ? "Please avoid abusive language and speak respectfully."
                      : isGu ? "કૃપા કરીને અપશબ્દોનો ઉપયોગ ન કરો અને સન્માનપૂર્વક વાત કરો."
                      : "कृपया अभद्र भाषा का प्रयोग न करें और सही तरीके से बात करें।";
             }
 
+            // Video count / video list queries
+            if (/(video|videos|वीडियो|વિડિયો|link|लिंक)/i.test(q) && /(kitne|total|count|how many|कितने|कुल|કેટલા)/i.test(q)) {
+                return isEn ? `There are currently ${vidCount} uploaded videos on this website.`
+                     : isGu ? `હાલમાં આ વેબસાઇટ પર કુલ ${vidCount} વિડિયો અપલોડ થયેલા છે.`
+                     : `अभी इस वेबसाइट पर कुल ${vidCount} वीडियो अपलोड किए गए हैं।`;
+            }
+
+            // Brother / Family queries (Answer strictly about brothers/family, NOT developer location)
+            if (/(bhai|brother|brothers|भाई|भाइयों|ભાઈ)/i.test(q)) {
+                return isEn ? "Reza Ahmad has two older brothers: eldest brother Israr Ahmad and middle brother Abrar Ahmad, and Reza Ahmad is the youngest brother."
+                     : isGu ? "રેઝા અહેમદના બે મોટા ભાઈઓ છે: સૌથી મોટા ભાઈ ઇસરાર અહેમદ અને મધ્યમ ભાઈ અબરાર અહેમદ, અને રેઝા અહેમદ સૌથી નાના ભાઈ છે."
+                     : "रेज़ा अहमद के दो बड़े भाई हैं: सबसे बड़े भाई इसरार अहमद और मझले भाई अबरार अहमद, और रेज़ा अहमद सबसे छोटे भाई हैं।";
+            }
+
+            if (/(pita|father|बाप|पिता|પિતા)/i.test(q)) {
+                return isEn ? "Reza Ahmad's father's name is Enuddin Ansari."
+                     : isGu ? "રેઝા અહેમદના પિતાનું નામ એનુદ્દીਨ અંસારી છે."
+                     : "रेज़ा अहमद के पिता का नाम एनुद्दीन अंसारी है।";
+            }
+
+            if (/(family|parivar|परिवार|પરિવાર)/i.test(q)) {
+                return isEn ? "There are 5 members in Reza Ahmad's family: Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, and Youngest Brother Reza Ahmad."
+                     : isGu ? "રેઝા અહેમદના પરિવારમાં 5 સભ્યો છે: પિતા એનુદ્દીਨ અંસારી, માતા, મોટા ભાઈ ઇસરાર અહેમદ, મધ્યમ ભાઈ અબરાર અહેમદ અને નાના ભાઈ રેઝા અહેમદ."
+                     : "रेज़ा अहमद के परिवार में 5 सदस्य हैं: पिता एनुद्दीन अंसारी, माता, सबसे बड़े भाई इसरार अहमद, मझले भाई अबरार अहमद और सबसे छोटे भाई रेज़ा अहमद।";
+            }
+
+            // Greeting
             if (/^(hi|hello|hey|hii|helo|namaste|namaskar|pranam|salam|assalam|नमस्ते|प्रणाम|हैलो|हाय|सलाम|નમસ્તે)/i.test(q)) {
-                return isEn ? "Hello! Welcome to RAX REZA 93K. Ask me about Reza Ahmad, Free Fire UID, Custom Challenges, or channel videos."
-                     : isGu ? "નમસ્તે! RAX REZA 93K વેબસાઇટ પર તમારું સ્વાગત છે. તમે રેઝા અહેમદ, Free Fire UID અથવા કસ્ટમ ચેલેન્જ વિશે પૂછી શકો છો."
-                     : "नमस्ते! RAX REZA 93K वेबसाइट पर आपका स्वागत है। आप मुझसे रेज़ा अहमद, Free Fire UID, कस्टम चैलेंज या चैनल के बारे में पूछ सकते हैं।";
+                return isEn ? "Hello! How can I help you today?"
+                     : isGu ? "નમસ્તે! હું તમારી શું મદદ કરી શકું?"
+                     : "नमस्ते! बताइए मैं आपकी क्या मदद कर सकता हूँ?";
             }
 
-            if (/uid|free\s*fire|ff|game|gaming|custom|match|1v1|khel|गिल्ड|कस्टम|मैच|खेल|ગેમ|કસ્ટમ/i.test(q)) {
-                return isEn ? `Reza Ahmad's Free Fire UID is ${liveUid}. He is available for custom matches daily after 9:00 PM - 10:00 PM via the Custom Challenge button.`
-                     : isGu ? `રેઝા અહેમદ (RAX REZA 93K) નું Free Fire UID ${liveUid} છે. તેઓ દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી Custom Challenge દ્વારા કસ્ટમ મેચ રમે છે.`
-                     : `रेज़ा अहमद (RAX REZA 93K) का Free Fire UID ${liveUid} है। वे रोज़ रात 9:00 से 10:00 बजे के बाद Custom Challenge बटन के ज़रिए कस्टम मैच खेलते हैं।`;
+            // Free Fire UID / Custom match
+            if (/uid|free\s*fire|ff|custom|match|1v1|कस्टम|मैच/i.test(q)) {
+                return isEn ? `Reza Ahmad's Free Fire UID is ${liveUid}. Custom matches are played daily after 9:00 PM - 10:00 PM.`
+                     : isGu ? `રેઝા અહેમદનું Free Fire UID ${liveUid} છે. કસ્ટમ મેચ દરરોજ રાત્રે 9:00 થી 10:00 વાગ્યા પછી રમાય છે.`
+                     : `रेज़ा अहमद का Free Fire UID ${liveUid} है। कस्टम मैच रोज़ रात 9:00 से 10:00 बजे के बाद खेले जाते हैं।`;
             }
 
-            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|परिचय|કોણ|બનાવ્યું/i.test(q)) {
-                return isEn ? "This website and RAX REZA 93K channel were created by Reza Ahmad, a web developer, gamer, and BCA student from Bihar, currently living in Vapi, Gujarat."
-                     : isGu ? "આ વેબસાઇટ અને RAX REZA 93K ચેનલ રેઝા અહેમદ (Reza Ahmad) દ્વારા બનાવવામાં આવી છે, જેઓ બિહારના વતની છે અને હાલમાં વાપી, ગુજરાતમાં રહે છે."
-                     : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक रेज़ा अहमद (Reza Ahmad) हैं, जो बिहार से हैं और वर्तमान में वापी, गुजरात में रहते हैं।";
+            // Developer / Owner (Strictly Bihar, India — NO Vapi mention)
+            if (/bnaya|banaya|owner|developer|creator|founder|kaun|who|naam|name|malik|कौन|बनाया|मालिक|नाम|કોણ|બનાવ્યું/i.test(q)) {
+                return isEn ? "This website and RAX REZA 93K channel were created by Reza Ahmad from Bihar, India, who is pursuing BCA."
+                     : isGu ? "આ વેબસાઇટ અને RAX REZA 93K ચેનલ બિહાર, ભારતના રેઝા અહેમદ (Reza Ahmad) દ્વારા બનાવવામાં આવી છે."
+                     : "इस वेबसाइट और RAX REZA 93K चैनल के डेवलपर और मालिक बिहार, भारत के रेज़ा अहमद (Reza Ahmad) हैं।";
             }
 
-            return isEn ? `Welcome to RAX REZA 93K by Reza Ahmad! Explore uploaded videos, copy Free Fire UID (${liveUid}), or send a Custom Challenge request.`
-                 : isGu ? `આ રેઝા અહેમદની સત્તાવાર વેબસાઇટ RAX REZA 93K છે. અહીં તમે વિડિયો જોઈ શકો છો, Free Fire UID (${liveUid}) કોપી કરી શકો છો અથવા કસ્ટમ ચેલેન્જ મોકલી શકો છો.`
-                 : `यह रेज़ा अहमद की आधिकारिक वेबसाइट RAX REZA 93K है। यहाँ आप अपलोड किए गए वीडियो देख सकते हैं, Free Fire UID (${liveUid}) कॉपी कर सकते हैं या कस्टम चैलेंज भेज सकते हैं।`;
+            return isEn ? "Please ask a specific question about RAX REZA 93K, Free Fire UID, videos, or ask me to generate an image."
+                 : isGu ? "કૃપા કરીને RAX REZA 93K, Free Fire UID, વિડિયો વિશે પૂછો અથવા ઇમેજ બનાવવા કહો."
+                 : "कृपया RAX REZA 93K, Free Fire UID, वीडियो या परिवार के बारे में अपना सवाल पूछें, या इमेज बनाने के लिए कहें।";
+        }
+
+        /* =========================================
+           AI IMAGE GENERATION DETECTOR & GENERATOR
+           ========================================= */
+        function isImageGenerationRequest(q) {
+            const lower = q.toLowerCase();
+            const hasImageWord = /(image|photo|picture|pic|wallpaper|logo|drawing|art|tasveer|tasvir|chitra|इमेज|फोटो|फ़ोटो|तस्वीर|चित्र|ઇમેજ|ફોટો|تصویر)/i.test(lower);
+            const hasActionWord = /(generate|create|make|draw|banao|bana|banado|bna|diya|बनाओ|बना|जनरेट|બનાવો|બનાવ)/i.test(lower);
+            return hasImageWord && hasActionWord;
+        }
+
+        function generateAIImageCardHTML(promptText) {
+            const cleanPrompt = promptText
+                .replace(/(generate|create|make|draw|banao|bana do|bna do|ka|ki|ek|a|an|image|photo|picture|pic|tasveer|इमेज|फोटो|फ़ोटो|तस्वीर|बनाओ|बना दो|का|की|एक)/gi, ' ')
+                .replace(/\s+/g, ' ')
+                .trim() || promptText;
+
+            const seed = Math.floor(Math.random() * 999999);
+            const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=768&height=768&nologo=true&seed=${seed}`;
+            const fileName = `RAX_AI_${seed}.jpg`;
+
+            return {
+                imgUrl,
+                html: `
+                    <div class="ai-gen-img-wrap">
+                        <img src="${imgUrl}" alt="AI Generated Image" onload="window.setAIOrbState('idle')" onerror="this.alt='Image load failed, try again'">
+                        <a href="${imgUrl}" target="_blank" download="${fileName}" class="btn-sm btn-blue" style="display:inline-block; text-decoration:none; padding:6px 14px; border-radius:16px; font-size:12px; margin:0;">
+                            ⬇️ Open / Download HD Image
+                        </a>
+                    </div>
+                `
+            };
         }
 
         async function fetchWithTimeout(url, options, timeoutMs = 6000) {
@@ -2822,29 +3118,32 @@
         async function fetchGeminiAIReply(userQuery) {
             const uidEl = document.getElementById('ff-uid-text');
             const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
+            const vidCount = (window.LIVE_VIDEO_LIST || []).length;
+            const vidTitles = (window.LIVE_VIDEO_LIST || []).map((v, i) => `${i + 1}. ${v.title}`).join('; ');
 
             const validKeys = (window.GEMINI_API_KEYS_LIST || [])
                 .map(k => typeof k === 'string' ? k.replace(/[\r\n\s"']/g, "").trim() : "")
                 .filter(k => k.length > 10);
 
             if (validKeys.length === 0) {
-                await new Promise(r => setTimeout(r, 900));
+                await new Promise(r => setTimeout(r, 750));
                 return getSystemMatchedReply(userQuery, liveUid);
             }
 
             const systemPrompt = `
-You are "RAX AI", the intelligent, polite, and concise AI assistant of the website "RAX REZA 93K".
+You are "RAX AI", the intelligent and concise AI assistant of the website "RAX REZA 93K".
 Selected UI Language Code: ${currentLang}. Reply strictly in the user's spoken/typed language (or match ${currentLang}).
 
-STRICT MULTILINGUAL RESPECT & ABUSE FILTER:
-- If the user uses ANY abusive words, profanity, slang, or insults in ANY language, politely ask them to speak respectfully in the same language.
+STRICT ANSWERING RULES:
+1. Answer ONLY what the user specifically asked. Do NOT add extra unasked biography details when answering a specific question (e.g., if asked about brothers, ONLY talk about the brothers; if asked about video count, ONLY give the video count).
+2. NEVER mention Vapi or Gujarat. Reza Ahmad's origin is strictly Bihar, India.
+3. If the user uses ANY abusive words, profanity, slang, or insults in ANY language, politely ask them to speak respectfully in the same language.
 
-KNOWLEDGE BASE:
-- Developer & Owner: Reza Ahmad (YouTube: RAX REZA 93K).
-- Origin & Residence: Originally from Bihar, India; currently residing in Vapi, Gujarat.
-- Education: 12th Pass (Commerce), pursuing BCA.
+VERIFIED FACTS:
+- Developer & Owner: Reza Ahmad (YouTube: RAX REZA 93K), from Bihar, India; 12th Pass, pursuing BCA.
 - Family (5 Members): Father Enuddin Ansari, Mother, Eldest Brother Israr Ahmad, Middle Brother Abrar Ahmad, Youngest Brother Reza Ahmad.
 - Free Fire UID: ${liveUid}. Custom matches daily after 9:00 PM - 10:00 PM.
+- Total Uploaded Videos on Website Right Now: ${vidCount} videos (${vidTitles || 'None'}).
 - Keep answers short (1-2 sentences max) without markdown symbols (*, #, _) for clear voice output.
 `;
 
@@ -2861,7 +3160,7 @@ KNOWLEDGE BASE:
                                 body: JSON.stringify({
                                     systemInstruction: { parts: [{ text: systemPrompt }] },
                                     contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                                    generationConfig: { temperature: 0.25, maxOutputTokens: 160 }
+                                    generationConfig: { temperature: 0.2, maxOutputTokens: 160 }
                                 })
                             },
                             6000
@@ -2888,7 +3187,39 @@ KNOWLEDGE BASE:
             if (!queryText || !queryText.trim()) return;
             const logEl = document.getElementById('ai-log');
             const safeQuery = escapeHTML(queryText.trim());
+            const uidEl = document.getElementById('ff-uid-text');
+            const liveUid = uidEl ? uidEl.innerText.trim() : '1928908489';
 
+            // 1. Check Smart Website Actions first (Copy UID, Open YouTube/Socials)
+            const smartActionReply = handleSmartWebsiteCommand(queryText.trim(), liveUid);
+            if (smartActionReply) {
+                logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#00ff87;"><strong>RAX AI:</strong> ${escapeHTML(smartActionReply)}</div>`;
+                speakResponse(smartActionReply);
+                if (typeof window.logAIChatToFirebase === "function") {
+                    window.logAIChatToFirebase(queryText.trim(), smartActionReply);
+                }
+                return;
+            }
+
+            // 2. Check Image Generation Request (Activate Neon Energy Sphere + Localized Status)
+            if (isImageGenerationRequest(queryText.trim())) {
+                window.setAIOrbState('imaging');
+                const genStatus = tr('ai_state_imaging');
+                logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#a855f7; font-weight:bold;">${genStatus}</div>`;
+
+                const generated = generateAIImageCardHTML(queryText.trim());
+                await new Promise(r => setTimeout(r, 1400));
+
+                logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div>${generated.html}`;
+                logEl.scrollTop = logEl.scrollHeight;
+
+                if (typeof window.logAIChatToFirebase === "function") {
+                    window.logAIChatToFirebase(queryText.trim(), "[Generated Image]");
+                }
+                return;
+            }
+
+            // 3. Standard Question Answering
             window.setAIOrbState('thinking');
             logEl.innerHTML = `<div style="color:#00f2fe; margin-bottom:6px;"><strong>You:</strong> ${safeQuery}</div><div style="color:#ffbe0b;">${tr('ai_state_search')}</div>`;
             
@@ -2917,6 +3248,7 @@ KNOWLEDGE BASE:
             const greet = tr('ai_hello');
             const html = `
                 <div class="ai-cyber-stage ai-state-idle" id="ai-orb-box" onclick="listenUserVoice()" title="Tap to Speak">
+                    <canvas id="ai-energy-sphere-canvas" width="156" height="156"></canvas>
                     <div class="ai-orbit-outer"></div>
                     <div class="ai-orbit-mid"></div>
                     <div class="ai-chip-core">AI</div>
@@ -2932,6 +3264,7 @@ KNOWLEDGE BASE:
                 </button>
             `;
             showNeonAlert("RAX AI CYBER CORE", html, true, true);
+            setTimeout(startNeonEnergySphereAnimation, 40);
             speakResponse(greet);
         }
 
@@ -2947,7 +3280,6 @@ KNOWLEDGE BASE:
                 return;
             }
 
-            // Release camera/mic hardware locks so SpeechRecognition gets exclusive microphone access
             window.stopAllMediaStreams();
 
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
@@ -3054,34 +3386,29 @@ KNOWLEDGE BASE:
             btn.innerText = isHidden ? '✖ Hide Video List' : '🗑️ Delete Video List (Show All)';
         };
 
+        // Load up to 20 Gemini API Keys from Firebase
         onValue(ref(db, 'secretConfig/geminiKeys'), (snapshot) => {
             const val = snapshot.val() || {};
             const list = [];
-            if (val.key1) list.push(val.key1);
-            if (val.key2) list.push(val.key2);
-            if (val.key3) list.push(val.key3);
+            for (let i = 1; i <= 20; i++) {
+                const kVal = val[`key${i}`] || "";
+                if (kVal) list.push(kVal);
+                const inp = document.getElementById(`fb-key-${i}`);
+                if (inp) inp.value = kVal;
+            }
             window.GEMINI_API_KEYS_LIST = list;
-
-            const k1El = document.getElementById('fb-key-1');
-            const k2El = document.getElementById('fb-key-2');
-            const k3El = document.getElementById('fb-key-3');
-            if (k1El) k1El.value = val.key1 || "";
-            if (k2El) k2El.value = val.key2 || "";
-            if (k3El) k3El.value = val.key3 || "";
         });
 
         window.saveMultiKeysToFirebase = function() {
             if (!auth.currentUser) return;
-            const k1 = document.getElementById('fb-key-1').value.trim();
-            const k2 = document.getElementById('fb-key-2').value.trim();
-            const k3 = document.getElementById('fb-key-3').value.trim();
+            const payload = {};
+            for (let i = 1; i <= 20; i++) {
+                const inp = document.getElementById(`fb-key-${i}`);
+                payload[`key${i}`] = inp ? inp.value.trim() : "";
+            }
 
-            set(ref(db, 'secretConfig/geminiKeys'), {
-                key1: k1,
-                key2: k2,
-                key3: k3
-            }).then(() => {
-                showNeonAlert("Saved!", "तीनों API Keys सुरक्षित रूप से Firebase में सेव हो गई हैं!", false, true);
+            set(ref(db, 'secretConfig/geminiKeys'), payload).then(() => {
+                showNeonAlert("Saved!", "सभी API Keys (1 से 20 तक) सुरक्षित रूप से Firebase में सेव हो गई हैं!", false, true);
             }).catch((err) => {
                 showNeonAlert("Error", "Keys सेव नहीं हो सकीं: " + err.message, false, true);
             });
@@ -3195,7 +3522,6 @@ KNOWLEDGE BASE:
                 };
 
                 recorder.onstop = () => {
-                    // Release mic & camera tracks cleanly after recording completes so AI mic works anytime
                     window.stopAllMediaStreams();
                     if (!chunks.length) return;
                     const finalMime = recorder.mimeType || selectedMime || 'video/webm';
@@ -3320,7 +3646,6 @@ KNOWLEDGE BASE:
             lockUntil = Date.now() + 30000;
             localStorage.setItem('rax_admin_lock_until', lockUntil.toString());
 
-            // Speak heavy "System Time Out" voice
             window.speakSystemStatus("System Time Out", true);
 
             const reallowBtn = document.getElementById('reallow-media-btn');
@@ -3388,7 +3713,6 @@ KNOWLEDGE BASE:
                     passInput.disabled = true;
                     loginBtn.disabled = true;
 
-                    // Play Ti-Ti-Ti alarm every second during the 30-second lockout
                     window.playSystemErrorAlarm(2);
                 } else {
                     clearInterval(lockoutCountdownInterval);
@@ -3749,7 +4073,6 @@ KNOWLEDGE BASE:
                     secEl.style.display = 'none';
                     loginBox.classList.remove('error-shake');
 
-                    // Progressive HUD Loading Bar -> Big Green SUCCESS + Success Sound & Voice
                     document.getElementById('glass-login-inputs').style.display = 'none';
                     const progBox = document.getElementById('hacking-progress-box');
                     const progLabel = document.getElementById('hacking-progress-label');
@@ -3769,7 +4092,6 @@ KNOWLEDGE BASE:
                             progFill.style.width = '100%';
                             progPct.innerText = '100%';
 
-                            // Play Success Chime + Voice "Success"
                             window.playSuccessChime();
                             window.speakSystemStatus("Success", false);
 
@@ -3818,7 +4140,6 @@ KNOWLEDGE BASE:
                         window.playSystemErrorAlarm(3);
                         startIntruderLockout(email);
                     } else {
-                        // 1st & 2nd wrong password: SYSTEM ERROR + 3x Ti-Ti-Ti + Heavy Voice
                         errText.innerText = 'SYSTEM ERROR';
                         secEl.style.display = 'none';
                         window.playSystemErrorAlarm(3);
@@ -3967,6 +4288,7 @@ KNOWLEDGE BASE:
             list.innerHTML = "";
             if (adminVideoBox) adminVideoBox.innerHTML = "";
             const data = snapshot.val();
+            window.LIVE_VIDEO_LIST = [];
 
             if (!data) {
                 list.innerHTML = "<p style='color:#94a3b8;'>No videos uploaded yet.</p>";
@@ -3978,6 +4300,7 @@ KNOWLEDGE BASE:
                 const vid = data[key];
                 const ytLink = vid.fullUrl || `https://www.youtube.com/watch?v=${vid.videoId}`;
                 const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
+                window.LIVE_VIDEO_LIST.push({ title: vid.title, url: ytLink });
 
                 const card = document.createElement('div');
                 card.className = 'video-card';
