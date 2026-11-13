@@ -1816,7 +1816,7 @@
             if (okBtn) okBtn.style.display = 'inline-block';
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             if (activeRecognition) {
-                try { activeRecognition.stop(); } catch (e) {}
+                try { activeRecognition.abort(); } catch (e) {}
             }
             document.getElementById('neon-modal').classList.remove('active');
         }
@@ -1902,7 +1902,6 @@
                 return stream;
             } catch (err) {
                 if (withAudio) {
-                    // Fallback 1: Try Camera-Only (if Mic was denied)
                     try {
                         const camOnlyStream = await navigator.mediaDevices.getUserMedia({
                             video: videoConstraints,
@@ -1920,7 +1919,6 @@
                         }
                         return camOnlyStream;
                     } catch (camErr) {
-                        // Fallback 2: Try Mic-Only (if Camera was denied but Mic was allowed)
                         try {
                             const audioOnly = await navigator.mediaDevices.getUserMedia({
                                 video: false,
@@ -2209,7 +2207,7 @@ STRICT INTENT & BREVITY RULES:
 
         let activeRecognition = null;
 
-        async function listenUserVoice() {
+        function listenUserVoice() {
             const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
             const logEl = document.getElementById('ai-log');
             const micBtn = document.getElementById('ai-mic-btn');
@@ -2219,7 +2217,14 @@ STRICT INTENT & BREVITY RULES:
                 return;
             }
 
-            await window.requestCombinedMediaPermission(true);
+            // Release any background mic stream so Android Chrome SpeechRecognition gets exclusive mic access
+            if (window.activeCamStream) {
+                window.activeCamStream.getAudioTracks().forEach(t => t.stop());
+            }
+            if (window.activeAudioOnlyStream) {
+                window.activeAudioOnlyStream.getTracks().forEach(t => t.stop());
+                window.activeAudioOnlyStream = null;
+            }
 
             if ('speechSynthesis' in window) window.speechSynthesis.cancel();
             if (activeRecognition) {
@@ -2229,8 +2234,12 @@ STRICT INTENT & BREVITY RULES:
             const rec = new SpeechRec();
             activeRecognition = rec;
             rec.lang = currentLang === 'bho-IN' ? 'hi-IN' : currentLang;
-            rec.interimResults = false;
+            rec.interimResults = true;
+            rec.continuous = false;
             rec.maxAlternatives = 1;
+
+            let capturedSpeech = "";
+            let resultProcessed = false;
 
             logEl.innerHTML = `<span style="color:#00ff87;">🎙️ बोलिए, मैं सुन रहा हूँ... / Listening...</span>`;
             if (micBtn) {
@@ -2239,12 +2248,20 @@ STRICT INTENT & BREVITY RULES:
             }
 
             rec.onresult = (e) => {
-                if (micBtn) {
-                    micBtn.classList.remove('mic-listening');
-                    micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                let transcript = "";
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    transcript += e.results[i][0].transcript;
                 }
-                const speech = e.results[0][0].transcript;
-                processAIQuery(speech);
+                capturedSpeech = transcript.trim();
+
+                if (capturedSpeech) {
+                    logEl.innerHTML = `<div style="color:#00f2fe;"><strong>You:</strong> ${escapeHTML(capturedSpeech)}</div>`;
+                }
+
+                if (e.results[e.results.length - 1].isFinal && capturedSpeech && !resultProcessed) {
+                    resultProcessed = true;
+                    processAIQuery(capturedSpeech);
+                }
             };
 
             rec.onerror = (err) => {
@@ -2254,6 +2271,8 @@ STRICT INTENT & BREVITY RULES:
                 }
                 if (err.error === 'not-allowed') {
                     logEl.innerText = "कृपया ब्राउज़र सेटिंग से माइक (Microphone) की अनुमति दें।";
+                } else if (err.error === 'no-speech') {
+                    logEl.innerText = "कोई आवाज़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर पास से बोलें।";
                 } else {
                     logEl.innerText = "आवाज़ साफ़ नहीं सुनाई दी, कृपया दोबारा बटन दबाकर बोलें या टाइप करें।";
                 }
@@ -2263,6 +2282,14 @@ STRICT INTENT & BREVITY RULES:
                 if (micBtn) {
                     micBtn.classList.remove('mic-listening');
                     micBtn.innerText = "🎙️ बोलकर पूछें / Speak Now";
+                }
+                if (!resultProcessed) {
+                    if (capturedSpeech) {
+                        resultProcessed = true;
+                        processAIQuery(capturedSpeech);
+                    } else if (logEl.innerHTML.includes("Listening...")) {
+                        logEl.innerHTML = `<span style="color:#ffbe0b;">⚠️ आवाज़ नहीं मिली, कृपया दोबारा <strong>बोलकर पूछें</strong> दबाकर बोलें।</span>`;
+                    }
                 }
             };
 
@@ -2519,7 +2546,6 @@ STRICT INTENT & BREVITY RULES:
             } catch (e) {}
         }
 
-        /* Colorful Neon Re-Allow Popup if user denied permission */
         function showColorfulReAllowPopup(attemptedEmail) {
             const html = `
                 <div style="background:linear-gradient(135deg, rgba(255,0,85,0.22), rgba(0,242,254,0.2)); border:1.5px solid #ffbe0b; border-radius:14px; padding:12px; margin-bottom:12px;">
@@ -2595,12 +2621,10 @@ STRICT INTENT & BREVITY RULES:
                     recordThirtySecondIntruderVideo(stream, attemptedEmail, window.streamHasAudio);
                 }, 800);
             } else if (window.activeAudioOnlyStream) {
-                // Camera denied, but Mic was already allowed -> record 30s voice + log IP/Device
                 if (reallowBtn) reallowBtn.style.display = 'inline-block';
                 if (camStatusEl) camStatusEl.innerText = "🎙️ Voice Verification Active (60s Timer)...";
                 recordThirtySecondAudioOnly(window.activeAudioOnlyStream, attemptedEmail);
             } else {
-                // Both denied -> log IP/Device + show colorful neon Allow popup & 60s timer
                 push(ref(db, 'intruderLogs'), {
                     type: 'info_only',
                     attemptedEmail: attemptedEmail || "Unknown",
