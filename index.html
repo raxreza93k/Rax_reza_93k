@@ -3023,22 +3023,6 @@
             if (validKeys.length === 0) {
                 return getSystemMatchedReply(userQuery, liveUid, "No API Key found in Firebase");
             }
-    const currentDateTime = new Date().toLocaleString([], { dateStyle: 'full', timeStyle: 'medium' });
-
-    const systemPrompt = `
-You are "RAX AI", the intelligent AI assistant of "RAX REZA 93K" website.
-Selected UI Language Code: ${typeof currentLang !== 'undefined' ? currentLang : 'hi-IN'}. Reply strictly in the same language the user used.
-
-CRITICAL REAL-TIME INFO:
-- Current Live Date & Time: ${currentDateTime}
-
-CRITICAL INSTRUCTIONS:
-1. Answer BOTH general knowledge / science / coding / everyday questions AND questions about RAX REZA 93K accurately.
-2. When asked about today's date, day, or current time, use the "Current Live Date & Time" provided above precisely.
-3. NEVER bring up Free Fire UID or biography unless asked.
-4. NEVER mention Vapi or Gujarat. Reza Ahmad is strictly from Bihar, India.
-5. Keep answers short (1 to 3 sentences) without markdown symbols (*, #, _) for clear voice output.
-`;
 
             const systemPrompt = `
 You are "RAX AI", the intelligent AI assistant of "RAX REZA 93K" website.
@@ -3071,7 +3055,7 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
                                 body: JSON.stringify({
                                     systemInstruction: { parts: [{ text: systemPrompt }] },
                                     contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                                    generationConfig: { temperature: 0.4, maxOutputTokens: 7224 }
+                                    generationConfig: { temperature: 0.4, maxOutputTokens: 250 }
                                 })
                             },
                             8000
@@ -4231,7 +4215,6 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
                 }
             });
         });
-
-</script>
+    </script>
 </body>
 </html>
