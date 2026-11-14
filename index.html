@@ -4231,38 +4231,7 @@ WEBSITE FACTS (Use when asked about developer/owner/site):
                 }
             });
         });
-        <div class="cyber-status-bar" style="position: absolute; top: 14px; left: 16px; display: flex; align-items: center; gap: 8px; padding: 5px 12px; background: rgba(3, 10, 26, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(0, 242, 254, 0.45); border-radius: 20px; font-family: 'Courier New', monospace; font-size: 11px; color: #00f2fe; z-index: 10;">
-    <span id="live-clock">🕒 00:00:00</span>
-    <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-    <span id="network-status">📡 Checking...</span>
-</div>
 
-<script>
-    // 🕒 लाइव क्लॉक अपडेट करने का फंक्शन
-    function updateCyberClock() {
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        const clk = document.getElementById('live-clock');
-        if (clk) clk.innerText = `🕒 ${timeStr}`;
-    }
-    setInterval(updateCyberClock, 1000); 
-    updateCyberClock();
-
-    // 📡 लाइव नेटवर्क स्टेटस चेक करने का फंक्शन
-    function updateNetworkStatus() {
-        const net = document.getElementById('network-status');
-        if (!net) return;
-        if (!navigator.onLine) { 
-            net.innerHTML = `📡 <span style="color:#ff003c;">Offline</span>`; 
-            return; 
-        }
-        const conn = navigator.connection || navigator.mozConnection;
-        let type = conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : "Online";
-        net.innerHTML = `📡 <span style="color:#00ff87;">Online (${type})</span>`;
-    }
-    window.addEventListener('online', updateNetworkStatus);
-    window.addEventListener('offline', updateNetworkStatus);
-    updateNetworkStatus();
 </script>
 </body>
 </html>
